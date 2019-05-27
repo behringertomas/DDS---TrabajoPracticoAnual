@@ -10,7 +10,6 @@ public class Short extends Prenda implements IParteInferior {
 	}
 	
 	public String getParteCuerpo() {
-//		 TODO Auto-generated method stub
 		return IParteInferior.Parte;
 	}
 	

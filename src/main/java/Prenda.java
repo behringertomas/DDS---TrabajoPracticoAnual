@@ -6,9 +6,9 @@ public abstract class Prenda {
 	String color_primario;
 	String color_secundario="";
 	
-	public void getTipo() {
+	public String getTipo() {
 		System.out.println(this.tipo);
-//		return this.tipo;
+		return this.tipo;
 	}
 	
 	public abstract String getParteCuerpo();

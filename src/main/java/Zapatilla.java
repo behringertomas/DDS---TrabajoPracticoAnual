@@ -10,7 +10,6 @@ public class Zapatilla extends Prenda implements ICalzado {
 	}
 
 	public String getParteCuerpo() {
-		// TODO Auto-generated method stub
 		return ICalzado.Parte;
 	}
 

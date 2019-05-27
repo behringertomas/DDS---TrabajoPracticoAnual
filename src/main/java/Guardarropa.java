@@ -29,65 +29,15 @@ public class Guardarropa {
 		this.parteSuperior.forEach(prenda -> prenda.getTipo());
 	}
 
-	public static void sugerir() {
-		
-	}
-
 	public void agregarAGuardarropas(Prenda prenda) {	
 	        switch(prenda.getParteCuerpo()) {
-	            case "Parte Inferior": this.agregarCalzado(prenda);
-	            case "Accesorio": this.agregarAccesorios(prenda);
-	            case "Parte Superior": this.agregarPS(prenda);
-	            case "Calzado": this.agregarCalzado(prenda);
+	        	case "Parte Superior": this.parteSuperior.add(prenda);
+	            case "Parte Inferior": this.parteInferior.add(prenda);
+	            case "Accesorio": this.accesorios.add(prenda);
+	            case "Calzado": this.calzados.add(prenda);
 	    }
 			
 	}
-	
-	public void agregarAbrigo(Prenda prenda) {
-        this.abrigo.add(prenda);
-    }
-    public void agregarPS(Prenda prenda) {
-        this.parteSuperior.add(prenda);
-    }
-    public void agregarPI(Prenda prenda) {
-        this.parteInferior.add(prenda);
-    }
-    public void agregarCalzado(Prenda prenda) {
-        this.calzados.add(prenda);
-    }
-    public void agregarAccesorios(Prenda prenda) {
-        this.accesorios.add(prenda);
-    }
-	
-	public int getCantParteSuperior() {
-		return this.parteSuperior.size();
-	}
-	
-	public int getCantParteInferior() {
-		return this.parteInferior.size();
-	}
-	
-	public int getCantCalzado() {
-		return this.calzados.size();
-	}
-	
-	public int getCantAccesorios() {
-		return this.accesorios.size();
-	}
-	
-//	public ArrayList<String> getArrayParteSuperior(){
-//		return 
-//	}
-//	public List<int[]> generate(int n, int r) {
-//	    List<int[]> combinations = new ArrayList<>();
-//	    helper(combinations, new int[r], 0, n-1, 0);
-//	    return combinations;
-//	}
-	
-//	public int getCantPrendasTotal() {
-//		return this.prendas.size();
-//	}
-	
 	
 	public Guardarropa() {
 	
