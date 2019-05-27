@@ -2,7 +2,8 @@
 
 public class Remera extends Prenda implements IParteSuperior {
 
-	public Remera() {
+	public Remera(String color) {
+		this.color_primario = color;
 		// TODO Auto-generated constructor stub
 	}
 
