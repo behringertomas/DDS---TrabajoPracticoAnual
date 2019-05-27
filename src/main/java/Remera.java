@@ -1,10 +1,20 @@
 
 
 public class Remera extends Prenda implements IParteSuperior {
-
-	public Remera() {
-		// TODO Auto-generated constructor stub
+	
+	String tipo_tela;
+	
+	
+	public String toString() {
+		return "Remera " + this.color_primario;
 	}
+	
+	public Remera(String color,String tipo_tela) {
+		super(color);
+		this.tipo_tela = tipo_tela;
+		this.tipo="Remera";
+	}
+	
 
 	public String getParteCuerpo() {
 		// TODO Auto-generated method stub
