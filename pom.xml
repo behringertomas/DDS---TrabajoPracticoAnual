@@ -18,11 +18,23 @@
         <version>4.12</version>
     </dependency>
 	
-	<!-- https://mvnrepository.com/artifact/com.google.common/google-collect -->
+	<!-- dependencia para combinaciones de prenda-->
 	<dependency>
-		<groupId>com.google.common</groupId>
-		<artifactId>google-collect</artifactId>
-		<version>0.5</version>
+		<groupId>org.apache.commons</groupId>
+		<artifactId>commons-math3</artifactId>
+		<version>3.6.1</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>com.google.guava</groupId>
+		<artifactId>guava</artifactId>
+		<version>27.0.1-jre</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>com.github.dpaukov</groupId>
+		<artifactId>combinatoricslib3</artifactId>
+		<version>3.3.0</version>
 	</dependency>
 
    </dependencies>
