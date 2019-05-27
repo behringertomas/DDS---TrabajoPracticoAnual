@@ -1,0 +1,33 @@
+<project>
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>nombre-proyecto</groupId>
+  <artifactId>nombre-proyecto</artifactId>
+  <version>1</version>
+    <dependencies>
+	<!-- https://mvnrepository.com/artifact/taglibs/string -->
+	<dependency>
+	    <groupId>taglibs</groupId>
+	    <artifactId>string</artifactId>
+	    <version>1.1.0</version>
+	</dependency>
+	
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.12</version>
+    </dependency>
+	
+	<!-- https://mvnrepository.com/artifact/com.google.common/google-collect -->
+	<dependency>
+		<groupId>com.google.common</groupId>
+		<artifactId>google-collect</artifactId>
+		<version>0.5</version>
+	</dependency>
+
+   </dependencies>
+</project>
+
+
+
+ 
