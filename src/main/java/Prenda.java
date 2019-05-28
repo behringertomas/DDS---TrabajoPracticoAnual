@@ -1,29 +1,22 @@
 
-public class Prenda {
+public abstract class Prenda {
 	
 	String tipo;
-	String tipo_tela;
+//	String tipo_tela; CAMBIAR DE CLASE NDEA
 	String color_primario;
 	String color_secundario="";
 	
-	public String getColorPrimario() {
-		return this.color_primario;
-	}
-	
-	public String ColorSecundario() {
-		return this.color_secundario;
-	}
-	
 	public String getTipo() {
 		return this.tipo;
+//		return this.tipo;
 	}
 	
-	public String getTipoTela() {
-		return this.tipo_tela;
-	}
+	public abstract String getParteCuerpo();
 	
-	public Prenda() {
-		
+	
+	public Prenda(String color) {
+		this.color_primario = color;
 	}
+
 
 }

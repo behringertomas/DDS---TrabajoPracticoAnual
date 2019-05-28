@@ -1,6 +1,6 @@
 
 public interface ICalzado {
-	String Parte = "Parte Calzado";
+	String Parte = "Calzado";
 	
 	public String getParteCuerpo();
 }
