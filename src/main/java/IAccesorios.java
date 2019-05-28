@@ -1,5 +1,5 @@
-
-public interface IAccesorios {
+public interface IAccesorios 
+{
 	String Parte = "Accesorio";
 	
 	public String getParteCuerpo();
