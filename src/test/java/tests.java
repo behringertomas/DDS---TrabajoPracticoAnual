@@ -1,58 +1,68 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.paukov.combinatorics3.Generator;
+
+import junit.framework.Assert;
 
 public class tests
 {
-	@Test
-	public void test1()
-	{
-		Usuario usuario1 = new Usuario();
-
-		Guardarropa guardarropa1 = new Guardarropa();
-
-
-
-		Prenda remeraRoja = new Remera("Roja","Seda");
-		Prenda camisa= new Camisa("Negra","Tela");
-		
-		Prenda shortNegro = new Short("Negro","Jean");
-		
-		Prenda reloj = new Reloj("Dorado","Oro");
-		
-		Prenda convers = new Zapatilla("Negra","Cuero");
-		Prenda pony = new Zapatilla("Blanca","Cuero");
-
-
-		usuario1.agregarGuardarropas(guardarropa1);
-
-		usuario1.agregarPrendaAGuardarropas(guardarropa1,remeraRoja);
-		usuario1.agregarPrendaAGuardarropas(guardarropa1,camisa);
-
-		usuario1.agregarPrendaAGuardarropas(guardarropa1,shortNegro);
-
-		usuario1.agregarPrendaAGuardarropas(guardarropa1,reloj);
-
-		usuario1.agregarPrendaAGuardarropas(guardarropa1,convers);
-		usuario1.agregarPrendaAGuardarropas(guardarropa1,pony);
-
-//		System.out.println("Elementos PARTE SUPERIOR");
-//		guardarropa1.getArrayParteSuperior();
-
-//
-//		System.out.println("Elementos PARTE INFERIOR");
-//		guardarropa1.getArrayParteInferior();
+//	@Test
+//	public void test() throws Exception
+//	{		
+//		Usuario usuario = new Usuario();
+//		Guardarropa guardarropas = new Guardarropa();
 //		
-
-//		System.out.println("Elementos de ACCESORIOS");
-//		guardarropa1.getArrayAccesorios();
+//		usuario.agregarGuardarropas(guardarropas);
+//		ParteSuperior ps = new ParteSuperior();
+//		
+//		usuario.setPrendaBuilder(ps);
+//		usuario.construirPrenda("Remera", "Algodon", "Rojo", "Negro");
+//		usuario.agregarPrendaAGuardarropas(guardarropas, ps.getPrenda());
+//		(ps.getPrenda()).mostrarPrenda();
 //
-//		System.out.println("Elementos de CALZADO");
-//		guardarropa1.getArrayCalzado();
+//		usuario.construirPrenda("Camisa", "Seda", "Blanco");
+//		usuario.agregarPrendaAGuardarropas(guardarropas, ps.getPrenda());
+//		guardarropas.getArrayParteSuperior();		
+//		(ps.getPrenda()).mostrarPrenda();
+//	}
+	
+//	@Before
+//    void init() 
+//	{
+//		Usuario usuario = new Usuario();
+//		ParteSuperior ps = new ParteSuperior();
+//		usuario.setPrendaBuilder(ps);
+//  }
+	
+	//@Rule public ExpectedException exception = ExpectedException.none();
+	@Test
+	public void whenExceptionThrown_thenExpectationSatisfied() throws Exception 
+	{
+//		exception.expect(IllegalArgumentException.class);
+//		exception.expectMessage("ERROR COLOR PRIMARIO");
+//		Usuario usuario = new Usuario();
+//		ParteSuperior ps = new ParteSuperior();
+//		usuario.setPrendaBuilder(ps);
+//		usuario.construirPrenda("Remera", "Algodon", "rositaConcha", "Negro");
 		
-		usuario1.queMePongo(guardarropa1);
+		try {
+			Usuario usuario = new Usuario();
+			ParteSuperior ps = new ParteSuperior();
+			usuario.setPrendaBuilder(ps);
+			usuario.construirPrenda("Remera", "Algodon", "Rojo", "Negro");
+	    	System.out.println("ANDO");
+			
+		} catch(IllegalArgumentException e){
+//			exception.expect(IllegalArgumentException.class);
+//			exception.expectMessage("ERROR COLOR PRIMARIO");
+			Assert.fail("ERROR COLOR PRIMARIO");
+	    	System.out.println("NO ANDO");
+		}
+	
 	}
 }
-

@@ -29,7 +29,7 @@ public class Guardarropa
 	{	
 		switch(prenda.getParteCuerpo()) 
 		{
-			case "Parte Superior": 
+			case "Parte Superior":
 				this.parteSuperior.add(prenda);
 				break;
 			case "Parte Inferior": 
@@ -51,25 +51,26 @@ public class Guardarropa
 	
 	public ArrayList<String> getArrayParteSuperior() 
 	{
-		ArrayList <String> arrayParteSuperior = new ArrayList <String>(this.parteSuperior.stream().map(prenda -> prenda.getNombre()).collect(Collectors.toList()));
+		ArrayList <String> arrayParteSuperior = new ArrayList <String>(this.parteSuperior.stream().map(prenda -> prenda.getTipo()).collect(Collectors.toList()));
+		arrayParteSuperior.forEach(System.out::println);
 		return arrayParteSuperior;
 	}
 	
 	public ArrayList<String> getArrayParteInferior() 
 	{
-		ArrayList <String> arrayParteInferior = new ArrayList <String>(this.parteInferior.stream().map(prenda -> prenda.getNombre()).collect(Collectors.toList()));
+		ArrayList <String> arrayParteInferior = new ArrayList <String>(this.parteInferior.stream().map(prenda -> prenda.getTipo()).collect(Collectors.toList()));
 		return arrayParteInferior;
 	}
 	
 	public ArrayList<String> getArrayAccesorios() 
 	{
-		ArrayList <String> arrayAccesorios = new ArrayList <String>(this.accesorios.stream().map(prenda -> prenda.getNombre()).collect(Collectors.toList()));
+		ArrayList <String> arrayAccesorios = new ArrayList <String>(this.accesorios.stream().map(prenda -> prenda.getTipo()).collect(Collectors.toList()));
 		return arrayAccesorios;
 	}
 	
 	public ArrayList<String> getArrayCalzado() 
 	{
-		ArrayList <String> arrayCalzado = new ArrayList <String>(this.calzados.stream().map(prenda -> prenda.getNombre()).collect(Collectors.toList()));
+		ArrayList <String> arrayCalzado = new ArrayList <String>(this.calzados.stream().map(prenda -> prenda.getTipo()).collect(Collectors.toList()));
 		return arrayCalzado;
 	}
 
@@ -78,7 +79,6 @@ public class Guardarropa
 		
 	public List<String> queMePongo()
 	{
-		
 	    int rnd = new Random().nextInt(this.combinaciones().size());
 	    
 	    List <String> combinacionElegida = this.combinaciones().get(rnd);

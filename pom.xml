@@ -36,7 +36,22 @@
 		<artifactId>combinatoricslib3</artifactId>
 		<version>3.3.0</version>
 	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+	<dependency>
+		<groupId>com.googlecode.json-simple</groupId>
+		<artifactId>json-simple</artifactId>
+		<version>1.1</version>
+	</dependency>
 
+	<!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-junit -->
+	<dependency>
+		<groupId>org.hamcrest</groupId>
+		<artifactId>hamcrest-junit</artifactId>
+		<version>2.0.0.0</version>
+		<scope>test</scope>
+	</dependency>	
+	
    </dependencies>
 </project>
 

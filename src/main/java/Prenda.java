@@ -1,37 +1,29 @@
-public abstract class Prenda 
+public class Prenda 
 {
-	String tipo;
-	String material;
-	String color_primario;
+    private String parte = "";
+    private String tipo = "";
+    private String material = "";
+    private String colorPrimario = "";
+    private String colorSecundario = "";
 
-	String color_secundario=null;
+    public void setParte(String parte)	
+    {this.parte = parte;}
+    public void setTipo(String tipo){this.tipo = tipo;}
+    public void setMaterial(String material)	{ this.material = material; }
+    public void setColorPrimario(String colorPrimario)	{ this.colorPrimario = colorPrimario; }
+    public void setColorSecundario(String colorSecundario)	{ this.colorSecundario = colorSecundario; }	
+    
+    public Prenda getPrenda() { return this; }
+    
+    public String getParteCuerpo() {return this.parte;}
+    public String getTipo() {return this.tipo;}
 
-	public Prenda(String color, String material) 
-	{
-		this.color_primario = color;
-		this.material = material;
-
-	}
-	
-	public abstract String getParteCuerpo();
-	
-	public String getTipo() 
-	{
-		//System.out.println(this.tipo);
-		return this.tipo;
-	}
-	
-	public String getNombre()
-	{
-		if (color_secundario==null)
-		{
-			//System.out.println(this.tipo + " de " + this.material + " de " + this.color_primario);
-			return this.tipo + " de " + this.material + " " + this.color_primario;
-		}
-		else
-		{
-			//System.out.println(this.tipo + " de " + this.material + " de " + this.color_primario + " y " + this.color_secundario);
-			return this.tipo + " de " + this.material + " de " + this.color_primario + " y " + this.color_secundario;			
-		}
-	}
+    public void mostrarPrenda()
+    {
+    	System.out.println(this.parte);
+    	System.out.println(this.tipo);
+    	System.out.println(this.material);
+    	System.out.println(this.colorPrimario);
+    	System.out.println(this.colorSecundario);
+    }
 }

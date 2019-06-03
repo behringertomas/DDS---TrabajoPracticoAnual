@@ -1,0 +1,24 @@
+{
+  "Colores": [
+    "Azul",
+    "Rojo",
+    "Amarillo",
+    "Blanco",
+    "Verde",
+    "Marron",
+    "Rosa",
+    "Violeta",
+    "Bordo",
+    "Celeste",
+    "Negro",
+    "Gris"
+  ],
+  "TipoParteSuperior": ["Remera","Camisa","Musculosa"],
+  "TipoParteInferior": ["Pantalon Largo","Short","Pollera","Pantalon Corto"],
+  "TipoCalzado": ["Zapatilla","Zapato","Runners","Botines","Trainers"],
+  "TipoAccesorio": ["Reloj","Pulsera","Aro","Gorra","Lentes de Sol"],
+  "TipoParteSuperiorMaterial": ["Tela","Algodon","Seda"],
+  "TipoParteInferiorMaterial": ["Jean","Algodon","Cuero","Pana","Gamuza"],
+  "TipoCalzadoMaterial": ["Jean","Algodon","Cuero","Pana","Gamuza"],
+  "TipoAccesorioMaterial": ["Metal","Oro","Cuero","Plata","Bronce"],  
+}
