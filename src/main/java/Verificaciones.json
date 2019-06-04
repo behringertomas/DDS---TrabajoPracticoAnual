@@ -16,7 +16,7 @@
   "TipoParteSuperior": ["Remera","Camisa","Musculosa"],
   "TipoParteInferior": ["Pantalon Largo","Short","Pollera","Pantalon Corto"],
   "TipoCalzado": ["Zapatilla","Zapato","Runners","Botines","Trainers"],
-  "TipoAccesorio": ["Reloj","Pulsera","Aro","Gorra","Lentes de Sol"],
+  "TipoAccesorio": ["Reloj","Pulsera","Aro","Lentes de Sol"],
   "TipoParteSuperiorMaterial": ["Tela","Algodon","Seda"],
   "TipoParteInferiorMaterial": ["Jean","Algodon","Cuero","Pana","Gamuza"],
   "TipoCalzadoMaterial": ["Jean","Algodon","Cuero","Pana","Gamuza"],

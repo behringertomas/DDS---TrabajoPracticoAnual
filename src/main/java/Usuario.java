@@ -90,14 +90,12 @@ public class Usuario
 		guardarropa.agregarAGuardarropas(prenda);
 	}
 	
-	public List<Atuendo> queMePongoATodosLosGuardarropas() {
-		return listaGuardarropas.stream().map(guardarropa -> guardarropa.queMePongo()).collect(Collectors.toList());
+	public List<Atuendo> queMePongoATodosLosGuardarropas(){
+		
+			return listaGuardarropas.stream().map(guardarropa -> guardarropa.queMePongo()).collect(Collectors.toList());
+			
 	}
 	
-	public void imprimirListaDeAtuendos() {
-		List<Atuendo> listaDeAtuendosRecomendados= this.queMePongoATodosLosGuardarropas();
-		System.out.println(listaDeAtuendosRecomendados);
-	}
 	
 //	public void queMePongo(Guardarropa guardarropa)
 //	{

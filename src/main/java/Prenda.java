@@ -40,9 +40,9 @@ public class Prenda
     
     public void imprimirDescripcion() {
     	if(this.colorSecundario == "") {
-    		System.out.println(this.tipo + " de " + this.material + this.colorPrimario);
+    		System.out.println(this.tipo + " de " + this.material + " " + this.colorPrimario);
     	} else {
-    		System.out.println(this.tipo + " de " + this.material + this.colorPrimario + " y " + this.colorSecundario);
+    		System.out.println(this.tipo + " de " + this.material + " " +this.colorPrimario + " y " + this.colorSecundario);
     	}
     }
     

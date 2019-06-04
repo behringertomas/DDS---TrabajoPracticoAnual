@@ -1,5 +1,6 @@
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+import static org.hamcrest.Matchers.startsWith;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -22,17 +23,30 @@ public class tests
 	@Rule
     public ExpectedException thrown = ExpectedException.none();
 	
-	
 	@Test 
-	public void ExcepcionPrendaYaEstaEnGuardarropa() throws Exception
+	public void ExcepcionPrendaYaSeEncuentraEnUnGuardarropa() throws Exception
 	{
 			Usuario usuario = new Usuario();
 			Prenda prenda = usuario.construirPrenda("Parte Superior","Remera", "Tela", "Rojo", "Verde");
 			Guardarropa guardarropa = new Guardarropa();
 			guardarropa.agregarAGuardarropas(prenda);
 			thrown.expect(Exception.class);
-			thrown.expectMessage("PRENDA YA SE ENCUENTRA EN GUARDARROPA");
+			thrown.expectMessage("PRENDA YA SE ENCUENTRA EN UN GUARDARROPA");
 			guardarropa.agregarAGuardarropas(prenda);
+	}
+	
+	@Test 
+	public void ExcepcionNoSePuedenCompartirPrendas() throws Exception
+	{
+			Usuario usuario = new Usuario();
+			Prenda prenda = usuario.construirPrenda("Parte Superior","Remera", "Tela", "Rojo", "Verde");
+			Guardarropa guardarropa1 = new Guardarropa();
+			Guardarropa guardarropa2 = new Guardarropa();
+			
+			guardarropa1.agregarAGuardarropas(prenda);
+			thrown.expect(Exception.class);
+			thrown.expectMessage("PRENDA YA SE ENCUENTRA EN UN GUARDARROPA");
+			guardarropa2.agregarAGuardarropas(prenda);
 	}
 	
 	@Test 

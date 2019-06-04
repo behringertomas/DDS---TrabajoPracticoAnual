@@ -50,7 +50,7 @@ public class Guardarropa
 				System.out.println("ESTE ELEMENTO NO PERTENECE A NINGUNA LISTA");
 				break;
 			} 
-		}	else throw new Exception("PRENDA YA SE ENCUENTRA EN GUARDARROPA");
+		}	else throw new Exception("PRENDA YA SE ENCUENTRA EN UN GUARDARROPA");
 	}
 	
 
@@ -90,9 +90,10 @@ public class Guardarropa
 		
 	public Atuendo queMePongo()
 	{
+//		this.verificarGuardarropaConPrendas();
 	    int rnd = new Random().nextInt(this.combinaciones().size());
 	    List <Prenda> combinacionElegida = this.combinaciones().get(rnd);
-	    combinacionElegida.forEach(System.out::println);
+//	    combinacionElegida.forEach(System.out::println);
 	    Atuendo atuendoElegido = new Atuendo(combinacionElegida);
 	    atuendoElegido.imprimirPrendas();
 	    return atuendoElegido;
@@ -113,10 +114,10 @@ public class Guardarropa
 //	------------------- LAS EXCEPCIONES-------------------- 
 
 	public void verificarGuardarropaConPrendas() throws Exception{
-		if(parteSuperior.isEmpty()) throw new Exception("No hay parte superior.");
-		if(parteInferior.isEmpty()) throw new Exception("No hay parte inferior.");
-		if(calzados.isEmpty()) 		throw new Exception("No hay calzado.");
-		if(accesorios.isEmpty()) 	throw new Exception("No hay accesorios.");
+		if(parteSuperior.isEmpty()) throw new Exception("NO HAY PARTE SUPERIOR");
+		if(parteInferior.isEmpty()) throw new Exception("NO HAY PARTE INFERIOR");
+		if(calzados.isEmpty()) 		throw new Exception("NO HAY CALZADO");
+		if(accesorios.isEmpty()) 	throw new Exception("NO HAY ACCESORIO");
 	}
 	
 	
