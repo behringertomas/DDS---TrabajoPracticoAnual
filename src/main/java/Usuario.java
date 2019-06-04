@@ -33,50 +33,32 @@ public class Usuario
 			default:
 				throw new Exception("NO EXISTE PARTE");
 		}
-		
 	}
 	
 	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario, String colorSecundario) throws Exception
 	{
+		prendaBuilder = this.setPrendaBuilder(parte); 
 		
-//		try 
-//		{
-			prendaBuilder = this.setPrendaBuilder(parte); 
-			
-			prendaBuilder.verificarColoresDistintos(colorPrimario,colorSecundario);
-			prendaBuilder.crearPrenda();
-			prendaBuilder.buildParte();		
-			prendaBuilder.buildTipo(tipo);
-			prendaBuilder.buildMaterial(material);
-			prendaBuilder.buildColorPrimario(colorPrimario);
-			prendaBuilder.buildColorSecundario(colorSecundario);
-		return prendaBuilder.getPrenda();
-		
-//		}
-//		catch(Exception e)
-//		{
-//			System.out.println(e.getMessage());			
-//		}
+		prendaBuilder.verificarColoresDistintos(colorPrimario,colorSecundario);
+		prendaBuilder.crearPrenda();
+		prendaBuilder.buildParte();		
+		prendaBuilder.buildTipo(tipo);
+		prendaBuilder.buildMaterial(material);
+		prendaBuilder.buildColorPrimario(colorPrimario);
+		prendaBuilder.buildColorSecundario(colorSecundario);
+		return prendaBuilder.getPrenda();	
 	}
 	
 	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario) throws Exception
 	{
-//		try 
-//		{
-			prendaBuilder = this.setPrendaBuilder(parte); 
-			
-			prendaBuilder.crearPrenda();
-			prendaBuilder.buildParte();
-			prendaBuilder.buildTipo(tipo);
-			prendaBuilder.buildMaterial(material);
-			prendaBuilder.buildColorPrimario(colorPrimario);
-			
+		prendaBuilder = this.setPrendaBuilder(parte); 
+		
+		prendaBuilder.crearPrenda();
+		prendaBuilder.buildParte();
+		prendaBuilder.buildTipo(tipo);
+		prendaBuilder.buildMaterial(material);
+		prendaBuilder.buildColorPrimario(colorPrimario);
 		return prendaBuilder.getPrenda();
-//		}
-//		catch(Exception e)
-//		{
-//			System.out.println(e.getMessage());			
-//		}
 	}
 	
 	public void agregarGuardarropas(Guardarropa guardarropa) 
@@ -84,28 +66,22 @@ public class Usuario
 		this.listaGuardarropas.add(guardarropa);
 	}
 
-	
 	public void agregarPrendaAGuardarropas(Guardarropa guardarropa, Prenda prenda) throws Exception 
 	{
 		guardarropa.agregarAGuardarropas(prenda);
 	}
+//	
 	
-	public List<Atuendo> queMePongoATodosLosGuardarropas(){
-		
-			return listaGuardarropas.stream().map(guardarropa -> guardarropa.queMePongo()).collect(Collectors.toList());
-			
+	public List<Atuendo> queMePongoATodosLosGuardarropas() throws Exception
+	{
+		List<Atuendo> atuendos = listaGuardarropas.stream().map(guardarropa -> guardarropa.queMePongo()).collect(Collectors.toList());
+        if (atuendos.size()>0)
+        {
+            return listaGuardarropas.stream().map(guardarropa -> guardarropa.queMePongo()).collect(Collectors.toList());
+        }
+        else
+        {
+        	throw new Exception("ERROR SIN ATUENDOS");
+        }
 	}
-	
-	
-//	public void queMePongo(Guardarropa guardarropa)
-//	{
-//		guardarropa.queMePongo();
-//	}
-	
-//	public void crearGuardarropas(String nombreGuardarropas) //FALTA AGREGARLE NOMBRE AL GUARDARROPAS
-//	{
-//		Guardarropa guardarropa = new Guardarropa();
-//	}
-
-
 }

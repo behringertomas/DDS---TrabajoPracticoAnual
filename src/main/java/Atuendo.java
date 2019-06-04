@@ -4,18 +4,18 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 
-public class Atuendo {
-	
+public class Atuendo
+{	
 	List <Prenda> prendas;
 	
-	public Atuendo(List<Prenda> prenda) {
+	public Atuendo(List<Prenda> prenda)
+	{
 		this.prendas= prenda;
 	}
 	
 	public void imprimirPrendas() 
 	{
 		this.prendas.forEach(prenda->prenda.imprimirDescripcion());
-	}
-	
-	
+		
+	}	
 }

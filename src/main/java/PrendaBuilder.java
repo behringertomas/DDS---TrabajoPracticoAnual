@@ -4,7 +4,9 @@ public abstract class PrendaBuilder
     protected JsonReader jsonReader;
     
     public abstract void buildParte();
+    
     public abstract void buildTipo(String tipo) throws Exception;
+    
     public abstract void buildMaterial(String material) throws Exception;
     
     
@@ -47,7 +49,6 @@ public abstract class PrendaBuilder
     
     public Prenda getPrenda()
     {
-    	//prenda.mostrarPrenda();
     	return prenda;
     }
 }

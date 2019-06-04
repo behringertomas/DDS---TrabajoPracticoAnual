@@ -3,6 +3,7 @@ public class ParteInferior extends PrendaBuilder
     public ParteInferior(){prenda = new Prenda();}
     
     public void buildParte()   { prenda.setParte("Parte Inferior"); }
+    
     public void buildTipo(String tipo) throws Exception
     {
     	if ((jsonReader.getTipoParteInferior()).contains(tipo))
@@ -14,6 +15,7 @@ public class ParteInferior extends PrendaBuilder
     		throw new Exception("ERROR TIPO"); 
     	}  
     }
+    
     public void buildMaterial(String material) throws Exception
     {
     	if ((jsonReader.getMaterialParteInferior()).contains(material))
@@ -25,6 +27,4 @@ public class ParteInferior extends PrendaBuilder
     		throw new Exception("ERROR MATERIAL"); 
     	} 
     }
-//    public void buildColorPrimario(String colorPrimario) { prenda.setColorPrimario(colorPrimario); }
-//    public void buildColorSecundario(String colorSecundario) { prenda.setColorSecundario(colorSecundario); }
 }
