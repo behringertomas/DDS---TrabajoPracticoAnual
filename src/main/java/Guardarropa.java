@@ -25,27 +25,37 @@ public class Guardarropa
 	
 //-------------------AGREGAR PRENDA A GUARDARROPAS-------------------- 
 	
-	public void agregarAGuardarropas(Prenda prenda) 
+	public void agregarAGuardarropas(Prenda prenda) throws Exception
 	{	
-		switch(prenda.getParteCuerpo()) 
-		{
+		if(!prenda.estaEnGuardarropa()) {
+			switch(prenda.getParteCuerpo()) 
+			{
 			case "Parte Superior":
 				this.parteSuperior.add(prenda);
+				prenda.meterEnGuardarropa();
 				break;
 			case "Parte Inferior": 
 				this.parteInferior.add(prenda);
+				prenda.meterEnGuardarropa();
 				break;
 			case "Accesorio":
 				this.accesorios.add(prenda);
+				prenda.meterEnGuardarropa();
 				break;
 			case "Calzado": 
 				this.calzados.add(prenda);
+				prenda.meterEnGuardarropa();
 				break;
 			default:
 				System.out.println("ESTE ELEMENTO NO PERTENECE A NINGUNA LISTA");
 				break;
-		}
+			} 
+		}	else throw new Exception("PRENDA YA SE ENCUENTRA EN GUARDARROPA");
 	}
+	
+
+	
+	
 	
 //-------------------MOSTRAR LOS ARRAYS DEL GUARDARROPA-------------------- 
 	
@@ -74,30 +84,41 @@ public class Guardarropa
 		return arrayCalzado;
 	}
 
+	
 
 //-------------------FUNCION PRINCIPAL --------------------
 		
-	public List<String> queMePongo()
+	public Atuendo queMePongo()
 	{
 	    int rnd = new Random().nextInt(this.combinaciones().size());
-	    
-	    List <String> combinacionElegida = this.combinaciones().get(rnd);
+	    List <Prenda> combinacionElegida = this.combinaciones().get(rnd);
 	    combinacionElegida.forEach(System.out::println);
-
-	    return combinacionElegida;
+	    Atuendo atuendoElegido = new Atuendo(combinacionElegida);
+	    atuendoElegido.imprimirPrendas();
+	    return atuendoElegido;
 	}
 	
 
 //-------------------------Funcion de combinaciones----------------------- 
 
-	public ArrayList<List<String>> combinaciones()
+	public ArrayList<List<Prenda>> combinaciones()
 	{
-		IGenerator<List<String>> combinaciones = Generator.cartesianProduct(this.getArrayParteSuperior(), this.getArrayParteInferior(), this.getArrayAccesorios(), this.getArrayCalzado());
-		ArrayList<List<String>> arrayListCombinaciones = new ArrayList<List<String>>();
+		IGenerator<List<Prenda>> combinaciones = Generator.cartesianProduct(this.parteSuperior, this.parteInferior, this.accesorios, this.calzados);
+		ArrayList<List<Prenda>> arrayListCombinaciones = new ArrayList<List<Prenda>>();
 		combinaciones.forEach(Lista->arrayListCombinaciones.add(Lista));
-		//arrayListCombinaciones.forEach(System.out::println);
+		
 		return	arrayListCombinaciones;		
 	}
+	
+//	------------------- LAS EXCEPCIONES-------------------- 
+
+	public void verificarGuardarropaConPrendas() throws Exception{
+		if(parteSuperior.isEmpty()) throw new Exception("No hay parte superior.");
+		if(parteInferior.isEmpty()) throw new Exception("No hay parte inferior.");
+		if(calzados.isEmpty()) 		throw new Exception("No hay calzado.");
+		if(accesorios.isEmpty()) 	throw new Exception("No hay accesorios.");
+	}
+	
 	
 
 }

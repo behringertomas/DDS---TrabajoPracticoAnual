@@ -1,5 +1,6 @@
 public class ParteSuperior extends PrendaBuilder
 {
+	
     public ParteSuperior(){prenda = new Prenda();}
     
     public void buildParte(){prenda.setParte("Parte Superior");}
@@ -11,7 +12,7 @@ public class ParteSuperior extends PrendaBuilder
     	}
     	else
     	{
-    		throw new IllegalArgumentException("ERROR TIPO"); 
+    		throw new Exception("ERROR TIPO"); 
     	}  
     }
     public void buildMaterial(String material) throws Exception
@@ -22,7 +23,7 @@ public class ParteSuperior extends PrendaBuilder
     	}
     	else
     	{
-    		throw new IllegalArgumentException("ERROR MATERIAL"); 
+    		throw new Exception("ERROR MATERIAL"); 
     	} 
     }
 //    public void buildColorPrimario(String colorPrimario) { prenda.setColorPrimario(colorPrimario); }

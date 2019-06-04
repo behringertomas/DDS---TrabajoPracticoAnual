@@ -6,11 +6,15 @@ public abstract class PrendaBuilder
     public abstract void buildParte();
     public abstract void buildTipo(String tipo) throws Exception;
     public abstract void buildMaterial(String material) throws Exception;
-//    public abstract void buildColorPrimario(String colorPrimario);
-//    public abstract void buildColorSecundario(String colorSecundario);
-
-//    public void buildTipo(String tipo){prenda.setTipo(tipo);}
-//    public void buildMaterial(String material) { prenda.setMaterial(material); }
+    
+    
+   
+    
+    
+    public void verificarColoresDistintos(String colorPrimario, String colorSecundario) throws Exception 
+    {
+    	if(colorPrimario.equals(colorSecundario)) throw new Exception("COLOR PRIMARIO Y SECUNDARIO IGUALES");
+    }
     
     public void buildColorPrimario(String colorPrimario) throws Exception
     {
@@ -20,7 +24,7 @@ public abstract class PrendaBuilder
     	}
     	else
     	{
-    		throw new IllegalArgumentException("ERROR COLOR PRIMARIO"); 
+    		throw new Exception("ERROR COLOR PRIMARIO"); 
     	}    
     }
     
@@ -32,7 +36,7 @@ public abstract class PrendaBuilder
     	}
     	else
     	{
-    		throw new IllegalArgumentException("ERROR COLOR SECUNDARIO"); 
+    		throw new Exception("ERROR COLOR SECUNDARIO"); 
     	}     	
     }
     

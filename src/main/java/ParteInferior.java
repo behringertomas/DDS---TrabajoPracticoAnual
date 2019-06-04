@@ -11,7 +11,7 @@ public class ParteInferior extends PrendaBuilder
     	}
     	else
     	{
-    		throw new IllegalArgumentException("ERROR TIPO"); 
+    		throw new Exception("ERROR TIPO"); 
     	}  
     }
     public void buildMaterial(String material) throws Exception
@@ -22,7 +22,7 @@ public class ParteInferior extends PrendaBuilder
     	}
     	else
     	{
-    		throw new IllegalArgumentException("ERROR MATERIAL"); 
+    		throw new Exception("ERROR MATERIAL"); 
     	} 
     }
 //    public void buildColorPrimario(String colorPrimario) { prenda.setColorPrimario(colorPrimario); }

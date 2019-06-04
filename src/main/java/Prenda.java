@@ -1,5 +1,6 @@
 public class Prenda 
 {
+	private boolean enGuardarropa=false;
     private String parte = "";
     private String tipo = "";
     private String material = "";
@@ -18,6 +19,12 @@ public class Prenda
     public String getParteCuerpo() {return this.parte;}
     public String getTipo() {return this.tipo;}
 
+    public void meterEnGuardarropa() {
+    	this.enGuardarropa=true;
+    }
+    public boolean estaEnGuardarropa() {
+    	return this.enGuardarropa;
+    }
     public void mostrarPrenda()
     {
     	System.out.println(this.parte);
@@ -26,4 +33,18 @@ public class Prenda
     	System.out.println(this.colorPrimario);
     	System.out.println(this.colorSecundario);
     }
+    
+    public String getColorSecundario() {
+    	return this.colorSecundario;
+    }
+    
+    public void imprimirDescripcion() {
+    	if(this.colorSecundario == "") {
+    		System.out.println(this.tipo + " de " + this.material + this.colorPrimario);
+    	} else {
+    		System.out.println(this.tipo + " de " + this.material + this.colorPrimario + " y " + this.colorSecundario);
+    	}
+    }
+    
+    
 }

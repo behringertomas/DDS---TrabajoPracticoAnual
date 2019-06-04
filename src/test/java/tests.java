@@ -1,3 +1,10 @@
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
+
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -11,58 +18,81 @@ import junit.framework.Assert;
 
 public class tests
 {
-//	@Test
-//	public void test() throws Exception
-//	{		
-//		Usuario usuario = new Usuario();
-//		Guardarropa guardarropas = new Guardarropa();
-//		
-//		usuario.agregarGuardarropas(guardarropas);
-//		ParteSuperior ps = new ParteSuperior();
-//		
-//		usuario.setPrendaBuilder(ps);
-//		usuario.construirPrenda("Remera", "Algodon", "Rojo", "Negro");
-//		usuario.agregarPrendaAGuardarropas(guardarropas, ps.getPrenda());
-//		(ps.getPrenda()).mostrarPrenda();
-//
-//		usuario.construirPrenda("Camisa", "Seda", "Blanco");
-//		usuario.agregarPrendaAGuardarropas(guardarropas, ps.getPrenda());
-//		guardarropas.getArrayParteSuperior();		
-//		(ps.getPrenda()).mostrarPrenda();
-//	}
 	
-//	@Before
-//    void init() 
-//	{
-//		Usuario usuario = new Usuario();
-//		ParteSuperior ps = new ParteSuperior();
-//		usuario.setPrendaBuilder(ps);
-//  }
+	@Rule
+    public ExpectedException thrown = ExpectedException.none();
 	
-	//@Rule public ExpectedException exception = ExpectedException.none();
-	@Test
-	public void whenExceptionThrown_thenExpectationSatisfied() throws Exception 
+	
+	@Test 
+	public void ExcepcionPrendaYaEstaEnGuardarropa() throws Exception
 	{
-//		exception.expect(IllegalArgumentException.class);
-//		exception.expectMessage("ERROR COLOR PRIMARIO");
-//		Usuario usuario = new Usuario();
-//		ParteSuperior ps = new ParteSuperior();
-//		usuario.setPrendaBuilder(ps);
-//		usuario.construirPrenda("Remera", "Algodon", "rositaConcha", "Negro");
-		
-		try {
 			Usuario usuario = new Usuario();
-			ParteSuperior ps = new ParteSuperior();
-			usuario.setPrendaBuilder(ps);
-			usuario.construirPrenda("Remera", "Algodon", "Rojo", "Negro");
-	    	System.out.println("ANDO");
-			
-		} catch(IllegalArgumentException e){
-//			exception.expect(IllegalArgumentException.class);
-//			exception.expectMessage("ERROR COLOR PRIMARIO");
-			Assert.fail("ERROR COLOR PRIMARIO");
-	    	System.out.println("NO ANDO");
-		}
-	
+			Prenda prenda = usuario.construirPrenda("Parte Superior","Remera", "Tela", "Rojo", "Verde");
+			Guardarropa guardarropa = new Guardarropa();
+			guardarropa.agregarAGuardarropas(prenda);
+			thrown.expect(Exception.class);
+			thrown.expectMessage("PRENDA YA SE ENCUENTRA EN GUARDARROPA");
+			guardarropa.agregarAGuardarropas(prenda);
 	}
+	
+	@Test 
+	public void ExcepcionColorSecundarioErroneo() throws Exception
+	{
+			Usuario usuario = new Usuario();
+			thrown.expect(Exception.class);
+			thrown.expectMessage("ERROR COLOR SECUNDARIO");
+			usuario.construirPrenda("Parte Superior","Remera", "Tela", "Rojo", "Azulado");
+	}
+	
+	@Test 
+	public void ExcepcionColorPrimarioErroneo() throws Exception
+	{
+			Usuario usuario = new Usuario();
+			thrown.expect(Exception.class);
+			thrown.expectMessage("ERROR COLOR PRIMARIO");
+			usuario.construirPrenda("Parte Superior","Remera", "Tela", "Azulado", "Negro");
+	}
+
+	
+	@Test 
+	public void ExcepcionConsistenciaPrenda() throws Exception
+	{
+			Usuario usuario = new Usuario();
+			thrown.expect(Exception.class);
+			thrown.expectMessage("ERROR MATERIAL");
+			usuario.construirPrenda("Parte Superior","Remera", "Oro", "Rojo", "Negro");
+
+	}
+	
+	@Test 
+	public void ExcepcionMismoColor() throws Exception
+	{
+			Usuario usuario = new Usuario();
+			thrown.expect(Exception.class);
+			thrown.expectMessage("COLOR PRIMARIO Y SECUNDARIO IGUALES");
+			usuario.construirPrenda("Parte Superior","Remera", "Tela", "Rojo", "Rojo");
+
+	}
+	
+	
+	@Test 
+	public void ExcepcionParteEquivocada() throws Exception
+	{
+			Usuario usuario = new Usuario();
+			thrown.expect(Exception.class);
+			thrown.expectMessage("NO EXISTE PARTE");
+			usuario.construirPrenda("Parte Inexistente","Remera", "Tela", "Rojo", "Negro");
+	}
+	
+	@Test 
+	public void ExcepcionInconsistenciaDeTipo() throws Exception
+	{
+			Usuario usuario = new Usuario();
+			thrown.expect(Exception.class);
+			thrown.expectMessage("ERROR TIPO");
+			usuario.construirPrenda("Calzado","Remera", "Tela", "Rojo", "Negro");
+	}
+	
+	
+	
 }

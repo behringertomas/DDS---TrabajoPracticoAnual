@@ -1,5 +1,10 @@
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
+
 public class Usuario 
 {
 	String ID = ""; //Identificador del usuario	
@@ -9,43 +14,69 @@ public class Usuario
 	 
 	private PrendaBuilder prendaBuilder;
 	
-	public void setPrendaBuilder(PrendaBuilder pb) 
+	public PrendaBuilder setPrendaBuilder(String parteCuerpo) throws Exception 
 	{
-		prendaBuilder = pb;
+		switch(parteCuerpo) 
+		{
+			case "Parte Superior":
+				ParteSuperior ps = new ParteSuperior();
+				return ps;
+			case "Parte Inferior": 
+				ParteInferior pi = new ParteInferior();
+				return pi;
+			case "Accesorio":
+				Accesorio ac = new Accesorio();
+				return ac;
+			case "Calzado": 
+				Calzado cz = new Calzado();
+				return cz;
+			default:
+				throw new Exception("NO EXISTE PARTE");
+		}
+		
 	}
 	
-	public void construirPrenda(String tipo, String material, String colorPrimario, String colorSecundario) throws Exception
+	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario, String colorSecundario) throws Exception
 	{
-		try 
-		{
+		
+//		try 
+//		{
+			prendaBuilder = this.setPrendaBuilder(parte); 
+			
+			prendaBuilder.verificarColoresDistintos(colorPrimario,colorSecundario);
 			prendaBuilder.crearPrenda();
 			prendaBuilder.buildParte();		
 			prendaBuilder.buildTipo(tipo);
 			prendaBuilder.buildMaterial(material);
 			prendaBuilder.buildColorPrimario(colorPrimario);
 			prendaBuilder.buildColorSecundario(colorSecundario);
-			
-		}
-		catch(IllegalArgumentException e)
-		{
-			System.out.println(e.getMessage());			
-		}
+		return prendaBuilder.getPrenda();
+		
+//		}
+//		catch(Exception e)
+//		{
+//			System.out.println(e.getMessage());			
+//		}
 	}
 	
-	public void construirPrenda(String tipo, String material, String colorPrimario) throws Exception
+	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario) throws Exception
 	{
-		try 
-		{
+//		try 
+//		{
+			prendaBuilder = this.setPrendaBuilder(parte); 
+			
 			prendaBuilder.crearPrenda();
 			prendaBuilder.buildParte();
 			prendaBuilder.buildTipo(tipo);
 			prendaBuilder.buildMaterial(material);
 			prendaBuilder.buildColorPrimario(colorPrimario);
-		}
-		catch(IllegalArgumentException e)
-		{
-			System.out.println(e.getMessage());			
-		}
+			
+		return prendaBuilder.getPrenda();
+//		}
+//		catch(Exception e)
+//		{
+//			System.out.println(e.getMessage());			
+//		}
 	}
 	
 	public void agregarGuardarropas(Guardarropa guardarropa) 
@@ -54,9 +85,18 @@ public class Usuario
 	}
 
 	
-	public void agregarPrendaAGuardarropas(Guardarropa guardarropa, Prenda prenda) 
+	public void agregarPrendaAGuardarropas(Guardarropa guardarropa, Prenda prenda) throws Exception 
 	{
 		guardarropa.agregarAGuardarropas(prenda);
+	}
+	
+	public List<Atuendo> queMePongoATodosLosGuardarropas() {
+		return listaGuardarropas.stream().map(guardarropa -> guardarropa.queMePongo()).collect(Collectors.toList());
+	}
+	
+	public void imprimirListaDeAtuendos() {
+		List<Atuendo> listaDeAtuendosRecomendados= this.queMePongoATodosLosGuardarropas();
+		System.out.println(listaDeAtuendosRecomendados);
 	}
 	
 //	public void queMePongo(Guardarropa guardarropa)
