@@ -1,13 +1,13 @@
-public class ParteSuperior extends PrendaBuilder
+public class AbrigoBuilder extends PrendaBuilder
 {
 	
-    public ParteSuperior(){prenda = new Prenda();}
+    public  AbrigoBuilder(){prenda = new Prenda();}
     
     public void buildParte(){prenda.setParte("Parte Superior");}
     
     public void buildTipo(String tipo) throws Exception
     {
-    	if ((jsonReader.getTipoParteSuperior()).contains(tipo))
+    	if ((jsonReader.getTipoAbrigos()).contains(tipo))
     	{
         	prenda.setTipo(tipo);
     	}
@@ -16,11 +16,6 @@ public class ParteSuperior extends PrendaBuilder
     	{
     		throw new Exception("ERROR TIPO"); 
     	}  
-    	if ((jsonReader.getTipoAbrigos()).contains(tipo)) {
-    		prenda.setTipo(tipo);
-    		prenda.setTemperatura(jsonReader.getTipoTemperatura(tipo));
-    		
-    	}
     }
     
     public void buildMaterial(String material) throws Exception

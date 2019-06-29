@@ -1,15 +1,17 @@
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
-
+import java.util.Timer;
 
 public class Usuario 
 {
 	String ID = ""; //Identificador del usuario	
 	Collection <Guardarropa> listaGuardarropas = new ArrayList<Guardarropa>(); //Lista de Guardarropas que contiene el usuario
-	
+	Collection <Evento> listaEvento;
 	public Usuario() {}
 	 
 	private PrendaBuilder prendaBuilder;
@@ -84,4 +86,15 @@ public class Usuario
         	throw new Exception("ERROR SIN ATUENDOS");
         }
 	}
+	public void crearEvento(Date fecha) {
+		 
+		 Date date = fecha;
+		 Timer timer = new Timer();
+		 Evento EventoNuevo= new Evento(fecha,this);
+		 this.listaEvento.add(EventoNuevo);
+		 timer.schedule(EventoNuevo, date);
+		 
+	}
+
+
 }

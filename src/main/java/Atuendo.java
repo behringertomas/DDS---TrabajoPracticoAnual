@@ -18,4 +18,8 @@ public class Atuendo
 		this.prendas.forEach(prenda->prenda.imprimirDescripcion());
 		
 	}	
+	
+	public int cuantoAbriga() {
+	 return prendas.stream().mapToInt(x->x.getTemperatura()).sum();
+	}
 }

@@ -15,23 +15,27 @@ import org.paukov.combinatorics3.IGenerator;
 public class Guardarropa 
 {
 	String identificador;
+	int limiteDePrendas;
 	
-	public Guardarropa(String identificador)
+	public Guardarropa(String identificador,int limiteDePrendas)
 	{
 		this.identificador = identificador;
+		this.limiteDePrendas = limiteDePrendas;
 	}
 	
 	ArrayList <Prenda> parteSuperior = new ArrayList<Prenda>();
 	ArrayList <Prenda> parteInferior = new ArrayList<Prenda>();
 	ArrayList <Prenda> accesorios = new ArrayList<Prenda>();
 	ArrayList <Prenda> calzados = new ArrayList<Prenda>();
-	
+	ArrayList <Prenda> noabrigo =(ArrayList <Prenda>) parteSuperior.stream().filter(x->x.getTemperatura()==0).collect(Collectors.toList());
+	ArrayList <Prenda> abrigo = (ArrayList <Prenda>) parteSuperior.stream().filter(x->x.getTemperatura()>0).collect(Collectors.toList());
 	
 //-------------------AGREGAR PRENDA A GUARDARROPAS-------------------- 
 	
 	public void agregarAGuardarropas(Prenda prenda) throws Exception
 	{	
 		if(!prenda.estaEnGuardarropa()) {
+			if(this.numeroTotalEnGuardarropa()>=limiteDePrendas) {
 			switch(prenda.getParteCuerpo()) 
 			{
 			case "Parte Superior":
@@ -55,9 +59,10 @@ public class Guardarropa
 				break;
 			} 
 		}
-		else throw new Exception("PRENDA YA SE ENCUENTRA EN UN GUARDARROPA");
+			else throw new Exception("GUARDARROPA LLENO CREE UNO NUEVO");
 	}
-		
+		else throw new Exception("PRENDA YA SE ENCUENTRA EN UN GUARDARROPA");
+}
 //-------------------MOSTRAR LOS ARRAYS DEL GUARDARROPA-------------------- 
 	
 	public ArrayList<String> getArrayParteSuperior() 
@@ -108,13 +113,39 @@ public class Guardarropa
 		}
 	}
 	
-	
+	public Atuendo queMePongo(int temperatura) 
+	{
+		if(this.verificarArrayList()) 
+		{
+		    int rnd = new Random().nextInt(this.combinaciones(temperatura).size());
+		    List <Prenda> combinacionElegida = this.combinaciones().get(rnd);
+		    Atuendo atuendoElegido = new Atuendo(combinacionElegida);
+		    
+		    System.out.println("Atuendo de: " + this.identificador);
+		    atuendoElegido.imprimirPrendas();
+		    System.out.println("");
+		    return atuendoElegido;
+		}
+		else
+		{
+			System.out.println(this.identificador + " no posee atuendos");
+			return null;
+		}
+	}
 
 //-------------------------Funcion de combinaciones----------------------- 
-
+	public ArrayList<List<Prenda>> combinaciones(int temperatura)
+	{
+		
+		IGenerator<List<Prenda>> combinaciones = Generator.cartesianProduct(this.abrigo,this.noabrigo, this.parteInferior, this.accesorios, this.calzados);
+		ArrayList<List<Prenda>> arrayListCombinaciones = new ArrayList<List<Prenda>>();
+		combinaciones.forEach(Lista->arrayListCombinaciones.add(Lista));
+		return	arrayListCombinaciones;		
+	}
+	
 	public ArrayList<List<Prenda>> combinaciones()
 	{
-		IGenerator<List<Prenda>> combinaciones = Generator.cartesianProduct(this.parteSuperior, this.parteInferior, this.accesorios, this.calzados);
+		IGenerator<List<Prenda>> combinaciones = Generator.cartesianProduct(this.noabrigo, this.parteInferior, this.accesorios, this.calzados);
 		ArrayList<List<Prenda>> arrayListCombinaciones = new ArrayList<List<Prenda>>();
 		combinaciones.forEach(Lista->arrayListCombinaciones.add(Lista));
 		return	arrayListCombinaciones;		
@@ -136,5 +167,8 @@ public class Guardarropa
 	{
 		return this.parteSuperior.size()>0 && this.parteInferior.size()>0 && this.calzados.size()>0 && this.accesorios.size()>0 ;
 	}
-
+	public int numeroTotalEnGuardarropa() {
+		return parteSuperior.size() +  parteInferior.size()+ calzados.size()+ accesorios.size();
+		
+	}
 }

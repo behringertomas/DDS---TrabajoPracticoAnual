@@ -1,5 +1,6 @@
 public class Prenda 
 {
+	private int CuantoAbriga=0;
 	private boolean enGuardarropa=false;
     private String parte = "";
     private String tipo = "";
@@ -8,6 +9,8 @@ public class Prenda
     private String colorSecundario = "";
 
     public void setParte(String parte){this.parte = parte;}
+    
+    public void setTemperatura(int temperatura){this.CuantoAbriga = temperatura;}
     
     public void setTipo(String tipo){this.tipo = tipo;}
     
@@ -19,10 +22,15 @@ public class Prenda
     
     public Prenda getPrenda() { return this; }
     
+    public int getTemperatura() {
+    	
+    	return this.CuantoAbriga;
+    }
+    
     public String getParteCuerpo() {return this.parte;}
     
     public String getTipo() {return this.tipo;}
-
+    
     public void meterEnGuardarropa()
     {
     	this.enGuardarropa=true;
