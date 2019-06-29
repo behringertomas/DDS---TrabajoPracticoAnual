@@ -7,9 +7,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import java.io.IOException;
 
-/**
- * Created by Ingo on 30.03.2016.
- */
 public final class TemperatureDeserializer extends JsonDeserializer<Temperature> {
 
     @Override

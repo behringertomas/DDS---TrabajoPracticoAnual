@@ -8,11 +8,6 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Data-Object holding weather information.
- *
- * @author ISchwarz
- */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public final class WeatherInfo implements Serializable {
 

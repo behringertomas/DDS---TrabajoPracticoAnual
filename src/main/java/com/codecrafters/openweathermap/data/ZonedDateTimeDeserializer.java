@@ -10,9 +10,6 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.Date;
 
-/**
- * Created by Ingo on 05.04.2016.
- */
 public final class ZonedDateTimeDeserializer extends JsonDeserializer<ZonedDateTime> {
 
     @Override

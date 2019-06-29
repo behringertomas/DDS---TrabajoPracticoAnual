@@ -2,9 +2,7 @@ package com.codecrafters.openweathermap.data;
 
 import java.io.Serializable;
 
-/**
- * Created by Ingo on 05.04.2016.
- */
+
 public final class CurrentWeatherInfo implements Serializable {
 
     private WeatherInfo weatherInfo;

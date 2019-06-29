@@ -4,11 +4,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Tests the correctness of {@link Temperature}.
- *
- * @author ISchwarz
- */
 public class TemperatureTest {
 
     private static final double TEMP_KELVIN = 283.15;

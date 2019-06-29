@@ -9,9 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 
-/**
- * Created by Ingo on 05.04.2016.
- */
+
 public final class CurrentWeatherInfoDeserializer extends JsonDeserializer<CurrentWeatherInfo> {
 
     private ObjectMapper mapper;

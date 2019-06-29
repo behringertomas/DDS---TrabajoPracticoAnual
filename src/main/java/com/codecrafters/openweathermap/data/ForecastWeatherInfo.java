@@ -7,11 +7,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Data-Objects that holds weather forecast information.
- *
- * @author ISchwarz
- */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public final class ForecastWeatherInfo implements Serializable {
 

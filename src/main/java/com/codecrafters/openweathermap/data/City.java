@@ -5,11 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
 
-/**
- * Data-Object representing a city.
- *
- * @author ISchwarz
- */
+
 @JsonIgnoreProperties(ignoreUnknown = true)
 public final class City implements Serializable {
 

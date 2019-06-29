@@ -9,21 +9,16 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-/**
- * Tests the correctness of {@link OpenWeatherMap}.
- *
- * @author ISchwarz
- */
 public class OpenWeatherMapTest {
 
     private static final int MILLIS_TO_WAIT_FOR_ASYNC_CALCULATIONS = 2500;
-    private static final String CITY_NAME = "Friedrichshafen";
+    private static final String CITY_NAME = "Buenos Aires";
 
     private static OpenWeatherMap openWeatherMap;
 
     @BeforeClass
     public static void setUp() {
-        openWeatherMap = new OpenWeatherMap("b1b15e88fa797225412429c1c50c122a");
+        openWeatherMap = new OpenWeatherMap("b401579bf8682516861b9ec403bd2234");
     }
 
     @Test
