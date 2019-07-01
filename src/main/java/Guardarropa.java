@@ -12,8 +12,12 @@ import org.apache.commons.math3.util.CombinatoricsUtils;
 import org.paukov.combinatorics3.Generator;
 import org.paukov.combinatorics3.IGenerator;
 
+import com.weathertest.MainWeather;
+import com.weathertest.ZonaYTemperatura;
+
 public class Guardarropa 
 {
+	ITargetAPI target = new AdapterAPI( new MainWeather() ); //apixu
 	String identificador;
 	int limiteDePrendas;
 	
@@ -21,6 +25,11 @@ public class Guardarropa
 	{
 		this.identificador = identificador;
 		this.limiteDePrendas = limiteDePrendas;
+	}
+	
+	public Guardarropa(String identificador)
+	{
+		this.identificador = identificador;
 	}
 	
 	ArrayList <Prenda> parteSuperior = new ArrayList<Prenda>();
@@ -90,8 +99,19 @@ public class Guardarropa
 		return arrayCalzado;
 	}
 
-	
 
+//-------------------CLIMA --------------------
+	public ZonaYTemperatura solicitarClima() {
+//		this.target.request().toString();
+		return this.target.request();
+	}
+	public ZonaYTemperatura solicitarClima(String ciudad) {
+//		this.target.request().toString();
+		return this.target.request(ciudad);
+	}
+	
+	
+	
 //-------------------FUNCION PRINCIPAL --------------------
 		
 	public Atuendo queMePongo() 

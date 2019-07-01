@@ -25,6 +25,8 @@ public class Repository implements IRepository{
 	
 	Gson gson = new Gson();
 
+	
+	
 	@Override
 	public WeatherModel GetWeatherData(String key, RequestBlocks.GetBy getBy, String value,
 			RequestBlocks.Days ForecastOfDays) throws Exception {

@@ -16,6 +16,11 @@ public class Usuario
 	 
 	private PrendaBuilder prendaBuilder;
 	
+	public void CrearGuardarropa(String Identificador) {
+		Guardarropa guardarropaNuevo= new Guardarropa(Identificador);
+		listaGuardarropas.add(guardarropaNuevo);
+	}
+	
 	public PrendaBuilder setPrendaBuilder(String parteCuerpo) throws Exception 
 	{
 		switch(parteCuerpo) 

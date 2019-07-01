@@ -21,7 +21,7 @@ public class cargarImagenes {
 			    img = ImageIO.read(new File(nombre+".jpg"));
 			    JPanel p= new JPanel(){
 			    	protected void paintcomponent(Graphics g) {
-			    		g.drawImage(img, off, off, 200,200);
+			    		g.drawImage(img, off, off, 200,200, null);
 			    	}
 			    }
 			} catch (IOException e) {

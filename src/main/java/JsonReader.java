@@ -9,7 +9,7 @@ import org.json.simple.parser.ParseException;
 
 public class JsonReader 
 {
-	private static final String DIRECTORIOJSON = "C:\\Users\\agust\\Desktop\\DDS---TrabajoPracticoAnual\\src\\main\\java\\Verificaciones.json";
+	private static final String DIRECTORIOJSON = "C:\\Users\\Elitebook 8470p\\Desktop\\UTN+idioma\\3ERO\\Diseño de Sistemas\\TP-ANUAL\\DDS---TrabajoPracticoAnual\\src\\main\\java\\Verificaciones.json";
 	
 	public static Object readJsonSimpleDemo(String filename) throws Exception
 	{
@@ -40,10 +40,11 @@ public class JsonReader
 	{
 		JSONObject jsonObject = (JSONObject) readJsonSimpleDemo(DIRECTORIOJSON);
 		int ubicacionTemperatura= this.getTipoAbrigos().indexOf(Prenda);
-		List<String> ListaDeTemperaturas = (List<String>) jsonObject.get("TipoAbrigo");	
+		List<String> ListaDeTemperaturas = (List<String>) jsonObject.get("TemperaturasAbrigo");	
 		int temperatura = Integer.parseInt(ListaDeTemperaturas.get(ubicacionTemperatura));
 		return temperatura;
 	}
+	
 	public static List<String> getTipoParteInferior() throws Exception
 	{
 		JSONObject jsonObject = (JSONObject) readJsonSimpleDemo(DIRECTORIOJSON);

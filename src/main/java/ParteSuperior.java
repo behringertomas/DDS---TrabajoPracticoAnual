@@ -11,16 +11,13 @@ public class ParteSuperior extends PrendaBuilder
     	{
         	prenda.setTipo(tipo);
     	}
-
-    	else
+    	else if ((jsonReader.getTipoAbrigos()).contains(tipo)) 
     	{
-    		throw new Exception("ERROR TIPO"); 
-    	}  
-    	if ((jsonReader.getTipoAbrigos()).contains(tipo)) {
     		prenda.setTipo(tipo);
     		prenda.setTemperatura(jsonReader.getTipoTemperatura(tipo));
-    		
-    	}
+    		 
+    	}else throw new Exception("ERROR TIPO");  
+    	
     }
     
     public void buildMaterial(String material) throws Exception

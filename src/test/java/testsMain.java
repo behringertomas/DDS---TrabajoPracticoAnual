@@ -1,12 +1,19 @@
 import java.awt.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+
+import org.json.simple.JSONObject;
+
 import java.util.Collection;
+import com.weathertest.ZonaYTemperatura;
+
 
 public class testsMain {
 
 	public static void main(String[] args) throws Exception {
+		
 		Usuario usuario = new Usuario();
+		
 		Guardarropa guardarropa1 = new Guardarropa("Guardarropa	Verano");
 		Guardarropa guardarropa2 = new Guardarropa("Guardarropa Primavera");
 		
@@ -42,8 +49,22 @@ public class testsMain {
 		usuario.agregarPrendaAGuardarropas(guardarropa2,prenda7);
 		usuario.agregarPrendaAGuardarropas(guardarropa2,prenda8);
 		
-		usuario.queMePongoATodosLosGuardarropas();
+//		usuario.queMePongoATodosLosGuardarropas();
 	
+		
+		
+		//---2DA ENTREGA
+		
+		JsonReader json = new JsonReader();
+		int nro1 = json.getTipoTemperatura("Buzo");
+		System.out.println(nro1);
+		int nro2 = json.getTipoTemperatura("Sweater");
+		System.out.println(nro2);
+		int nro3 = json.getTipoTemperatura("Campera");
+		System.out.println(nro3);
+		
+		ZonaYTemperatura rta= guardarropa1.solicitarClima("Mendoza");
+		rta.toString();
 	}
 
 }

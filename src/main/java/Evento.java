@@ -5,6 +5,7 @@ import java.util.TimerTask;
 
 public class Evento extends TimerTask implements comando {
 
+	
 	public Atuendo AtuendoElegido=null; 
 	public Date FechaDelEvento;
 	public Usuario usuario; 

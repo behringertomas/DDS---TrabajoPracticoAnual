@@ -15,7 +15,7 @@
   ],
   "TipoParteSuperior": ["Remera","Camisa","Musculosa"],
   "TipoAbrigo": ["Campera","Sweater","Buzo"],
-  "TemperaturasAbrigo":[30,20,10],
+  "TemperaturasAbrigo":["30","20","10"],
   "TipoParteInferior": ["Pantalon Largo","Short","Pollera","Pantalon Corto"],
   "TipoCalzado": ["Zapatilla","Zapato","Runners","Botines","Trainers"],
   "TipoAccesorio": ["Reloj","Pulsera","Aro","Lentes de Sol"],
