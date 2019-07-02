@@ -8,7 +8,7 @@ public class Prenda
     private String colorPrimario = "";
     private String colorSecundario = "";
     private strategyTemperatura strategyTemp;
-  
+    private String direccionImagen = "";
     
     
     public void setStrategy(strategyTemperatura str) { this.strategyTemp = str;}
@@ -37,6 +37,8 @@ public class Prenda
     
     public String getTipo() {return this.tipo;}
     
+    public void setDireccionImagen(String direccionImagen)	{ this.direccionImagen = direccionImagen; }	
+    
     public void meterEnGuardarropa()
     {
     	this.enGuardarropa=true;
@@ -61,6 +63,11 @@ public class Prenda
     	return this.colorSecundario;
     }
     
+    public String getDireccionImagen()
+    {
+    	return this.direccionImagen;
+    }
+    
     public void imprimirDescripcion()
     {
     	if(this.colorSecundario == "") {
@@ -68,6 +75,15 @@ public class Prenda
     	} else {
     		System.out.println(this.tipo + " de " + this.material + " " +this.colorPrimario + " y " + this.colorSecundario);
     	}
+    }
+    
+    public String getDescripcion()
+    {
+    	if(this.colorSecundario == "") {
+    		return(this.tipo + " de " + this.material + " " + this.colorPrimario);
+    	} else {
+    		return(this.tipo + " de " + this.material + " " +this.colorPrimario + " y " + this.colorSecundario);
+    	}    	
     }
     
     
