@@ -1,3 +1,4 @@
+package TPZTBCS;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collector;
@@ -20,6 +21,14 @@ public class Atuendo
 	}	
 	
 	public int cuantoAbriga() {
-	 return prendas.stream().mapToInt(x->x.getTemperatura()).sum();
+	 return prendas.stream().mapToInt(
+		x->{
+		try {
+			return x.getTemperatura();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} return 0;
+	}).sum();
 	}
 }

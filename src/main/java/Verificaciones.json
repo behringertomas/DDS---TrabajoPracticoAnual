@@ -13,9 +13,9 @@
     "Negro",
     "Gris"
   ],
-  "TipoParteSuperior": ["Remera","Camisa","Musculosa"],
+  "TipoParteSuperior": ["Remera","Musculosa","Camisa"],
   "TipoAbrigo": ["Campera","Sweater","Buzo"],
-  "TemperaturasAbrigo":["30","20","10"],
+  "TemperaturasAbrigo":["20","15","10"],
   "TipoParteInferior": ["Pantalon Largo","Short","Pollera","Pantalon Corto"],
   "TipoCalzado": ["Zapatilla","Zapato","Runners","Botines","Trainers"],
   "TipoAccesorio": ["Reloj","Pulsera","Aro","Lentes de Sol"],

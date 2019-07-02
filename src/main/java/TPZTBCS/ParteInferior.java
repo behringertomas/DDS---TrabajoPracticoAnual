@@ -1,13 +1,13 @@
-public class Calzado extends PrendaBuilder
-{
-	
-    public Calzado(){prenda = new Prenda();}
+package TPZTBCS;
+public class ParteInferior extends PrendaBuilder
+{    
+    public ParteInferior(){prenda = new Prenda();}
     
-    public void buildParte()   { prenda.setParte("Calzado"); }
+    public void buildParte()   { prenda.setParte("Parte Inferior"); }
     
     public void buildTipo(String tipo) throws Exception
     {
-    	if ((jsonReader.getTipoCalzado()).contains(tipo))
+    	if ((jsonReader.getTipoParteInferior()).contains(tipo))
     	{
         	prenda.setTipo(tipo);
     	}
@@ -19,7 +19,7 @@ public class Calzado extends PrendaBuilder
     
     public void buildMaterial(String material) throws Exception
     {
-    	if ((jsonReader.getMaterialCalzado()).contains(material))
+    	if ((jsonReader.getMaterialParteInferior()).contains(material))
     	{
         	prenda.setMaterial(material);
     	}

@@ -1,3 +1,4 @@
+package TPZTBCS;
 public abstract class PrendaBuilder
 {
     protected Prenda prenda;
@@ -8,10 +9,6 @@ public abstract class PrendaBuilder
     public abstract void buildTipo(String tipo) throws Exception;
     
     public abstract void buildMaterial(String material) throws Exception;
-    
-    
-   
-    
     
     public void verificarColoresDistintos(String colorPrimario, String colorSecundario) throws Exception 
     {

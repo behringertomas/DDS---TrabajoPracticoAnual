@@ -1,3 +1,4 @@
+package TPZTBCS;
 public class ParteSuperior extends PrendaBuilder
 {
 	
@@ -9,12 +10,13 @@ public class ParteSuperior extends PrendaBuilder
     {
     	if ((jsonReader.getTipoParteSuperior()).contains(tipo))
     	{
+    		prenda.setStrategy(new noAbriga());
         	prenda.setTipo(tipo);
     	}
     	else if ((jsonReader.getTipoAbrigos()).contains(tipo)) 
     	{
+    		prenda.setStrategy(new abrigo());
     		prenda.setTipo(tipo);
-    		prenda.setTemperatura(jsonReader.getTipoTemperatura(tipo));
     		 
     	}else throw new Exception("ERROR TIPO");  
     	

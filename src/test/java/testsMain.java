@@ -3,9 +3,15 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.json.simple.JSONObject;
+import org.paukov.combinatorics3.Generator;
 
 import java.util.Collection;
 import com.weathertest.ZonaYTemperatura;
+
+import TPZTBCS.Guardarropa;
+import TPZTBCS.JsonReader;
+import TPZTBCS.Prenda;
+import TPZTBCS.Usuario;
 
 
 public class testsMain {
@@ -44,12 +50,12 @@ public class testsMain {
 		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda11);
 		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda12);
 		
-//		usuario.agregarPrendaAGuardarropas(guardarropa2,prenda2);
+		usuario.agregarPrendaAGuardarropas(guardarropa2,prenda2);
 		usuario.agregarPrendaAGuardarropas(guardarropa2,prenda5);
 		usuario.agregarPrendaAGuardarropas(guardarropa2,prenda7);
 		usuario.agregarPrendaAGuardarropas(guardarropa2,prenda8);
 		
-//		usuario.queMePongoATodosLosGuardarropas();
+		usuario.queMePongoATodosLosGuardarropas();
 	
 		
 		
@@ -63,8 +69,11 @@ public class testsMain {
 		int nro3 = json.getTipoTemperatura("Campera");
 		System.out.println(nro3);
 		
-		ZonaYTemperatura rta= guardarropa1.solicitarClima("Mendoza");
+		TPZTBCS.ZonaYTemperatura rta= guardarropa1.solicitarClima("Chubut");
 		rta.toString();
+		
+		
+
 	}
 
 }

@@ -1,23 +1,22 @@
-import java.lang.reflect.Array;
+package TPZTBCS;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collector;
+import java.util.function.Function;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-import org.apache.commons.math3.util.CombinatoricsUtils;
+import org.apache.commons.math3.stat.descriptive.summary.Sum;
+import org.apache.commons.math3.util.MathUtils;
 import org.paukov.combinatorics3.Generator;
 import org.paukov.combinatorics3.IGenerator;
+import org.paukov.combinatorics3.SubSetGenerator;
 
-import com.weathertest.MainWeather;
-import com.weathertest.ZonaYTemperatura;
+import com.weatherlibraryjava.WeatherApixu;
 
 public class Guardarropa 
 {
-	ITargetAPI target = new AdapterAPI( new MainWeather() ); //apixu
+	ITargetAPI target = new AdapterAPI( new WeatherApixu() ); //apixu
 	String identificador;
 	int limiteDePrendas;
 	
@@ -30,43 +29,45 @@ public class Guardarropa
 	public Guardarropa(String identificador)
 	{
 		this.identificador = identificador;
+		this.limiteDePrendas = 99999;
 	}
 	
 	ArrayList <Prenda> parteSuperior = new ArrayList<Prenda>();
 	ArrayList <Prenda> parteInferior = new ArrayList<Prenda>();
 	ArrayList <Prenda> accesorios = new ArrayList<Prenda>();
 	ArrayList <Prenda> calzados = new ArrayList<Prenda>();
-	ArrayList <Prenda> noabrigo =(ArrayList <Prenda>) parteSuperior.stream().filter(x->x.getTemperatura()==0).collect(Collectors.toList());
-	ArrayList <Prenda> abrigo = (ArrayList <Prenda>) parteSuperior.stream().filter(x->x.getTemperatura()>0).collect(Collectors.toList());
+	
+	ArrayList <Prenda> noAbriga =(ArrayList <Prenda>) parteSuperior.stream().filter(x->x.getStrategy() instanceof noAbriga).collect(Collectors.toList());
+	ArrayList <Prenda> abrigo = (ArrayList <Prenda>) parteSuperior.stream().filter(x->x.getStrategy() instanceof abrigo).collect(Collectors.toList());
 	
 //-------------------AGREGAR PRENDA A GUARDARROPAS-------------------- 
 	
 	public void agregarAGuardarropas(Prenda prenda) throws Exception
 	{	
 		if(!prenda.estaEnGuardarropa()) {
-			if(this.numeroTotalEnGuardarropa()>=limiteDePrendas) {
-			switch(prenda.getParteCuerpo()) 
-			{
-			case "Parte Superior":
-				this.parteSuperior.add(prenda);
-				prenda.meterEnGuardarropa();
-				break;
-			case "Parte Inferior": 
-				this.parteInferior.add(prenda);
-				prenda.meterEnGuardarropa();
-				break;
-			case "Accesorio":
-				this.accesorios.add(prenda);
-				prenda.meterEnGuardarropa();
-				break;
-			case "Calzado": 
-				this.calzados.add(prenda);
-				prenda.meterEnGuardarropa();
-				break;
-			default:
-				System.out.println("ESTE ELEMENTO NO PERTENECE A NINGUNA LISTA");
-				break;
-			} 
+			if(this.numeroTotalEnGuardarropa() < limiteDePrendas) {
+				switch(prenda.getParteCuerpo()) 
+				{
+				case "Parte Superior":
+					this.parteSuperior.add(prenda);
+					prenda.meterEnGuardarropa();
+					break;
+				case "Parte Inferior": 
+					this.parteInferior.add(prenda);
+					prenda.meterEnGuardarropa();
+					break;
+				case "Accesorio":
+					this.accesorios.add(prenda);
+					prenda.meterEnGuardarropa();
+					break;
+				case "Calzado": 
+					this.calzados.add(prenda);
+					prenda.meterEnGuardarropa();
+					break;
+				default:
+					System.out.println("ESTE ELEMENTO NO PERTENECE A NINGUNA LISTA");
+					break;
+				} 
 		}
 			else throw new Exception("GUARDARROPA LLENO CREE UNO NUEVO");
 	}
@@ -114,61 +115,64 @@ public class Guardarropa
 	
 //-------------------FUNCION PRINCIPAL --------------------
 		
-	public Atuendo queMePongo() 
+	public Atuendo queMePongo(String ciudad) 
 	{
 		if(this.verificarArrayList()) 
 		{
-		    int rnd = new Random().nextInt(this.combinaciones().size());
-		    List <Prenda> combinacionElegida = this.combinaciones().get(rnd);
-		    Atuendo atuendoElegido = new Atuendo(combinacionElegida);
-		    System.out.println("Atuendo de: " + this.identificador);
-		    atuendoElegido.imprimirPrendas();
-		    System.out.println("");
-		    return atuendoElegido;
-		}
-		else
-		{
-			System.out.println(this.identificador + " no posee atuendos");
-			return null;
-		}
-	}
-	
-	public Atuendo queMePongo(int temperatura) 
-	{
-		if(this.verificarArrayList()) 
-		{
-		    int rnd = new Random().nextInt(this.combinaciones(temperatura).size());
-		    List <Prenda> combinacionElegida = this.combinaciones().get(rnd);
-		    Atuendo atuendoElegido = new Atuendo(combinacionElegida);
-		    
-		    System.out.println("Atuendo de: " + this.identificador);
-		    atuendoElegido.imprimirPrendas();
-		    System.out.println("");
-		    return atuendoElegido;
-		}
-		else
-		{
-			System.out.println(this.identificador + " no posee atuendos");
-			return null;
-		}
-	}
 
-//-------------------------Funcion de combinaciones----------------------- 
-	public ArrayList<List<Prenda>> combinaciones(int temperatura)
-	{
-		
-		IGenerator<List<Prenda>> combinaciones = Generator.cartesianProduct(this.abrigo,this.noabrigo, this.parteInferior, this.accesorios, this.calzados);
-		ArrayList<List<Prenda>> arrayListCombinaciones = new ArrayList<List<Prenda>>();
-		combinaciones.forEach(Lista->arrayListCombinaciones.add(Lista));
-		return	arrayListCombinaciones;		
+		    Atuendo atuendoElegido = new Atuendo(this.combinaciones(ciudad));
+		    System.out.println("Atuendo de: " + this.identificador);
+		    atuendoElegido.imprimirPrendas();
+		    System.out.println("");
+		    return atuendoElegido;
+		}
+		else
+		{
+			System.out.println(this.identificador + " no posee atuendos");
+			return null;
+		}
 	}
 	
-	public ArrayList<List<Prenda>> combinaciones()
+	
+//-------------------------Funcion de combinaciones----------------------- 
+	
+	public List<Prenda> combinaciones(String ciudad)
 	{
-		IGenerator<List<Prenda>> combinaciones = Generator.cartesianProduct(this.noabrigo, this.parteInferior, this.accesorios, this.calzados);
+		ZonaYTemperatura zonaYTemp = target.request(ciudad);
+		double temp = zonaYTemp.temp;
+		IGenerator<List<Prenda>> combinaciones = Generator.cartesianProduct(this.noAbriga, this.parteInferior, this.accesorios, this.calzados);
+		
 		ArrayList<List<Prenda>> arrayListCombinaciones = new ArrayList<List<Prenda>>();
+		
 		combinaciones.forEach(Lista->arrayListCombinaciones.add(Lista));
-		return	arrayListCombinaciones;		
+		int rndNoAbrigos = new Random().nextInt(arrayListCombinaciones.size());
+		List <Prenda> combinacionesNoAbrigos = arrayListCombinaciones.get(rndNoAbrigos);
+		
+		if(temp<=15) {
+			List<Prenda> combinacionesDeAbrigo;
+			SubSetGenerator<Prenda> combinacionesAbrigo =  Generator.subset(this.abrigo);
+				
+			List <List<Prenda>> combinacionesValidas = combinacionesAbrigo.simple().stream().filter(x->x.stream().mapToInt(
+					a->{
+						try {
+							return a.getTemperatura();
+						} catch (Exception e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						return 0;
+				}).sum() > (15-temp)).collect(Collectors.toList());
+		
+			
+			int rndAbrigos = new Random().nextInt(combinacionesValidas.size());
+			List <Prenda> combinacionAbrigoElegida = combinacionesValidas.get(rndAbrigos);
+			
+			combinacionesNoAbrigos.addAll(combinacionAbrigoElegida);
+			//se concatenaron ambas listas en combinacionesNoAbrigos
+		}
+		
+		
+		return	combinacionesNoAbrigos;		
 	}
 	
 //	------------------- LAS EXCEPCIONES-----------------------------------
@@ -191,4 +195,11 @@ public class Guardarropa
 		return parteSuperior.size() +  parteInferior.size()+ calzados.size()+ accesorios.size();
 		
 	}
+
+
+
+	
+		
+	
+	
 }

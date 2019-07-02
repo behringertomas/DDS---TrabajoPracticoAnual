@@ -1,3 +1,4 @@
+package TPZTBCS;
 
 public class UsuarioPremium extends Usuario {
 	int limiteDePrendasXGuardarroa= 80;

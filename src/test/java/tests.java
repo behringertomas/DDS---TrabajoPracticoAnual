@@ -15,6 +15,9 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.paukov.combinatorics3.Generator;
 
+import TPZTBCS.Guardarropa;
+import TPZTBCS.Prenda;
+import TPZTBCS.Usuario;
 import junit.framework.Assert;
 
 public class tests
@@ -22,6 +25,19 @@ public class tests
 	
 	@Rule
     public ExpectedException thrown = ExpectedException.none();
+	
+	@Test 
+	public void ExcepcionLimiteGuardarropa() throws Exception
+	{
+			Usuario usuario = new Usuario();
+			Prenda prenda1 = usuario.construirPrenda("Parte Superior","Remera", "Tela", "Rojo", "Verde");
+			Prenda prenda2 = usuario.construirPrenda("Calzado","Zapato", "Cuero", "Rojo", "Negro");
+			Guardarropa guardarropa = new Guardarropa("Guardaropa Primavera",1);
+			guardarropa.agregarAGuardarropas(prenda1);
+			thrown.expect(Exception.class);
+			thrown.expectMessage("GUARDARROPA LLENO CREE UNO NUEVO");
+			guardarropa.agregarAGuardarropas(prenda2);
+	}
 	
 	@Test 
 	public void ExcepcionPrendaYaSeEncuentraEnUnGuardarropa() throws Exception
@@ -124,7 +140,7 @@ public class tests
 			
 			thrown.expect(Exception.class);
 			thrown.expectMessage("ERROR SIN ATUENDOS");
-			usuario.queMePongoATodosLosGuardarropas();
+			usuario.queMePongoATodosLosGuardarropas("Buenos Aires");
 			
 	}
 	

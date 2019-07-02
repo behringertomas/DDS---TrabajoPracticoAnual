@@ -1,3 +1,4 @@
+package TPZTBCS;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -10,10 +11,18 @@ public class Evento extends TimerTask implements comando {
 	public Date FechaDelEvento;
 	public Usuario usuario; 
 	public Atuendo Sugerencia=null; 
+	public String ciudad;
+	
+	public Evento(Date fecha,Usuario ID, String ciudad) {
+		this.FechaDelEvento=fecha;
+		this.usuario = ID;
+		this.ciudad = ciudad;
+	}
 	
 	public Evento(Date fecha,Usuario ID) {
 		this.FechaDelEvento=fecha;
 		this.usuario = ID;
+		this.ciudad = "Buenos Aires";
 	}
 
 	@Override

@@ -1,12 +1,13 @@
-import com.weathertest.MainWeather;
-import com.weathertest.ZonaYTemperatura;
+package TPZTBCS;
+
+import com.weatherlibraryjava.WeatherApixu;
 
 public class AdapterAPI implements ITargetAPI {
 	
-	MainWeather apixu;
+	WeatherApixu apixu;
 	//falta otro constructor de otra api
 	
-	public AdapterAPI(MainWeather apixu) {
+	public AdapterAPI(WeatherApixu apixu) {
 		this.apixu = apixu;
 	}
 	public ZonaYTemperatura request() {

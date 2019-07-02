@@ -1,3 +1,4 @@
+package TPZTBCS;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -79,12 +80,12 @@ public class Usuario
 	}
 //	
 	
-	public List<Atuendo> queMePongoATodosLosGuardarropas() throws Exception
+	public List<Atuendo> queMePongoATodosLosGuardarropas(String ciudad) throws Exception
 	{
-		List<Atuendo> atuendos = listaGuardarropas.stream().map(guardarropa -> guardarropa.queMePongo()).collect(Collectors.toList());
+		List<Atuendo> atuendos = listaGuardarropas.stream().map(guardarropa -> guardarropa.queMePongo(ciudad)).collect(Collectors.toList());
         if (atuendos.size()>0)
         {
-            return listaGuardarropas.stream().map(guardarropa -> guardarropa.queMePongo()).collect(Collectors.toList());
+            return listaGuardarropas.stream().map(guardarropa -> guardarropa.queMePongo(ciudad)).collect(Collectors.toList());
         }
         else
         {

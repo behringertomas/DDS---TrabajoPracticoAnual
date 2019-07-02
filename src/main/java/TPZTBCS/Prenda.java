@@ -1,16 +1,19 @@
+package TPZTBCS;
 public class Prenda 
 {
-	private int CuantoAbriga=0;
 	private boolean enGuardarropa=false;
     private String parte = "";
     private String tipo = "";
     private String material = "";
     private String colorPrimario = "";
     private String colorSecundario = "";
-
-    public void setParte(String parte){this.parte = parte;}
+    private strategyTemperatura strategyTemp;
+  
     
-    public void setTemperatura(int temperatura){this.CuantoAbriga = temperatura;}
+    
+    public void setStrategy(strategyTemperatura str) { this.strategyTemp = str;}
+    
+    public void setParte(String parte){this.parte = parte;}
     
     public void setTipo(String tipo){this.tipo = tipo;}
     
@@ -22,9 +25,12 @@ public class Prenda
     
     public Prenda getPrenda() { return this; }
     
-    public int getTemperatura() {
-    	
-    	return this.CuantoAbriga;
+    public int getTemperatura() throws Exception {
+    	return this.strategyTemp.getTemperatura(this.getTipo());
+    }
+    
+    public strategyTemperatura getStrategy() {
+    	return this.strategyTemp;
     }
     
     public String getParteCuerpo() {return this.parte;}
