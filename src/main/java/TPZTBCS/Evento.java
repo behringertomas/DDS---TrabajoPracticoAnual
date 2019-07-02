@@ -22,7 +22,7 @@ public class Evento extends TimerTask implements comando {
 	public Evento(Date fecha,Usuario ID) {
 		this.FechaDelEvento=fecha;
 		this.usuario = ID;
-		this.ciudad = "Buenos Aires";
+		this.ciudad = "BuenosAires";
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class Evento extends TimerTask implements comando {
 	public void run() {
 		try {
         
-		List<Atuendo>listaSugerencias =usuario.queMePongoATodosLosGuardarropas();
+		List<Atuendo>listaSugerencias =usuario.queMePongoATodosLosGuardarropas(this.ciudad);
 		int rnd = new Random().nextInt(listaSugerencias.size());
 		 Atuendo atuendoElegido = listaSugerencias.get(rnd);
 		 this.Sugerencia = atuendoElegido;

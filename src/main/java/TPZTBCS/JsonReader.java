@@ -31,7 +31,7 @@ public class JsonReader
 		return (List<String>) jsonObject.get("TipoParteSuperior");		
 	}
 
-	public List<String> getTipoAbrigos() throws Exception
+	public static List<String> getTipoAbrigos() throws Exception
 	{
 		JSONObject jsonObject = (JSONObject) readJsonSimpleDemo(DIRECTORIOJSON);
 		return (List<String>) jsonObject.get("TipoAbrigo");		

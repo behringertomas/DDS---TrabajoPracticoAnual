@@ -8,12 +8,12 @@ public class ParteSuperior extends PrendaBuilder
     
     public void buildTipo(String tipo) throws Exception
     {
-    	if ((jsonReader.getTipoParteSuperior()).contains(tipo))
+    	if (JsonReader.getTipoParteSuperior().contains(tipo))
     	{
     		prenda.setStrategy(new noAbriga());
         	prenda.setTipo(tipo);
     	}
-    	else if ((jsonReader.getTipoAbrigos()).contains(tipo)) 
+    	else if (JsonReader.getTipoAbrigos().contains(tipo)) 
     	{
     		prenda.setStrategy(new abrigo());
     		prenda.setTipo(tipo);
@@ -24,7 +24,7 @@ public class ParteSuperior extends PrendaBuilder
     
     public void buildMaterial(String material) throws Exception
     {
-    	if ((jsonReader.getMaterialParteSuperior()).contains(material))
+    	if (JsonReader.getMaterialParteSuperior().contains(material))
     	{
         	prenda.setMaterial(material);
     	}

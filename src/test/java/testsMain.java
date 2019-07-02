@@ -6,6 +6,8 @@ import org.json.simple.JSONObject;
 import org.paukov.combinatorics3.Generator;
 
 import java.util.Collection;
+import java.util.Date;
+
 import com.weathertest.ZonaYTemperatura;
 
 import TPZTBCS.Guardarropa;
@@ -41,6 +43,9 @@ public class testsMain {
 		Prenda prenda7  =usuario.construirPrenda("Calzado","Zapato", "Cuero", "Rojo", "Negro");
 		Prenda prenda8  =usuario.construirPrenda("Accesorio","Reloj", "Metal", "Rojo", "Negro");
 		
+		Prenda prenda13 =usuario.construirPrenda("Parte Superior", "Campera", "Cuero", "Negro");
+		Prenda prenda14 =usuario.construirPrenda("Parte Superior", "Sweater", "Algodon", "Blanco");
+		
 		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda1);
 		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda3);
 		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda4);
@@ -55,22 +60,33 @@ public class testsMain {
 		usuario.agregarPrendaAGuardarropas(guardarropa2,prenda7);
 		usuario.agregarPrendaAGuardarropas(guardarropa2,prenda8);
 		
-		usuario.queMePongoATodosLosGuardarropas();
-	
+		usuario.agregarPrendaAGuardarropas(guardarropa1, prenda13);
+		usuario.agregarPrendaAGuardarropas(guardarropa1, prenda14);
+		
+//		guardarropa1.verNoAbriga();
+//		guardarropa1.verAbrigo();
+		
+		guardarropa1.queMePongo("Paris");
+		
+		Date today = new Date();
+		usuario.crearEvento(today);
+		
+		
 		
 		
 		//---2DA ENTREGA
 		
-		JsonReader json = new JsonReader();
-		int nro1 = json.getTipoTemperatura("Buzo");
-		System.out.println(nro1);
-		int nro2 = json.getTipoTemperatura("Sweater");
-		System.out.println(nro2);
-		int nro3 = json.getTipoTemperatura("Campera");
-		System.out.println(nro3);
+//		JsonReader json = new JsonReader();
+//		json.getTipoAbrigos().forEach(x-> System.out.println(x));
+//		int nro1 = json.getTipoTemperatura("Buzo");
+//		System.out.println(nro1);
+//		int nro2 = json.getTipoTemperatura("Sweater");
+//		System.out.println(nro2);
+//		int nro3 = json.getTipoTemperatura("Campera");
+//		System.out.println(nro3);
 		
-		TPZTBCS.ZonaYTemperatura rta= guardarropa1.solicitarClima("Chubut");
-		rta.toString();
+//		TPZTBCS.ZonaYTemperatura rta= guardarropa1.solicitarClima("Paris");
+//		rta.toString();
 		
 		
 

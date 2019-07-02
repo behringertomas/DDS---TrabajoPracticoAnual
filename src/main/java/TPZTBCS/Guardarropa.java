@@ -1,4 +1,5 @@
 package TPZTBCS;
+import java.awt.SystemColor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -37,8 +38,7 @@ public class Guardarropa
 	ArrayList <Prenda> accesorios = new ArrayList<Prenda>();
 	ArrayList <Prenda> calzados = new ArrayList<Prenda>();
 	
-	ArrayList <Prenda> noAbriga =(ArrayList <Prenda>) parteSuperior.stream().filter(x->x.getStrategy() instanceof noAbriga).collect(Collectors.toList());
-	ArrayList <Prenda> abrigo = (ArrayList <Prenda>) parteSuperior.stream().filter(x->x.getStrategy() instanceof abrigo).collect(Collectors.toList());
+
 	
 //-------------------AGREGAR PRENDA A GUARDARROPAS-------------------- 
 	
@@ -136,11 +136,57 @@ public class Guardarropa
 	
 //-------------------------Funcion de combinaciones----------------------- 
 	
+	public void verNoAbriga() {
+		ArrayList <Prenda> noAbriga =(ArrayList <Prenda>) parteSuperior.stream().filter(x->{
+			try {
+				return x.getTemperatura()==0;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} return (Boolean) null;
+		}).collect(Collectors.toList());
+		
+		noAbriga.forEach(x->x.imprimirDescripcion());
+	}
+	
+	public void verAbrigo() {
+		ArrayList <Prenda> abrigo =(ArrayList <Prenda>) parteSuperior.stream().filter(x->{
+			try {
+				return x.getTemperatura()>0;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} return (Boolean) null;
+		}).collect(Collectors.toList());
+		
+		abrigo.forEach(x->x.imprimirDescripcion());
+	}
+	
+	
 	public List<Prenda> combinaciones(String ciudad)
 	{
+		
+		ArrayList <Prenda> noAbriga =(ArrayList <Prenda>) parteSuperior.stream().filter(x->{
+			try {
+				return x.getTemperatura()==0;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} return (Boolean) null;
+		}).collect(Collectors.toList());
+		
+		ArrayList <Prenda> abrigo = (ArrayList <Prenda>) parteSuperior.stream().filter(x->{
+			try {
+				return x.getTemperatura()>0;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}return (Boolean) null;
+		}).collect(Collectors.toList());
+		
 		ZonaYTemperatura zonaYTemp = target.request(ciudad);
 		double temp = zonaYTemp.temp;
-		IGenerator<List<Prenda>> combinaciones = Generator.cartesianProduct(this.noAbriga, this.parteInferior, this.accesorios, this.calzados);
+		IGenerator<List<Prenda>> combinaciones = Generator.cartesianProduct(noAbriga, this.parteInferior, this.accesorios, this.calzados);
 		
 		ArrayList<List<Prenda>> arrayListCombinaciones = new ArrayList<List<Prenda>>();
 		
@@ -149,8 +195,7 @@ public class Guardarropa
 		List <Prenda> combinacionesNoAbrigos = arrayListCombinaciones.get(rndNoAbrigos);
 		
 		if(temp<=15) {
-			List<Prenda> combinacionesDeAbrigo;
-			SubSetGenerator<Prenda> combinacionesAbrigo =  Generator.subset(this.abrigo);
+			SubSetGenerator<Prenda> combinacionesAbrigo =  Generator.subset(abrigo);
 				
 			List <List<Prenda>> combinacionesValidas = combinacionesAbrigo.simple().stream().filter(x->x.stream().mapToInt(
 					a->{

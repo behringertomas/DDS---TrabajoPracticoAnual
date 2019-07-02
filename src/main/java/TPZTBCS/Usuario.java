@@ -12,9 +12,10 @@ public class Usuario
 {
 	String ID = ""; //Identificador del usuario	
 	Collection <Guardarropa> listaGuardarropas = new ArrayList<Guardarropa>(); //Lista de Guardarropas que contiene el usuario
-	Collection <Evento> listaEvento;
+	Collection <Evento> listaEvento = new ArrayList<Evento>();
 	public Usuario() {}
-	 
+	public Usuario(String id) {this.ID = id;}
+	
 	private PrendaBuilder prendaBuilder;
 	
 	public void CrearGuardarropa(String Identificador) {
