@@ -14,6 +14,7 @@ import TPZTBCS.Guardarropa;
 import TPZTBCS.JsonReader;
 import TPZTBCS.Prenda;
 import TPZTBCS.Usuario;
+import TPZTBCS.cargarImagenes;
 
 
 public class testsMain {
@@ -71,6 +72,10 @@ public class testsMain {
 		Date today = new Date();
 		usuario.crearEvento(today);
 		
+		//-------------------IMAGEN
+		prenda1.setDireccionImagen("remera.jpg");
+		cargarImagenes imagen = new cargarImagenes();
+		imagen.cargarImagenes(prenda1);
 		
 		
 		

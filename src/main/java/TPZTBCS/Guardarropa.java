@@ -191,6 +191,7 @@ public class Guardarropa
 		ArrayList<List<Prenda>> arrayListCombinaciones = new ArrayList<List<Prenda>>();
 		
 		combinaciones.forEach(Lista->arrayListCombinaciones.add(Lista));
+		
 		int rndNoAbrigos = new Random().nextInt(arrayListCombinaciones.size());
 		List <Prenda> combinacionesNoAbrigos = arrayListCombinaciones.get(rndNoAbrigos);
 		
