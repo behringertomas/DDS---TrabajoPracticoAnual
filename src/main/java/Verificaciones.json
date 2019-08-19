@@ -22,5 +22,6 @@
   "TipoParteSuperiorMaterial": ["Tela","Algodon","Seda","Cuero"],
   "TipoParteInferiorMaterial": ["Jean","Algodon","Cuero","Pana","Gamuza"],
   "TipoCalzadoMaterial": ["Jean","Algodon","Cuero","Pana","Gamuza"],
-  "TipoAccesorioMaterial": ["Metal","Oro","Cuero","Plata","Bronce"],  
+  "TipoAccesorioMaterial": ["Metal","Oro","Cuero","Plata","Bronce"],
+  "TipoAbrigoSecundario": ["Bufanda","Gorro","Guantes","Cuello Polar"], 
 }

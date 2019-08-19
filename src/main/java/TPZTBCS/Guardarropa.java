@@ -115,12 +115,12 @@ public class Guardarropa
 	
 //-------------------FUNCION PRINCIPAL --------------------
 		
-	public Atuendo queMePongo(String ciudad) 
+	public Atuendo queMePongo(String ciudad,int nivelFrio) 
 	{
 		if(this.verificarArrayList()) 
 		{
 
-		    Atuendo atuendoElegido = new Atuendo(this.combinaciones(ciudad));
+		    Atuendo atuendoElegido = new Atuendo(this.combinaciones(ciudad,nivelFrio));
 		    System.out.println("Atuendo de: " + this.identificador);
 		    atuendoElegido.imprimirPrendas();
 		    System.out.println("");
@@ -163,7 +163,7 @@ public class Guardarropa
 	}
 	
 	
-	public List<Prenda> combinaciones(String ciudad)
+	public List<Prenda> combinaciones(String ciudad,int nivelFrio)
 	{
 		
 		ArrayList <Prenda> noAbriga =(ArrayList <Prenda>) parteSuperior.stream().filter(x->{
@@ -195,7 +195,8 @@ public class Guardarropa
 		int rndNoAbrigos = new Random().nextInt(arrayListCombinaciones.size());
 		List <Prenda> combinacionesNoAbrigos = arrayListCombinaciones.get(rndNoAbrigos);
 		
-		if(temp<=15) {
+		if(temp<=nivelFrio) {
+			
 			SubSetGenerator<Prenda> combinacionesAbrigo =  Generator.subset(abrigo);
 				
 			List <List<Prenda>> combinacionesValidas = combinacionesAbrigo.simple().stream().filter(x->x.stream().mapToInt(
@@ -207,7 +208,7 @@ public class Guardarropa
 							e.printStackTrace();
 						}
 						return 0;
-				}).sum() > (15-temp)).collect(Collectors.toList());
+				}).sum() > (nivelFrio-temp)).collect(Collectors.toList());
 		
 			
 			int rndAbrigos = new Random().nextInt(combinacionesValidas.size());

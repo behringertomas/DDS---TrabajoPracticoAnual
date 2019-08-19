@@ -10,7 +10,7 @@ import org.json.simple.parser.ParseException;
 
 public class JsonReader 
 {
-	private static final String DIRECTORIOJSON = "C:\\Users\\Elitebook 8470p\\Desktop\\UTN+idioma\\3ERO\\Diseño de Sistemas\\TP-ANUAL\\DDS---TrabajoPracticoAnual\\src\\main\\java\\Verificaciones.json";
+	private static final String DIRECTORIOJSON = "C:\\Users\\Ivan\\Documents\\GitHub\\DDS---TrabajoPracticoAnual\\src\\main\\java\\Verificaciones.json";
 	
 	public static Object readJsonSimpleDemo(String filename) throws Exception
 	{

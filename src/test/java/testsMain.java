@@ -10,6 +10,7 @@ import java.util.Date;
 
 import com.weathertest.ZonaYTemperatura;
 
+import TPZTBCS.Evento;
 import TPZTBCS.Guardarropa;
 import TPZTBCS.JsonReader;
 import TPZTBCS.Prenda;
@@ -67,15 +68,25 @@ public class testsMain {
 //		guardarropa1.verNoAbriga();
 //		guardarropa1.verAbrigo();
 		
-		guardarropa1.queMePongo("Paris");
+		//guardarropa1.queMePongo("Paris",usuario.getFrio());
+		
 		
 		Date today = new Date();
-		usuario.crearEvento(today);
+		
+		usuario.crearEvento(today,"Fiesta","Paris");
+	
+//		Evento eventoPrueba = usuario.getEvento("Fiesta");
+//		System.out.println("PRUEBA 1:");
+//		eventoPrueba.ejecutar();
+//		System.out.println("PRUEBA 2:");
+//		eventoPrueba.ejecutar();
+//		System.out.println("PRUEBA 3:");
+//		eventoPrueba.ejecutar();
 		
 		//-------------------IMAGEN
-		prenda1.setDireccionImagen("remera.jpg");
-		cargarImagenes imagen = new cargarImagenes();
-		imagen.cargarImagenes(prenda1);
+//		prenda1.setDireccionImagen("remera.jpg");
+//		cargarImagenes imagen = new cargarImagenes();
+//		imagen.cargarImagenes(prenda1);
 		
 		
 		

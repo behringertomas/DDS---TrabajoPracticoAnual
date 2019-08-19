@@ -10,6 +10,7 @@ import java.util.Timer;
 
 public class Usuario 
 {
+	int nivelFrio=15;
 	String ID = ""; //Identificador del usuario	
 	Collection <Guardarropa> listaGuardarropas = new ArrayList<Guardarropa>(); //Lista de Guardarropas que contiene el usuario
 	Collection <Evento> listaEvento = new ArrayList<Evento>();
@@ -21,6 +22,14 @@ public class Usuario
 	public void CrearGuardarropa(String Identificador) {
 		Guardarropa guardarropaNuevo= new Guardarropa(Identificador);
 		listaGuardarropas.add(guardarropaNuevo);
+	}
+	
+	public void setFrio(int cantidadFrio) {
+		this.nivelFrio= cantidadFrio;
+	}
+	
+	public int getFrio() {
+		return this.nivelFrio;
 	}
 	
 	public PrendaBuilder setPrendaBuilder(String parteCuerpo) throws Exception 
@@ -83,25 +92,28 @@ public class Usuario
 	
 	public List<Atuendo> queMePongoATodosLosGuardarropas(String ciudad) throws Exception
 	{
-		List<Atuendo> atuendos = listaGuardarropas.stream().map(guardarropa -> guardarropa.queMePongo(ciudad)).collect(Collectors.toList());
+		List<Atuendo> atuendos = listaGuardarropas.stream().map(guardarropa -> guardarropa.queMePongo(ciudad,nivelFrio)).collect(Collectors.toList());
         if (atuendos.size()>0)
         {
-            return listaGuardarropas.stream().map(guardarropa -> guardarropa.queMePongo(ciudad)).collect(Collectors.toList());
+            return listaGuardarropas.stream().map(guardarropa -> guardarropa.queMePongo(ciudad,nivelFrio)).collect(Collectors.toList());
         }
         else
         {
         	throw new Exception("ERROR SIN ATUENDOS");
         }
 	}
-	public void crearEvento(Date fecha) {
+	public void crearEvento(Date fecha,String descripcion,String ciudad) {
 		 
 		 Date date = fecha;
 		 Timer timer = new Timer();
-		 Evento EventoNuevo= new Evento(fecha,this);
+		 Evento EventoNuevo= new Evento(fecha,this,ciudad,descripcion);
 		 this.listaEvento.add(EventoNuevo);
 		 timer.schedule(EventoNuevo, date);
 		 
 	}
-
+	
+	public Evento getEvento(String eventoAObtener) {
+		return (Evento) this.listaEvento.stream().filter(evento->evento.getDescripcion().equalsIgnoreCase(eventoAObtener)).collect(Collectors.toList());
+	}
 
 }
