@@ -23,5 +23,8 @@
   "TipoParteInferiorMaterial": ["Jean","Algodon","Cuero","Pana","Gamuza"],
   "TipoCalzadoMaterial": ["Jean","Algodon","Cuero","Pana","Gamuza"],
   "TipoAccesorioMaterial": ["Metal","Oro","Cuero","Plata","Bronce"],
-  "TipoAbrigoSecundario": ["Bufanda","Gorro","Guantes","Cuello Polar"], 
+  "TipoAbrigoSecundario": ["Bufanda","Gorro","Guantes","Cuello Polar"], //AAAA POLAR realmente huyo al carajo
+  "TipoAbrigoSecundarioParte": ["Cuello","Cabeza","Manos","Cuello"],
+  "TipoAbrigoSecundarioMaterial": ["Tela","Algodon","Seda"],
+  "TemperaturasAbrigoAccesorio":["15","15","15","15"],
 }

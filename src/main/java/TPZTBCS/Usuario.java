@@ -10,12 +10,17 @@ import java.util.Timer;
 
 public class Usuario 
 {
-	int nivelFrio=15;
-	String ID = ""; //Identificador del usuario	
+	
+	DatosPersonales Datos;
+	
 	Collection <Guardarropa> listaGuardarropas = new ArrayList<Guardarropa>(); //Lista de Guardarropas que contiene el usuario
 	Collection <Evento> listaEvento = new ArrayList<Evento>();
-	public Usuario() {}
-	public Usuario(String id) {this.ID = id;}
+	
+	
+	public Usuario(String id,String email) {
+		this.Datos.setID(id);
+		this.Datos.setEmail(email);
+	}
 	
 	private PrendaBuilder prendaBuilder;
 	
@@ -24,13 +29,50 @@ public class Usuario
 		listaGuardarropas.add(guardarropaNuevo);
 	}
 	
-	public void setFrio(int cantidadFrio) {
-		this.nivelFrio= cantidadFrio;
+	public void setFrioMaximo(int cantidadFrio) {
+		this.Datos.setFrioMaximo(cantidadFrio);
+	}
+	public void setFrioMinimo(int cantidadFrio) {
+		this.Datos.setFrioMinimo(cantidadFrio);
+	}
+	public void setFrioCuello(int cantidadFrio) {
+		this.Datos.setFrioCuello(cantidadFrio);
+	}
+	public void setFrioManos(int cantidadFrio) {
+		this.Datos.setFrioManos(cantidadFrio);
+	}
+	public void setFrioCabeza(int cantidadFrio) {
+		this.Datos.setFrioCabeza(cantidadFrio);
+	}
+	public void setID(String id) {
+		this.Datos.setID(id);
+	}
+	public void setEmail(String email) {
+		this.Datos.setEmail(email);
 	}
 	
-	public int getFrio() {
-		return this.nivelFrio;
+	public String getID() {
+		return Datos.getID();
 	}
+	public String getEmail() {
+		return Datos.getEmail();
+	}
+	public int getFrioMaximo() {
+		return Datos.getFrioMaximo();
+	}
+	public int getFrioMinimo() {
+		return Datos.getFrioMinimo();
+	}
+	public int getFrioManos() {
+		return Datos.getFrioManos();
+	}
+	public int getFrioCuello() {
+		return Datos.getFrioCuello();
+	}
+	public int getFrioCabeza() {
+		return Datos.getFrioCabeza();
+	}
+
 	
 	public PrendaBuilder setPrendaBuilder(String parteCuerpo) throws Exception 
 	{
@@ -92,10 +134,10 @@ public class Usuario
 	
 	public List<Atuendo> queMePongoATodosLosGuardarropas(String ciudad) throws Exception
 	{
-		List<Atuendo> atuendos = listaGuardarropas.stream().map(guardarropa -> guardarropa.queMePongo(ciudad,nivelFrio)).collect(Collectors.toList());
+		List<Atuendo> atuendos = listaGuardarropas.stream().map(guardarropa -> guardarropa.queMePongo(ciudad,this.Datos)).collect(Collectors.toList());
         if (atuendos.size()>0)
         {
-            return listaGuardarropas.stream().map(guardarropa -> guardarropa.queMePongo(ciudad,nivelFrio)).collect(Collectors.toList());
+            return listaGuardarropas.stream().map(guardarropa -> guardarropa.queMePongo(ciudad,this.Datos)).collect(Collectors.toList());
         }
         else
         {

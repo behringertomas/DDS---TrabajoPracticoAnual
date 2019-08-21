@@ -1,6 +1,9 @@
 package TPZTBCS;
 public class Accesorio extends PrendaBuilder
 {
+	
+
+	
     public Accesorio(){prenda = new Prenda();}
     
     public void buildParte()   { prenda.setParte("Accesorio"); }
@@ -9,12 +12,17 @@ public class Accesorio extends PrendaBuilder
     {
     	if ((jsonReader.getTipoAccesorio()).contains(tipo))
     	{
+    		prenda.setStrategy(new noAbriga());
         	prenda.setTipo(tipo);
     	}
-    	else
+    	else if (JsonReader.getTipoAbrigoSecundario().contains(tipo)) 
     	{
-    		throw new Exception("ERROR TIPO"); 
-    	}  
+    		prenda.setStrategy(new abrigo());
+    		prenda.setTipo(tipo);
+    		prenda.setParteEspecifica(jsonReader.getParteEspecifica(tipo));
+    	}
+    	else throw new Exception("ERROR TIPO"); 
+     
     }
     
     public void buildMaterial(String material) throws Exception
@@ -23,9 +31,12 @@ public class Accesorio extends PrendaBuilder
     	{
         	prenda.setMaterial(material);
     	}
-    	else
-    	{
-    		throw new Exception("ERROR MATERIAL"); 
-    	} 
+    	
+    	else if ((jsonReader.getTemperaturasAbrigoAccesorio()).contains(material)){
+    		prenda.setMaterial(material);
+    	}
+    	
+    	else throw new Exception("ERROR MATERIAL"); 
+    	 
     }
 }

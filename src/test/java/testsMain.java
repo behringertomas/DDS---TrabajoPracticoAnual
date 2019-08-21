@@ -22,7 +22,7 @@ public class testsMain {
 
 	public static void main(String[] args) throws Exception {
 		
-		Usuario usuario = new Usuario();
+		Usuario usuario = new Usuario("Ivan","ivanrcasanova98@gmail.com");
 		
 		Guardarropa guardarropa1 = new Guardarropa("Guardarropa	Verano");
 		Guardarropa guardarropa2 = new Guardarropa("Guardarropa Primavera");

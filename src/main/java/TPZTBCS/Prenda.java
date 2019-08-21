@@ -9,7 +9,14 @@ public class Prenda
     private String colorSecundario = "";
     private strategyTemperatura strategyTemp;
     private String direccionImagen = "";
-    
+	private String parteEspecifica="";
+	
+	public void setParteEspecifica(String parte) {
+		this.parteEspecifica=parte;
+	}
+	public String getParteEspecifica() {
+		return this.parteEspecifica;
+	}
     
     public void setStrategy(strategyTemperatura str) { this.strategyTemp = str;}
     

@@ -1,8 +1,10 @@
 package TPZTBCS;
 import java.awt.SystemColor;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -115,12 +117,12 @@ public class Guardarropa
 	
 //-------------------FUNCION PRINCIPAL --------------------
 		
-	public Atuendo queMePongo(String ciudad,int nivelFrio) 
+	public Atuendo queMePongo(String ciudad,DatosPersonales Datos) 
 	{
 		if(this.verificarArrayList()) 
 		{
 
-		    Atuendo atuendoElegido = new Atuendo(this.combinaciones(ciudad,nivelFrio));
+		    Atuendo atuendoElegido = new Atuendo(this.combinaciones(ciudad,Datos));
 		    System.out.println("Atuendo de: " + this.identificador);
 		    atuendoElegido.imprimirPrendas();
 		    System.out.println("");
@@ -163,7 +165,7 @@ public class Guardarropa
 	}
 	
 	
-	public List<Prenda> combinaciones(String ciudad,int nivelFrio)
+	public List<Prenda> combinaciones(String ciudad,DatosPersonales Datos)
 	{
 		
 		ArrayList <Prenda> noAbriga =(ArrayList <Prenda>) parteSuperior.stream().filter(x->{
@@ -184,9 +186,29 @@ public class Guardarropa
 			}return (Boolean) null;
 		}).collect(Collectors.toList());
 		
+		ArrayList <Prenda> accesoriosNoAbrigo =(ArrayList <Prenda>) accesorios.stream().filter(x->{
+			try {
+				return x.getTemperatura()==0;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} return (Boolean) null;
+		}).collect(Collectors.toList());
+		
+		ArrayList <Prenda> accesoriosAbrigo = (ArrayList <Prenda>) accesorios.stream().filter(x->{
+			try {
+				return x.getTemperatura()>0;
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}return (Boolean) null;
+		}).collect(Collectors.toList());
+		
+		
+		
 		ZonaYTemperatura zonaYTemp = target.request(ciudad);
 		double temp = zonaYTemp.temp;
-		IGenerator<List<Prenda>> combinaciones = Generator.cartesianProduct(noAbriga, this.parteInferior, this.accesorios, this.calzados);
+		IGenerator<List<Prenda>> combinaciones = Generator.cartesianProduct(noAbriga, this.parteInferior, accesoriosNoAbrigo, this.calzados);
 		
 		ArrayList<List<Prenda>> arrayListCombinaciones = new ArrayList<List<Prenda>>();
 		
@@ -195,7 +217,22 @@ public class Guardarropa
 		int rndNoAbrigos = new Random().nextInt(arrayListCombinaciones.size());
 		List <Prenda> combinacionesNoAbrigos = arrayListCombinaciones.get(rndNoAbrigos);
 		
-		if(temp<=nivelFrio) {
+		if(temp<=Datos.getFrioCabeza()) {
+			List<Prenda> posiblesAbrigoCabeza= accesoriosAbrigo.stream().filter(x->x.getParteEspecifica()=="Cabeza").collect(Collectors.toList());;
+			
+			
+			if (posiblesAbrigoCabeza.isEmpty()) {
+				System.out.println("No hay abrigos para la cabeza que se puedan recomendar en este guardarropa");
+			}else {
+				
+				//filtro por la temperatura que abrigan
+			}
+	
+			
+			
+		}
+		
+		if(temp<=Datos.getFrioMaximo() && temp>= Datos.getFrioMinimo()) {
 			
 			SubSetGenerator<Prenda> combinacionesAbrigo =  Generator.subset(abrigo);
 				
@@ -208,9 +245,20 @@ public class Guardarropa
 							e.printStackTrace();
 						}
 						return 0;
-				}).sum() > (nivelFrio-temp)).collect(Collectors.toList());
+				}).sum() > (Datos.getFrioMaximo()-temp) ).collect(Collectors.toList());
 		
+			if(combinacionesValidas.isEmpty()) {
+				System.out.println("No existen combinaciones validas se recomienda una prenda pero no cumple los requerimientos de temperatura por favor compre mas prendas");
+				return	combinacionesNoAbrigos;
+			}
 			
+			List <List<Prenda>> combinacionesValidasSinDuplicados =  combinacionesValidas.stream().filter(x->verificarDuplicados(x.stream().map(y->y.getTipo()).collect(Collectors.toList()))).collect(Collectors.toList());
+			
+			if(combinacionesValidasSinDuplicados.isEmpty()) {
+				System.out.println("No existen combinaciones validas se recomienda una prenda pero no cumple los requerimientos de temperatura por favor compre mas prendas");
+				return	combinacionesNoAbrigos;
+			}
+				
 			int rndAbrigos = new Random().nextInt(combinacionesValidas.size());
 			List <Prenda> combinacionAbrigoElegida = combinacionesValidas.get(rndAbrigos);
 			
@@ -224,6 +272,16 @@ public class Guardarropa
 	
 //	------------------- LAS EXCEPCIONES-----------------------------------
 
+	public boolean verificarDuplicados(List<String> combinacion) 
+	{
+		Set<String> set = new HashSet<String>(combinacion);
+		if(set.size() < combinacion.size())
+		return false;
+		
+		return true;
+	}
+	
+	
 	public void verificarGuardarropaConPrendas() throws Exception
 	{
 		if(parteSuperior.isEmpty()) throw new Exception("NO HAY PARTE SUPERIOR");
