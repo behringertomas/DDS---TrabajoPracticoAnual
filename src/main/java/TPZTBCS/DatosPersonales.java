@@ -2,8 +2,8 @@ package TPZTBCS;
 
 public class DatosPersonales {
 
-	String ID="";
-	String email="";
+	String ID;
+	String email;
 	
 	int FrioMaximo=15;//dejo 15 como default == si hace menos de 15 grados se abriga con algunas prendas
 	int FrioMinimo=0; // si hace menos de 0 grados se abriga con todo lo que pueda
@@ -11,6 +11,7 @@ public class DatosPersonales {
 	int FrioCuello=15;
 	int FrioCabeza=15;
 
+	public DatosPersonales() {}
 	
 	public void setID(String IDNueva) {
 		this.ID=IDNueva;

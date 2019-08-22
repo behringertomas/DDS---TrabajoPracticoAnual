@@ -47,6 +47,11 @@ public class testsMain {
 		
 		Prenda prenda13 =usuario.construirPrenda("Parte Superior", "Campera", "Cuero", "Negro");
 		Prenda prenda14 =usuario.construirPrenda("Parte Superior", "Sweater", "Algodon", "Blanco");
+		Prenda prenda15 =usuario.construirPrenda("Accesorio", "Bufanda", "Algodon", "Blanco");
+		
+		
+		//JSONObject jsonObject = (JSONObject) readJsonSimpleDemo("C:\\Users\\Ivan\\Documents\\GitHub\\DDS---TrabajoPracticoAnual\\src\\main\\java\\Verificaciones.json");
+		//prenda15.imprimirDescripcion();
 		
 		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda1);
 		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda3);
@@ -68,12 +73,12 @@ public class testsMain {
 //		guardarropa1.verNoAbriga();
 //		guardarropa1.verAbrigo();
 		
-		//guardarropa1.queMePongo("Paris",usuario.getFrio());
+	//	guardarropa1.queMePongo("Paris",usuario.getDatos());
 		
 		
-		Date today = new Date();
+		//Date today = new Date();
 		
-		usuario.crearEvento(today,"Fiesta","Paris");
+		//usuario.crearEvento(today,"Fiesta","Paris");
 	
 //		Evento eventoPrueba = usuario.getEvento("Fiesta");
 //		System.out.println("PRUEBA 1:");
@@ -90,20 +95,20 @@ public class testsMain {
 		
 		
 		
-		//---2DA ENTREGA
-		
-//		JsonReader json = new JsonReader();
-//		json.getTipoAbrigos().forEach(x-> System.out.println(x));
-//		int nro1 = json.getTipoTemperatura("Buzo");
-//		System.out.println(nro1);
-//		int nro2 = json.getTipoTemperatura("Sweater");
-//		System.out.println(nro2);
-//		int nro3 = json.getTipoTemperatura("Campera");
-//		System.out.println(nro3);
-		
-//		TPZTBCS.ZonaYTemperatura rta= guardarropa1.solicitarClima("Paris");
-//		rta.toString();
-		
+			//---2DA ENTREGA
+			
+			//JsonReader json = new JsonReader();
+			//json.getTipoAbrigoSecundarioMaterial().forEach(x-> System.out.println(x));
+			//String nro1 = json.getParteEspecifica("Bufanda");
+			//System.out.println(nro1);
+//			int nro2 = json.getTipoTemperatura("Sweater");
+//			System.out.println(nro2);
+//			int nro3 = json.getTipoTemperatura("Campera");
+//			System.out.println(nro3);
+//		
+//			TPZTBCS.ZonaYTemperatura rta= guardarropa1.solicitarClima("Paris");
+//			rta.toString();
+//			
 		
 
 	}

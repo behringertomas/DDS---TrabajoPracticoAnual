@@ -218,19 +218,26 @@ public class Guardarropa
 		List <Prenda> combinacionesNoAbrigos = arrayListCombinaciones.get(rndNoAbrigos);
 		
 		if(temp<=Datos.getFrioCabeza()) {
-			List<Prenda> posiblesAbrigoCabeza= accesoriosAbrigo.stream().filter(x->x.getParteEspecifica()=="Cabeza").collect(Collectors.toList());;
+			List<Prenda> posiblesAbrigoCabeza= accesoriosAbrigo.stream().filter(x->x.getParteEspecifica()=="Cabeza").collect(Collectors.toList());
 			
 			
 			if (posiblesAbrigoCabeza.isEmpty()) {
 				System.out.println("No hay abrigos para la cabeza que se puedan recomendar en este guardarropa");
 			}else {
+				List <Prenda> posiblesAbrigoCabezaValidos =  posiblesAbrigoCabeza.stream().filter(x->{
+					try {
+						return x.getTemperatura()>Datos.getFrioCabeza();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return false;
+				}).collect(Collectors.toList());
 				
-				//filtro por la temperatura que abrigan
 			}
 	
 			
-			
-		}
+			}
 		
 		if(temp<=Datos.getFrioMaximo() && temp>= Datos.getFrioMinimo()) {
 			

@@ -11,15 +11,17 @@ import java.util.Timer;
 public class Usuario 
 {
 	
-	DatosPersonales Datos;
-	
+	DatosPersonales Datos= new DatosPersonales();
 	Collection <Guardarropa> listaGuardarropas = new ArrayList<Guardarropa>(); //Lista de Guardarropas que contiene el usuario
 	Collection <Evento> listaEvento = new ArrayList<Evento>();
 	
+	public DatosPersonales getDatos() {
+		return this.Datos;
+	}
 	
 	public Usuario(String id,String email) {
-		this.Datos.setID(id);
-		this.Datos.setEmail(email);
+		this.getDatos().setID(id);
+		this.getDatos().setEmail(email);
 	}
 	
 	private PrendaBuilder prendaBuilder;
