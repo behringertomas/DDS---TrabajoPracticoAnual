@@ -2,7 +2,7 @@ package TPZTBCS;
 
 public interface strategyTemperatura {
 	
-	public int getTemperatura(String tipo) throws Exception;
+	public int getTemperatura(Prenda prenda) throws Exception;
 	
 	
 

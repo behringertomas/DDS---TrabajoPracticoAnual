@@ -3,7 +3,7 @@ package TPZTBCS;
 public class noAbriga implements strategyTemperatura{
 
 	@Override
-	public int getTemperatura(String tipo) {
+	public int getTemperatura(Prenda prenda) {
 		return 0;
 	}
 

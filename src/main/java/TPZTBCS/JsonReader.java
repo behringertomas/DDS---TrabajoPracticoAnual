@@ -37,13 +37,25 @@ public class JsonReader
 		return (List<String>) jsonObject.get("TipoAbrigo");		
 	}
 	
-	public int getTipoTemperatura(String Prenda) throws Exception
+	public int getTipoTemperatura(Prenda Prenda) throws Exception
 	{
 		JSONObject jsonObject = (JSONObject) readJsonSimpleDemo(DIRECTORIOJSON);
-		int ubicacionTemperatura= this.getTipoAbrigos().indexOf(Prenda);
+		if (Prenda.getParteCuerpo()=="Parte Superior") {
+		
+		int ubicacionTemperatura= this.getTipoAbrigos().indexOf(Prenda.getTipo());
 		List<String> ListaDeTemperaturas = (List<String>) jsonObject.get("TemperaturasAbrigo");	
 		int temperatura = Integer.parseInt(ListaDeTemperaturas.get(ubicacionTemperatura));
 		return temperatura;
+		}
+		if(Prenda.getParteCuerpo()=="Accesorio") {
+		
+		int ubicacionTemperatura= this.getTipoAbrigoSecundario().indexOf(Prenda.getTipo());
+		List<String> ListaDeTemperaturas = (List<String>) jsonObject.get("TemperaturasAbrigoAccesorio");	
+		int temperatura = Integer.parseInt(ListaDeTemperaturas.get(ubicacionTemperatura));
+		return temperatura;
+			
+		}
+		return 0;
 	}
 	
 	public static String getParteEspecifica(String Prenda) throws Exception

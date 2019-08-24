@@ -7,11 +7,25 @@ import org.paukov.combinatorics3.Generator;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.Optional;
 
+import com.krds.accuweatherapi.ApiSession;
+import com.krds.accuweatherapi.CurrentConditionsApi;
+import com.krds.accuweatherapi.HourPeriod;
+import com.krds.accuweatherapi.LocationApi;
+import com.krds.accuweatherapi.model.CurrentConditions;
+import com.krds.accuweatherapi.model.GeoPositionSearchResult;
+import com.weatherlibrary.datamodel.WeatherModel;
+import com.weatherlibraryjava.IRepository;
+import com.weatherlibraryjava.Repository;
+import com.weatherlibraryjava.RequestBlocks.GetBy;
+import com.weatherlibraryjava.WeatherApixu;
 import com.weathertest.ZonaYTemperatura;
 
+import TPZTBCS.AdapterAPI;
 import TPZTBCS.Evento;
 import TPZTBCS.Guardarropa;
+import TPZTBCS.ITargetAPI;
 import TPZTBCS.JsonReader;
 import TPZTBCS.Prenda;
 import TPZTBCS.Usuario;
@@ -48,10 +62,16 @@ public class testsMain {
 		Prenda prenda13 =usuario.construirPrenda("Parte Superior", "Campera", "Cuero", "Negro");
 		Prenda prenda14 =usuario.construirPrenda("Parte Superior", "Sweater", "Algodon", "Blanco");
 		Prenda prenda15 =usuario.construirPrenda("Accesorio", "Bufanda", "Algodon", "Blanco");
+		Prenda prenda16 =usuario.construirPrenda("Accesorio", "Gorro", "Tela", "Blanco");
+		Prenda prenda17 =usuario.construirPrenda("Accesorio", "Gorro", "Seda", "Negro");
+		Prenda prenda18 =usuario.construirPrenda("Accesorio", "Gorro", "Algodon", "Rojo");
+		Prenda prenda19 =usuario.construirPrenda("Accesorio", "Gorro", "Seda", "Blanco");
 		
 		
 		//JSONObject jsonObject = (JSONObject) readJsonSimpleDemo("C:\\Users\\Ivan\\Documents\\GitHub\\DDS---TrabajoPracticoAnual\\src\\main\\java\\Verificaciones.json");
 		//prenda15.imprimirDescripcion();
+		//System.out.println(prenda19.getParteEspecifica());
+		
 		
 		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda1);
 		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda3);
@@ -62,18 +82,77 @@ public class testsMain {
 		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda11);
 		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda12);
 		
-		usuario.agregarPrendaAGuardarropas(guardarropa2,prenda2);
-		usuario.agregarPrendaAGuardarropas(guardarropa2,prenda5);
-		usuario.agregarPrendaAGuardarropas(guardarropa2,prenda7);
-		usuario.agregarPrendaAGuardarropas(guardarropa2,prenda8);
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda16);
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda17);
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda18);
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda19);
+		
+		
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda2);
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda5);
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda7);
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda8);
 		
 		usuario.agregarPrendaAGuardarropas(guardarropa1, prenda13);
 		usuario.agregarPrendaAGuardarropas(guardarropa1, prenda14);
 		
+		
+
+		
+		
+//		--------------------------------------------- ACCU WEATHER
+		
+		
+//		ITargetAPI target = new AdapterAPI( new WeatherApixu() ); 
+		
+//		System.out.println("Latitud: " + target.getLat("Paris"));
+//		System.out.println("Longitud: " + target.getLong("Paris"));
+		
+//		ApiSession session = new ApiSession.Builder("cdxE2HxzUId3I9ebdqEY1ySFK3pTQCAf").build();
+//		LocationApi locationApi = session.getLocationApi();
+		
+//		CurrentConditionsApi current = session.getCurrentConditionsApi("cdxE2HxzUId3I9ebdqEY1ySFK3pTQCAf");
+		
+		
+//		Deja esto comentado para el tema del Forecast.
+//		 ForecastApi forecast = session.getForecastApi("cdxE2HxzUId3I9ebdqEY1ySFK3pTQCAf");
+//		 forecast.getDailyXdays("DAYS_5");
+//		va a ser algo asi como HourPeriod.HOURS_24
+		
+//		String ciudad = "Paris";
+		
+//			ciudad.trim();
+//			String newCiudad;
+			
+//			newCiudad =ciudad.replaceAll("\\s+", "%20");
+		
+//		guardarropa1.queMePongo(newCiudad, usuario.getDatos());
+		
+//		Optional <GeoPositionSearchResult> geoLocation = locationApi.geoPosition(target.getLat(newCiudad),target.getLong(newCiudad));
+		
+//		if (geoLocation.isPresent()) {
+//		  System.out.println("The location key for the coordinates is: " + geoLocation.get().getKey());
+//		}
+
+//		CurrentConditionsApi ccApi = session.getCurrentConditionsApi(geoLocation.get().getKey());
+//
+//		Optional<CurrentConditions> cc = ccApi.get(HourPeriod.HOURS_24);
+//		if (cc.isPresent()) {
+//		  System.out.println("Current temperature is: " + cc.get().getTemperature().getMetric().getValue());
+//		  System.out.println(cc.get().getWeatherText());
+//		}
+
+
+
+		
+		
+		
+
+		
 //		guardarropa1.verNoAbriga();
 //		guardarropa1.verAbrigo();
 		
-	//	guardarropa1.queMePongo("Paris",usuario.getDatos());
+		guardarropa1.queMePongo("Perth",usuario.getDatos());
 		
 		
 		//Date today = new Date();
@@ -106,7 +185,7 @@ public class testsMain {
 //			int nro3 = json.getTipoTemperatura("Campera");
 //			System.out.println(nro3);
 //		
-//			TPZTBCS.ZonaYTemperatura rta= guardarropa1.solicitarClima("Paris");
+//			System.out.println(guardarropa1.solicitarClima("Paris"));
 //			rta.toString();
 //			
 		

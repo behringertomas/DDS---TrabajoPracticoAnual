@@ -1,8 +1,11 @@
 package TPZTBCS;
 import java.awt.SystemColor;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
 import java.util.function.Function;
@@ -15,10 +18,19 @@ import org.paukov.combinatorics3.Generator;
 import org.paukov.combinatorics3.IGenerator;
 import org.paukov.combinatorics3.SubSetGenerator;
 
+import com.krds.accuweatherapi.ApiSession;
+import com.krds.accuweatherapi.CurrentConditionsApi;
+import com.krds.accuweatherapi.HourPeriod;
+import com.krds.accuweatherapi.LocationApi;
+import com.krds.accuweatherapi.exceptions.ApiException;
+import com.krds.accuweatherapi.exceptions.UnauthorizedException;
+import com.krds.accuweatherapi.model.CurrentConditions;
+import com.krds.accuweatherapi.model.GeoPositionSearchResult;
 import com.weatherlibraryjava.WeatherApixu;
 
 public class Guardarropa 
 {
+	
 	ITargetAPI target = new AdapterAPI( new WeatherApixu() ); //apixu
 	String identificador;
 	int limiteDePrendas;
@@ -117,7 +129,7 @@ public class Guardarropa
 	
 //-------------------FUNCION PRINCIPAL --------------------
 		
-	public Atuendo queMePongo(String ciudad,DatosPersonales Datos) 
+	public Atuendo queMePongo(String ciudad,DatosPersonales Datos) throws UnauthorizedException, ApiException 
 	{
 		if(this.verificarArrayList()) 
 		{
@@ -165,7 +177,7 @@ public class Guardarropa
 	}
 	
 	
-	public List<Prenda> combinaciones(String ciudad,DatosPersonales Datos)
+	public List<Prenda> combinaciones(String ciudad,DatosPersonales Datos) throws UnauthorizedException, ApiException
 	{
 		
 		ArrayList <Prenda> noAbriga =(ArrayList <Prenda>) parteSuperior.stream().filter(x->{
@@ -207,7 +219,30 @@ public class Guardarropa
 		
 		
 		ZonaYTemperatura zonaYTemp = target.request(ciudad);
-		double temp = zonaYTemp.temp;
+		
+		//------------------------------- ACCU WEATHER API
+			ApiSession session = new ApiSession.Builder("cdxE2HxzUId3I9ebdqEY1ySFK3pTQCAf").build();
+			LocationApi locationApi = session.getLocationApi();
+			CurrentConditionsApi current = session.getCurrentConditionsApi("cdxE2HxzUId3I9ebdqEY1ySFK3pTQCAf");
+			
+			//Limpio espacios y trimeo al nombre de la ciudad para que sea correcta la request.
+			ciudad.trim();
+			String newCiudad;
+			newCiudad =ciudad.replaceAll("\\s+", "%20");
+			
+			Optional <GeoPositionSearchResult> geoLocation = locationApi.geoPosition(target.getLat(newCiudad),target.getLong(newCiudad));
+			CurrentConditionsApi ccApi = session.getCurrentConditionsApi(geoLocation.get().getKey());
+	
+			Optional<CurrentConditions> cc = ccApi.get(HourPeriod.HOURS_24);
+			double temp = cc.get().getTemperature().getMetric().getValue();
+			String condicionClimatica = cc.get().getWeatherText();
+			if (cc.isPresent()) {
+			  System.out.println("Current temperature is: " + temp);
+			  System.out.println(condicionClimatica);
+			}
+		//------------------------------- ACCU WEATHER API
+		
+//		double temp = zonaYTemp.temp;
 		IGenerator<List<Prenda>> combinaciones = Generator.cartesianProduct(noAbriga, this.parteInferior, accesoriosNoAbrigo, this.calzados);
 		
 		ArrayList<List<Prenda>> arrayListCombinaciones = new ArrayList<List<Prenda>>();
@@ -218,7 +253,7 @@ public class Guardarropa
 		List <Prenda> combinacionesNoAbrigos = arrayListCombinaciones.get(rndNoAbrigos);
 		
 		if(temp<=Datos.getFrioCabeza()) {
-			List<Prenda> posiblesAbrigoCabeza= accesoriosAbrigo.stream().filter(x->x.getParteEspecifica()=="Cabeza").collect(Collectors.toList());
+			List<Prenda> posiblesAbrigoCabeza= accesoriosAbrigo.stream().filter(x->x.getParteEspecifica()!="Cabeza").collect(Collectors.toList());
 			
 			
 			if (posiblesAbrigoCabeza.isEmpty()) {
@@ -226,13 +261,35 @@ public class Guardarropa
 			}else {
 				List <Prenda> posiblesAbrigoCabezaValidos =  posiblesAbrigoCabeza.stream().filter(x->{
 					try {
-						return x.getTemperatura()>Datos.getFrioCabeza();
+						return x.getTemperatura()>Datos.getFrioCabeza()-temp;
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 					return false;
 				}).collect(Collectors.toList());
+				
+				if (posiblesAbrigoCabezaValidos.isEmpty()) {
+				System.out.println("No hay abrigos para la cabeza que se puedan recomendar en este guardarropa se recomienda el mas cercano a la temperatura actual");
+//				Prenda prendaFlexible=posiblesAbrigoCabeza.sort();
+				Collections.sort(posiblesAbrigoCabeza.stream().map(x->{
+					try {
+						return x.getTemperatura();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return 0;
+				}).collect(Collectors.toList()));
+				
+				Prenda prendaFlexible=posiblesAbrigoCabeza.get(0);
+				combinacionesNoAbrigos.add(prendaFlexible);
+				}else {
+					int rndNoAbrigosCabeza = new Random().nextInt(posiblesAbrigoCabezaValidos.size());
+					Prenda prendaCabeza = posiblesAbrigoCabezaValidos.get(rndNoAbrigosCabeza);
+					combinacionesNoAbrigos.add(0, prendaCabeza);
+				}
+				
 				
 			}
 	
@@ -309,9 +366,7 @@ public class Guardarropa
 	}
 
 
-
 	
-		
 	
 	
 }

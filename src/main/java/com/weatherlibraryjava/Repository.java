@@ -33,7 +33,7 @@ public class Repository implements IRepository{
 		// TODO Auto-generated method stub
 		url = APIURL +RequestBuilder.PrepareRequest(MethodType.Forecast, key, getBy, value, ForecastOfDays);
 		
-		System.out.println("url==========>"+url);
+//		System.out.println("url==========>"+url);
 		WeatherModel tryWeatherModel = GetData(url);
 		
 		return tryWeatherModel;
@@ -45,7 +45,7 @@ public class Repository implements IRepository{
 		// TODO Auto-generated method stub
 		url = APIURL + RequestBuilder.PrepareRequestByLatLong(MethodType.Forecast, key,latitude,longitude, ForecastOfDays);
 		
-		System.out.println("url==========>"+url);
+//		System.out.println("url==========>"+url);
 		WeatherModel tryWeatherModel = GetData(url);
 		
 		return tryWeatherModel;
@@ -57,7 +57,7 @@ public class Repository implements IRepository{
 	
 		url = APIURL + RequestBuilder.PrepareRequestByAutoIP(MethodType.Forecast, key, ForecastOfDays);
 		
-		System.out.println("url==========>"+url);
+//		System.out.println("url==========>"+url);
 		WeatherModel tryWeatherModel = GetData(url);
 		
 		return tryWeatherModel;
@@ -73,7 +73,7 @@ public class Repository implements IRepository{
 
 		url = APIURL + RequestBuilder.PrepareRequest(MethodType.Current, key, getBy, value);
 		
-		System.out.println("url==========>"+url);
+//		System.out.println("url==========>"+url);
 		WeatherModel tryWeatherModel = GetData(url);
 		
 		return tryWeatherModel;
@@ -86,7 +86,7 @@ public class Repository implements IRepository{
 
 		url = APIURL + RequestBuilder.PrepareRequestByLatLong(MethodType.Current, key, latitude, longitude);
 		
-		System.out.println("url==========>"+url);
+//		System.out.println("url==========>"+url);
 		WeatherModel tryWeatherModel = GetData(url);
 		
 		return tryWeatherModel;
@@ -98,7 +98,7 @@ public class Repository implements IRepository{
 
 		url = APIURL + RequestBuilder.PrepareRequestByAutoIP(MethodType.Current, key);
 		
-		System.out.println("url==========>"+url);
+//		System.out.println("url==========>"+url);
 
 		WeatherModel tryWeatherModel = GetData(url);
 		
@@ -116,16 +116,17 @@ public class Repository implements IRepository{
 		try {
 			obj = new URL(url);
 			 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+			 	
 
 		        // optional default is GET
 		        con.setRequestMethod("GET");
-
+		        
 		        //add request header
-		        con.setRequestProperty("User-Agent", "user");
+		        con.setRequestProperty("User-Agent", "Chrome" );
 
 		        int responseCode = con.getResponseCode();
-		//        System.out.println("\nSending 'GET' request to URL : " + url);
-		 //       System.out.println("Response Code : " + responseCode);
+//		        System.out.println("\nSending 'GET' request to URL : " + url);
+//		        System.out.println("Response Code : " + responseCode);
 
 		        BufferedReader in = new BufferedReader(
 		                new InputStreamReader(con.getInputStream()));
@@ -138,7 +139,7 @@ public class Repository implements IRepository{
 		        in.close();
 
 		        //print result
-	//	        System.out.println(response.toString());
+//		        System.out.println(response.toString());
 		        
 		        JSONParser parser = new JSONParser();
 		        

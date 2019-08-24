@@ -16,4 +16,13 @@ public class AdapterAPI implements ITargetAPI {
 	public ZonaYTemperatura request(String ciudad) {
 		return this.apixu.getWeather(ciudad);
 	}
+	
+	public double getLat(String ciudad) {
+		return this.apixu.getLatitud(ciudad);
+	}
+	
+	public double getLong(String ciudad) {
+		return this.apixu.getLongitud(ciudad);
+	}
+	
 }

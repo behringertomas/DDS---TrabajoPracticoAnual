@@ -14,17 +14,25 @@
     "Gris"
   ],
   "TipoParteSuperior": ["Remera","Musculosa","Camisa"],
-  "TipoAbrigo": ["Campera","Sweater","Buzo"],
-  "TemperaturasAbrigo":["20","15","10"],
+  "TipoAbrigo": ["Campera","Sweater","Buzo", "Campera Impermeable"],
+  "TemperaturasAbrigo":["20","15","10","10"],
+  
   "TipoParteInferior": ["Pantalon Largo","Short","Pollera","Pantalon Corto"],
   "TipoCalzado": ["Zapatilla","Zapato","Runners","Botines","Trainers"],
-  "TipoAccesorio": ["Reloj","Pulsera","Aro","Lentes de Sol"],
+
   "TipoParteSuperiorMaterial": ["Tela","Algodon","Seda","Cuero"],
   "TipoParteInferiorMaterial": ["Jean","Algodon","Cuero","Pana","Gamuza"],
   "TipoCalzadoMaterial": ["Jean","Algodon","Cuero","Pana","Gamuza"],
-  "TipoAccesorioMaterial": ["Metal","Oro","Cuero","Plata","Bronce"],
-  "TipoAbrigoSecundario": ["Bufanda","Gorro","Guantes","Cuello Polar"],
-  "TipoAbrigoSecundarioParte": ["Cuello","Cabeza","Manos","Cuello"],
+  
+  
+  "TipoAccesorio": ["Reloj","Pulsera","Aro","Lentes de Sol","Paraguas"],
+  "TipoAccesorioMaterial": ["Metal","Oro","Plata","Bronce"],
+  
+  "TipoAbrigoSecundario": ["Bufanda","Gorro","Guantes","Cuello Polar","Gorra de Sol"],
+  "TipoAbrigoSecundarioParte": ["Cuello","Cabeza","Manos","Cuello","Cabeza"],
   "TipoAbrigoSecundarioMaterial": ["Tela","Algodon","Seda"],
-  "TemperaturasAbrigoAccesorio":["15","15","15","15"],
+  "TemperaturasAbrigoAccesorio":["15","15","15","15","0"],
+  
+  "PrendasFactoresClimaticos":["Pollera","Gorro","Gorra de Sol","Lentes de Sol","Campera Impermeable","Paraguas"],
+  "RelacionFactoresClimaticos":["Viento","Viento","Sol","Sol","Lluvia","Lluvia"],
 }

@@ -3,9 +3,9 @@ package TPZTBCS;
 public class abrigo implements strategyTemperatura {
 
 	@Override
-	public int getTemperatura(String tipo) throws Exception{
+	public int getTemperatura(Prenda prenda) throws Exception{
 		JsonReader json = new JsonReader();
-		return json.getTipoTemperatura(tipo);
+		return json.getTipoTemperatura(prenda);
 	}
 	
 

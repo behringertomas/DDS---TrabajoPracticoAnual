@@ -6,6 +6,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+
+import com.krds.accuweatherapi.exceptions.ApiException;
+import com.krds.accuweatherapi.exceptions.UnauthorizedException;
+
 import java.util.Timer;
 
 public class Usuario 
@@ -134,12 +138,34 @@ public class Usuario
 	}
 //	
 	
-	public List<Atuendo> queMePongoATodosLosGuardarropas(String ciudad) throws Exception
+	public List<Atuendo> queMePongoATodosLosGuardarropas(String ciudad) throws Exception,UnauthorizedException,ApiException
 	{
-		List<Atuendo> atuendos = listaGuardarropas.stream().map(guardarropa -> guardarropa.queMePongo(ciudad,this.Datos)).collect(Collectors.toList());
+		List<Atuendo> atuendos = listaGuardarropas.stream().map(guardarropa -> {
+			try {
+				return guardarropa.queMePongo(ciudad,this.Datos);
+			} catch (UnauthorizedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ApiException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return null;
+		}).collect(Collectors.toList());
         if (atuendos.size()>0)
         {
-            return listaGuardarropas.stream().map(guardarropa -> guardarropa.queMePongo(ciudad,this.Datos)).collect(Collectors.toList());
+            return listaGuardarropas.stream().map(guardarropa -> {
+				try {
+					return guardarropa.queMePongo(ciudad,this.Datos);
+				} catch (UnauthorizedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ApiException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return null;
+			}).collect(Collectors.toList());
         }
         else
         {

@@ -33,7 +33,7 @@ public class Prenda
     public Prenda getPrenda() { return this; }
     
     public int getTemperatura() throws Exception {
-    	return this.strategyTemp.getTemperatura(this.getTipo());
+    	return this.strategyTemp.getTemperatura(this);
     }
     
     public strategyTemperatura getStrategy() {
