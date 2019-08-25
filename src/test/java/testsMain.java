@@ -25,11 +25,11 @@ import com.weathertest.ZonaYTemperatura;
 import TPZTBCS.AdapterAPI;
 import TPZTBCS.Evento;
 import TPZTBCS.Guardarropa;
-import TPZTBCS.ITargetAPI;
 import TPZTBCS.JsonReader;
 import TPZTBCS.Prenda;
 import TPZTBCS.Usuario;
 import TPZTBCS.cargarImagenes;
+import interfacesZTBCS.ITargetAPI;
 
 
 public class testsMain {
@@ -70,7 +70,7 @@ public class testsMain {
 		
 		//JSONObject jsonObject = (JSONObject) readJsonSimpleDemo("C:\\Users\\Ivan\\Documents\\GitHub\\DDS---TrabajoPracticoAnual\\src\\main\\java\\Verificaciones.json");
 		//prenda15.imprimirDescripcion();
-		//System.out.println(prenda19.getParteEspecifica());
+		System.out.println(prenda19.getParteEspecifica());
 		
 		
 		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda1);
@@ -92,12 +92,13 @@ public class testsMain {
 		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda5);
 		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda7);
 		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda8);
-		
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda15);
 		usuario.agregarPrendaAGuardarropas(guardarropa1, prenda13);
 		usuario.agregarPrendaAGuardarropas(guardarropa1, prenda14);
 		
 		
-
+		guardarropa1.queMePongo("Perth",usuario.getDatos());
+		
 		
 		
 //		--------------------------------------------- ACCU WEATHER
@@ -152,7 +153,6 @@ public class testsMain {
 //		guardarropa1.verNoAbriga();
 //		guardarropa1.verAbrigo();
 		
-		guardarropa1.queMePongo("Perth",usuario.getDatos());
 		
 		
 		//Date today = new Date();

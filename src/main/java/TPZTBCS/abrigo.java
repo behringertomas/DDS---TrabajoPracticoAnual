@@ -1,5 +1,7 @@
 package TPZTBCS;
 
+import interfacesZTBCS.strategyTemperatura;
+
 public class abrigo implements strategyTemperatura {
 
 	@Override

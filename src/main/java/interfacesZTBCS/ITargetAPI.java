@@ -1,4 +1,6 @@
-package TPZTBCS;
+package interfacesZTBCS;
+
+import TPZTBCS.ZonaYTemperatura;
 
 public interface ITargetAPI {
 	

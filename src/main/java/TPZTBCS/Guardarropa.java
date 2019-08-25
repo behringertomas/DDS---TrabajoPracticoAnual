@@ -28,6 +28,8 @@ import com.krds.accuweatherapi.model.CurrentConditions;
 import com.krds.accuweatherapi.model.GeoPositionSearchResult;
 import com.weatherlibraryjava.WeatherApixu;
 
+import interfacesZTBCS.ITargetAPI;
+
 public class Guardarropa 
 {
 	
@@ -252,8 +254,9 @@ public class Guardarropa
 		int rndNoAbrigos = new Random().nextInt(arrayListCombinaciones.size());
 		List <Prenda> combinacionesNoAbrigos = arrayListCombinaciones.get(rndNoAbrigos);
 		
+		//CABEZA
 		if(temp<=Datos.getFrioCabeza()) {
-			List<Prenda> posiblesAbrigoCabeza= accesoriosAbrigo.stream().filter(x->x.getParteEspecifica()!="Cabeza").collect(Collectors.toList());
+			List<Prenda> posiblesAbrigoCabeza= accesoriosAbrigo.stream().filter(x->x.getParteEspecifica().equalsIgnoreCase("Cabeza")).collect(Collectors.toList());
 			
 			
 			if (posiblesAbrigoCabeza.isEmpty()) {
@@ -295,6 +298,99 @@ public class Guardarropa
 	
 			
 			}
+		
+		//CUELLO
+		if(temp<=Datos.getFrioCuello()) {
+			List<Prenda> posiblesAbrigoCuello= accesoriosAbrigo.stream().filter(x->x.getParteEspecifica().equalsIgnoreCase("Cuello")).collect(Collectors.toList());
+			
+			
+			if (posiblesAbrigoCuello.isEmpty()) {
+				System.out.println("No hay abrigos para el cuello que se puedan recomendar en este guardarropa");
+			}else {
+				List <Prenda> posiblesAbrigoCuelloValidos =  posiblesAbrigoCuello.stream().filter(x->{
+					try {
+						return x.getTemperatura()>Datos.getFrioCuello()-temp;
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return false;
+				}).collect(Collectors.toList());
+				
+				if (posiblesAbrigoCuelloValidos.isEmpty()) {
+				System.out.println("No hay abrigos para el cuello que se puedan recomendar en este guardarropa se recomienda el mas cercano a la temperatura actual");
+//				Prenda prendaFlexible=posiblesAbrigoCabeza.sort();
+				Collections.sort(posiblesAbrigoCuello.stream().map(x->{
+					try {
+						return x.getTemperatura();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					return 0;
+				}).collect(Collectors.toList()));
+				
+				Prenda prendaFlexible=posiblesAbrigoCuello.get(0);
+				combinacionesNoAbrigos.add(prendaFlexible);
+				}else {
+					int rndNoAbrigosCuellos = new Random().nextInt(posiblesAbrigoCuelloValidos.size());
+					Prenda prendaCuello = posiblesAbrigoCuelloValidos.get(rndNoAbrigosCuellos);
+					combinacionesNoAbrigos.add(0, prendaCuello);
+				}
+				
+				
+			}
+	
+			
+			}
+		
+		//CUELLO
+				if(temp<=Datos.getFrioCuello()) {
+					List<Prenda> posiblesAbrigoManos= accesoriosAbrigo.stream().filter(x->x.getParteEspecifica().equalsIgnoreCase("Manos")).collect(Collectors.toList());
+					
+					
+					if (posiblesAbrigoManos.isEmpty()) {
+						System.out.println("No hay abrigos para las manos que se puedan recomendar en este guardarropa");
+					}else {
+						List <Prenda> posiblesAbrigoManosValidos =  posiblesAbrigoManos.stream().filter(x->{
+							try {
+								return x.getTemperatura()>Datos.getFrioCuello()-temp;
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							return false;
+						}).collect(Collectors.toList());
+						
+						if (posiblesAbrigoManosValidos.isEmpty()) {
+						System.out.println("No hay abrigos para el cuello que se puedan recomendar en este guardarropa se recomienda el mas cercano a la temperatura actual");
+//						Prenda prendaFlexible=posiblesAbrigoCabeza.sort();
+						Collections.sort(posiblesAbrigoManos.stream().map(x->{
+							try {
+								return x.getTemperatura();
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+							return 0;
+						}).collect(Collectors.toList()));
+						
+						Prenda prendaFlexible=posiblesAbrigoManos.get(0);
+						combinacionesNoAbrigos.add(prendaFlexible);
+						}else {
+							int rndNoAbrigosManos = new Random().nextInt(posiblesAbrigoManosValidos.size());
+							Prenda prendaManos = posiblesAbrigoManosValidos.get(rndNoAbrigosManos);
+							combinacionesNoAbrigos.add(0, prendaManos);
+						}
+						
+						
+					}
+			
+					
+					}
+		
+		
+		
 		
 		if(temp<=Datos.getFrioMaximo() && temp>= Datos.getFrioMinimo()) {
 			

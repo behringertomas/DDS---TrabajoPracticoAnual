@@ -1,4 +1,7 @@
 package TPZTBCS;
+
+import interfacesZTBCS.strategyTemperatura;
+
 public class Prenda 
 {
 	private boolean enGuardarropa=false;

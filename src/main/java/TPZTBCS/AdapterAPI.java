@@ -2,6 +2,8 @@ package TPZTBCS;
 
 import com.weatherlibraryjava.WeatherApixu;
 
+import interfacesZTBCS.ITargetAPI;
+
 public class AdapterAPI implements ITargetAPI {
 	
 	WeatherApixu apixu;

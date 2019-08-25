@@ -1,4 +1,4 @@
-package TPZTBCS;
+package interfacesZTBCS;
 public interface IParteInferior 
 {
 	String Parte = "Parte Inferior";

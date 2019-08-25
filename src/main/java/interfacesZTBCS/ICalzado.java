@@ -1,4 +1,4 @@
-package TPZTBCS;
+package interfacesZTBCS;
 public interface ICalzado 
 {
 	String Parte = "Calzado";

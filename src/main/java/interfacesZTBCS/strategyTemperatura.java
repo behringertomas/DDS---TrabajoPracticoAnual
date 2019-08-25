@@ -1,4 +1,6 @@
-package TPZTBCS;
+package interfacesZTBCS;
+
+import TPZTBCS.Prenda;
 
 public interface strategyTemperatura {
 	

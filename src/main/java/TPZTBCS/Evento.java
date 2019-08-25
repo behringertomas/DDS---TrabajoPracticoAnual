@@ -3,6 +3,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.TimerTask;
+
+import interfacesZTBCS.comando;
+
 import java.util.Scanner; 
 public class Evento extends TimerTask implements comando {
 
@@ -23,7 +26,7 @@ public class Evento extends TimerTask implements comando {
 	public Evento(Date fecha,Usuario ID) {
 		this.FechaDelEvento=fecha;
 		this.usuario = ID;
-		this.ciudad = "BuenosAires";
+		this.ciudad = "Buenos Aires";
 	}
 
 	public TimerTask sugerir() {
