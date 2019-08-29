@@ -250,7 +250,7 @@ public class Guardarropa
 		ArrayList<List<Prenda>> arrayListCombinaciones = new ArrayList<List<Prenda>>();
 		
 		combinaciones.forEach(Lista->arrayListCombinaciones.add(Lista));
-		
+
 		int rndNoAbrigos = new Random().nextInt(arrayListCombinaciones.size());
 		List <Prenda> combinacionesNoAbrigos = arrayListCombinaciones.get(rndNoAbrigos);
 		
@@ -288,6 +288,9 @@ public class Guardarropa
 				Prenda prendaFlexible=posiblesAbrigoCabeza.get(0);
 				combinacionesNoAbrigos.add(prendaFlexible);
 				}else {
+
+
+					//
 					int rndNoAbrigosCabeza = new Random().nextInt(posiblesAbrigoCabezaValidos.size());
 					Prenda prendaCabeza = posiblesAbrigoCabezaValidos.get(rndNoAbrigosCabeza);
 					combinacionesNoAbrigos.add(0, prendaCabeza);
@@ -333,6 +336,8 @@ public class Guardarropa
 				Prenda prendaFlexible=posiblesAbrigoCuello.get(0);
 				combinacionesNoAbrigos.add(prendaFlexible);
 				}else {
+
+					///
 					int rndNoAbrigosCuellos = new Random().nextInt(posiblesAbrigoCuelloValidos.size());
 					Prenda prendaCuello = posiblesAbrigoCuelloValidos.get(rndNoAbrigosCuellos);
 					combinacionesNoAbrigos.add(0, prendaCuello);
@@ -345,7 +350,7 @@ public class Guardarropa
 			}
 		
 		//CUELLO
-				if(temp<=Datos.getFrioCuello()) {
+				if(temp<=Datos.getFrioManos()) {
 					List<Prenda> posiblesAbrigoManos= accesoriosAbrigo.stream().filter(x->x.getParteEspecifica().equalsIgnoreCase("Manos")).collect(Collectors.toList());
 					
 					
@@ -378,6 +383,7 @@ public class Guardarropa
 						Prenda prendaFlexible=posiblesAbrigoManos.get(0);
 						combinacionesNoAbrigos.add(prendaFlexible);
 						}else {
+							////
 							int rndNoAbrigosManos = new Random().nextInt(posiblesAbrigoManosValidos.size());
 							Prenda prendaManos = posiblesAbrigoManosValidos.get(rndNoAbrigosManos);
 							combinacionesNoAbrigos.add(0, prendaManos);
@@ -419,6 +425,7 @@ public class Guardarropa
 				return	combinacionesNoAbrigos;
 			}
 				
+			///
 			int rndAbrigos = new Random().nextInt(combinacionesValidas.size());
 			List <Prenda> combinacionAbrigoElegida = combinacionesValidas.get(rndAbrigos);
 			

@@ -1,8 +1,10 @@
 package TPZTBCS;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -172,13 +174,21 @@ public class Usuario
         	throw new Exception("ERROR SIN ATUENDOS");
         }
 	}
-	public void crearEvento(Date fecha,String descripcion,String ciudad) {
+	//este lo hace solo una vez
+	public void crearEvento(String descripcion,String ciudad,int año,int mes,int dia,int hora,int minutos) {
 		 
-		 Date date = fecha;
-		 Timer timer = new Timer();
-		 Evento EventoNuevo= new Evento(fecha,this,ciudad,descripcion);
-		 this.listaEvento.add(EventoNuevo);
-		 timer.schedule(EventoNuevo, date);
+		Calendar myCalendar = new GregorianCalendar(año, mes-1, dia);
+		myCalendar.set(Calendar.HOUR_OF_DAY, hora);
+		myCalendar.set(Calendar.MINUTE, minutos);
+		 Date fechaDeEvento = myCalendar.getTime();
+		 myCalendar.add(Calendar.MINUTE, -1);
+		 Date fechaDeSugerencia = myCalendar.getTime();
+		 String fecha = fechaDeSugerencia.toString();
+		 Evento EventoNuevo= new Evento(fechaDeEvento,fechaDeSugerencia,this,ciudad,descripcion);
+		
+		this.listaEvento.add(EventoNuevo);
+		//System.out.print(fecha);
+		
 		 
 	}
 	

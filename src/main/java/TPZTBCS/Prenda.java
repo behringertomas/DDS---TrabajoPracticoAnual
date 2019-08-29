@@ -13,7 +13,8 @@ public class Prenda
     private strategyTemperatura strategyTemp;
     private String direccionImagen = "";
 	private String parteEspecifica="";
-	
+
+
 	public void setParteEspecifica(String parte) {
 		this.parteEspecifica=parte;
 	}

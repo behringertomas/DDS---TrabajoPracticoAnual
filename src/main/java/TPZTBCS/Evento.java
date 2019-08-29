@@ -3,24 +3,33 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 import java.util.TimerTask;
+import java.util.stream.Collectors;
 
 import interfacesZTBCS.comando;
 
-import java.util.Scanner; 
+import java.util.Scanner;
+import java.util.Timer; 
 public class Evento extends TimerTask implements comando {
 
 	public String Descripcion;
 	public Atuendo AtuendoElegido=null; 
 	public Date FechaDelEvento;
+	public Date FechaSugerencia;
 	public Usuario usuario; 
 	public Atuendo Sugerencia=null; 
 	public String ciudad;
+	Timer timer;
 	
-	public Evento(Date fecha,Usuario ID, String ciudad,String Descripcion) {
-		this.FechaDelEvento=fecha;
+	public Evento(Date fechaEvento,Date fechaSugerencia,Usuario ID, String ciudad,String Descripcion) {
+		this.FechaDelEvento=fechaEvento;
+		this.FechaSugerencia=fechaSugerencia;
 		this.usuario = ID;
 		this.ciudad = ciudad;
 		this.Descripcion= Descripcion.toLowerCase();
+		//pruebaCron	prueba=new pruebaCron();
+		timer = new Timer();
+		//System.out.print(fechaSugerencia.toString());
+		timer.schedule(this, fechaSugerencia);
 	}
 	
 	public Evento(Date fecha,Usuario ID) {
@@ -29,10 +38,7 @@ public class Evento extends TimerTask implements comando {
 		this.ciudad = "Buenos Aires";
 	}
 
-	public TimerTask sugerir() {
-		return null;
-		
-	}
+
 	
 	public String getDescripcion() {
 		return this.Descripcion;
@@ -42,12 +48,15 @@ public class Evento extends TimerTask implements comando {
 	public void ejecutar() {
 		this.AtuendoElegido=this.Sugerencia;
 		System.out.println("Atuendo Asignado");
+
+
 		//SUMARLE CALIFICACION.
 	}
 
 	@Override
 	public void deshacer() {
 		usuario.listaEvento.remove(this);
+		
 		System.out.println("Evento rechazado");
 		//RESTARLE CALIFICACION.
 	}
@@ -64,6 +73,7 @@ public class Evento extends TimerTask implements comando {
 		try {
         
 		List<Atuendo>listaSugerencias =usuario.queMePongoATodosLosGuardarropas(this.ciudad);
+		listaSugerencias= listaSugerencias.stream().filter(x->x!=null).collect(Collectors.toList());
 		int rnd = new Random().nextInt(listaSugerencias.size());
 		 Atuendo atuendoElegido = listaSugerencias.get(rnd);
 		 this.Sugerencia = atuendoElegido;
@@ -73,6 +83,7 @@ public class Evento extends TimerTask implements comando {
 		 System.out.println("Te parece bien el atuendo?: (SI/NO)");
 		 String respuesta = myObj.nextLine();
 		 if (respuesta.equals("SI")) {
+
 			this.ejecutar();
 			
 		 }

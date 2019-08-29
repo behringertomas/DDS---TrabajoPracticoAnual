@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 public class Atuendo
 {	
 	List <Prenda> prendas;
-	
+
 	public Atuendo(List<Prenda> prenda)
 	{
 		this.prendas= prenda;

@@ -2,6 +2,8 @@ import java.awt.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import com.krds.accuweatherapi.exceptions.ApiException;
+import com.krds.accuweatherapi.exceptions.UnauthorizedException;
 import org.json.simple.JSONObject;
 import org.paukov.combinatorics3.Generator;
 
@@ -34,7 +36,7 @@ import interfacesZTBCS.ITargetAPI;
 
 public class testsMain {
 
-	public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception, UnauthorizedException, ApiException {
 		
 		Usuario usuario = new Usuario("Ivan","ivanrcasanova98@gmail.com");
 		
@@ -97,7 +99,9 @@ public class testsMain {
 		usuario.agregarPrendaAGuardarropas(guardarropa1, prenda14);
 		
 		
-		guardarropa1.queMePongo("Perth",usuario.getDatos());
+		usuario.crearEvento("asd", "Dou", 2019, 8, 29, 11, 18);
+		
+		//guardarropa1.queMePongo("Perth",usuario.getDatos());
 		
 		
 		
