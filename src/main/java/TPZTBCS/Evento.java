@@ -31,11 +31,16 @@ public class Evento extends TimerTask implements comando {
 		//System.out.print(fechaSugerencia.toString());
 		timer.schedule(this, fechaSugerencia);
 	}
-	
-	public Evento(Date fecha,Usuario ID) {
-		this.FechaDelEvento=fecha;
+	public Evento(Date fechaEvento,Date fechaSugerencia,Usuario ID, String ciudad,String Descripcion,int cadaCuantosDias) {
+		this.FechaDelEvento=fechaEvento;
+		this.FechaSugerencia=fechaSugerencia;
 		this.usuario = ID;
-		this.ciudad = "Buenos Aires";
+		this.ciudad = ciudad;
+		this.Descripcion= Descripcion.toLowerCase();
+		//pruebaCron	prueba=new pruebaCron();
+		timer = new Timer();
+		//System.out.print(fechaSugerencia.toString());
+		timer.schedule(this, fechaSugerencia,this.transformardiasamilisegundis(cadaCuantosDias));
 	}
 
 
@@ -58,6 +63,7 @@ public class Evento extends TimerTask implements comando {
 		usuario.listaEvento.remove(this);
 		
 		System.out.println("Evento rechazado");
+		timer.cancel();
 		//RESTARLE CALIFICACION.
 	}
 
@@ -107,5 +113,9 @@ public class Evento extends TimerTask implements comando {
 		}
 		
 	}
-
+  public long transformardiasamilisegundis(int dias) {
+	  long milisegundos= dias *24*60*60*1000;
+	  return milisegundos;
+	  
+  }
 }
