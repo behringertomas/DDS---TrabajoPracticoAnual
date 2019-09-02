@@ -1,6 +1,10 @@
 package TPZTBCS;
 
+import java.util.HashMap;
+import java.util.Scanner;
+
 import interfacesZTBCS.strategyTemperatura;
+
 
 public class Prenda 
 {
@@ -14,7 +18,22 @@ public class Prenda
     private String direccionImagen = "";
 	private String parteEspecifica="";
 
-
+	HashMap<Usuario,Integer> ListaPuntaje = new HashMap<Usuario,Integer>();
+	
+	public void setPuntaje(Usuario usuario)
+	{
+		System.out.println("Puntaje anterior: " + this.getPuntaje(usuario));
+		System.out.println("Ingrese puntaje de la prenda:");
+		Scanner puntaje = new Scanner(System.in);
+		
+		ListaPuntaje.put(usuario,puntaje.nextInt());			
+	}
+	
+	public int getPuntaje(Usuario usuario)
+	{
+		return ListaPuntaje.get(usuario);
+	}
+	
 	public void setParteEspecifica(String parte) {
 		this.parteEspecifica=parte;
 	}
@@ -97,5 +116,14 @@ public class Prenda
     	}    	
     }
     
+    public void modificarPuntaje(Usuario usuario){
+    
+        if (ListaPuntaje.containsKey(usuario)) {
+            System.out.println("Prenda: " + this.parteEspecifica + this.tipo);
+            this.setPuntaje(usuario);            
+        } else {
+            System.out.println("No hay ninguna prenda de este usuario.");
+        }
+    }
     
 }

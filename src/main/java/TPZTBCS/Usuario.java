@@ -211,4 +211,10 @@ public class Usuario
 		return (Evento) this.listaEvento.stream().filter(evento->evento.getDescripcion().equalsIgnoreCase(eventoAObtener)).collect(Collectors.toList());
 	}
 
+	public void puntuarPrenda(Prenda prenda)
+	{
+		prenda.modificarPuntaje(this);
+	}
+
 }
+	

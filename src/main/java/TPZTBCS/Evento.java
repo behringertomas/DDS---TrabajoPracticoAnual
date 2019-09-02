@@ -53,8 +53,9 @@ public class Evento extends TimerTask implements comando {
 	public void ejecutar() {
 		this.AtuendoElegido=this.Sugerencia;
 		System.out.println("Atuendo Asignado");
-
-
+		
+		this.AtuendoElegido.repuntuarPrendas(this.usuario);
+		this.AtuendoElegido.setPuntaje(this.usuario);
 		//SUMARLE CALIFICACION.
 	}
 
@@ -63,13 +64,21 @@ public class Evento extends TimerTask implements comando {
 		usuario.listaEvento.remove(this);
 		
 		System.out.println("Evento rechazado");
+		
+		this.AtuendoElegido.repuntuarPrendas(this.usuario);
+		this.AtuendoElegido.setPuntaje(this.usuario);
+
 		timer.cancel();
-		//RESTARLE CALIFICACION.
+		
 	}
 
 	@Override
 	public void rechazar() {
 		System.out.println("Atuendo rechazado");
+		
+		this.AtuendoElegido.repuntuarPrendas(this.usuario);
+		this.AtuendoElegido.setPuntaje(this.usuario);
+		
 		this.run();
 		//RESTARLE CALIFICACION.
 	}
@@ -80,31 +89,32 @@ public class Evento extends TimerTask implements comando {
         
 		List<Atuendo>listaSugerencias =usuario.queMePongoATodosLosGuardarropas(this.ciudad);
 		listaSugerencias= listaSugerencias.stream().filter(x->x!=null).collect(Collectors.toList());
-		int rnd = new Random().nextInt(listaSugerencias.size());
-		 Atuendo atuendoElegido = listaSugerencias.get(rnd);
-		 this.Sugerencia = atuendoElegido;
-		 this.Sugerencia.imprimirPrendas();
-		
-		 Scanner myObj = new Scanner(System.in);
-		 System.out.println("Te parece bien el atuendo?: (SI/NO)");
-		 String respuesta = myObj.nextLine();
-		 if (respuesta.equals("SI")) {
 
+//		int rnd = new Random().nextInt(listaSugerencias.size());
+//		Atuendo atuendoElegido = listaSugerencias.get(rnd);
+		
+		this.Sugerencia = this.getMejorAtuendo(listaSugerencias);
+		this.Sugerencia.imprimirPrendas();
+		
+		
+		Scanner myObj = new Scanner(System.in);
+		System.out.println("Te parece bien el atuendo?: (SI/NO)");
+		String respuesta = myObj.nextLine();
+		if (respuesta.equals("SI")) {
+		
 			this.ejecutar();
 			
-		 }
+		}
 		 if (respuesta.equals("NO")) {
-			 System.out.println("DESEA OTRA SUGERENCIA?: (SI/NO)");
+		 System.out.println("DESEA OTRA SUGERENCIA?: (SI/NO)");
 		 if (respuesta.equals("SI")) {
 				this.rechazar();
-					
-		}
+		 }
 		 if (respuesta.equals("NO")) {
-				this.deshacer();
-					
-		}
+				this.deshacer();		
+		 }
 		 
-	}
+		 }
 		 
 		 
 		} catch (Exception e) {
@@ -116,6 +126,14 @@ public class Evento extends TimerTask implements comando {
   public long transformardiasamilisegundis(int dias) {
 	  long milisegundos= dias *24*60*60*1000;
 	  return milisegundos;
+	  
+  }
+  
+  public Atuendo getMejorAtuendo(List<Atuendo>listaSugerencias) 
+  {
+	  //REVISAR
+	  listaSugerencias.sort((A1,A2)-> A1.getPuntaje(this.usuario) - A2.getPuntaje(this.usuario));
+	  return listaSugerencias.get(0);
 	  
   }
 }

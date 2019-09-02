@@ -1,6 +1,8 @@
 package TPZTBCS;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -8,7 +10,37 @@ import java.util.stream.Collectors;
 public class Atuendo
 {	
 	List <Prenda> prendas;
-
+	HashMap<Usuario,Integer> ListaPuntajeAtuendo = new HashMap<Usuario,Integer>();
+	
+	public void setPuntaje(Usuario usuario)
+	{
+		System.out.println("Puntaje anterior: " + this.getPuntaje(usuario));
+		System.out.println("Ingrese puntaje del atuendo completo:");
+		Scanner puntaje = new Scanner(System.in);
+		
+		ListaPuntajeAtuendo.put(usuario,puntaje.nextInt());			
+	}
+	
+	public int getPuntaje(Usuario usuario)
+	{
+		if(ListaPuntajeAtuendo.containsKey(usuario)) 
+		{
+			return ListaPuntajeAtuendo.get(usuario);	
+		}
+		else 
+		{
+			return this.getPromedioPuntaje(usuario);
+		}
+	}
+	
+	public int getPromedioPuntaje(Usuario usuario)
+	{
+		int cantidadPrendas = prendas.size();
+		int sumatoria = this.puntajeTotalDePrendas(usuario);
+		
+		return  sumatoria / cantidadPrendas;
+	}
+	
 	public Atuendo(List<Prenda> prenda)
 	{
 		this.prendas= prenda;
@@ -18,7 +50,12 @@ public class Atuendo
 	{
 		this.prendas.forEach(prenda->prenda.imprimirDescripcion());
 		
-	}	
+	}
+	
+	public void repuntuarPrendas(Usuario usuario) 
+	{
+		this.prendas.forEach(prenda-> prenda.modificarPuntaje(usuario));
+	}
 	
 	public int cuantoAbriga() {
 	 return prendas.stream().mapToInt(
@@ -30,5 +67,10 @@ public class Atuendo
 			e.printStackTrace();
 		} return 0;
 	}).sum();
+	}
+	
+	public int puntajeTotalDePrendas(Usuario usuario)
+	{
+		return prendas.stream().mapToInt(x->{return x.getPuntaje(usuario); }).sum();
 	}
 }
