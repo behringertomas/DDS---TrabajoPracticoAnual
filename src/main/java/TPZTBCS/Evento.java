@@ -1,16 +1,34 @@
 package TPZTBCS;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.TimerTask;
-import java.util.stream.Collectors;
+import java.util.stream.Collectors;import org.hamcrest.core.IsNull;
 
+import com.krds.accuweatherapi.ApiSession;
+import com.krds.accuweatherapi.CurrentConditionsApi;
+import com.krds.accuweatherapi.DayPeriod;
+import com.krds.accuweatherapi.ForecastApi;
+import com.krds.accuweatherapi.LocationApi;
+import com.krds.accuweatherapi.exceptions.ApiException;
+import com.krds.accuweatherapi.exceptions.UnauthorizedException;
+import com.krds.accuweatherapi.model.GeoPositionSearchResult;
+import com.proveedores.openweather.OpenWeather;
+import com.weatherlibraryjava.WeatherApixu;
+
+import interfacesZTBCS.ITargetAPI;
 import interfacesZTBCS.comando;
 
 import java.util.Scanner;
 import java.util.Timer; 
 public class Evento extends TimerTask implements comando {
 
+	public int horasChequeoCambioBrusco = 6;
+	public CambioBruscoClimatico cambioAlerta = null;
 	public String Descripcion;
 	public Atuendo AtuendoElegido=null; 
 	public Date FechaDelEvento;
@@ -19,6 +37,10 @@ public class Evento extends TimerTask implements comando {
 	public Atuendo Sugerencia=null; 
 	public String ciudad;
 	Timer timer;
+	Timer timerAlerta;
+	ITargetAPI target = new AdapterAPI( new WeatherApixu() ); //apixu
+	double temp=100;
+	public String DescripcionClima =null;
 	
 	public Evento(Date fechaEvento,Date fechaSugerencia,Usuario ID, String ciudad,String Descripcion) {
 		this.FechaDelEvento=fechaEvento;
@@ -42,25 +64,27 @@ public class Evento extends TimerTask implements comando {
 		//System.out.print(fechaSugerencia.toString());
 		timer.schedule(this, fechaSugerencia,this.transformardiasamilisegundis(cadaCuantosDias));
 	}
-
-
-	
-	public String getDescripcion() {
-		return this.Descripcion;
-	}
 	
 	@Override
 	public void ejecutar() {
+
+		this.verificarAlerta();
 		this.AtuendoElegido=this.Sugerencia;
 		System.out.println("Atuendo Asignado");
 		
 		this.AtuendoElegido.repuntuarPrendas(this.usuario);
 		this.AtuendoElegido.setPuntaje(this.usuario);
+		
 		//SUMARLE CALIFICACION.
+		this.cambioAlerta= new CambioBruscoClimatico(this);
+		this.timerAlerta= new Timer();
+		
+		timerAlerta.schedule(this.cambioAlerta, convertirHorasAMilisegundos(this.horasChequeoCambioBrusco));
 	}
 
 	@Override
 	public void deshacer() {
+		this.verificarAlerta();
 		usuario.listaEvento.remove(this);
 		
 		System.out.println("Evento rechazado");
@@ -86,8 +110,16 @@ public class Evento extends TimerTask implements comando {
 	@Override
 	public void run() {
 		try {
-        
-		List<Atuendo>listaSugerencias =usuario.queMePongoATodosLosGuardarropas(this.ciudad);
+
+		OpenWeather apiOpenW = new OpenWeather();
+		//obtener descripcion
+		String descripcion = this.requestDescripcionClima();
+		this.setDescripcionClima(descripcion);
+		//obtener temp
+		double temp = apiOpenW.obtenerTemperaturATalDia(convertToLocalDateViaInstant(this.FechaSugerencia), this.ciudad);
+		this.setTemp(temp);
+		
+		List<Atuendo>listaSugerencias =usuario.queMePongoATodosLosGuardarropas(descripcion,temp);
 		listaSugerencias= listaSugerencias.stream().filter(x->x!=null).collect(Collectors.toList());
 
 //		int rnd = new Random().nextInt(listaSugerencias.size());
@@ -96,21 +128,24 @@ public class Evento extends TimerTask implements comando {
 		this.Sugerencia = this.getMejorAtuendo(listaSugerencias);
 		this.Sugerencia.imprimirPrendas();
 		
+		NotificacionEmail sender =new NotificacionEmail();
+    	sender.enviarNotificacion(this.usuario.getDatos());
 		
 		Scanner myObj = new Scanner(System.in);
 		System.out.println("Te parece bien el atuendo?: (SI/NO)");
 		String respuesta = myObj.nextLine();
-		if (respuesta.equals("SI")) {
+		if (respuesta.toUpperCase().equals("SI")) {
 		
 			this.ejecutar();
 			
 		}
-		 if (respuesta.equals("NO")) {
+		 if (respuesta.toUpperCase().equals("NO")) {
 		 System.out.println("DESEA OTRA SUGERENCIA?: (SI/NO)");
-		 if (respuesta.equals("SI")) {
+		 String respuesta2 = myObj.nextLine();
+		 if (respuesta2.toUpperCase().equals("SI")) {
 				this.rechazar();
 		 }
-		 if (respuesta.equals("NO")) {
+		 if (respuesta2.toUpperCase().equals("NO")) {
 				this.deshacer();		
 		 }
 		 
@@ -129,6 +164,8 @@ public class Evento extends TimerTask implements comando {
 	  
   }
   
+  
+  
   public Atuendo getMejorAtuendo(List<Atuendo>listaSugerencias) 
   {
 	  //REVISAR
@@ -136,4 +173,70 @@ public class Evento extends TimerTask implements comando {
 	  return listaSugerencias.get(0);
 	  
   }
+  
+  public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {
+	    return dateToConvert.toInstant()
+	      .atZone(ZoneId.systemDefault())
+	      .toLocalDate();
+	}
+  
+  public void setDescripcionClima(String DescripcionClima) {
+	  this.DescripcionClima = DescripcionClima;
+  }
+  public String getDescripcionClima() {
+	  return this.DescripcionClima;
+  }
+  
+  public void setTemp(double temp) {
+	  this.temp = temp;
+  }
+  
+  public double getTemp() {
+	  return this.temp;
+  }
+  public String getDescripcion() {
+	  return this.Descripcion;
+  }
+  public String getCiudad() {
+	  return this.ciudad;
+  }
+  public Date getFechaDelEvento() {
+	  return this.FechaDelEvento;
+  }
+  public int getHorasCambioBrusco() {
+	  return this.horasChequeoCambioBrusco;
+  }
+  public void setHorasCambioBrusco(int horasCambio) {
+	  this.horasChequeoCambioBrusco = horasCambio;
+  }
+  
+  public String requestDescripcionClima() throws UnauthorizedException, ApiException {
+	  
+    ApiSession session = new ApiSession.Builder("cdxE2HxzUId3I9ebdqEY1ySFK3pTQCAf").build();
+	LocationApi locationApi = session.getLocationApi();
+	CurrentConditionsApi current = session.getCurrentConditionsApi("cdxE2HxzUId3I9ebdqEY1ySFK3pTQCAf");
+	Optional <GeoPositionSearchResult> geoLocation = locationApi.geoPosition(target.getLat(this.ciudad),target.getLong(this.ciudad));
+	ForecastApi forecastapi= session.getForecastApi(geoLocation.get().getKey());
+	
+	String descripcion = forecastapi.getDailyXdays(DayPeriod.DAYS_5).get().getHeadline().getCategory();
+	forecastapi.getDailyXdays(DayPeriod.DAYS_5).map(x->x.getHeadline().getCategory());
+	return descripcion;
+	//ES UN SOLO HEADLINE, POR ESO NO FUNCA CON EL MAP-.
+  }
+  
+  public LocalDate obtenerLocalDateHoyCambioBrusco() {
+	   LocalDate localDate = LocalDate.now(); 
+	   return localDate;
+  }
+  public int convertirHorasAMilisegundos(int hora) {
+	  return hora*60*60*1000;
+  }
+  public void verificarAlerta() {
+	  if (!this.cambioAlerta.equals(null)) {
+		this.cambioAlerta = null;  
+		timerAlerta.cancel();
+	  } 
+		  
+  }
+  
 }

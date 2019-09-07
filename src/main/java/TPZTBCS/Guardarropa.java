@@ -20,12 +20,14 @@ import org.paukov.combinatorics3.SubSetGenerator;
 
 import com.krds.accuweatherapi.ApiSession;
 import com.krds.accuweatherapi.CurrentConditionsApi;
+import com.krds.accuweatherapi.ForecastApi;
 import com.krds.accuweatherapi.HourPeriod;
 import com.krds.accuweatherapi.LocationApi;
 import com.krds.accuweatherapi.exceptions.ApiException;
 import com.krds.accuweatherapi.exceptions.UnauthorizedException;
 import com.krds.accuweatherapi.model.CurrentConditions;
 import com.krds.accuweatherapi.model.GeoPositionSearchResult;
+import com.proveedores.openweather.OpenWeather;
 import com.weatherlibraryjava.WeatherApixu;
 
 import interfacesZTBCS.ITargetAPI;
@@ -33,7 +35,7 @@ import interfacesZTBCS.ITargetAPI;
 public class Guardarropa 
 {
 	
-	ITargetAPI target = new AdapterAPI( new WeatherApixu() ); //apixu
+	
 	String identificador;
 	int limiteDePrendas;
 	
@@ -116,27 +118,15 @@ public class Guardarropa
 		return arrayCalzado;
 	}
 
-
-//-------------------CLIMA --------------------
-	public ZonaYTemperatura solicitarClima() {
-//		this.target.request().toString();
-		return this.target.request();
-	}
-	public ZonaYTemperatura solicitarClima(String ciudad) {
-//		this.target.request().toString();
-		return this.target.request(ciudad);
-	}
-	
-	
 	
 //-------------------FUNCION PRINCIPAL --------------------
 		
-	public Atuendo queMePongo(String ciudad,DatosPersonales Datos) throws UnauthorizedException, ApiException 
+	public Atuendo queMePongo(String descripcion,DatosPersonales Datos,double temp) throws UnauthorizedException, ApiException 
 	{
 		if(this.verificarArrayList()) 
 		{
 
-		    Atuendo atuendoElegido = new Atuendo(this.combinaciones(ciudad,Datos));
+		    Atuendo atuendoElegido = new Atuendo(this.combinaciones(descripcion,Datos,temp));
 		    System.out.println("Atuendo de: " + this.identificador);
 		    atuendoElegido.imprimirPrendas();
 		    System.out.println("");
@@ -179,7 +169,7 @@ public class Guardarropa
 	}
 	
 	
-	public List<Prenda> combinaciones(String ciudad,DatosPersonales Datos) throws UnauthorizedException, ApiException
+	public List<Prenda> combinaciones(String descripcion,DatosPersonales Datos,double temp) throws UnauthorizedException, ApiException
 	{
 		
 		ArrayList <Prenda> noAbriga =(ArrayList <Prenda>) parteSuperior.stream().filter(x->{
@@ -218,33 +208,6 @@ public class Guardarropa
 			}return (Boolean) null;
 		}).collect(Collectors.toList());
 		
-		
-		
-		ZonaYTemperatura zonaYTemp = target.request(ciudad);
-		
-		//------------------------------- ACCU WEATHER API
-			ApiSession session = new ApiSession.Builder("cdxE2HxzUId3I9ebdqEY1ySFK3pTQCAf").build();
-			LocationApi locationApi = session.getLocationApi();
-			CurrentConditionsApi current = session.getCurrentConditionsApi("cdxE2HxzUId3I9ebdqEY1ySFK3pTQCAf");
-			
-			//Limpio espacios y trimeo al nombre de la ciudad para que sea correcta la request.
-			ciudad.trim();
-			String newCiudad;
-			newCiudad =ciudad.replaceAll("\\s+", "%20");
-			
-			Optional <GeoPositionSearchResult> geoLocation = locationApi.geoPosition(target.getLat(newCiudad),target.getLong(newCiudad));
-			CurrentConditionsApi ccApi = session.getCurrentConditionsApi(geoLocation.get().getKey());
-	
-			Optional<CurrentConditions> cc = ccApi.get(HourPeriod.HOURS_24);
-			double temp = cc.get().getTemperature().getMetric().getValue();
-			String condicionClimatica = cc.get().getWeatherText();
-			if (cc.isPresent()) {
-			  System.out.println("Current temperature is: " + temp);
-			  System.out.println(condicionClimatica);
-			}
-		//------------------------------- ACCU WEATHER API
-		
-//		double temp = zonaYTemp.temp;
 		IGenerator<List<Prenda>> combinaciones = Generator.cartesianProduct(noAbriga, this.parteInferior, accesoriosNoAbrigo, this.calzados);
 		
 		ArrayList<List<Prenda>> arrayListCombinaciones = new ArrayList<List<Prenda>>();

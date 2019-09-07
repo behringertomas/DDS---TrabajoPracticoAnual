@@ -140,11 +140,11 @@ public class Usuario
 	}
 //	
 	
-	public List<Atuendo> queMePongoATodosLosGuardarropas(String ciudad) throws Exception,UnauthorizedException,ApiException
+	public List<Atuendo> queMePongoATodosLosGuardarropas(String descripcion, double temp) throws Exception,UnauthorizedException,ApiException
 	{
 		List<Atuendo> atuendos = listaGuardarropas.stream().map(guardarropa -> {
 			try {
-				return guardarropa.queMePongo(ciudad,this.Datos);
+				return guardarropa.queMePongo(descripcion,this.Datos,temp);
 			} catch (UnauthorizedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -158,7 +158,7 @@ public class Usuario
         {
             return listaGuardarropas.stream().map(guardarropa -> {
 				try {
-					return guardarropa.queMePongo(ciudad,this.Datos);
+					return guardarropa.queMePongo(descripcion,this.Datos,temp);
 				} catch (UnauthorizedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -197,7 +197,7 @@ public class Usuario
 		myCalendar.set(Calendar.HOUR_OF_DAY, hora);
 		myCalendar.set(Calendar.MINUTE, minutos);
 		 Date fechaDeEvento = myCalendar.getTime();
-		 myCalendar.add(Calendar.MINUTE, -1);
+		 myCalendar.add(Calendar.DATE, -1);
 		 Date fechaDeSugerencia = myCalendar.getTime();
 		 String fecha = fechaDeSugerencia.toString();
 		 Evento EventoNuevo= new Evento(fechaDeEvento,fechaDeSugerencia,this,ciudad,descripcion,CadacuantosDias);

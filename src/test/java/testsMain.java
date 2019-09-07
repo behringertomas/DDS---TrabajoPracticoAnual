@@ -1,4 +1,5 @@
 import java.awt.List;
+import java.time.LocalDate;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -13,6 +14,8 @@ import java.util.Optional;
 
 import com.krds.accuweatherapi.ApiSession;
 import com.krds.accuweatherapi.CurrentConditionsApi;
+import com.krds.accuweatherapi.DayPeriod;
+import com.krds.accuweatherapi.ForecastApi;
 import com.krds.accuweatherapi.HourPeriod;
 import com.krds.accuweatherapi.LocationApi;
 import com.krds.accuweatherapi.model.CurrentConditions;
@@ -24,6 +27,9 @@ import com.weatherlibraryjava.RequestBlocks.GetBy;
 import com.weatherlibraryjava.WeatherApixu;
 import com.weathertest.ZonaYTemperatura;
 
+import com.proveedores.openweather.*;
+import com.proveedores.*;
+
 import TPZTBCS.AdapterAPI;
 import TPZTBCS.Evento;
 import TPZTBCS.Guardarropa;
@@ -33,6 +39,8 @@ import TPZTBCS.Prenda;
 import TPZTBCS.Usuario;
 import TPZTBCS.cargarImagenes;
 import interfacesZTBCS.ITargetAPI;
+
+
 
 
 public class testsMain {
@@ -47,42 +55,42 @@ public class testsMain {
 		
 		
 		
-//		Guardarropa guardarropa1 = new Guardarropa("Guardarropa	Verano");
-//		Guardarropa guardarropa2 = new Guardarropa("Guardarropa Primavera");
-//		
-//		usuario.agregarGuardarropas(guardarropa1);
-//		usuario.agregarGuardarropas(guardarropa2);
-//		
-//		Prenda prenda1  =usuario.construirPrenda("Parte Superior","Remera", "Tela", "Rojo", "Negro");
+		Guardarropa guardarropa1 = new Guardarropa("Guardarropa	Verano");
+		Guardarropa guardarropa2 = new Guardarropa("Guardarropa Primavera");
 		
-		Prenda prenda1 = new Prenda();
+		usuario.agregarGuardarropas(guardarropa1);
+		usuario.agregarGuardarropas(guardarropa2);
 		
-		prenda1.setPuntaje(usuario, 10);
-		System.out.println("puntaje1 : " + prenda1.getPuntaje(usuario));
-		prenda1.setPuntaje(usuario, 9);
-		System.out.println("puntaje2 : " + prenda1.getPuntaje(usuario));
 		
-//		Prenda prenda2  =usuario.construirPrenda("Parte Inferior","Pantalon Largo", "Jean", "Azul", "Negro");
-//		Prenda prenda3  =usuario.construirPrenda("Calzado","Runners", "Algodon", "Rojo", "Negro");
-//		Prenda prenda4  =usuario.construirPrenda("Accesorio","Pulsera", "Plata", "Rojo", "Negro");
-//		
-//		Prenda prenda9  =usuario.construirPrenda("Parte Superior","Musculosa", "Tela", "Rojo", "Negro");
-//		Prenda prenda10 =usuario.construirPrenda("Parte Inferior","Pollera", "Jean", "Azul", "Negro");
-//		Prenda prenda11 =usuario.construirPrenda("Calzado","Trainers", "Cuero", "Rojo", "Negro");
-//		Prenda prenda12 =usuario.construirPrenda("Accesorio","Lentes de Sol", "Plata", "Rojo", "Negro");
-//		
-//		Prenda prenda5  =usuario.construirPrenda("Parte Superior","Camisa", "Tela", "Rojo", "Negro");
-//		Prenda prenda6  =usuario.construirPrenda("Parte Inferior","Short", "Algodon", "Rojo", "Negro");
-//		Prenda prenda7  =usuario.construirPrenda("Calzado","Zapato", "Cuero", "Rojo", "Negro");
-//		Prenda prenda8  =usuario.construirPrenda("Accesorio","Reloj", "Metal", "Rojo", "Negro");
-//		
-//		Prenda prenda13 =usuario.construirPrenda("Parte Superior", "Campera", "Cuero", "Negro");
-//		Prenda prenda14 =usuario.construirPrenda("Parte Superior", "Sweater", "Algodon", "Blanco");
-//		Prenda prenda15 =usuario.construirPrenda("Accesorio", "Bufanda", "Algodon", "Blanco");
-//		Prenda prenda16 =usuario.construirPrenda("Accesorio", "Gorro", "Tela", "Blanco");
-//		Prenda prenda17 =usuario.construirPrenda("Accesorio", "Gorro", "Seda", "Negro");
-//		Prenda prenda18 =usuario.construirPrenda("Accesorio", "Gorro", "Algodon", "Rojo");
-//		Prenda prenda19 =usuario.construirPrenda("Accesorio", "Gorro", "Seda", "Blanco");
+//		Prenda prenda1 = new Prenda();
+		
+//		prenda1.setPuntaje(usuario, 10);
+//		System.out.println("puntaje1 : " + prenda1.getPuntaje(usuario));
+//		prenda1.setPuntaje(usuario, 9);
+//		System.out.println("puntaje2 : " + prenda1.getPuntaje(usuario));
+		
+		Prenda prenda1  =usuario.construirPrenda("Parte Superior","Remera", "Tela", "Rojo", "Negro");
+		Prenda prenda2  =usuario.construirPrenda("Parte Inferior","Pantalon Largo", "Jean", "Azul", "Negro");
+		Prenda prenda3  =usuario.construirPrenda("Calzado","Runners", "Algodon", "Rojo", "Negro");
+		Prenda prenda4  =usuario.construirPrenda("Accesorio","Pulsera", "Plata", "Rojo", "Negro");
+		
+		Prenda prenda9  =usuario.construirPrenda("Parte Superior","Musculosa", "Tela", "Rojo", "Negro");
+		Prenda prenda10 =usuario.construirPrenda("Parte Inferior","Pollera", "Jean", "Azul", "Negro");
+		Prenda prenda11 =usuario.construirPrenda("Calzado","Trainers", "Cuero", "Rojo", "Negro");
+		Prenda prenda12 =usuario.construirPrenda("Accesorio","Lentes de Sol", "Plata", "Rojo", "Negro");
+		
+		Prenda prenda5  =usuario.construirPrenda("Parte Superior","Camisa", "Tela", "Rojo", "Negro");
+		Prenda prenda6  =usuario.construirPrenda("Parte Inferior","Short", "Algodon", "Rojo", "Negro");
+		Prenda prenda7  =usuario.construirPrenda("Calzado","Zapato", "Cuero", "Rojo", "Negro");
+		Prenda prenda8  =usuario.construirPrenda("Accesorio","Reloj", "Metal", "Rojo", "Negro");
+		
+		Prenda prenda13 =usuario.construirPrenda("Parte Superior", "Campera", "Cuero", "Negro");
+		Prenda prenda14 =usuario.construirPrenda("Parte Superior", "Sweater", "Algodon", "Blanco");
+		Prenda prenda15 =usuario.construirPrenda("Accesorio", "Bufanda", "Algodon", "Blanco");
+		Prenda prenda16 =usuario.construirPrenda("Accesorio", "Gorro", "Tela", "Blanco");
+		Prenda prenda17 =usuario.construirPrenda("Accesorio", "Gorro", "Seda", "Negro");
+		Prenda prenda18 =usuario.construirPrenda("Accesorio", "Gorro", "Algodon", "Rojo");
+		Prenda prenda19 =usuario.construirPrenda("Accesorio", "Gorro", "Seda", "Blanco");
 //		
 //		
 //		//JSONObject jsonObject = (JSONObject) readJsonSimpleDemo("C:\\Users\\Ivan\\Documents\\GitHub\\DDS---TrabajoPracticoAnual\\src\\main\\java\\Verificaciones.json");
@@ -90,31 +98,41 @@ public class testsMain {
 //		System.out.println(prenda19.getParteEspecifica());
 //		
 //		
-//		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda1);
-//		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda3);
-//		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda4);
-//		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda6);
-//		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda9);
-//		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda10);
-//		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda11);
-//		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda12);
-//		
-//		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda16);
-//		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda17);
-//		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda18);
-//		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda19);
-//		
-//		
-//		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda2);
-//		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda5);
-//		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda7);
-//		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda8);
-//		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda15);
-//		usuario.agregarPrendaAGuardarropas(guardarropa1, prenda13);
-//		usuario.agregarPrendaAGuardarropas(guardarropa1, prenda14);
-//		
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda1);
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda3);
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda4);
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda6);
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda9);
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda10);
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda11);
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda12);
 		
-//		usuario.crearEvento("asd", "Dou", 2019, 8, 29, 11, 18);
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda16);
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda17);
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda18);
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda19);
+		
+		
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda2);
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda5);
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda7);
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda8);
+		usuario.agregarPrendaAGuardarropas(guardarropa1,prenda15);
+		usuario.agregarPrendaAGuardarropas(guardarropa1, prenda13);
+		usuario.agregarPrendaAGuardarropas(guardarropa1, prenda14);
+		
+		
+		usuario.crearEvento("Fiesta de Gala", "Paris", 2019, 10, 7, 15, 26);
+		
+//		ITargetAPI target = new AdapterAPI( new WeatherApixu() ); //apixu
+//		ApiSession session = new ApiSession.Builder("cdxE2HxzUId3I9ebdqEY1ySFK3pTQCAf").build();
+//		LocationApi locationApi = session.getLocationApi();
+//		CurrentConditionsApi current = session.getCurrentConditionsApi("cdxE2HxzUId3I9ebdqEY1ySFK3pTQCAf");
+//		Optional <GeoPositionSearchResult> geoLocation = locationApi.geoPosition(target.getLat("Paris"),target.getLong("Paris"));
+//		ForecastApi forecastapi= session.getForecastApi(geoLocation.get().getKey());
+		
+//		String descripcion = forecastapi.getDailyXdays(DayPeriod.DAYS_5).get().getHeadline().getCategory();
+//		System.out.println(forecastapi.getDailyXdays(DayPeriod.DAYS_5).map(x->x.getHeadline().getCategory().toString()));
 		
 		//guardarropa1.queMePongo("Perth",usuario.getDatos());
 		
@@ -161,11 +179,27 @@ public class testsMain {
 //		  System.out.println("Current temperature is: " + cc.get().getTemperature().getMetric().getValue());
 //		  System.out.println(cc.get().getWeatherText());
 //		}
+//		LocalDate date = LocalDate.of(2019, 9, 4);
 
-
-
+//		OpenWeather apiOpenW = new OpenWeather();
+//		apiOpenW.obtenerPronosticoExtendido("London");
 		
+//		ITargetAPI target = new AdapterAPI( new WeatherApixu() ); //apixu
+//		OpenWeather apiOpenW = new OpenWeather();
 		
+//		ApiSession session = new ApiSession.Builder("cdxE2HxzUId3I9ebdqEY1ySFK3pTQCAf").build();
+//		LocationApi locationApi = session.getLocationApi();
+//		CurrentConditionsApi current = session.getCurrentConditionsApi("cdxE2HxzUId3I9ebdqEY1ySFK3pTQCAf");
+//		
+//		Optional <GeoPositionSearchResult> geoLocation = locationApi.geoPosition(target.getLat("Paris"),target.getLong("Paris"));
+//		ForecastApi forecastapi= session.getForecastApi(geoLocation.get().getKey());
+//		
+//		apiOpenW.obtenerPronosticoExtendido("London");
+//		System.out.println(forecastapi.getDailyXdays(DayPeriod.DAYS_5).get().getHeadline().getCategory());
+		//		pronosticoExt.getList().stream().forEach(x->x.getMain().getTemp_max());
+//		System.out.println(temp);
+//		OpenWeatherDTO pronosticoHoy = apiOpenW.obtenerPronosticoActual();
+//		System.out.println(pronosticoHoy.getTemp());
 		
 
 		

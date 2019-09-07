@@ -24,6 +24,12 @@ public class NotificacionEmail implements IBridgeNotificaciones {
 		sendEmail();
 	}
 	
+	
+	public void enviarNotificacionCambioBrusco(DatosPersonales datos) {
+		this.DatosPersonales = datos;
+		sendEmailAlerta();
+	}
+	
 	private void init() {
 
 		properties.put("mail.smtp.host", "smtp.gmail.com");
@@ -43,6 +49,26 @@ public class NotificacionEmail implements IBridgeNotificaciones {
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(DatosPersonales.email));//RECEPTOR
 			message.setSubject("Que me Pongo APP recordatorio");
 			message.setText("Sugerencias listas, pase por el guardarropas");
+			Transport t = session.getTransport("smtp");
+			t.connect("guardarropasztbcs", "ztbcsztbcs");
+			t.sendMessage(message, message.getAllRecipients());
+			t.close();
+		}catch (MessagingException me){
+			me.printStackTrace();
+			return;
+		}
+		
+	}	
+	
+	public void sendEmailAlerta(){
+
+		init();
+		try{
+			MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("guardarropasztbcs@gmail.com"));//EMISOR
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(DatosPersonales.email));//RECEPTOR
+			message.setSubject("Cambio Brusco de Temperatura");
+			message.setText("Nueva sugerencia emitida.");
 			Transport t = session.getTransport("smtp");
 			t.connect("guardarropasztbcs", "ztbcsztbcs");
 			t.sendMessage(message, message.getAllRecipients());

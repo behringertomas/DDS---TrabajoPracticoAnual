@@ -10,7 +10,8 @@ import org.json.simple.parser.ParseException;
 
 public class JsonReader 
 {
-	private static final String DIRECTORIOJSON = "C:\\Users\\Aldo Zeppa\\eclipse-workspace\\DDS---TrabajoPracticoAnual";
+	private static final String DIRECTORIOJSON = "C:\\Users\\Ivan\\Documents\\GitHub\\DDS---TrabajoPracticoAnual\\src\\main\\java\\verificaciones.json";
+	//private static final String DIRECTORIOOPENWEATHER = "C:\\Users\\Ivan\\Documents\\GitHub\\DDS---TrabajoPracticoAnual\\src\\main\\java\\city.list.json";
 	
 	public static Object readJsonSimpleDemo(String filename) throws Exception
 	{
@@ -134,6 +135,18 @@ public class JsonReader
 		int temperatura = Integer.parseInt(ListaDeTemperaturas.get(ubicacionTemperatura));
 		return temperatura;
 	}
+	
+	public String getDescripcion(String output) throws Exception
+	{
+		JSONParser parser = new JSONParser();
+		JSONObject json = (JSONObject) parser.parse(output);
+		String ListaWeather = (String) json.get("weather");
+		System.out.print(ListaWeather);
+		return ListaWeather;
+	}
+
+	
+	
 	
 	
 }
