@@ -23,6 +23,20 @@
 		    <artifactId>jersey-client</artifactId>
 		    <version>1.9.1</version>
 	</dependency>
+	
+	  <dependency>
+        <groupId>javax.mail</groupId>
+        <artifactId>mail</artifactId>
+        <version>1.4.5</version>
+    </dependency>
+
+    <dependency>
+        <groupId>javax.activation</groupId>
+        <artifactId>activation</artifactId>
+        <version>1.1.1</version>
+    </dependency>
+	
+	
 	<!-- dependencia para combinaciones de prenda-->
 	<dependency>
 		<groupId>org.apache.commons</groupId>

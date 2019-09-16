@@ -22,17 +22,28 @@ public class Prenda
 	
 	public void setPuntaje(Usuario usuario)
 	{
+		System.out.println("Prenda: " + this.parteEspecifica + this.tipo);
 		System.out.println("Puntaje anterior: " + this.getPuntaje(usuario));
 		System.out.println("Ingrese puntaje de la prenda:");
-		Scanner puntaje = new Scanner(System.in);
 		
-		ListaPuntaje.put(usuario,puntaje.nextInt());			
+		Scanner obj = new Scanner(System.in);
+		int puntaje = obj.nextInt();
+		
+		ListaPuntaje.put(usuario,puntaje);			
 	}
 	
 	public int getPuntaje(Usuario usuario)
 	{
-		return ListaPuntaje.get(usuario);
-	}
+        if (ListaPuntaje.containsKey(usuario)) {
+    		return ListaPuntaje.get(usuario);            
+        } else {
+           // System.out.println("No hay ninguna prenda de este usuario.");
+            return 0;
+        }
+		
+    }
+
+	
 	
 	public void setParteEspecifica(String parte) {
 		this.parteEspecifica=parte;
@@ -116,14 +127,14 @@ public class Prenda
     	}    	
     }
     
-    public void modificarPuntaje(Usuario usuario){
-    
-        if (ListaPuntaje.containsKey(usuario)) {
-            System.out.println("Prenda: " + this.parteEspecifica + this.tipo);
-            this.setPuntaje(usuario);            
-        } else {
-            System.out.println("No hay ninguna prenda de este usuario.");
-        }
-    }
+//    public void modificarPuntaje(Usuario usuario){
+//  
+//        if (ListaPuntaje.containsKey(usuario)) {
+//            System.out.println("Prenda: " + this.parteEspecifica + this.tipo);
+//            this.setPuntaje(usuario);            
+//        } else {
+//            System.out.println("No hay ninguna prenda de este usuario.");
+//        }
+//    }
     
 }

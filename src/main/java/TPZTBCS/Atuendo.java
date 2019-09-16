@@ -16,9 +16,10 @@ public class Atuendo
 	{
 		System.out.println("Puntaje anterior: " + this.getPuntaje(usuario));
 		System.out.println("Ingrese puntaje del atuendo completo:");
-		Scanner puntaje = new Scanner(System.in);
+		Scanner obj = new Scanner(System.in);
 		
-		ListaPuntajeAtuendo.put(usuario,puntaje.nextInt());			
+		int puntaje = obj.nextInt();
+		ListaPuntajeAtuendo.put(usuario,puntaje);			
 	}
 	
 	public int getPuntaje(Usuario usuario)
@@ -54,7 +55,7 @@ public class Atuendo
 	
 	public void repuntuarPrendas(Usuario usuario) 
 	{
-		this.prendas.forEach(prenda-> prenda.modificarPuntaje(usuario));
+		this.prendas.forEach(prenda-> prenda.setPuntaje(usuario));
 	}
 	
 	public int cuantoAbriga() {

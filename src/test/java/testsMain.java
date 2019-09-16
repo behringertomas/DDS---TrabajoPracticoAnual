@@ -53,6 +53,7 @@ public class testsMain {
 //		notiPrueba.enviarNotificacion(usuario.getDatos());
 //		System.out.println("Hola2");
 		
+
 		
 		
 		Guardarropa guardarropa1 = new Guardarropa("Guardarropa	Verano");
@@ -122,8 +123,9 @@ public class testsMain {
 		usuario.agregarPrendaAGuardarropas(guardarropa1, prenda14);
 		
 		
-		usuario.crearEvento("Fiesta de Gala", "Paris", 2019, 10, 7, 15, 26);
+		usuario.crearEvento("Fiesta de Gala", "Paris", 2018, 10, 7, 15, 26);
 		
+	
 //		ITargetAPI target = new AdapterAPI( new WeatherApixu() ); //apixu
 //		ApiSession session = new ApiSession.Builder("cdxE2HxzUId3I9ebdqEY1ySFK3pTQCAf").build();
 //		LocationApi locationApi = session.getLocationApi();

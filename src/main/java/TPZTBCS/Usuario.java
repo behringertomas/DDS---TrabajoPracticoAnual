@@ -213,7 +213,7 @@ public class Usuario
 
 	public void puntuarPrenda(Prenda prenda)
 	{
-		prenda.modificarPuntaje(this);
+		prenda.setPuntaje(this);
 	}
 
 }

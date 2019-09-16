@@ -68,7 +68,7 @@ public class Evento extends TimerTask implements comando {
 	@Override
 	public void ejecutar() {
 
-		this.verificarAlerta();
+//		this.verificarAlerta();
 		this.AtuendoElegido=this.Sugerencia;
 		System.out.println("Atuendo Asignado");
 		
@@ -84,25 +84,25 @@ public class Evento extends TimerTask implements comando {
 
 	@Override
 	public void deshacer() {
-		this.verificarAlerta();
+	//	this.verificarAlerta();
+		
+		this.Sugerencia.repuntuarPrendas(this.usuario);
+		this.Sugerencia.setPuntaje(this.usuario);
+		
 		usuario.listaEvento.remove(this);
 		
 		System.out.println("Evento rechazado");
-		
-		this.AtuendoElegido.repuntuarPrendas(this.usuario);
-		this.AtuendoElegido.setPuntaje(this.usuario);
-
 		timer.cancel();
 		
 	}
 
 	@Override
 	public void rechazar() {
+		
+		this.Sugerencia.repuntuarPrendas(this.usuario);
+		this.Sugerencia.setPuntaje(this.usuario);
+		
 		System.out.println("Atuendo rechazado");
-		
-		this.AtuendoElegido.repuntuarPrendas(this.usuario);
-		this.AtuendoElegido.setPuntaje(this.usuario);
-		
 		this.run();
 		//RESTARLE CALIFICACION.
 	}
@@ -113,10 +113,13 @@ public class Evento extends TimerTask implements comando {
 
 		OpenWeather apiOpenW = new OpenWeather();
 		//obtener descripcion
-		String descripcion = this.requestDescripcionClima();
+		//String descripcion = this.requestDescripcionClima();
+		String descripcion = "soleado";
 		this.setDescripcionClima(descripcion);
 		//obtener temp
-		double temp = apiOpenW.obtenerTemperaturATalDia(convertToLocalDateViaInstant(this.FechaSugerencia), this.ciudad);
+//		double temp = apiOpenW.obtenerTemperaturATalDia(convertToLocalDateViaInstant(this.FechaSugerencia), this.ciudad);
+		double temp = 15;
+
 		this.setTemp(temp);
 		
 		List<Atuendo>listaSugerencias =usuario.queMePongoATodosLosGuardarropas(descripcion,temp);
@@ -156,6 +159,8 @@ public class Evento extends TimerTask implements comando {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+	
 		
 	}
   public long transformardiasamilisegundis(int dias) {
