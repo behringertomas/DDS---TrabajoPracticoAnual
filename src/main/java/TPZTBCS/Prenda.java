@@ -8,6 +8,9 @@ import interfacesZTBCS.strategyTemperatura;
 
 public class Prenda 
 {
+	
+	private Guardarropa guardarropa;
+	
 	private boolean enGuardarropa=false;
     private String parte = "";
     private String tipo = "";

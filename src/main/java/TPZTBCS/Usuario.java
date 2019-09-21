@@ -9,28 +9,55 @@ import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 import com.krds.accuweatherapi.exceptions.ApiException;
 import com.krds.accuweatherapi.exceptions.UnauthorizedException;
 
 import java.util.Timer;
 
+
+@Entity
+@Table(name = "Usuario")
 public class Usuario 
 {
+	@Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "USR_ID")
+    int ID;
 	
+	@OneToOne(cascade = {CascadeType.ALL})
+	@JoinColumn (name = "DATOS_PERSONALES_ID")
 	DatosPersonales Datos= new DatosPersonales();
+	
 	Collection <Guardarropa> listaGuardarropas = new ArrayList<Guardarropa>(); //Lista de Guardarropas que contiene el usuario
+	
+//	@OneToMany (mappedBy = "evento",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
 	Collection <Evento> listaEvento = new ArrayList<Evento>();
+	private PrendaBuilder prendaBuilder;
+	
 	
 	public DatosPersonales getDatos() {
 		return this.Datos;
 	}
 	
-	public Usuario(String id,String email) {
-		this.getDatos().setID(id);
+	public Usuario(String email) {
 		this.getDatos().setEmail(email);
 	}
 	
-	private PrendaBuilder prendaBuilder;
+	public Usuario() {
+		
+	}
 	
 	public void CrearGuardarropa(String Identificador) {
 		Guardarropa guardarropaNuevo= new Guardarropa(Identificador);
@@ -52,15 +79,24 @@ public class Usuario
 	public void setFrioCabeza(int cantidadFrio) {
 		this.Datos.setFrioCabeza(cantidadFrio);
 	}
-	public void setID(String id) {
-		this.Datos.setID(id);
-	}
 	public void setEmail(String email) {
 		this.Datos.setEmail(email);
 	}
+	public void setEdad(int edad) {
+		this.Datos.setEdad(edad);
+	}
+	public void setNombre(String nombre) {
+		this.Datos.setNombre(nombre);
+	}
 	
-	public String getID() {
-		return Datos.getID();
+	public int getId() {
+        return ID;
+    }
+	public String getNombre() {
+		return this.Datos.getNombre();
+	}
+	public int getEdad() {
+		return this.Datos.getEdad();
 	}
 	public String getEmail() {
 		return Datos.getEmail();

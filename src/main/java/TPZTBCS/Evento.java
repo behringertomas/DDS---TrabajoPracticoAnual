@@ -1,5 +1,7 @@
 package TPZTBCS;
 import java.time.LocalDate;
+
+
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.Date;
@@ -25,17 +27,26 @@ import interfacesZTBCS.comando;
 
 import java.util.Scanner;
 import java.util.Timer; 
+
+
 public class Evento extends TimerTask implements comando {
 
 	public int horasChequeoCambioBrusco = 6;
-	public CambioBruscoClimatico cambioAlerta = null;
-	public String Descripcion;
+	
+	
+	public CambioBruscoClimatico cambioAlerta = null;	
 	public Atuendo AtuendoElegido=null; 
-	public Date FechaDelEvento;
-	public Date FechaSugerencia;
+	
+	
 	public Usuario usuario; 
 	public Atuendo Sugerencia=null; 
+	
+	
+	
+	public Date FechaDelEvento;
+	public Date FechaSugerencia;
 	public String ciudad;
+	public String Descripcion;
 	Timer timer;
 	Timer timerAlerta;
 	ITargetAPI target = new AdapterAPI( new WeatherApixu() ); //apixu
