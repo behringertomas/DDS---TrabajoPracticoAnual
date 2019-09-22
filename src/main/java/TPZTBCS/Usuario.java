@@ -32,9 +32,9 @@ import java.util.Timer;
 public class Usuario 
 {
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "USR_ID")
-    int ID;
+    Long ID;
 	
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn (name = "DATOS_PERSONALES_ID")

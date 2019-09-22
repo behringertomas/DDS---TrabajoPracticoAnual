@@ -1,5 +1,15 @@
 package test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+import javax.persistence.PersistenceContext;
+
+import org.junit.Before;
 import org.junit.Test;
 
 import TPZTBCS.DatosPersonales;
@@ -20,16 +30,22 @@ import db.EntityManagerHelper;
 //
 public class EmTest{
 
+	  @Before
+    public void before() {
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
+        entityManager = factory.createEntityManager();
+    }
 	
+	  @PersistenceContext(unitName = "db")
+	  private static EntityManager entityManager;
 	  @Test
 	  public void primerTest() {
 		  Usuario eze = new Usuario();
-		  DatosPersonales datosEze = new DatosPersonales();
 		  
 		  eze.setEmail("ezequiel@gmail.com");
 		  eze.setEdad(30);
 		  eze.setNombre("Ezequiel");
-		  
+
 //		  eze.setLegajo(123132);
 //		  eze.setApellido("Barreto");
 //		  eze.setNombre("eze");
@@ -37,17 +53,31 @@ public class EmTest{
 //		  eze.setTelefono(464642);
 //		  eze.setReputacion(new BuenaReputacion());
 //		  ---------------------- INSERT		  
-		  EntityManagerHelper.beginTransaction();
-		  EntityManagerHelper.getEntityManager().persist(eze); //INSERT
-		  EntityManagerHelper.commit(); //commit inserta en la base!
+
+		    EntityTransaction transaction = entityManager.getTransaction();
+	        transaction.begin();
+	        entityManager.persist(eze);
+	        transaction.commit();
+	        
+	     // id no es nulo
+	        assertNotNull(eze.getId());
+
+	        // comparo identidad
+	        Usuario usuarioPersisted = entityManager.find(Usuario.class, eze.getId());
+	        System.out.println(usuarioPersisted.getEmail());
+	        assertEquals(usuarioPersisted, eze);
+		  
+//		  EntityManagerHelper.beginTransaction();
+//		  EntityManagerHelper.getEntityManager().persist(eze); //INSERT
+//		  EntityManagerHelper.commit(); //commit inserta en la base!
 		  
 //		  EntityManagerHelper.getEntityManager().merge(eze); //UPDATE
 		  
 //		  ---------------------- SELECT
-		  Usuario ezeRecuperado = EntityManagerHelper
-				  .getEntityManager()
-				  .find(Usuario.class, eze.getId());
-		  System.out.println(ezeRecuperado.getNombre());
+//		  Usuario ezeRecuperado = EntityManagerHelper
+//				  .getEntityManager()
+//				  .find(Usuario.class,0);
+//		  System.out.println(ezeRecuperado.getNombre());
 	  }
 	
 //	  @Test public void persistir1UsuarioTest(){ Usuario usuario = new Usuario();

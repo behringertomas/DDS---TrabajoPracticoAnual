@@ -12,9 +12,9 @@ import javax.persistence.Table;
 public class DatosPersonales {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "DATOS_PERSONALES_ID")
-	int ID;
+	Long ID;
 	
 	
 	@Column(name = "NOM_USUARIO")
