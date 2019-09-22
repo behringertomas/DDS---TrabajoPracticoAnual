@@ -5,6 +5,7 @@
 
     <persistence-unit name="TEST_PERSISTENCE_UNIT" transaction-type="RESOURCE_LOCAL">
         <class>ZTBCS.DatosPersonales</class>
+        <class>ZTBCS.Usuario</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
             <property name="javax.persistence.jdbc.url"    value="jdbc:h2:mem:test" />

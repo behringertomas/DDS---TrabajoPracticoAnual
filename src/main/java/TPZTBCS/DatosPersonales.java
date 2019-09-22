@@ -13,6 +13,7 @@ public class DatosPersonales {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID_DATOS_PERSONALES")
 	Long ID;
 	
 	@Column(name = "NOM_USUARIO")

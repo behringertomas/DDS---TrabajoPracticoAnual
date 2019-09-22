@@ -28,39 +28,59 @@ import com.krds.accuweatherapi.exceptions.UnauthorizedException;
 import java.util.Timer;
 
 
-//@Entity
-//@Table(name = "Usuario")
+@Entity
+@Table(name = "Usuario")
 public class Usuario 
 {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long ID;
 	
-//	@OneToOne(cascade = {CascadeType.ALL})
-//	@JoinColumn (name = "DATOS_PERSONALES_ID",referencedColumnName = "ID")
+	@OneToOne(cascade = {CascadeType.ALL})
+	@JoinColumn (name = "ID_DATOS_PERSONALES")
 	DatosPersonales Datos= new DatosPersonales();
-//	@Transient
 	
+	@Transient
 	Collection <Guardarropa> listaGuardarropas = new ArrayList<Guardarropa>(); //Lista de Guardarropas que contiene el usuario
 	
 //	@OneToMany (mappedBy = "evento",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-//	@Transient
+	@Transient
 	Collection <Evento> listaEvento = new ArrayList<Evento>();
-//	@Transient
+	
+	@Transient
 	private PrendaBuilder prendaBuilder;
 	
 	
+	public void setDatos(DatosPersonales datos) {
+		Datos = datos;
+	}
+
 	public DatosPersonales getDatos() {
 		return this.Datos;
 	}
 	
-	public Usuario(String email) {
+	public Usuario(String nombre,int edad,String email,int fMin,int fMax,int fCuello,int fCabeza, int fManos) {
+		this.getDatos().setNombre(nombre);
+		this.getDatos().setEdad(edad);
 		this.getDatos().setEmail(email);
+		this.getDatos().setFrioMinimo(fMin);
+		this.getDatos().setFrioMaximo(fMax);
+		this.getDatos().setFrioCabeza(fCabeza);
+		this.getDatos().setFrioCuello(fCuello);
+		this.getDatos().setFrioManos(fManos);
 	}
 	
-	public Usuario() {
-		
+	public Usuario(String nombre,int edad,String email) {
+		this.getDatos().setNombre(nombre);
+		this.getDatos().setEdad(edad);
+		this.getDatos().setEmail(email);
+		this.getDatos().setFrioMinimo(5);
+		this.getDatos().setFrioMaximo(15);
+		this.getDatos().setFrioCabeza(5);
+		this.getDatos().setFrioCuello(5);
+		this.getDatos().setFrioManos(5);
 	}
+	
 	
 	public void CrearGuardarropa(String Identificador) {
 		Guardarropa guardarropaNuevo= new Guardarropa(Identificador);
@@ -91,6 +111,8 @@ public class Usuario
 	public void setNombre(String nombre) {
 		this.Datos.setNombre(nombre);
 	}
+	
+	
 	
 	public Long getId() {
         return ID;
