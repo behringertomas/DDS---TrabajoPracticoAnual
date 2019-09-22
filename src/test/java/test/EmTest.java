@@ -12,7 +12,10 @@ import javax.persistence.PersistenceContext;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.google.common.collect.Iterables;
+
 import TPZTBCS.DatosPersonales;
+import TPZTBCS.Guardarropa;
 import TPZTBCS.Usuario;
 import db.EntityManagerHelper;
 
@@ -37,31 +40,10 @@ public class EmTest{
         entityManager = factory.createEntityManager();
     }
 	
-	  @PersistenceContext(unitName = "db")
 	  private static EntityManager entityManager;
 	  
-//	  @Test
-//	  public void primerTest() {
-//		  DatosPersonales eze = new DatosPersonales();
-//		  
-//		  eze.setEmail("ezequiel@gmail.com");
-//		  eze.setEdad(30);
-//		  eze.setNombre("Ezequiel");
-//
-////		  ---------------------- INSERT		  
-//		    EntityTransaction transaction = entityManager.getTransaction();
-//	        transaction.begin();
-//	        entityManager.persist(eze);
-//	        transaction.commit();
-//	        
-//	        // id no es nulo	 
-//	        assertNotNull(eze.getId());	        
-//	        // comparo identidad
-//	        DatosPersonales usuarioPersisted = entityManager.find(DatosPersonales.class, eze.getId());
-//	        assertEquals(usuarioPersisted, eze);
-//	  }
 	  @Test
-	  public void primerTest() {
+	  public void TestUsuario() {
 		  Usuario eze = new Usuario("Ezequiel",27,"ezequiel@gmail.com");
 		  
 //		  ---------------------- INSERT		  
@@ -75,6 +57,29 @@ public class EmTest{
 	        // comparo identidad
 	        Usuario usuarioPersisted = entityManager.find(Usuario.class, eze.getId());
 	        assertEquals(usuarioPersisted, eze);
+	  }
+	  
+	  @Test
+	  public void TestGuardarropa() {
+		  Usuario tomas = new Usuario("Tomas",21,"behringertomas@gmail.com");
+		  Guardarropa guardarropa1 = new Guardarropa("Guardarropa Primaveral",10);
+		  tomas.agregarGuardarropas(guardarropa1);
+		  
+//		  ---------------------- INSERT		  
+		    EntityTransaction transaction = entityManager.getTransaction();
+	        transaction.begin();
+	        entityManager.persist(tomas);
+	        transaction.commit();
+	        
+	        // id no es nulo	 
+	        assertNotNull(tomas.getId());
+	        assertNotNull(guardarropa1.getID());
+	        Guardarropa guardarropaPersisted = entityManager.find(Guardarropa.class, guardarropa1.getID());
+	        
+	        assertEquals(Iterables.get(tomas.getListaGuardarropas(), 0),guardarropaPersisted);
+//	        Iterables.get(yourC, indexYouWant)
+	        
+
 	  }
 	  
 

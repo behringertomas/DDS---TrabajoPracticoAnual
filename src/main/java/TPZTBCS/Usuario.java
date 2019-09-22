@@ -17,6 +17,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -40,7 +41,7 @@ public class Usuario
 	@JoinColumn (name = "ID_DATOS_PERSONALES")
 	DatosPersonales Datos= new DatosPersonales();
 	
-	@Transient
+	@ManyToMany(cascade = {CascadeType.ALL})
 	Collection <Guardarropa> listaGuardarropas = new ArrayList<Guardarropa>(); //Lista de Guardarropas que contiene el usuario
 	
 //	@OneToMany (mappedBy = "evento",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
@@ -86,6 +87,11 @@ public class Usuario
 		Guardarropa guardarropaNuevo= new Guardarropa(Identificador);
 		listaGuardarropas.add(guardarropaNuevo);
 	}
+	public void CrearGuardarropa(String Identificador,int capacidad) {
+		Guardarropa guardarropaNuevo= new Guardarropa(Identificador,capacidad);
+		listaGuardarropas.add(guardarropaNuevo);
+	}
+	
 	
 	public void setFrioMaximo(int cantidadFrio) {
 		this.Datos.setFrioMaximo(cantidadFrio);
@@ -111,9 +117,15 @@ public class Usuario
 	public void setNombre(String nombre) {
 		this.Datos.setNombre(nombre);
 	}
+	public void setListaGuardarropas(Collection<Guardarropa> listaGuardarropas) {
+		this.listaGuardarropas = listaGuardarropas;
+	}
 	
 	
 	
+	public Collection<Guardarropa> getListaGuardarropas() {
+		return listaGuardarropas;
+	}
 	public Long getId() {
         return ID;
     }

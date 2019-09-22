@@ -12,6 +12,14 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import org.apache.commons.math3.stat.descriptive.summary.Sum;
 import org.apache.commons.math3.util.MathUtils;
 import org.paukov.combinatorics3.Generator;
@@ -32,11 +40,20 @@ import com.weatherlibraryjava.WeatherApixu;
 
 import interfacesZTBCS.ITargetAPI;
 
+@Entity
+@Table(name = "Guardarropa")
 public class Guardarropa 
 {
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID_GUARDARROPA")
+	Long ID;
 	
-	
+
+	@Column(name = "NOM_GUARDARROPA")
 	String identificador;
+	
+	@Column(name = "LIMITE_PRENDAS")
 	int limiteDePrendas;
 	
 	public Guardarropa(String identificador,int limiteDePrendas)
@@ -51,9 +68,13 @@ public class Guardarropa
 		this.limiteDePrendas = 99999;
 	}
 	
+	@Transient
 	ArrayList <Prenda> parteSuperior = new ArrayList<Prenda>();
+	@Transient
 	ArrayList <Prenda> parteInferior = new ArrayList<Prenda>();
+	@Transient
 	ArrayList <Prenda> accesorios = new ArrayList<Prenda>();
+	@Transient
 	ArrayList <Prenda> calzados = new ArrayList<Prenda>();
 	
 
@@ -419,6 +440,64 @@ public class Guardarropa
 		if(calzados.isEmpty()) 		throw new Exception("NO HAY CALZADO");
 		if(accesorios.isEmpty()) 	throw new Exception("NO HAY ACCESORIO");
 	}
+	
+//----------------------- GETTERS AND SETTERS -----------------------
+	public Long getID() {
+		return ID;
+	}
+
+	public void setID(Long iD) {
+		ID = iD;
+	}
+
+	public String getIdentificador() {
+		return identificador;
+	}
+
+	public void setIdentificador(String identificador) {
+		this.identificador = identificador;
+	}
+
+	public int getLimiteDePrendas() {
+		return limiteDePrendas;
+	}
+
+	public void setLimiteDePrendas(int limiteDePrendas) {
+		this.limiteDePrendas = limiteDePrendas;
+	}
+
+	public ArrayList<Prenda> getParteSuperior() {
+		return parteSuperior;
+	}
+
+	public void setParteSuperior(ArrayList<Prenda> parteSuperior) {
+		this.parteSuperior = parteSuperior;
+	}
+
+	public ArrayList<Prenda> getParteInferior() {
+		return parteInferior;
+	}
+
+	public void setParteInferior(ArrayList<Prenda> parteInferior) {
+		this.parteInferior = parteInferior;
+	}
+
+	public ArrayList<Prenda> getAccesorios() {
+		return accesorios;
+	}
+
+	public void setAccesorios(ArrayList<Prenda> accesorios) {
+		this.accesorios = accesorios;
+	}
+
+	public ArrayList<Prenda> getCalzados() {
+		return calzados;
+	}
+
+	public void setCalzados(ArrayList<Prenda> calzados) {
+		this.calzados = calzados;
+	}
+
 
 //-----------------------Verificacion de Array List-----------------------
 
