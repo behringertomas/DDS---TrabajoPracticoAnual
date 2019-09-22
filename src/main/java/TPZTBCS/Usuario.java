@@ -20,6 +20,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.krds.accuweatherapi.exceptions.ApiException;
 import com.krds.accuweatherapi.exceptions.UnauthorizedException;
@@ -27,23 +28,25 @@ import com.krds.accuweatherapi.exceptions.UnauthorizedException;
 import java.util.Timer;
 
 
-@Entity
-@Table(name = "Usuario")
+//@Entity
+//@Table(name = "Usuario")
 public class Usuario 
 {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "USR_ID")
     Long ID;
 	
-	@OneToOne(cascade = {CascadeType.ALL})
-	@JoinColumn (name = "DATOS_PERSONALES_ID")
+//	@OneToOne(cascade = {CascadeType.ALL})
+//	@JoinColumn (name = "DATOS_PERSONALES_ID",referencedColumnName = "ID")
 	DatosPersonales Datos= new DatosPersonales();
+//	@Transient
 	
 	Collection <Guardarropa> listaGuardarropas = new ArrayList<Guardarropa>(); //Lista de Guardarropas que contiene el usuario
 	
 //	@OneToMany (mappedBy = "evento",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+//	@Transient
 	Collection <Evento> listaEvento = new ArrayList<Evento>();
+//	@Transient
 	private PrendaBuilder prendaBuilder;
 	
 	
@@ -89,7 +92,7 @@ public class Usuario
 		this.Datos.setNombre(nombre);
 	}
 	
-	public int getId() {
+	public Long getId() {
         return ID;
     }
 	public String getNombre() {

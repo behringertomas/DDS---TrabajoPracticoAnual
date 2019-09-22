@@ -30,28 +30,23 @@ import db.EntityManagerHelper;
 //
 public class EmTest{
 
-	  @Before
+	@Before
     public void before() {
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("TEST_PERSISTENCE_UNIT");
         entityManager = factory.createEntityManager();
     }
 	
 	  @PersistenceContext(unitName = "db")
 	  private static EntityManager entityManager;
+	  
 	  @Test
 	  public void primerTest() {
-		  Usuario eze = new Usuario();
+		  DatosPersonales eze = new DatosPersonales();
 		  
 		  eze.setEmail("ezequiel@gmail.com");
 		  eze.setEdad(30);
 		  eze.setNombre("Ezequiel");
 
-//		  eze.setLegajo(123132);
-//		  eze.setApellido("Barreto");
-//		  eze.setNombre("eze");
-//		  eze.setFechaDeNacimiento(LocalDate.of(1995,10,14));
-//		  eze.setTelefono(464642);
-//		  eze.setReputacion(new BuenaReputacion());
 //		  ---------------------- INSERT		  
 
 		    EntityTransaction transaction = entityManager.getTransaction();
@@ -59,14 +54,15 @@ public class EmTest{
 	        entityManager.persist(eze);
 	        transaction.commit();
 	        
-	     // id no es nulo
+	        // id no es nulo
+	        
 	        assertNotNull(eze.getId());
-
+	        
 	        // comparo identidad
-	        Usuario usuarioPersisted = entityManager.find(Usuario.class, eze.getId());
-	        System.out.println(usuarioPersisted.getEmail());
+	        DatosPersonales usuarioPersisted = entityManager.find(DatosPersonales.class, eze.getId());
 	        assertEquals(usuarioPersisted, eze);
 		  
+	        
 //		  EntityManagerHelper.beginTransaction();
 //		  EntityManagerHelper.getEntityManager().persist(eze); //INSERT
 //		  EntityManagerHelper.commit(); //commit inserta en la base!

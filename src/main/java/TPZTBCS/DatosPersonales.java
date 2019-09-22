@@ -13,24 +13,29 @@ public class DatosPersonales {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "DATOS_PERSONALES_ID")
 	Long ID;
-	
 	
 	@Column(name = "NOM_USUARIO")
 	String nombre;
+	
 	@Column(name = "EDAD_USUARIO")
 	int edad;
+	
 	@Column(name = "MAIL_USUARIO")
 	String email;
+	
 	@Column(name = "FRIO_MAX")
 	int FrioMaximo=15;//dejo 15 como default == si hace menos de 15 grados se abriga con algunas prendas
+	
 	@Column(name = "FRIO_MIN")
 	int FrioMinimo=0; // si hace menos de 0 grados se abriga con todo lo que pueda
+	
 	@Column(name = "FRIO_MANOS")
 	int FrioManos=15;
+	
 	@Column(name = "FRIO_CUELLO")
 	int FrioCuello=15;
+	
 	@Column(name = "FRIO_CABEZA")
 	int FrioCabeza=15;
 
@@ -61,30 +66,38 @@ public class DatosPersonales {
 		this.FrioCabeza=FrioCabezaNueva;
 	}
 	
-	public int getId() {
+	public Long getId() {
         return ID;
     }
+	
 	public String getNombre () {
 		return this.nombre;
 	}
+	
 	public int getEdad() {
 		return this.edad;
 	}
+	
 	public String getEmail() {
 		return this.email;
 	}
+	
 	public int getFrioMaximo() {
 		return this.FrioMaximo;
 	}
+	
 	public int getFrioMinimo() {
 		return this.FrioMinimo;
 	}
+	
 	public int getFrioManos() {
 		return this.FrioManos;
 	}
+	
 	public int getFrioCuello() {
 		return this.FrioCuello;
 	}
+	
 	public int getFrioCabeza() {
 		return this.FrioCabeza;
 	}
