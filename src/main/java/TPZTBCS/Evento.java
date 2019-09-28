@@ -9,7 +9,21 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.TimerTask;
-import java.util.stream.Collectors;import org.hamcrest.core.IsNull;
+import java.util.stream.Collectors;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.hamcrest.core.IsNull;
 
 import com.krds.accuweatherapi.ApiSession;
 import com.krds.accuweatherapi.CurrentConditionsApi;
@@ -28,29 +42,54 @@ import interfacesZTBCS.comando;
 import java.util.Scanner;
 import java.util.Timer; 
 
-
+@Entity
+@Table(name = "Evento")
 public class Evento extends TimerTask implements comando {
 
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID_EVENTO")
+	Long ID;
+	
+	@Column(name = "HS_CHEQUEO_CAMBIOBRUSCO")
 	public int horasChequeoCambioBrusco = 6;
 	
+	@ManyToOne(cascade = CascadeType.ALL)
+	public Usuario usuario; 
 	
+	@Transient
 	public CambioBruscoClimatico cambioAlerta = null;	
+	
+	@Transient
 	public Atuendo AtuendoElegido=null; 
 	
 	
-	public Usuario usuario; 
+	
+	@Transient
 	public Atuendo Sugerencia=null; 
 	
 	
-	
+	@Column(name = "FECHA_EVENTO")
 	public Date FechaDelEvento;
+	@Column(name = "FECHA_SUGERENCIA")
 	public Date FechaSugerencia;
+	@Column(name = "EVENTO_CIUDAD")
 	public String ciudad;
+	@Column(name = "EVENTO_DESCRIPCION")
 	public String Descripcion;
+	@Transient
 	Timer timer;
+	@Transient
 	Timer timerAlerta;
+	
+	@Transient
 	ITargetAPI target = new AdapterAPI( new WeatherApixu() ); //apixu
+	
+	@Column(name = "EVENTO_REPETICION")
+	int tiempoRepeticion=0;
+	@Column(name = "EVENTO_TEMPERATURA")
 	double temp=100;
+	@Column(name = "EVENTO_DESCRIPCION_CLIMA")
 	public String DescripcionClima =null;
 	
 	public Evento(Date fechaEvento,Date fechaSugerencia,Usuario ID, String ciudad,String Descripcion) {
@@ -72,6 +111,7 @@ public class Evento extends TimerTask implements comando {
 		this.Descripcion= Descripcion.toLowerCase();
 		//pruebaCron	prueba=new pruebaCron();
 		timer = new Timer();
+		this.tiempoRepeticion = cadaCuantosDias;
 		//System.out.print(fechaSugerencia.toString());
 		timer.schedule(this, fechaSugerencia,this.transformardiasamilisegundis(cadaCuantosDias));
 	}
@@ -206,6 +246,12 @@ public class Evento extends TimerTask implements comando {
   public void setTemp(double temp) {
 	  this.temp = temp;
   }
+  
+  @Override
+	public String toString() {
+		return "Evento [ID=" + ID + ", usuario=" + usuario + ", FechaDelEvento=" + FechaDelEvento + ", ciudad=" + ciudad
+				+ ", Descripcion=" + Descripcion + "]";
+	}
   
   public double getTemp() {
 	  return this.temp;

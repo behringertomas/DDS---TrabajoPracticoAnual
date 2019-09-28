@@ -35,6 +35,7 @@ public class Usuario
 {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID_USUARIO")
     Long ID;
 	
 	@OneToOne(cascade = {CascadeType.ALL})
@@ -44,8 +45,8 @@ public class Usuario
 	@ManyToMany(cascade = {CascadeType.ALL})
 	Collection <Guardarropa> listaGuardarropas = new ArrayList<Guardarropa>(); //Lista de Guardarropas que contiene el usuario
 	
-//	@OneToMany (mappedBy = "evento",fetch = FetchType.LAZY,cascade = CascadeType.ALL)
-	@Transient
+
+	@OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL)
 	Collection <Evento> listaEvento = new ArrayList<Evento>();
 	
 	@Transient
@@ -281,7 +282,7 @@ public class Usuario
 		 
 	}
 	public Evento getEvento(String eventoAObtener) {
-		return (Evento) this.listaEvento.stream().filter(evento->evento.getDescripcion().equalsIgnoreCase(eventoAObtener)).collect(Collectors.toList());
+		return (Evento) this.listaEvento.stream().filter(evento->evento.getDescripcion().equalsIgnoreCase(eventoAObtener)).collect(Collectors.toList()).get(0);
 	}
 
 	public void puntuarPrenda(Prenda prenda)

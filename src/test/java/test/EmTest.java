@@ -45,16 +45,14 @@ public class EmTest{
 	  @Test
 	  public void TestUsuario() {
 		  Usuario eze = new Usuario("Ezequiel",27,"ezequiel@gmail.com");
-		  
-//		  ---------------------- INSERT		  
+		  	  
 		    EntityTransaction transaction = entityManager.getTransaction();
 	        transaction.begin();
 	        entityManager.persist(eze);
 	        transaction.commit();
-	        
-	        // id no es nulo	 
+	        	 
 	        assertNotNull(eze.getId());	        
-	        // comparo identidad
+
 	        Usuario usuarioPersisted = entityManager.find(Usuario.class, eze.getId());
 	        assertEquals(usuarioPersisted, eze);
 	  }
@@ -70,8 +68,7 @@ public class EmTest{
 	        transaction.begin();
 	        entityManager.persist(tomas);
 	        transaction.commit();
-	        
-	        // id no es nulo	 
+	         
 	        assertNotNull(tomas.getId());
 	        assertNotNull(guardarropa1.getID());
 	        Guardarropa guardarropaPersisted = entityManager.find(Guardarropa.class, guardarropa1.getID());
@@ -79,9 +76,25 @@ public class EmTest{
 	        assertEquals(Iterables.get(tomas.getListaGuardarropas(), 0),guardarropaPersisted);
 //	        Iterables.get(yourC, indexYouWant)
 	        
-
 	  }
 	  
+	  @Test
+	  public void TestEvento() {
+		  Usuario tomas = new Usuario("Tomas",21,"behringertomas@gmail.com");
+		  tomas.crearEvento("Fiesta de Gala", "Paris", 2021, 10, 7, 15, 26);
+		  tomas.crearEvento("Fiesta de Disfraces", "Buenos Aires", 2020, 10, 7, 15, 26);
+		  
+		    EntityTransaction transaction = entityManager.getTransaction();
+	        transaction.begin();
+	        entityManager.persist(tomas);
+	        transaction.commit();
+	        
+	        assertNotNull(tomas.getId());
+	        Usuario usuarioPersisted = entityManager.find(Usuario.class, tomas.getId());
+
+	        assertEquals(usuarioPersisted.getEvento("Fiesta de Gala").getDescripcion(),"fiesta de gala");
+	        assertEquals(usuarioPersisted.getEvento("Fiesta de Disfraces").getDescripcion(),"fiesta de disfraces");
+	  }
 
 	
 }

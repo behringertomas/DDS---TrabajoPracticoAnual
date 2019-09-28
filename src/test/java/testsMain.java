@@ -124,7 +124,7 @@ public class testsMain {
 //		usuario.agregarPrendaAGuardarropas(guardarropa1, prenda14);
 //		
 //		
-//		usuario.crearEvento("Fiesta de Gala", "Paris", 2018, 10, 7, 15, 26);
+//		usuario.crearEvento("Fiesta de Gala", "Paris", 2020, 10, 7, 15, 26);
 		
 	
 //		ITargetAPI target = new AdapterAPI( new WeatherApixu() ); //apixu
