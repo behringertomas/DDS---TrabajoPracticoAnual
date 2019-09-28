@@ -50,7 +50,7 @@ public class Prenda
 
 	@Transient
 	private strategyTemperatura strategyTemp;
-	@Transient
+	@Column(name = "PRENDA_PREFERENCIAS")
 	HashMap<Usuario,Integer> ListaPuntaje = new HashMap<Usuario,Integer>();
 	
 	public void setPuntaje(Usuario usuario)

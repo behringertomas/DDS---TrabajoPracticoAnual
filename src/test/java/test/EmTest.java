@@ -16,6 +16,7 @@ import com.google.common.collect.Iterables;
 
 import TPZTBCS.DatosPersonales;
 import TPZTBCS.Guardarropa;
+import TPZTBCS.Prenda;
 import TPZTBCS.Usuario;
 import db.EntityManagerHelper;
 
@@ -64,11 +65,13 @@ public class EmTest{
 	  }
 	  
 	  @Test
-	  public void TestEvento() {
+	  public void TestEvento() throws Exception {
 		  Usuario tomas = new Usuario("Tomas",21,"behringertomas@gmail.com");
 		  tomas.crearEvento("Fiesta de Gala", "Paris", 2021, 10, 7, 15, 26);
 		  tomas.crearEvento("Fiesta de Disfraces", "Buenos Aires", 2020, 10, 7, 15, 26);
-		  
+
+			
+			
 		    EntityTransaction transaction = entityManager.getTransaction();
 	        transaction.begin();
 	        entityManager.persist(tomas);
@@ -97,6 +100,35 @@ public class EmTest{
 	      Usuario usuarioPersisted = entityManager.find(Usuario.class, tomas.getId());
 	        
         assertEquals(usuarioPersisted.getGuardarropa("Guardarropa Primaveral").getAllPrendas().get(0).getTipo(),"Remera");
+	  }
+	  
+	  @Test
+	  public void TestAtuendo() throws Exception {
+		  Usuario tomas = new Usuario("Tomas",21,"behringertomas@gmail.com");
+		  tomas.CrearGuardarropa("Guardarropa Primaveral",10000);
+		  
+		  
+		  
+			tomas.construirPrenda("Parte Superior","Remera", "Tela", "Rojo", "Negro");
+			tomas.construirPrenda("Parte Inferior","Pantalon Largo", "Jean", "Azul", "Negro");
+			tomas.construirPrenda("Calzado","Runners", "Algodon", "Rojo", "Negro");
+			tomas.construirPrenda("Accesorio","Pulsera", "Plata", "Rojo", "Negro");
+		  
+		    tomas.asignarPrenda(tomas.getGuardarropa("Guardarropa Primaveral"), tomas.getGuardarropa("DEFAULT").getAllPrendas().get(0));
+		    tomas.asignarPrenda(tomas.getGuardarropa("Guardarropa Primaveral"), tomas.getGuardarropa("DEFAULT").getAllPrendas().get(1));
+		    tomas.asignarPrenda(tomas.getGuardarropa("Guardarropa Primaveral"), tomas.getGuardarropa("DEFAULT").getAllPrendas().get(2));
+		    //tomas.asignarPrenda(tomas.getGuardarropa("Guardarropa Primaveral"), tomas.getGuardarropa("DEFAULT").getAllPrendas().get(3));
+		    //tomas.crearEvento("Fiesta de Gala", "Paris", 2018, 10, 7, 15, 26);
+		    
+		    EntityTransaction transaction = entityManager.getTransaction();
+	        transaction.begin();
+	        entityManager.persist(tomas);
+	        transaction.commit();
+	        
+	        assertNotNull(tomas.getId());
+	        Usuario usuarioPersisted = entityManager.find(Usuario.class, tomas.getId());
+
+	        
 	  }
 
 	

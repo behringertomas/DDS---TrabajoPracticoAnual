@@ -580,6 +580,13 @@ public class Guardarropa
 		this.agregarAGuardarropas(prendaBuilder.getPrenda());
 	}
 	
+	public Prenda getPrendaEspecifica(String nombrePrendaCompleto) {
+	 List<Prenda> listaConNombre = this.TodasLasPrendas.stream().filter(x->x.getDescripcion().equals(nombrePrendaCompleto)).collect(Collectors.toList());
+		if(!listaConNombre.isEmpty()) {
+			return listaConNombre.get(0);
+		}
+		else return null;
+	}
 	
 	
 }

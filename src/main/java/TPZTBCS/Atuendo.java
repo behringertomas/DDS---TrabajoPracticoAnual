@@ -1,15 +1,29 @@
 package TPZTBCS;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
+@Entity
+@Table (name = "Atuendo")
 public class Atuendo
 {	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID_ATUENDO_ELEGIDO")
+	Long ID;
+	
+	@Transient
 	List <Prenda> prendas;
+	
+	@Column (name = "PUNTAJE_ATUENDO")
 	HashMap<Usuario,Integer> ListaPuntajeAtuendo = new HashMap<Usuario,Integer>();
 	
 	public void setPuntaje(Usuario usuario)

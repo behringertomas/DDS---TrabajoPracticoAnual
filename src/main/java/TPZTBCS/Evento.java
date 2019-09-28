@@ -60,7 +60,8 @@ public class Evento extends TimerTask implements comando {
 	@Transient
 	public CambioBruscoClimatico cambioAlerta = null;	
 	
-	@Transient
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "ID_ATUENDO_ELEGIDO")
 	public Atuendo AtuendoElegido=null; 
 	
 	

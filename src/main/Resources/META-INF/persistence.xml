@@ -9,6 +9,8 @@
         <class>ZTBCS.Guardarropa</class>
         <class>ZTBCS.Evento</class>
         <class>ZTBCS.Prenda</class>
+        <class>ZTBCS.Atuendo</class>
+        
         
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
