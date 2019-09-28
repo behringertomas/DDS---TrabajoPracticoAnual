@@ -19,19 +19,6 @@ import TPZTBCS.Guardarropa;
 import TPZTBCS.Usuario;
 import db.EntityManagerHelper;
 
-
-
-//package test;
-//
-//import db.EntityManagerHelper;
-//import entities.Aporte;
-//import entities.BuenaReputacion;
-//import entities.Topico;
-//import entities.Usuario;
-//import org.junit.Assert;
-//import org.junit.Test;
-//import java.time.LocalDate;
-//
 public class EmTest{
 
 	@Before
@@ -60,21 +47,19 @@ public class EmTest{
 	  @Test
 	  public void TestGuardarropa() {
 		  Usuario tomas = new Usuario("Tomas",21,"behringertomas@gmail.com");
-		  Guardarropa guardarropa1 = new Guardarropa("Guardarropa Primaveral",10);
-		  tomas.agregarGuardarropas(guardarropa1);
-		  
-//		  ---------------------- INSERT		  
+		  tomas.CrearGuardarropa("Guardarropa Primaveral",10);
+
 		    EntityTransaction transaction = entityManager.getTransaction();
 	        transaction.begin();
 	        entityManager.persist(tomas);
 	        transaction.commit();
 	         
 	        assertNotNull(tomas.getId());
-	        assertNotNull(guardarropa1.getID());
-	        Guardarropa guardarropaPersisted = entityManager.find(Guardarropa.class, guardarropa1.getID());
+	        assertNotNull(tomas.getGuardarropa("Guardarropa Primaveral").getID());
+	        Guardarropa guardarropaPersisted = entityManager.find(Guardarropa.class, tomas.getGuardarropa("Guardarropa Primaveral").getID());
 	        
-	        assertEquals(Iterables.get(tomas.getListaGuardarropas(), 0),guardarropaPersisted);
-//	        Iterables.get(yourC, indexYouWant)
+	        assertEquals(tomas.getGuardarropa("Guardarropa Primaveral"),guardarropaPersisted);
+	        
 	        
 	  }
 	  
@@ -94,6 +79,24 @@ public class EmTest{
 
 	        assertEquals(usuarioPersisted.getEvento("Fiesta de Gala").getDescripcion(),"fiesta de gala");
 	        assertEquals(usuarioPersisted.getEvento("Fiesta de Disfraces").getDescripcion(),"fiesta de disfraces");
+	  }
+	  
+	  @Test
+	  public void TestPrenda() throws Exception {
+		  Usuario tomas = new Usuario("Tomas",21,"behringertomas@gmail.com");
+		  tomas.construirPrenda("Parte Superior","Remera", "Tela", "Rojo", "Negro");
+		  tomas.CrearGuardarropa("Guardarropa Primaveral",10);
+		  tomas.asignarPrenda(tomas.getGuardarropa("Guardarropa Primaveral"), tomas.getGuardarropa("DEFAULT").getAllPrendas().get(0));
+		  
+		  EntityTransaction transaction = entityManager.getTransaction();
+	      transaction.begin();
+	      entityManager.persist(tomas);
+	      transaction.commit();
+	        
+	      assertNotNull(tomas.getId());
+	      Usuario usuarioPersisted = entityManager.find(Usuario.class, tomas.getId());
+	        
+        assertEquals(usuarioPersisted.getGuardarropa("Guardarropa Primaveral").getAllPrendas().get(0).getTipo(),"Remera");
 	  }
 
 	

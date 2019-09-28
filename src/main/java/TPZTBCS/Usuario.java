@@ -70,6 +70,8 @@ public class Usuario
 		this.getDatos().setFrioCabeza(fCabeza);
 		this.getDatos().setFrioCuello(fCuello);
 		this.getDatos().setFrioManos(fManos);
+		this.agregarGuardarropas(new Guardarropa("DEFAULT"));
+		
 	}
 	
 	public Usuario(String nombre,int edad,String email) {
@@ -81,6 +83,7 @@ public class Usuario
 		this.getDatos().setFrioCabeza(5);
 		this.getDatos().setFrioCuello(5);
 		this.getDatos().setFrioManos(5);
+		this.agregarGuardarropas(new Guardarropa("DEFAULT"));
 	}
 	
 	
@@ -177,31 +180,28 @@ public class Usuario
 		}
 	}
 	
-	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario, String colorSecundario) throws Exception
+	public void construirPrenda(String parte,String tipo, String material, String colorPrimario, String colorSecundario) throws Exception
 	{
-		prendaBuilder = this.setPrendaBuilder(parte); 
-		
-		prendaBuilder.verificarColoresDistintos(colorPrimario,colorSecundario);
-		prendaBuilder.crearPrenda();
-		prendaBuilder.buildParte();		
-		prendaBuilder.buildTipo(tipo);
-		prendaBuilder.buildMaterial(material);
-		prendaBuilder.buildColorPrimario(colorPrimario);
-		prendaBuilder.buildColorSecundario(colorSecundario);
-		return prendaBuilder.getPrenda();	
+		this.getGuardarropa("DEFAULT").construirPrenda(parte, tipo, material, colorPrimario,colorSecundario);
 	}
 	
-	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario) throws Exception
+	public void construirPrenda(String parte,String tipo, String material, String colorPrimario) throws Exception
 	{
-		prendaBuilder = this.setPrendaBuilder(parte); 
-		
-		prendaBuilder.crearPrenda();
-		prendaBuilder.buildParte();
-		prendaBuilder.buildTipo(tipo);
-		prendaBuilder.buildMaterial(material);
-		prendaBuilder.buildColorPrimario(colorPrimario);
-		return prendaBuilder.getPrenda();
+		this.getGuardarropa("DEFAULT").construirPrenda(parte, tipo, material, colorPrimario);
 	}
+	
+	public void asignarPrenda(Guardarropa guardarropaAsignar, Prenda prendaDefault) throws Exception  {
+		Guardarropa Default = this.getGuardarropa("DEFAULT");
+		if(Default.getAllPrendas().contains(prendaDefault) && this.listaGuardarropas.contains(guardarropaAsignar)) {
+			
+			guardarropaAsignar.agregarAGuardarropas(prendaDefault);
+			this.getGuardarropa("DEFAULT").TodasLasPrendas.remove(prendaDefault);
+			
+		}else throw new Exception("ERROR AL ASIGNAR PRENDA");
+		
+		
+	}
+	
 	
 	public void agregarGuardarropas(Guardarropa guardarropa) 
 	{
@@ -285,6 +285,9 @@ public class Usuario
 		return (Evento) this.listaEvento.stream().filter(evento->evento.getDescripcion().equalsIgnoreCase(eventoAObtener)).collect(Collectors.toList()).get(0);
 	}
 
+	public Guardarropa getGuardarropa(String guardarropaAObtener) {
+		return (Guardarropa) this.listaGuardarropas.stream().filter(x->x.getIdentificador().equalsIgnoreCase(guardarropaAObtener)).collect(Collectors.toList()).get(0);
+	}
 	public void puntuarPrenda(Prenda prenda)
 	{
 		prenda.setPuntaje(this);

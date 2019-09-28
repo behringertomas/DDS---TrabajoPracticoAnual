@@ -3,24 +3,54 @@ package TPZTBCS;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
 import interfacesZTBCS.strategyTemperatura;
 
-
+@Entity
+@Table (name = "Prenda")
 public class Prenda 
 {
 	
-	private Guardarropa guardarropa;
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "ID_PRENDA")
+	Long ID;
 	
+	@ManyToOne
+	@JoinColumn (name = "guardarropa_prenda_id")
+	private Guardarropa guardarropa_id;
+	
+	@Column(name = "EN_GUARDARROPA")
 	private boolean enGuardarropa=false;
-    private String parte = "";
-    private String tipo = "";
-    private String material = "";
+	@Column(name = "PRENDA_PARTE")
+	private String parte = "";
+	@Column(name = "PRENDA_TIPO")
+	private String tipo = "";
+	@Column(name = "PRENDA_MATERIAL")
+	private String material = "";
+	@Column(name = "PRENDA_COLOR_PRIMARIA")
     private String colorPrimario = "";
+	@Column(name = "PRENDA_COLOR_SECUNDARIO")
     private String colorSecundario = "";
-    private strategyTemperatura strategyTemp;
+	@Column(name = "PRENDA_DIRECCION_IMG")
     private String direccionImagen = "";
+	@Column(name = "PRENDA_PARTE_ESPECIFICA")
 	private String parteEspecifica="";
 
+	@Transient
+	private strategyTemperatura strategyTemp;
+	@Transient
 	HashMap<Usuario,Integer> ListaPuntaje = new HashMap<Usuario,Integer>();
 	
 	public void setPuntaje(Usuario usuario)

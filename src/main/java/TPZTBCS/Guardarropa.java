@@ -12,11 +12,13 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -48,7 +50,6 @@ public class Guardarropa
     @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID_GUARDARROPA")
 	Long ID;
-	
 
 	@Column(name = "NOM_GUARDARROPA")
 	String identificador;
@@ -68,6 +69,9 @@ public class Guardarropa
 		this.limiteDePrendas = 99999;
 	}
 	
+	@OneToMany(targetEntity = Prenda.class,mappedBy = "guardarropa_id",cascade = CascadeType.ALL)
+	List <Prenda> TodasLasPrendas = new ArrayList<Prenda>();
+	
 	@Transient
 	ArrayList <Prenda> parteSuperior = new ArrayList<Prenda>();
 	@Transient
@@ -79,40 +83,58 @@ public class Guardarropa
 	
 
 	
+
+	
 //-------------------AGREGAR PRENDA A GUARDARROPAS-------------------- 
 	
 	public void agregarAGuardarropas(Prenda prenda) throws Exception
 	{	
 		if(!prenda.estaEnGuardarropa()) {
 			if(this.numeroTotalEnGuardarropa() < limiteDePrendas) {
+				
 				switch(prenda.getParteCuerpo()) 
 				{
 				case "Parte Superior":
 					this.parteSuperior.add(prenda);
-					prenda.meterEnGuardarropa();
+					this.TodasLasPrendas.add(prenda);
+					
 					break;
 				case "Parte Inferior": 
 					this.parteInferior.add(prenda);
-					prenda.meterEnGuardarropa();
+					this.TodasLasPrendas.add(prenda);
+					
 					break;
 				case "Accesorio":
 					this.accesorios.add(prenda);
-					prenda.meterEnGuardarropa();
+					this.TodasLasPrendas.add(prenda);
+				
 					break;
 				case "Calzado": 
 					this.calzados.add(prenda);
-					prenda.meterEnGuardarropa();
+					this.TodasLasPrendas.add(prenda);
+				
 					break;
 				default:
 					System.out.println("ESTE ELEMENTO NO PERTENECE A NINGUNA LISTA");
 					break;
 				} 
+				if(this.getIdentificador()!= "DEFAULT") prenda.meterEnGuardarropa();
 		}
 			else throw new Exception("GUARDARROPA LLENO CREE UNO NUEVO");
 	}
 		else throw new Exception("PRENDA YA SE ENCUENTRA EN UN GUARDARROPA");
 }
 //-------------------MOSTRAR LOS ARRAYS DEL GUARDARROPA-------------------- 
+	
+	public List<Prenda> getAllPrendas(){
+		
+
+		return this.TodasLasPrendas;
+		
+		
+		
+	}
+	
 	
 	public ArrayList<String> getArrayParteSuperior() 
 	{
@@ -510,7 +532,53 @@ public class Guardarropa
 		
 	}
 
-
+	public PrendaBuilder setPrendaBuilder(String parteCuerpo) throws Exception 
+	{
+		switch(parteCuerpo) 
+		{
+			case "Parte Superior":
+				ParteSuperior ps = new ParteSuperior();
+				return ps;
+			case "Parte Inferior": 
+				ParteInferior pi = new ParteInferior();
+				return pi;
+			case "Accesorio":
+				Accesorio ac = new Accesorio();
+				return ac;
+			case "Calzado": 
+				Calzado cz = new Calzado();
+				return cz;
+			default:
+				throw new Exception("NO EXISTE PARTE");
+		}
+	}
+	public void construirPrenda(String parte,String tipo, String material, String colorPrimario, String colorSecundario) throws Exception
+	{
+		PrendaBuilder prendaBuilder;
+		prendaBuilder = this.setPrendaBuilder(parte); 
+		
+		prendaBuilder.verificarColoresDistintos(colorPrimario,colorSecundario);
+		prendaBuilder.crearPrenda();
+		prendaBuilder.buildParte();		
+		prendaBuilder.buildTipo(tipo);
+		prendaBuilder.buildMaterial(material);
+		prendaBuilder.buildColorPrimario(colorPrimario);
+		prendaBuilder.buildColorSecundario(colorSecundario);
+		this.agregarAGuardarropas(prendaBuilder.getPrenda());
+	}
+	
+	public void construirPrenda(String parte,String tipo, String material, String colorPrimario) throws Exception
+	{
+		PrendaBuilder prendaBuilder;
+		prendaBuilder = this.setPrendaBuilder(parte); 
+		
+		prendaBuilder.crearPrenda();
+		prendaBuilder.buildParte();
+		prendaBuilder.buildTipo(tipo);
+		prendaBuilder.buildMaterial(material);
+		prendaBuilder.buildColorPrimario(colorPrimario);
+		this.agregarAGuardarropas(prendaBuilder.getPrenda());
+	}
 	
 	
 	
