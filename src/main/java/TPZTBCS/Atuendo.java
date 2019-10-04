@@ -1,13 +1,16 @@
 package TPZTBCS;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -20,7 +23,7 @@ public class Atuendo
 	@Column(name = "ID_ATUENDO_ELEGIDO")
 	Long ID;
 	
-	@Transient
+	@OneToMany (targetEntity = Prenda.class,mappedBy = "atuendo",cascade = CascadeType.ALL)
 	List <Prenda> prendas;
 	
 	@Column (name = "PUNTAJE_ATUENDO")
