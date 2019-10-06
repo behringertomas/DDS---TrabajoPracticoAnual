@@ -14,7 +14,9 @@ import org.json.simple.parser.ParseException;
 
 public class JsonReader 
 {
+	
 	static File f = new File("Verificaciones.json"); 
+	
 	private static final String DIRECTORIOJSON= f.getAbsolutePath();
 	
 	public static Object readJsonSimpleDemo(String filename) throws Exception

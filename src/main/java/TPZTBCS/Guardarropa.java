@@ -127,12 +127,9 @@ public class Guardarropa
 //-------------------MOSTRAR LOS ARRAYS DEL GUARDARROPA-------------------- 
 	
 	public List<Prenda> getAllPrendas(){
-		
 
 		return this.TodasLasPrendas;
-		
-		
-		
+			
 	}
 	
 	

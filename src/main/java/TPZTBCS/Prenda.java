@@ -31,7 +31,7 @@ public class Prenda
 	@JoinColumn (name = "atuendo_id")
 	private Atuendo atuendo;
 	
-
+	
 	@ManyToOne
 	@JoinColumn (name = "guardarropa_prenda_id")
 	private Guardarropa guardarropa_id;

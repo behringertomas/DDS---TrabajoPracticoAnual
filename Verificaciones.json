@@ -12,7 +12,8 @@
     "Celeste",
     "Negro",
     "Gris"
-  ],
+  ],	
+  
   "TipoParteSuperior": ["Remera","Musculosa","Camisa"],
   "TipoAbrigo": ["Campera","Sweater","Buzo", "Campera Impermeable"],
   "TemperaturasAbrigo":["20","15","10","10"],
