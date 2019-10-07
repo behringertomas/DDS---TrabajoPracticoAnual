@@ -45,9 +45,11 @@ public class Usuario
 	@ManyToMany(cascade = {CascadeType.ALL})
 	Collection <Guardarropa> listaGuardarropas = new ArrayList<Guardarropa>(); //Lista de Guardarropas que contiene el usuario
 	
-
 	@OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL)
 	Collection <Evento> listaEvento = new ArrayList<Evento>();
+	
+	@ManyToMany(cascade = {CascadeType.ALL})
+	ArrayList <Atuendo> historialAtuendos = new ArrayList<Atuendo>();
 	
 	@Transient
 	private PrendaBuilder prendaBuilder;
@@ -277,10 +279,9 @@ public class Usuario
 		 Evento EventoNuevo= new Evento(fechaDeEvento,fechaDeSugerencia,this,ciudad,descripcion,CadacuantosDias);
 		
 		this.listaEvento.add(EventoNuevo);
-		//System.out.print(fecha);
-		
-		 
+		//System.out.print(fecha);		 
 	}
+	
 	public Evento getEvento(String eventoAObtener) {
 		return (Evento) this.listaEvento.stream().filter(evento->evento.getDescripcion().equalsIgnoreCase(eventoAObtener)).collect(Collectors.toList()).get(0);
 	}
@@ -291,6 +292,11 @@ public class Usuario
 	public void puntuarPrenda(Prenda prenda)
 	{
 		prenda.setPuntaje(this);
+	}
+	
+	public void addAtuendoHistorial(Atuendo atuendo)
+	{
+		this.historialAtuendos.add(atuendo);
 	}
 
 }

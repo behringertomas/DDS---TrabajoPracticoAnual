@@ -10,5 +10,7 @@ public interface comando {
     void deshacer();
 
     void rechazar();
+
+	void cancelar();
 }
 

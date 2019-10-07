@@ -1,5 +1,7 @@
 package TPZTBCS;
 
+import java.util.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -31,10 +33,12 @@ public class Prenda
 	@JoinColumn (name = "atuendo_id")
 	private Atuendo atuendo;
 	
-	
 	@ManyToOne
 	@JoinColumn (name = "guardarropa_prenda_id")
 	private Guardarropa guardarropa_id;
+
+	@Column(name = "Calendario_De_Uso")
+	ArrayList <Date> calendarioDeUso = new ArrayList<Date>();
 	
 	@Column(name = "EN_GUARDARROPA")
 	private boolean enGuardarropa=false;
@@ -163,6 +167,21 @@ public class Prenda
     	} else {
     		return(this.tipo + " de " + this.material + " " +this.colorPrimario + " y " + this.colorSecundario);
     	}    	
+    }
+    
+    public void bloquearPrenda(Date fecha)
+    {
+    	this.calendarioDeUso.add(fecha);
+    }
+    
+    public void desbloquearPrenda(Date fecha)
+    {
+    	this.calendarioDeUso.remove(fecha);
+    }
+    
+    public boolean isBlocked(Date fecha)
+    {
+    	return this.calendarioDeUso.contains(fecha);
     }
     
 //    public void modificarPuntaje(Usuario usuario){

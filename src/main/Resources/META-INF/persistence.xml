@@ -10,7 +10,7 @@
         <class>ZTBCS.Evento</class>
         <class>ZTBCS.Prenda</class>
         <class>ZTBCS.Atuendo</class>
-        <class>ZTBCS.Colores</class>
+        <class>ZTBCS.JsonReader</class>
         
         
         <properties>

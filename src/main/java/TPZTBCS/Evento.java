@@ -64,8 +64,6 @@ public class Evento extends TimerTask implements comando {
 	@JoinColumn(name = "ID_ATUENDO_ELEGIDO")
 	public Atuendo AtuendoElegido=null; 
 	
-	
-	
 	@Transient
 	public Atuendo Sugerencia=null; 
 	
@@ -121,6 +119,9 @@ public class Evento extends TimerTask implements comando {
 	public void ejecutar() {
 
 //		this.verificarAlerta();
+		this.Sugerencia.bloquear(this.FechaDelEvento); //bloquear las prendas del atuendo para que otro usuario no las pueda usar al mismo tiempo
+		this.usuario.addAtuendoHistorial(this.Sugerencia);
+		
 		this.AtuendoElegido=this.Sugerencia;
 		System.out.println("Atuendo Asignado");
 		
@@ -144,8 +145,7 @@ public class Evento extends TimerTask implements comando {
 		usuario.listaEvento.remove(this);
 		
 		System.out.println("Evento rechazado");
-		timer.cancel();
-		
+		timer.cancel();		
 	}
 
 	@Override
@@ -157,6 +157,15 @@ public class Evento extends TimerTask implements comando {
 		System.out.println("Atuendo rechazado");
 		this.run();
 		//RESTARLE CALIFICACION.
+	}
+
+	@Override
+	public void cancelar() {
+		
+		usuario.listaEvento.remove(this);
+		
+		System.out.println("Evento cancelado por falta de atuendo");
+		timer.cancel();		
 	}
 
 	@Override
@@ -181,6 +190,9 @@ public class Evento extends TimerTask implements comando {
 //		Atuendo atuendoElegido = listaSugerencias.get(rnd);
 		
 		this.Sugerencia = this.getMejorAtuendo(listaSugerencias);
+		
+		if(this.Sugerencia == null) {this.deshacer();}
+		
 		this.Sugerencia.imprimirPrendas();
 		
 		NotificacionEmail sender =new NotificacionEmail();
@@ -218,17 +230,23 @@ public class Evento extends TimerTask implements comando {
   public long transformardiasamilisegundis(int dias) {
 	  long milisegundos= dias *24*60*60*1000;
 	  return milisegundos;
-	  
   }
   
-  
-  
-  public Atuendo getMejorAtuendo(List<Atuendo>listaSugerencias) 
+  public Atuendo getMejorAtuendo(List<Atuendo>listaSugerencias) //falta recibir fecha
   {
 	  //REVISAR
 	  listaSugerencias.sort((A1,A2)-> A1.getPuntaje(this.usuario) - A2.getPuntaje(this.usuario));
-	  return listaSugerencias.get(0);
+	  int cantAtuendos = listaSugerencias.size();
 	  
+	  for(int i = 0; i < cantAtuendos; i++)
+	  {
+		  if (listaSugerencias.get(i).isNotBlocked(this.FechaDelEvento))
+		  {
+			  return listaSugerencias.get(i);			  
+		  }
+	  }
+	  return null;
+	  //no se encontraron atuendos disponibles, entonces se debera cancelar el evento.
   }
   
   public LocalDate convertToLocalDateViaInstant(Date dateToConvert) {

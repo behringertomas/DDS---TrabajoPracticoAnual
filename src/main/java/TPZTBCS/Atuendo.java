@@ -1,5 +1,6 @@
 package TPZTBCS;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
@@ -90,5 +91,30 @@ public class Atuendo
 	public int puntajeTotalDePrendas(Usuario usuario)
 	{
 		return prendas.stream().mapToInt(x->{return x.getPuntaje(usuario); }).sum();
+	}
+	
+	private Prenda getPrenda(int indice)
+	{
+		return prendas.get(indice);
+	}
+	
+	public boolean isNotBlocked(Date fecha)
+	{
+		int cantPrendas = prendas.size();
+		
+		for(int i=0; i<cantPrendas; i++)
+		{
+			Prenda prendai = this.getPrenda(i);
+			if(prendai.isBlocked(fecha))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public void bloquear (Date fecha)
+	{
+		prendas.forEach(prenda-> prenda.bloquearPrenda(fecha));
 	}
 }
