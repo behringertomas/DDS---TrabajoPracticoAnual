@@ -251,9 +251,9 @@ public class Usuario
         }
 	}
 	//este lo hace solo una vez
-	public void crearEvento(String descripcion,String ciudad,int año,int mes,int dia,int hora,int minutos) {
+	public void crearEvento(String descripcion,String ciudad,int anio,int mes,int dia,int hora,int minutos) {
 		 
-		Calendar myCalendar = new GregorianCalendar(año, mes-1, dia);
+		Calendar myCalendar = new GregorianCalendar(anio, mes-1, dia);
 		myCalendar.set(Calendar.HOUR_OF_DAY, hora);
 		myCalendar.set(Calendar.MINUTE, minutos);
 		 Date fechaDeEvento = myCalendar.getTime();
@@ -267,9 +267,9 @@ public class Usuario
 		
 		 
 	}
-	public void crearEvento(String descripcion,String ciudad,int año,int mes,int dia,int hora,int minutos,int CadacuantosDias) {
+	public void crearEvento(String descripcion,String ciudad,int anio,int mes,int dia,int hora,int minutos,int CadacuantosDias) {
 		 
-		Calendar myCalendar = new GregorianCalendar(año, mes-1, dia);
+		Calendar myCalendar = new GregorianCalendar(anio, mes-1, dia);
 		myCalendar.set(Calendar.HOUR_OF_DAY, hora);
 		myCalendar.set(Calendar.MINUTE, minutos);
 		 Date fechaDeEvento = myCalendar.getTime();
