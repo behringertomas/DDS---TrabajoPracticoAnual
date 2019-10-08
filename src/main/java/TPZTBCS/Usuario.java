@@ -49,7 +49,7 @@ public class Usuario
 	Collection <Evento> listaEvento = new ArrayList<Evento>();
 	
 	@ManyToMany(cascade = {CascadeType.ALL})
-	ArrayList <Atuendo> historialAtuendos = new ArrayList<Atuendo>();
+	List <Atuendo> historialAtuendos = new ArrayList<Atuendo>();
 	
 	@Transient
 	private PrendaBuilder prendaBuilder;

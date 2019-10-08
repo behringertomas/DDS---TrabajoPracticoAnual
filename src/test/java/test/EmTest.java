@@ -7,7 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -21,14 +20,18 @@ import TPZTBCS.Usuario;
 import db.EntityManagerHelper;
 
 public class EmTest{
+	
+	
+	private static EntityManager entityManager;
+
 
 	@Before
     public void before() {
+		
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("TEST_PERSISTENCE_UNIT");
         entityManager = factory.createEntityManager();
     }
 	
-	  private static EntityManager entityManager;
 	  
 	  @Test
 	  public void TestUsuario() {
@@ -37,7 +40,7 @@ public class EmTest{
 		    EntityTransaction transaction = entityManager.getTransaction();
 	        transaction.begin();
 	        entityManager.persist(eze);
-	        transaction.commit();
+	        transaction.commit();	
 	        	 
 	        assertNotNull(eze.getId());	        
 
@@ -131,8 +134,5 @@ public class EmTest{
 	        
 	  }
 
-	  @Test
-	  public void Colores() {
-		  
-	  }
+	
 }	

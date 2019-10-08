@@ -3,7 +3,12 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ZTBCS</groupId>
   <artifactId>ZTBCS</artifactId>
-  <version>1</version>
+  <version>0.0.1-SNAPSHOT</version>
+  <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
     <dependencies>
 	<!-- https://mvnrepository.com/artifact/taglibs/string -->
 	<dependency>
@@ -11,12 +16,25 @@
 	    <artifactId>string</artifactId>
 	    <version>1.1.0</version>
 	</dependency>
-	
+
     <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>4.12</version>
     </dependency>
+    
+	<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+	<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.12</version>
+		</dependency>
+	
+	<dependency>
+            <groupId> org.uqbar-project </groupId>
+            <artifactId> jpa-java8-extras </artifactId>
+            <version> 1.0-alpha-1 </version>
+     </dependency>
 	
 	<dependency>
 		    <groupId>com.sun.jersey</groupId>
@@ -37,17 +55,17 @@
     </dependency>
 	
 	<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
-	<dependency>
-		<groupId>com.h2database</groupId>
-		<artifactId>h2</artifactId>
-		<version>1.4.199</version>
-		<scope>test</scope>
-	</dependency>
+<!-- 	<dependency> -->
+<!-- 		<groupId>com.h2database</groupId> -->
+<!-- 		<artifactId>h2</artifactId> -->
+<!-- 		<version>1.4.199</version> -->
+<!-- 		<scope>test</scope> -->
+<!-- 	</dependency> -->
 	
 	<dependency>
-	  <groupId>org.hibernate</groupId>
-	  <artifactId>hibernate-entitymanager</artifactId>
-	  <version>5.4.5.Final</version>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-entitymanager</artifactId>
+	    <version>5.3.12.Final</version>
 	</dependency>
 	
 	<!--		<dependency>
@@ -55,18 +73,32 @@
 			<artifactId> mysql-connector-java </artifactId>
 			<version> 5.1.26 </version>
 		</dependency>
-		<dependency>
+		<dependency>"C:/Users/agust/AppData/Local/Temp/Rar$DRa16848.8139/JPATutorial/pom.xml"
 			<groupId> org.hsqldb </groupId>
 			<artifactId> hsqldb </artifactId>
 			<version> 2.2.8 </version>
 		</dependency>-->
 
 	<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+	
 	<dependency>
-		<groupId>org.hibernate</groupId>
-		<artifactId>hibernate-core</artifactId>
-		<version>5.3.4.Final</version>
-	</dependency>
+            <groupId> org.hsqldb </groupId>
+            <artifactId> hsqldb </artifactId>
+            <version> 2.2.8 </version>
+        </dependency>
+	
+			<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.2.6.Final</version>
+		</dependency>
+<!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.2-api -->
+<dependency>
+    <groupId>org.hibernate.javax.persistence</groupId>
+    <artifactId>hibernate-jpa-2.2-api</artifactId>
+    <version>1.0.0.Beta2</version>
+    <type>pom</type>
+</dependency>
 
 	<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
 	<dependency>
@@ -74,6 +106,13 @@
 		<artifactId>jaxb-api</artifactId>
 		<version>2.3.0</version>
 	</dependency>
+
+<!-- https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api -->
+<dependency>
+    <groupId>javax.persistence</groupId>
+    <artifactId>javax.persistence-api</artifactId>
+    <version>2.2</version>
+</dependency>
 	
 	<!-- dependencia para combinaciones de prenda-->
 	<dependency>
