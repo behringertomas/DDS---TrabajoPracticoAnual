@@ -34,15 +34,15 @@ public class EmTest{
 	  
 	  EntityManagerHelper.beginTransaction();
 	  EntityManagerHelper.getEntityManager().persist(eze);
-	  EntityManagerHelper.commit(); }
+	  EntityManagerHelper.commit(); 
+	  Usuario persistedUser = (Usuario) EntityManagerHelper.getEntityManager().find(Usuario.class, eze.getId()); 
+	  Assert.assertEquals("Ezequiel", persistedUser.getNombre()); 
 	  
-//	  @Test public void recuperandoAEze(){ 
-//	  Usuario eze = (Usuario)
-//	  EntityManagerHelper.createQuery("from Usuario where nombre = 'Ezequiel'").
-//	  getSingleResult(); 
-//	  Assert.assertEquals("Ezequiel", eze.getNombre()); 
-//	  
-//	  }
+	  }
+	  
+	  
+	  
+	  
 
 //	@Before
 //    public void before() {
