@@ -282,6 +282,12 @@
 			<artifactId>spark-template-handlebars</artifactId>
 			<version>2.5.5</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.apache.spark/spark-sql -->
+		<dependency>
+			<groupId>org.apache.spark</groupId>
+			<artifactId>spark-sql_2.12</artifactId>
+			<version>2.4.4</version>
+		</dependency>
 		
 		<dependency>
 			<groupId>com.sparkjava</groupId>
