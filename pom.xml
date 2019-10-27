@@ -9,26 +9,28 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
-    <dependencies>
-	<!-- https://mvnrepository.com/artifact/taglibs/string -->
+ 
+<dependencies>
+
 	<dependency>
 	    <groupId>taglibs</groupId>
 	    <artifactId>string</artifactId>
 	    <version>1.1.0</version>
 	</dependency>
 
+	<!-- J-UNIT, TESTS -->
     <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>4.12</version>
     </dependency>
     
-	<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+	<!-- MYSQL -->
 	<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.12</version>
-		</dependency>
+	</dependency>
 	
 	<dependency>
             <groupId> org.uqbar-project </groupId>
@@ -42,79 +44,65 @@
 		    <version>1.9.1</version>
 	</dependency>
 	
-	  <dependency>
-        <groupId>javax.mail</groupId>
-        <artifactId>mail</artifactId>
-        <version>1.4.5</version>
-    </dependency>
-
     <dependency>
         <groupId>javax.activation</groupId>
         <artifactId>activation</artifactId>
         <version>1.1.1</version>
     </dependency>
 	
-	<!-- https://mvnrepository.com/artifact/com.h2database/h2 -->
-<!-- 	<dependency> -->
-<!-- 		<groupId>com.h2database</groupId> -->
-<!-- 		<artifactId>h2</artifactId> -->
-<!-- 		<version>1.4.199</version> -->
-<!-- 		<scope>test</scope> -->
-<!-- 	</dependency> -->
+	<!-- https://mvnrepository.com/artifact/com.github.jknack/handlebars -->
+
 	
+	<!-- H2 (PREVIO A MYSQL) -->
+	<!-- 	<dependency> -->
+	<!-- 		<groupId>com.h2database</groupId> -->
+	<!-- 		<artifactId>h2</artifactId> -->
+	<!-- 		<version>1.4.199</version> -->
+	<!-- 		<scope>test</scope> -->
+	<!-- 	</dependency> -->
+
+	<!-- HIBERNATE -->
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-core</artifactId>
+		<version>5.2.6.Final</version>
+	</dependency>
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-search-orm</artifactId>
+		<version>5.11.3.Final</version>
+	</dependency>
 	<dependency>
 	    <groupId>org.hibernate</groupId>
 	    <artifactId>hibernate-entitymanager</artifactId>
 	    <version>5.3.12.Final</version>
 	</dependency>
-	
-	<!--		<dependency>
-			<groupId> mysql </groupId>
-			<artifactId> mysql-connector-java </artifactId>
-			<version> 5.1.26 </version>
-		</dependency>
-		<dependency>"C:/Users/agust/AppData/Local/Temp/Rar$DRa16848.8139/JPATutorial/pom.xml"
-			<groupId> org.hsqldb </groupId>
-			<artifactId> hsqldb </artifactId>
-			<version> 2.2.8 </version>
-		</dependency>-->
-
-	<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
-	
 	<dependency>
-            <groupId> org.hsqldb </groupId>
-            <artifactId> hsqldb </artifactId>
-            <version> 2.2.8 </version>
-        </dependency>
-	
-			<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>5.2.6.Final</version>
-		</dependency>
-<!-- https://mvnrepository.com/artifact/org.hibernate.javax.persistence/hibernate-jpa-2.2-api -->
-<dependency>
-    <groupId>org.hibernate.javax.persistence</groupId>
-    <artifactId>hibernate-jpa-2.2-api</artifactId>
-    <version>1.0.0.Beta2</version>
-    <type>pom</type>
-</dependency>
-
-	<!-- https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api -->
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-validator</artifactId>
+		<version>4.3.0.Final</version>
+	</dependency>
 	<dependency>
-		<groupId>javax.xml.bind</groupId>
-		<artifactId>jaxb-api</artifactId>
-		<version>2.3.0</version>
+		<groupId>org.hibernate.javax.persistence</groupId>
+		<artifactId>hibernate-jpa-2.2-api</artifactId>
+		<version>1.0.0.Beta2</version>
+		<type>pom</type>
+	</dependency>
+	<dependency>
+		<groupId> org.hsqldb </groupId>
+		<artifactId> hsqldb </artifactId>
+		<version> 2.2.8 </version>
 	</dependency>
 
-<!-- https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api -->
-<dependency>
-    <groupId>javax.persistence</groupId>
-    <artifactId>javax.persistence-api</artifactId>
-    <version>2.2</version>
-</dependency>
+
+	<!-- PERSISTENCIA -->
+	<dependency>
+		<groupId>javax.persistence</groupId>
+		<artifactId>javax.persistence-api</artifactId>
+		<version>2.2</version>
+	</dependency>
 	
-	<!-- dependencia para combinaciones de prenda-->
+	<!-- Combinaciones De Prenda-->
 	<dependency>
 		<groupId>org.apache.commons</groupId>
 		<artifactId>commons-math3</artifactId>
@@ -148,34 +136,6 @@
 		<scope>test</scope>
 	</dependency>	
 	
-	<!--
-	<dependency>
-	  <groupId>com.squareup.retrofit2</groupId>
-	  <artifactId>retrofit</artifactId>
-	  <version>2.5.0</version>
-	</dependency>
-	-->
-	
-	<!-- https://mvnrepository.com/artifact/com.squareup.retrofit/retrofit -->
-	<dependency>
-		<groupId>com.squareup.retrofit</groupId>
-		<artifactId>retrofit</artifactId>
-		<version>2.0.0-beta2</version>
-	</dependency>
-	
-	<!-- https://mvnrepository.com/artifact/com.squareup.retrofit2/retrofit -->
-	<dependency>
-		<groupId>com.squareup.retrofit2</groupId>
-		<artifactId>retrofit</artifactId>
-		<version>2.6.0</version>
-	</dependency>
-
-	<dependency>
-	  <groupId>com.squareup.retrofit2</groupId>
-	  <artifactId>converter-gson</artifactId>
-	  <version>2.5.0</version>
-	</dependency>
-	
 	<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
 	<dependency>
 		<groupId>org.apache.commons</groupId>
@@ -193,127 +153,133 @@
 	
 	<!-- PARA ACCUWEATHER API REST -->
 	<dependency>
-            <groupId>org.glassfish.jersey.core</groupId>
-            <artifactId>jersey-client</artifactId>
-            <version>2.25.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.glassfish.jersey.media</groupId>
-            <artifactId>jersey-media-json-jackson</artifactId>
-            <version>2.25.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.7.25</version>
-    </dependency>
-
-	<!-- https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-jackson -->
+		<groupId>org.glassfish.jersey.core</groupId>
+		<artifactId>jersey-client</artifactId>
+		<version>2.25.1</version>
+	</dependency>
+	<dependency>
+		<groupId>org.glassfish.jersey.media</groupId>
+		<artifactId>jersey-media-json-jackson</artifactId>
+		<version>2.25.1</version>
+	</dependency>	
+     <dependency> 
+		 <groupId>org.slf4j</groupId> 
+		 <artifactId>slf4j-api</artifactId> 
+		 <version>1.7.25</version> 
+     </dependency> 
 	
+
+	<!-- Retrofit -->
 	<dependency>
 		<groupId>com.squareup.retrofit2</groupId>
 		<artifactId>converter-jackson</artifactId>
 		<version>2.6.0</version>
 	</dependency>
+	<dependency>
+		<groupId>com.squareup.retrofit</groupId>
+		<artifactId>retrofit</artifactId>
+		<version>2.0.0-beta2</version>
+	</dependency>
+	<dependency>
+		<groupId>com.squareup.retrofit2</groupId>
+		<artifactId>retrofit</artifactId>
+		<version>2.6.0</version>
+	</dependency>
+	<dependency>
+	  <groupId>com.squareup.retrofit2</groupId>
+	  <artifactId>converter-gson</artifactId>
+	  <version>2.5.0</version>
+	</dependency>
 	
-	<!--
-	<groupId>org.springframework</groupId>
-    <artifactId>gs-scheduling-tasks</artifactId>
-    -->
-	
-	<!--
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.6.RELEASE</version>
-    </parent>
-	-->
-	
-	<!--
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
-	-->
-	
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-			<version>2.1.6.RELEASE</version>
-        </dependency>
-		<!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>javax.mail-api</artifactId>
-			<version>1.6.0</version>
-		</dependency>
+	<!-- Para el envio de MAILS -->
+	<dependency>
+		<groupId>javax.mail</groupId>
+		<artifactId>mail</artifactId>
+		<version>1.4.5</version>
+	</dependency>
+	<dependency>
+		<groupId>javax.mail</groupId>
+		<artifactId>javax.mail-api</artifactId>
+		<version>1.6.0</version>
+	</dependency>
 		
-		<dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>[2.9.9,)</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>[2.9.9,)</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-            <version>[2.9.9,)</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jdk8</artifactId>
-            <version>[2.9.9,)</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.datatype</groupId>
-            <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>[2.9.9,)</version>
-        </dependency>
-			<dependency>
-			<groupId>com.sparkjava</groupId>
-			<artifactId>spark-core</artifactId>
-			<version>2.5</version>
-		</dependency>
-		<dependency>
-			<groupId>com.sparkjava</groupId>
-			<artifactId>spark-template-handlebars</artifactId>
-			<version>2.5.5</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.spark/spark-sql -->
-		<dependency>
-			<groupId>org.apache.spark</groupId>
-			<artifactId>spark-sql_2.12</artifactId>
-			<version>2.4.4</version>
-		</dependency>
+	<!-- JACKSON -->
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-core</artifactId>
+		<version>[2.9.9,)</version>
+	</dependency>
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-databind</artifactId>
+		<version>[2.9.9,)</version>
+	</dependency>
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-annotations</artifactId>
+		<version>[2.9.9,)</version>
+	</dependency>
+	<dependency>
+		<groupId>com.fasterxml.jackson.datatype</groupId>
+		<artifactId>jackson-datatype-jdk8</artifactId>
+		<version>[2.9.9,)</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>com.fasterxml.jackson.datatype</groupId>
+		<artifactId>jackson-datatype-jsr310</artifactId>
+		<version>[2.9.9,)</version>
+	</dependency>
+	
+	<!-- Para el DAO -->
+	<dependency>
+		<groupId>org.apache.lucene</groupId>
+		<artifactId>lucene-queryparser</artifactId>
+		<version>6.6.0</version>
+	</dependency>
+
+	<!-- Para SPARK y HANDLEBARS -->
+	<dependency>
+		<groupId>com.github.jknack</groupId>
+		<artifactId>handlebars</artifactId>
+		<version>4.1.2</version>
+	</dependency>
+	<dependency>
+		<groupId>com.github.jknack</groupId>
+		<artifactId>handlebars-helpers</artifactId>
+		<version>4.0.6</version>
+	</dependency>
+	<dependency>
+		<groupId>com.github.jknack</groupId>
+		<artifactId>handlebars-humanize</artifactId>
+		<version>4.0.6</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>com.sparkjava</groupId>
+		<artifactId>spark-core</artifactId>
+		<version>2.5</version>
+	</dependency>
+	<dependency>
+		<groupId>com.sparkjava</groupId>
+		<artifactId>spark-template-handlebars</artifactId>
+		<version>2.5.5</version>
+	</dependency>
+	<dependency>
+		<groupId>com.sparkjava</groupId>
+		<artifactId>spark-debug-tools</artifactId>
+		<version>0.5</version>
+	</dependency>
+	
+	<!-- SPARK - SQL -->
+	<dependency>
+		<groupId>org.apache.spark</groupId>
+		<artifactId>spark-sql_2.12</artifactId>
+		<version>2.4.4</version>
+	</dependency>
 		
-		<dependency>
-			<groupId>com.sparkjava</groupId>
-			<artifactId>spark-debug-tools</artifactId>
-			<version>0.5</version>
-		</dependency>
-		<dependency>
-			<groupId>com.github.jknack</groupId>
-			<artifactId>handlebars-helpers</artifactId>
-			<version>4.0.6</version>
-		</dependency>
-		<dependency>
-			<groupId>com.github.jknack</groupId>
-			<artifactId>handlebars-humanize</artifactId>
-			<version>4.0.6</version>
-		</dependency>
-	<!--
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
-	-->
+
+		
    </dependencies>
 </project>
 

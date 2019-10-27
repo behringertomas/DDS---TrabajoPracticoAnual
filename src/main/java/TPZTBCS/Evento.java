@@ -196,7 +196,7 @@ public class Evento extends TimerTask implements comando {
 		this.Sugerencia.imprimirPrendas();
 		
 		NotificacionEmail sender =new NotificacionEmail();
-    	sender.enviarNotificacion(this.usuario.getDatos());
+    	sender.enviarNotificacion(this.usuario.getEmail());
 		
 		Scanner myObj = new Scanner(System.in);
 		System.out.println("Te parece bien el atuendo?: (SI/NO)");

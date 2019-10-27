@@ -3,14 +3,13 @@ package TPZTBCS;
 public class UsuarioPremium extends Usuario {
 
 	
-	public UsuarioPremium(String nombre, int edad, String email, int fMin, int fMax, int fCuello, int fCabeza,
-			int fManos) {
-		super(nombre, edad, email, fMin, fMax, fCuello, fCabeza, fManos);
+	public UsuarioPremium(String username,String email,String pass, String nombre,int edad,int fMin,int fMax,int fCuello,int fCabeza, int fManos) {
+		super(username, email, pass, nombre, edad,fMin,fMax,fCuello,fCabeza,fManos);
 		// TODO Auto-generated constructor stub
 	}
 
-	public UsuarioPremium(String nombre, int edad, String email) {
-		super(nombre, edad, email);
+	public UsuarioPremium(String username,String email,String pass, String nombre,int edad) {
+		super(username, email, pass, nombre, edad);
 		// TODO Auto-generated constructor stub
 	}
 

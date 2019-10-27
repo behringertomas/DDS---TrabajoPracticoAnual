@@ -51,6 +51,19 @@ public class Usuario
 	@ManyToMany(cascade = {CascadeType.ALL})
 	List <Atuendo> historialAtuendos = new ArrayList<Atuendo>();
 	
+	
+	//----- USERNAME para el DAO -----
+	@Column(name = "Username")
+	private String user; //El UsuarioDao busca esta variable con el getByPropertyValue
+	
+	//----- EMAIL para el DAO -----
+	@Column(name = "Email")
+	private String email;
+	
+	//----- PASSWORD para el DAO -----
+	@Column(name = "Password")
+	private String pass;
+
 	@Transient
 	private PrendaBuilder prendaBuilder;
 	
@@ -63,10 +76,15 @@ public class Usuario
 		return this.Datos;
 	}
 	
-	public Usuario(String nombre,int edad,String email,int fMin,int fMax,int fCuello,int fCabeza, int fManos) {
+//	CONSTRUCTORES
+	public Usuario(String username,String email,String pass, String nombre,int edad,int fMin,int fMax,int fCuello,int fCabeza, int fManos) {
+		
+		this.user = username;
+		this.email = email;
+		this.pass = pass;
+		
 		this.getDatos().setNombre(nombre);
 		this.getDatos().setEdad(edad);
-		this.getDatos().setEmail(email);
 		this.getDatos().setFrioMinimo(fMin);
 		this.getDatos().setFrioMaximo(fMax);
 		this.getDatos().setFrioCabeza(fCabeza);
@@ -76,10 +94,13 @@ public class Usuario
 		
 	}
 	
-	public Usuario(String nombre,int edad,String email) {
+	public Usuario(String username,String email,String pass, String nombre,int edad) {
+		this.user = username;
+		this.email = email;
+		this.pass = pass;
+		
 		this.getDatos().setNombre(nombre);
 		this.getDatos().setEdad(edad);
-		this.getDatos().setEmail(email);
 		this.getDatos().setFrioMinimo(5);
 		this.getDatos().setFrioMaximo(15);
 		this.getDatos().setFrioCabeza(5);
@@ -87,6 +108,26 @@ public class Usuario
 		this.getDatos().setFrioManos(5);
 		this.agregarGuardarropas(new Guardarropa("DEFAULT"));
 	}
+	
+	public String getUser() {
+		return user;
+	}
+
+	public void setUser(String user) {
+		this.user = user;
+	}
+	
+	
+	public String getPassword() {
+		return pass;
+	}
+
+	public void setPassword(String pass) {
+		this.pass = pass;
+	}
+
+	
+
 	
 	
 	public void CrearGuardarropa(String Identificador) {
@@ -115,7 +156,7 @@ public class Usuario
 		this.Datos.setFrioCabeza(cantidadFrio);
 	}
 	public void setEmail(String email) {
-		this.Datos.setEmail(email);
+		this.email = email;
 	}
 	public void setEdad(int edad) {
 		this.Datos.setEdad(edad);
@@ -142,7 +183,7 @@ public class Usuario
 		return this.Datos.getEdad();
 	}
 	public String getEmail() {
-		return Datos.getEmail();
+		return this.email;
 	}
 	public int getFrioMaximo() {
 		return Datos.getFrioMaximo();
@@ -298,6 +339,10 @@ public class Usuario
 	{
 		this.historialAtuendos.add(atuendo);
 	}
+	
+    public String userSession() {
+        return getId() + "-" + getUser();
+    }
 
 }
 	

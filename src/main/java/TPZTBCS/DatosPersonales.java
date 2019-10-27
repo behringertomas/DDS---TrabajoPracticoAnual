@@ -22,9 +22,6 @@ public class DatosPersonales {
 	@Column(name = "EDAD_USUARIO")
 	int edad;
 	
-	@Column(name = "MAIL_USUARIO")
-	String email;
-	
 	@Column(name = "FRIO_MAX")
 	int FrioMaximo=15;//dejo 15 como default == si hace menos de 15 grados se abriga con algunas prendas
 	
@@ -47,9 +44,6 @@ public class DatosPersonales {
 	}
 	public void setEdad(int edad) {
 		this.edad = edad;
-	}
-	public void setEmail(String EmailNueva) {
-		this.email=EmailNueva;
 	}
 	public void setFrioMaximo(int FrioMaximoNuevo) {
 		this.FrioMaximo=FrioMaximoNuevo;
@@ -77,10 +71,6 @@ public class DatosPersonales {
 	
 	public int getEdad() {
 		return this.edad;
-	}
-	
-	public String getEmail() {
-		return this.email;
 	}
 	
 	public int getFrioMaximo() {

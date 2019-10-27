@@ -16,19 +16,34 @@ public class NotificacionEmail implements IBridgeNotificaciones {
 	
 	private final Properties properties = new Properties();
 	private Session session;
-	private DatosPersonales DatosPersonales;
+	private String email;
 	
 	@Override
-	public void enviarNotificacion(DatosPersonales datos) {
-		this.DatosPersonales = datos;
+	public void enviarNotificacion(Usuario usuario) {
+		this.email = usuario.getEmail();
 		sendEmail();
 	}
 	
+	@Override
+	public void enviarNotificacion(String email) {
+		this.email = email;
+		sendEmail();
+	}
+
 	
-	public void enviarNotificacionCambioBrusco(DatosPersonales datos) {
-		this.DatosPersonales = datos;
+	@Override
+	public void enviarNotificacionCambioBrusco(Usuario usuario) {
+		this.email = usuario.getEmail();
 		sendEmailAlerta();
 	}
+	
+	@Override
+	public void enviarNotificacionCambioBrusco(String email) {
+		this.email = email;
+		sendEmailAlerta();
+	}
+	
+	
 	
 	private void init() {
 
@@ -46,7 +61,7 @@ public class NotificacionEmail implements IBridgeNotificaciones {
 		try{
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("guardarropasztbcs@gmail.com"));//EMISOR
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(DatosPersonales.email));//RECEPTOR
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(this.email));//RECEPTOR
 			message.setSubject("Que me Pongo APP recordatorio");
 			message.setText("Sugerencias listas, pase por el guardarropas");
 			Transport t = session.getTransport("smtp");
@@ -66,7 +81,7 @@ public class NotificacionEmail implements IBridgeNotificaciones {
 		try{
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("guardarropasztbcs@gmail.com"));//EMISOR
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(DatosPersonales.email));//RECEPTOR
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(this.email));//RECEPTOR
 			message.setSubject("Cambio Brusco de Temperatura");
 			message.setText("Nueva sugerencia emitida.");
 			Transport t = session.getTransport("smtp");
@@ -78,6 +93,7 @@ public class NotificacionEmail implements IBridgeNotificaciones {
 			return;
 		}
 		
-	}	
+	}
+
 	
 }

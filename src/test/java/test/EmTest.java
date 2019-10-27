@@ -2,6 +2,8 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+
+import org.apache.log4j.BasicConfigurator;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -23,20 +25,27 @@ import db.EntityManagerHelper;
 
 public class EmTest{
 	
+	private EntityManager entityManager;
 	
-//	private static EntityManager entityManager;
-
-	
+	  @Before
+	  public void before() {
+		  BasicConfigurator.configure();
+	       EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
+	       entityManager = factory.createEntityManager();
+      }
+	  
 	  @Test 
 	  public void persistir1UsuarioTest(){ 
 		  
-	  Usuario eze = new Usuario("Ezequiel",27,"ezequiel@gmail.com");
+	  Usuario eze = new Usuario("ezequiel123","ezequiel@gmail.com","1234","Ezequiel",24);
 	  
-	  EntityManagerHelper.beginTransaction();
-	  EntityManagerHelper.getEntityManager().persist(eze);
-	  EntityManagerHelper.commit(); 
-	  Usuario persistedUser = (Usuario) EntityManagerHelper.getEntityManager().find(Usuario.class, eze.getId()); 
-	  Assert.assertEquals("Ezequiel", persistedUser.getNombre()); 
+	  EntityTransaction transaction = entityManager.getTransaction();
+      transaction.begin();
+      entityManager.persist(eze);
+      transaction.commit();
+	  
+	  Usuario usuarioPersisted  = entityManager.find(Usuario.class, eze.getId());
+	  Assert.assertEquals("ezequiel123", usuarioPersisted.getUser()); 
 	  
 	  }
 	  

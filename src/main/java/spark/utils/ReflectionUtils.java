@@ -1,10 +1,10 @@
 package spark.utils;
 
-import java.lang.reflect.Field;
-
 import org.apache.commons.lang3.reflect.FieldUtils;
 
-public class DarkMagic {
+import java.lang.reflect.Field;
+
+public class ReflectionUtils {
 
 	public static Object getField(Object obj, String fieldName) {
 		try {

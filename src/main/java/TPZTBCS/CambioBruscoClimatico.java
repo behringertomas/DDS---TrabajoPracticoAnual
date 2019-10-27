@@ -26,7 +26,7 @@ public class CambioBruscoClimatico extends TimerTask{
         	String descripcion = evento.requestDescripcionClima();
             if(  Math.abs(this.evento.getTemp() - temp) > parametroCambioBrusco) {
             	NotificacionEmail sender =new NotificacionEmail();
-            	sender.enviarNotificacionCambioBrusco(this.evento.usuario.getDatos());
+            	sender.enviarNotificacionCambioBrusco(this.evento.usuario.getEmail());
                 evento.run();
             }
         } catch (UnauthorizedException e) {
