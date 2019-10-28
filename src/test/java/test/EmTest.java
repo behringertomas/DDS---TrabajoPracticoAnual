@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import org.apache.log4j.BasicConfigurator;
+import org.hibernate.HibernateException;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -21,6 +22,8 @@ import TPZTBCS.DatosPersonales;
 import TPZTBCS.Guardarropa;
 import TPZTBCS.Prenda;
 import TPZTBCS.Usuario;
+import TPZTBCS.dao.BaseDao;
+import TPZTBCS.dao.Dao;
 import db.EntityManagerHelper;
 
 public class EmTest{
@@ -32,7 +35,7 @@ public class EmTest{
 		  BasicConfigurator.configure();
 	       EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
 	       entityManager = factory.createEntityManager();
-      }
+    }
 	  
 	  @Test 
 	  public void persistir1UsuarioTest(){ 
@@ -40,18 +43,15 @@ public class EmTest{
 	  Usuario eze = new Usuario("ezequiel123","ezequiel@gmail.com","1234","Ezequiel",24);
 	  
 	  EntityTransaction transaction = entityManager.getTransaction();
-      transaction.begin();
-      entityManager.persist(eze);
-      transaction.commit();
+	    transaction.begin();
+	    entityManager.persist(eze);
+	    transaction.commit();
 	  
 	  Usuario usuarioPersisted  = entityManager.find(Usuario.class, eze.getId());
-	  Assert.assertEquals("ezequiel123", usuarioPersisted.getUser()); 
+	  Assert.assertEquals("ezequiel123", usuarioPersisted.getUsername()); 
 	  
 	  }
-	  
-	  
-	  
-	  
+	
 
 //	@Before
 //    public void before() {

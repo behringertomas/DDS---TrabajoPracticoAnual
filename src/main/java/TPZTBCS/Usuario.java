@@ -109,11 +109,11 @@ public class Usuario
 		this.agregarGuardarropas(new Guardarropa("DEFAULT"));
 	}
 	
-	public String getUser() {
+	public String getUsername() {
 		return user;
 	}
 
-	public void setUser(String user) {
+	public void setUsername(String user) {
 		this.user = user;
 	}
 	
@@ -341,7 +341,7 @@ public class Usuario
 	}
 	
     public String userSession() {
-        return getId() + "-" + getUser();
+        return getId() + "-" + getUsername();
     }
 
 }

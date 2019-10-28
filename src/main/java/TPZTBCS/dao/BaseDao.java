@@ -2,8 +2,7 @@ package TPZTBCS.dao;
 
 import org.apache.lucene.queryparser.classic.QueryParser;
 import org.hibernate.exception.ConstraintViolationException;
-import org.hibernate.search.jpa.Search;
-import org.hibernate.search.jpa.FullTextEntityManager;
+
 
 import TPZTBCS.factory.EntityFactory;
 import TPZTBCS.models.QueryModel;
@@ -156,11 +155,11 @@ public class BaseDao implements Dao {
         return manager;
     }
 
-    protected FullTextEntityManager getFullTextEntityManager() {
-        FullTextEntityManager fullTextEntityManager = Search
-                .getFullTextEntityManager(getEntityManager());
-        return fullTextEntityManager;
-    }
+//    protected FullTextEntityManager getFullTextEntityManager() {
+//        FullTextEntityManager fullTextEntityManager = Search
+//                .getFullTextEntityManager(getEntityManager());
+//        return fullTextEntityManager;
+//    }
 
     protected String escapeKeywords(String keywords) {
         keywords = keywords.trim();
