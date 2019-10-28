@@ -39,6 +39,8 @@ import TPZTBCS.NotificacionEmail;
 import TPZTBCS.Prenda;
 import TPZTBCS.Usuario;
 import TPZTBCS.cargarImagenes;
+import TPZTBCS.dao.BaseDao;
+import TPZTBCS.dao.UsuarioDao;
 import interfacesZTBCS.ITargetAPI;
 
 
@@ -54,7 +56,11 @@ public class testsMain {
 //		notiPrueba.enviarNotificacion(usuario.getDatos());
 //		System.out.println("Hola2");
 		
+		
+		BaseDao dao = new BaseDao();
+		UsuarioDao userDao = new UsuarioDao();
 
+		System.out.println(userDao.getUserByUsername("ezequiel123").getNombre());
 		
 		
 		

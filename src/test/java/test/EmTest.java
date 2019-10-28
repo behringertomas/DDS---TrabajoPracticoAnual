@@ -35,7 +35,7 @@ public class EmTest{
 		  BasicConfigurator.configure();
 	       EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
 	       entityManager = factory.createEntityManager();
-    }
+	  }
 	  
 	  @Test 
 	  public void persistir1UsuarioTest(){ 

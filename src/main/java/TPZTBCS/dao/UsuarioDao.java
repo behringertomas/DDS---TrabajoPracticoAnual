@@ -11,11 +11,11 @@ public class UsuarioDao extends BaseDao {
     }
 
     public Usuario getUserByUsername(String username) {
-        return getByPropertyValue(Usuario.class, "user", username); //Si no lo encuentra, cambia a columnName
+        return getByPropertyValue(Usuario.class, "Username", username); //Si no lo encuentra, cambia a columnName
     }
     
     public Usuario getUserByEmail(String email) {
-        return getByPropertyValue(Usuario.class, "email", email); //Si no lo encuentra, cambia a columnName
+        return getByPropertyValue(Usuario.class, "Email", email); //Si no lo encuentra, cambia a columnName
     }
     
    
