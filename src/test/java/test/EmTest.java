@@ -24,6 +24,7 @@ import TPZTBCS.Prenda;
 import TPZTBCS.Usuario;
 import TPZTBCS.dao.BaseDao;
 import TPZTBCS.dao.Dao;
+import TPZTBCS.dao.UsuarioDao;
 import db.EntityManagerHelper;
 
 public class EmTest{
@@ -37,20 +38,32 @@ public class EmTest{
 	       entityManager = factory.createEntityManager();
 	  }
 	  
-	  @Test 
-	  public void persistir1UsuarioTest(){ 
+	  @Test
+	  public void daoRecuperar() {
 		  
-	  Usuario eze = new Usuario("ezequiel123","ezequiel@gmail.com","1234","Ezequiel",24);
-	  
-	  EntityTransaction transaction = entityManager.getTransaction();
-	    transaction.begin();
-	    entityManager.persist(eze);
-	    transaction.commit();
-	  
-	  Usuario usuarioPersisted  = entityManager.find(Usuario.class, eze.getId());
-	  Assert.assertEquals("ezequiel123", usuarioPersisted.getUsername()); 
-	  
+		  BaseDao basedao = new BaseDao();
+		  UsuarioDao usuarioDao = new UsuarioDao();
+		  
+		  Usuario u = usuarioDao.getUserByUsername("tomas123");
+		  
+		  Assert.assertEquals("tomas123", u.getUsername());
 	  }
+	  
+	  
+//	  @Test 
+//	  public void persistir1UsuarioTest(){ 
+//		  
+//	  Usuario tomas = new Usuario("tomas123","tomas@gmail.com","1234","Tomas",24);
+//	  
+//	  EntityTransaction transaction = entityManager.getTransaction();
+//	    transaction.begin();
+//	    entityManager.persist(tomas);
+//	    transaction.commit();
+//	  
+//	  Usuario usuarioPersisted  = entityManager.find(Usuario.class, tomas.getId());
+//	  Assert.assertEquals("tomas123", usuarioPersisted.getUsername()); 
+//	  
+//	  }
 	
 
 //	@Before

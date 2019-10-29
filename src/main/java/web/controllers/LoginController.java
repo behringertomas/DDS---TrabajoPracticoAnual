@@ -31,8 +31,6 @@ public class LoginController extends MainController{
 
     }
     
-    
-    
     public static ModelAndView checkLogin(Request request, Response response){
 
         String usuarioIngresado = request.queryParams("email");

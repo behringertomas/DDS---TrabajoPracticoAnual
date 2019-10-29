@@ -58,7 +58,7 @@ public class BaseDao implements Dao {
     public <T> T getByPropertyValue(Class<T> clazz, String propertyName, Object propertyValue) {
         String dotlessPropertyName = propertyName.replace(".", "");
         List<T> result = findByQuery(new QueryModel().setQuery(
-                "SELECT o FROM " + clazz.getName().toLowerCase() + " o WHERE " + propertyName
+                "SELECT o FROM " + clazz.getName() + " o WHERE " + propertyName
                         + "=:" + dotlessPropertyName)
                 .setParamNames(new String[] { dotlessPropertyName })
                 .setParamValues(new Object[] { propertyValue }));

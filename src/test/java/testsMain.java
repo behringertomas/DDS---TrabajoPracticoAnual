@@ -60,7 +60,7 @@ public class testsMain {
 		BaseDao dao = new BaseDao();
 		UsuarioDao userDao = new UsuarioDao();
 
-		System.out.println(userDao.getUserByUsername("ezequiel123").getNombre());
+		Usuario u = userDao.getUserByUsername("ezequiel123");
 		
 		
 		
