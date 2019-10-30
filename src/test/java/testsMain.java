@@ -48,7 +48,7 @@ import interfacesZTBCS.ITargetAPI;
 
 public class testsMain {
 
-	public static void main(String[] args) throws Exception, UnauthorizedException, ApiException {
+//	public static void main(String[] args) throws Exception, UnauthorizedException, ApiException {
 		
 //		Usuario usuario = new Usuario("Tomi xd",20,"agustin.zeppa@gmail.com");
 //		Guardarropa guardarropa1 = new Guardarropa("Guardarropa	Verano");
@@ -57,11 +57,11 @@ public class testsMain {
 //		System.out.println("Hola2");
 		
 		
-		BaseDao dao = new BaseDao();
-		UsuarioDao userDao = new UsuarioDao();
-
-		Usuario u = userDao.getUserByUsername("ezequiel123");
-		
+//		BaseDao dao = new BaseDao();
+//		UsuarioDao userDao = new UsuarioDao();
+//
+//		Usuario u = userDao.getUserByUsername("ezequiel123");
+//		System.out.println(u.getEmail());
 		
 		
 //		Guardarropa guardarropa2 = new Guardarropa("Guardarropa Primavera");
@@ -252,6 +252,6 @@ public class testsMain {
 //			
 		
 
-	}
+//	}
 
 }

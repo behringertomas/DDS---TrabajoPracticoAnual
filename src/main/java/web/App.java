@@ -25,7 +25,20 @@ public class App
 //	List<Categoria> categorias = new ArrayList<Categoria>();
 //	Cliente loggedClient;
 
-
+    public static App getInstance() {
+    	if(instance == null) { 
+    		instance = new App();
+    	}
+    	return instance;
+    }
+    
+    public static void iniciarControladores() {
+    	
+    	LoginController.init();
+    	
+    }
+    
+    
     public static void main( String[] args )
     {
 //    	Spark.stop(); // Sirve para parar el servidor una vez que lo arrancaste
@@ -34,37 +47,16 @@ public class App
         staticFileLocation("/webResources");
         DebugScreen.enableDebugScreen();
         Spark.init();
+        
 //		ACA TENEMOS QUE INICIAR LOS HILOS
         
-//    	LoginController.init();
+    	
+        iniciarControladores();
 
-        Spark.get("/", (request, response) -> {
-            return new ModelAndView(new HashMap(), "login.hbs");
-          }, new HandlebarsTemplateEngine());
-        
-        
-        
-        
-//        Spark.get("/", (request, response) -> {
-//        	Map<String, Object> model = new HashMap<>();
-//        	model.put("message", "Hello Handlebars!");
-//            return "<html><body><h1>HOLA</h1></body></html>";
-//        } );
-//
-//        Spark.get("/", (request, response) -> {
-//            Map<String, Object> model = new HashMap<>();
-//            model.put("message", "Hello Handlebars!");
-//            return new ModelAndView(model, "Login.html"); // located in resources/templates
-//        }, new HandlebarsTemplateEngine());
     }
 	
 
-    public static App getInstance() {
-    	if(instance == null) { 
-    		instance = new App();
-    	}
-    	return instance;
-    }
+
 
     
     

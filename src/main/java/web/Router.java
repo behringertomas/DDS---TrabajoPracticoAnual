@@ -4,7 +4,7 @@ public class Router {
 
 	
 	private static final String LOGIN = "/";
-	private static final String HOME = "/";
+	private static final String HOME = "/Menu.hbs";
     private static final String LOGOUT = "/";
 
 	public static String loginPath(){

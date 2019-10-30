@@ -25,18 +25,22 @@ public class LoginController extends MainController{
     private static AlertModel alert = new AlertModel(false,"",false);
 
     public static void init() {
+    	
         HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
         Spark.get(Router.loginPath(),LoginController::showLogin,engine);
         Spark.post(Router.loginPath(),LoginController::checkLogin,engine);
 
     }
     
+    
+//    ¿¿¿ QUÉ SERIA UN MODEL AND VIEW  ?????
     public static ModelAndView checkLogin(Request request, Response response){
 
         String usuarioIngresado = request.queryParams("email");
 
         UsuarioDao dao = new UsuarioDao();
-        if (usuarioIngresado.contains("@")) { //SI SE INGRESA EL EMAIL
+        if (usuarioIngresado.contains("@")) {
+        	
         	Usuario u =  dao.getUserByEmail(usuarioIngresado);
         	
             if (u != null && u.getPassword().equals(request.queryParams("password"))){ //Si no funciona, cambia al ColumnName en vez del nombre de la variable.
@@ -47,7 +51,7 @@ public class LoginController extends MainController{
         	
         	
         }
-        else { //SI SE INGRESA EL USERNAME
+        else { 
         	Usuario u =  dao.getUserByUsername(usuarioIngresado);
         	  	
             if (u != null && u.getPassword().equals(request.queryParams("pass"))){ //Si no funciona, cambia al ColumnName en vez del nombre de la variable.

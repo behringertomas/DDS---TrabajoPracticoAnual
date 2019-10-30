@@ -76,6 +76,10 @@ public class Usuario
 		return this.Datos;
 	}
 	
+	public Usuario() {
+		
+	}
+	
 //	CONSTRUCTORES
 	public Usuario(String username,String email,String pass, String nombre,int edad,int fMin,int fMax,int fCuello,int fCabeza, int fManos) {
 		
