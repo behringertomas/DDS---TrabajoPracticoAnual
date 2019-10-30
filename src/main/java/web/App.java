@@ -41,7 +41,7 @@ public class App
     
     public static void main( String[] args )
     {
-//    	Spark.stop(); // Sirve para parar el servidor una vez que lo arrancaste
+
     	BasicConfigurator.configure(); //sin eso no se configura el logger. No sacar.
         Spark.port(9000);
         staticFileLocation("/webResources");
@@ -52,11 +52,21 @@ public class App
         
     	
         iniciarControladores();
-
+        
+	 
+        
+        
     }
 	
 
-
+//    {{#each table}}
+//    <tr>
+//      <td>{{cliente.nombre}} {{cliente.apellido}}</td>
+//      <td>{{consumoTotal}}</td>
+//    </tr>
+//  {{/each}} 
+//    laS llave son para insertar una varibale nuestra
+//    {{>admin/navBar.hbs}} para insertar un modulo / template
 
     
     
