@@ -18,6 +18,9 @@ public class UsuarioDao extends BaseDao {
         return getByPropertyValue(Usuario.class, "Email", email); //Si no lo encuentra, cambia a columnName
     }
     
+    public Usuario getUsuario(int id) {
+        return getById(Usuario.class,id);
+    }
    
     public List<Usuario> list() { return list(Usuario.class); }
 

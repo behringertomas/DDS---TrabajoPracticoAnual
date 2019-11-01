@@ -24,6 +24,7 @@ import TPZTBCS.Prenda;
 import TPZTBCS.Usuario;
 import TPZTBCS.dao.BaseDao;
 import TPZTBCS.dao.Dao;
+import TPZTBCS.dao.GuardarropaDao;
 import TPZTBCS.dao.UsuarioDao;
 import db.EntityManagerHelper;
 
@@ -38,17 +39,34 @@ public class EmTest{
 	       entityManager = factory.createEntityManager();
 	  }
 	  
-	  @Test
-	  public void daoRecuperar() {
-		  
-		  BaseDao basedao = new BaseDao();
-		  UsuarioDao usuarioDao = new UsuarioDao();
-		  
-		  Usuario u = usuarioDao.getUserByUsername("tomas123");
-		  
-		  Assert.assertEquals("tomas123", u.getUsername());
-	  }
+//	  @Test
+//	  public void daoRecuperarUsuario() {
+//		  
+//		  BaseDao basedao = new BaseDao();
+//		  UsuarioDao usuarioDao = new UsuarioDao();
+//		  
+//		  Usuario u = usuarioDao.getUserByUsername("tomas123");
+//		  
+//		  Assert.assertEquals("tomas123", u.getUsername());
+//	  }
 	  
+//	  @Test
+//	  public void TestGuardarropa() {
+//		  Usuario agustin = new Usuario("agustin","agustin@gmail.com","1234","Agustin Zeppa",24);
+//		  agustin.CrearGuardarropa("Guardarropa Primaveral",10);
+//
+//		  BaseDao basedao = new BaseDao();
+//		  UsuarioDao usuarioDao = new UsuarioDao();
+//		  GuardarropaDao gDao = new GuardarropaDao();
+//		  
+//		    EntityTransaction transaction = entityManager.getTransaction();
+//	        transaction.begin();
+//	        entityManager.persist(agustin);
+//	        transaction.commit();
+//	        
+//	       gDao.getAllGuardarropas(agustin).stream().map(x->x.getIdentificador());
+//	         
+//	  }
 	  
 //	  @Test 
 //	  public void persistir1UsuarioTest(){ 
@@ -89,24 +107,7 @@ public class EmTest{
 //	        assertEquals(usuarioPersisted, eze);
 //	  }
 //	  
-//	  @Test
-//	  public void TestGuardarropa() {
-//		  Usuario tomas = new Usuario("Tomas",21,"behringertomas@gmail.com");
-//		  tomas.CrearGuardarropa("Guardarropa Primaveral",10);
-//
-//		    EntityTransaction transaction = entityManager.getTransaction();
-//	        transaction.begin();
-//	        entityManager.persist(tomas);
-//	        transaction.commit();
-//	         
-//	        assertNotNull(tomas.getId());
-//	        assertNotNull(tomas.getGuardarropa("Guardarropa Primaveral").getID());
-//	        Guardarropa guardarropaPersisted = entityManager.find(Guardarropa.class, tomas.getGuardarropa("Guardarropa Primaveral").getID());
-//	        
-//	        assertEquals(tomas.getGuardarropa("Guardarropa Primaveral"),guardarropaPersisted);
-//	        
-//	        
-//	  }
+	  
 //	  
 //	  @Test
 //	  public void TestEvento() throws Exception {

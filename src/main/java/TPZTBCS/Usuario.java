@@ -42,6 +42,7 @@ public class Usuario
 	@JoinColumn (name = "ID_DATOS_PERSONALES")
 	DatosPersonales Datos= new DatosPersonales();
 	
+	@Column (name = "ID_GUARDARROPA")
 	@ManyToMany(cascade = {CascadeType.ALL})
 	Collection <Guardarropa> listaGuardarropas = new ArrayList<Guardarropa>(); //Lista de Guardarropas que contiene el usuario
 	

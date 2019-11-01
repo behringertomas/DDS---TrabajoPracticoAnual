@@ -3,8 +3,15 @@ import java.time.LocalDate;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Persistence;
+
 import com.krds.accuweatherapi.exceptions.ApiException;
 import com.krds.accuweatherapi.exceptions.UnauthorizedException;
+
+import org.apache.log4j.BasicConfigurator;
 import org.json.simple.JSONObject;
 import org.paukov.combinatorics3.Generator;
 
@@ -40,6 +47,7 @@ import TPZTBCS.Prenda;
 import TPZTBCS.Usuario;
 import TPZTBCS.cargarImagenes;
 import TPZTBCS.dao.BaseDao;
+import TPZTBCS.dao.GuardarropaDao;
 import TPZTBCS.dao.UsuarioDao;
 import interfacesZTBCS.ITargetAPI;
 
@@ -47,9 +55,29 @@ import interfacesZTBCS.ITargetAPI;
 
 
 public class testsMain {
+	
+	
 
-//	public static void main(String[] args) throws Exception, UnauthorizedException, ApiException {
+	public static void main(String[] args) throws Exception, UnauthorizedException, ApiException {
 		
+		EntityManager entityManager; 
+		BasicConfigurator.configure();
+	    EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
+	    entityManager = factory.createEntityManager();
+		
+		Usuario agustin = new Usuario("agustin","agustin@gmail.com","1234","Agustin Zeppa",24);
+		agustin.CrearGuardarropa("Guardarropa Primaveral",10);
+
+	    GuardarropaDao gDao = new GuardarropaDao();
+		  
+	    EntityTransaction transaction = entityManager.getTransaction();
+        transaction.begin();
+        entityManager.persist(agustin);
+        transaction.commit();
+	        
+	    gDao.getAllGuardarropas(agustin).stream().map(x->x.getIdentificador());
+	    
+	    
 //		Usuario usuario = new Usuario("Tomi xd",20,"agustin.zeppa@gmail.com");
 //		Guardarropa guardarropa1 = new Guardarropa("Guardarropa	Verano");
 //		NotificacionEmail notiPrueba = new NotificacionEmail();
@@ -252,6 +280,6 @@ public class testsMain {
 //			
 		
 
-//	}
+	}
 
 }

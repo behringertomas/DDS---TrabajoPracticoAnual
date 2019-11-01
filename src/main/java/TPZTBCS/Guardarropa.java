@@ -57,6 +57,9 @@ public class Guardarropa
 	@Column(name = "LIMITE_PRENDAS")
 	int limiteDePrendas;
 	
+	@OneToMany(targetEntity = Prenda.class,mappedBy = "guardarropa_id",cascade = CascadeType.ALL)
+	List <Prenda> TodasLasPrendas = new ArrayList<Prenda>();
+	
 	public Guardarropa(String identificador,int limiteDePrendas)
 	{
 		this.identificador = identificador;
@@ -69,8 +72,7 @@ public class Guardarropa
 		this.limiteDePrendas = 99999;
 	}
 	
-	@OneToMany(targetEntity = Prenda.class,mappedBy = "guardarropa_id",cascade = CascadeType.ALL)
-	List <Prenda> TodasLasPrendas = new ArrayList<Prenda>();
+
 	
 	@Transient
 	ArrayList <Prenda> parteSuperior = new ArrayList<Prenda>();
