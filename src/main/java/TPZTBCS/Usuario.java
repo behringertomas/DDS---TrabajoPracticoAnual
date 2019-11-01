@@ -36,7 +36,7 @@ public class Usuario
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID_USUARIO")
-    Long ID;
+	int ID;
 	
 	@OneToOne(cascade = {CascadeType.ALL})
 	@JoinColumn (name = "ID_DATOS_PERSONALES")
@@ -178,7 +178,7 @@ public class Usuario
 	public Collection<Guardarropa> getListaGuardarropas() {
 		return listaGuardarropas;
 	}
-	public Long getId() {
+	public int getId() {
         return ID;
     }
 	public String getNombre() {

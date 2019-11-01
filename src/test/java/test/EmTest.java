@@ -64,7 +64,7 @@ public class EmTest{
 //	        entityManager.persist(agustin);
 //	        transaction.commit();
 //	        
-//	       gDao.getAllGuardarropas(agustin).stream().map(x->x.getIdentificador());
+//	      
 //	         
 //	  }
 	  

@@ -14,7 +14,7 @@ public class DatosPersonales {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID_DATOS_PERSONALES")
-	Long ID;
+	int ID;
 	
 	@Column(name = "NOM_USUARIO")
 	String nombre;
@@ -61,7 +61,7 @@ public class DatosPersonales {
 		this.FrioCabeza=FrioCabezaNueva;
 	}
 	
-	public Long getId() {
+	public int getId() {
         return ID;
     }
 	

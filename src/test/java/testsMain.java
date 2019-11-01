@@ -58,25 +58,29 @@ public class testsMain {
 	
 	
 
-	public static void main(String[] args) throws Exception, UnauthorizedException, ApiException {
+//	public static void main(String[] args) throws Exception, UnauthorizedException, ApiException {
 		
-		EntityManager entityManager; 
-		BasicConfigurator.configure();
-	    EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
-	    entityManager = factory.createEntityManager();
-		
-		Usuario agustin = new Usuario("agustin","agustin@gmail.com","1234","Agustin Zeppa",24);
-		agustin.CrearGuardarropa("Guardarropa Primaveral",10);
+//		EntityManager entityManager; 
+//		BasicConfigurator.configure();
+//	    EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
+//	    entityManager = factory.createEntityManager();
+//		
+//		Usuario agustin = new Usuario("agustin","agustin@gmail.com","1234","Agustin Zeppa",24);
+//		agustin.CrearGuardarropa("Guardarropa Primaveral",10);
 
-	    GuardarropaDao gDao = new GuardarropaDao();
-		  
-	    EntityTransaction transaction = entityManager.getTransaction();
-        transaction.begin();
-        entityManager.persist(agustin);
-        transaction.commit();
-	        
-	    gDao.getAllGuardarropas(agustin).stream().map(x->x.getIdentificador());
+//		UsuarioDao uDao = new UsuarioDao();
+//		
+//		Usuario agustinPersistido = uDao.getUserByUsername("agustin");
+//	    GuardarropaDao gDao = new GuardarropaDao();
+		
+//	    EntityTransaction transaction = entityManager.getTransaction();
+//        transaction.begin();
+//        entityManager.persist(agustin);
+//        transaction.commit();
 	    
+	    
+//	    gDao.getAllGuardarropas(agustinPersistido).forEach(x->x.imprimirGuardarropa());
+
 	    
 //		Usuario usuario = new Usuario("Tomi xd",20,"agustin.zeppa@gmail.com");
 //		Guardarropa guardarropa1 = new Guardarropa("Guardarropa	Verano");
@@ -280,6 +284,6 @@ public class testsMain {
 //			
 		
 
-	}
+//	}
 
 }

@@ -22,7 +22,7 @@ public class Atuendo
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID_ATUENDO_ELEGIDO")
-	Long ID;
+	int ID;
 	
 	@OneToMany (targetEntity = Prenda.class,mappedBy = "atuendo",cascade = CascadeType.ALL)
 	List <Prenda> prendas;

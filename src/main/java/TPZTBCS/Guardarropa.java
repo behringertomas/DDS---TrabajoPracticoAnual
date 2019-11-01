@@ -46,10 +46,11 @@ import interfacesZTBCS.ITargetAPI;
 @Table(name = "Guardarropa")
 public class Guardarropa 
 {
+
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID_GUARDARROPA")
-	Long ID;
+	int ID;
 
 	@Column(name = "NOM_GUARDARROPA")
 	String identificador;
@@ -64,6 +65,10 @@ public class Guardarropa
 	{
 		this.identificador = identificador;
 		this.limiteDePrendas = limiteDePrendas;
+	}
+	
+	public Guardarropa() {
+		
 	}
 	
 	public Guardarropa(String identificador)
@@ -463,11 +468,11 @@ public class Guardarropa
 	}
 	
 //----------------------- GETTERS AND SETTERS -----------------------
-	public Long getID() {
+	public int getID() {
 		return ID;
 	}
 
-	public void setID(Long iD) {
+	public void setID(int iD) {
 		ID = iD;
 	}
 
@@ -585,6 +590,10 @@ public class Guardarropa
 			return listaConNombre.get(0);
 		}
 		else return null;
+	}
+	
+	public void imprimirGuardarropa() {
+		System.out.println( "Guardarropa [identificador=" + identificador + ", limiteDePrendas=" + limiteDePrendas + "]");
 	}
 	
 	

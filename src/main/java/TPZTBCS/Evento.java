@@ -49,7 +49,7 @@ public class Evento extends TimerTask implements comando {
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID_EVENTO")
-	Long ID;
+	int ID;
 	
 	@Column(name = "HS_CHEQUEO_CAMBIOBRUSCO")
 	public int horasChequeoCambioBrusco = 6;

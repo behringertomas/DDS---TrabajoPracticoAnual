@@ -30,7 +30,7 @@ public class listadoGuardarropasController extends MainController {
 
 	
 	public static PointValuePair solucion;
-	private static final String HOME = "/listadoGuardarropas.hbs";
+	private static final String HOME = "cliente/listadoGuardarropas.hbs";
 	private static listadoGuardarropaModel model;
     private static Usuario currentUser;
     private static AlertModel alert = new AlertModel(false,"",false);
@@ -52,7 +52,7 @@ public class listadoGuardarropasController extends MainController {
 
         String userSession = request.session().attribute("user");
         Integer userID = Integer.parseInt(userSession.substring(0, userSession.indexOf("-")));
-        
+
         currentUser = uDao.getUsuario(userID);
         
 
