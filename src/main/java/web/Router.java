@@ -5,6 +5,7 @@ public class Router {
 	
 	private static final String LOGIN = "/";
 	private static final String HOME = "/listadoGuardarropas";
+	private static final String ListadoPrendas = "/listadoPrendas";
 //	Le puse home a esta porque es la primera que se muestra luego del login.
     private static final String LOGOUT = "/";
 
@@ -19,4 +20,10 @@ public class Router {
     public static String logoutPath(){
         return LOGOUT;
     }
+
+    public static String prendasPath(){
+        return ListadoPrendas;
+    }
+
+
 }

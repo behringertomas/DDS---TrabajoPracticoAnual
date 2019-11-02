@@ -18,5 +18,9 @@ public class GuardarropaDao extends BaseDao {
 	public Guardarropa getGuardarropa(int id) {
 	     return getById(Guardarropa.class,id);
 	}
-
+	
+    public Guardarropa getGuardarropaByName(String guardarropa) {
+        return getByPropertyValue(Guardarropa.class, "NOM_GUARDARROPA", guardarropa); //Si no lo encuentra, cambia a columnName
+    }
+	
 }

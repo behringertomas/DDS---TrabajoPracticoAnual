@@ -233,6 +233,7 @@ public class Usuario
 	public void construirPrenda(String parte,String tipo, String material, String colorPrimario, String colorSecundario) throws Exception
 	{
 		this.getGuardarropa("DEFAULT").construirPrenda(parte, tipo, material, colorPrimario,colorSecundario);
+
 	}
 	
 	public void construirPrenda(String parte,String tipo, String material, String colorPrimario) throws Exception

@@ -59,7 +59,13 @@ public class testsMain {
 	
 
 //	public static void main(String[] args) throws Exception, UnauthorizedException, ApiException {
-		
+//		
+//		UsuarioDao usr = new UsuarioDao();
+//		Usuario tomasSQL = usr.getUserByUsername("tomas");
+//		
+//		System.out.println(tomasSQL.getGuardarropa("Guardarropa Primaveral").getAllPrendas().size());
+//		
+//	} 
 //		EntityManager entityManager; 
 //		BasicConfigurator.configure();
 //	    EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
@@ -68,9 +74,17 @@ public class testsMain {
 //		Usuario agustin = new Usuario("agustin","agustin@gmail.com","1234","Agustin Zeppa",24);
 //		agustin.CrearGuardarropa("Guardarropa Primaveral",10);
 
-//		UsuarioDao uDao = new UsuarioDao();
+		UsuarioDao uDao = new UsuarioDao();
 //		
 //		Usuario agustinPersistido = uDao.getUserByUsername("agustin");
+		
+//		agustinPersistido.construirPrenda("Parte Superior","Remera", "Tela", "Rojo", "Negro");
+//		agustinPersistido.construirPrenda("Parte Inferior","Pantalon Largo", "Jean", "Azul", "Negro");
+//		agustinPersistido.construirPrenda("Calzado","Runners", "Algodon", "Rojo", "Negro");
+//		agustinPersistido.construirPrenda("Accesorio","Pulsera", "Plata", "Rojo", "Negro");
+//		
+		//agustinPersistido.asignarPrenda(agustinPersistido.getGuardarropa("Guardarropa Primaveral"), prenda);
+		
 //	    GuardarropaDao gDao = new GuardarropaDao();
 		
 //	    EntityTransaction transaction = entityManager.getTransaction();
@@ -109,11 +123,9 @@ public class testsMain {
 //		prenda1.setPuntaje(usuario, 9);
 //		System.out.println("puntaje2 : " + prenda1.getPuntaje(usuario));
 		
-//		Prenda prenda1  =usuario.construirPrenda("Parte Superior","Remera", "Tela", "Rojo", "Negro");
-//		Prenda prenda2  =usuario.construirPrenda("Parte Inferior","Pantalon Largo", "Jean", "Azul", "Negro");
-//		Prenda prenda3  =usuario.construirPrenda("Calzado","Runners", "Algodon", "Rojo", "Negro");
-//		Prenda prenda4  =usuario.construirPrenda("Accesorio","Pulsera", "Plata", "Rojo", "Negro");
-//		
+		
+		
+		
 //		Prenda prenda9  =usuario.construirPrenda("Parte Superior","Musculosa", "Tela", "Rojo", "Negro");
 //		Prenda prenda10 =usuario.construirPrenda("Parte Inferior","Pollera", "Jean", "Azul", "Negro");
 //		Prenda prenda11 =usuario.construirPrenda("Calzado","Trainers", "Cuero", "Rojo", "Negro");

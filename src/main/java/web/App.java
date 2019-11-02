@@ -8,6 +8,7 @@ import spark.debug.DebugScreen;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import web.controllers.LoginController;
 import web.controllers.listadoGuardarropasController;
+import web.controllers.listadoPrendasController;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class App
     	
     	LoginController.init();
     	listadoGuardarropasController.init();
-    	
+    	listadoPrendasController.init();
     }
     
     

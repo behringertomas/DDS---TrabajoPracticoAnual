@@ -83,7 +83,7 @@ public class listadoGuardarropasController extends MainController {
    private static void fillListadoGuardarropasTable() {
 
         List<listadoGuardarropaTable> table = new ArrayList<listadoGuardarropaTable>();  
-        List<Guardarropa> guardarropas = gDao.getAllGuardarropas(currentUser);
+        List<Guardarropa> guardarropas = (List<Guardarropa>) currentUser.getListaGuardarropas();
 
 //        double indice = 0;
         

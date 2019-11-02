@@ -112,7 +112,19 @@ public class Prenda
     	return this.strategyTemp.getTemperatura(this);
     }
     
-    public strategyTemperatura getStrategy() {
+    public String getMaterial() {
+		return material;
+	}
+
+	public String getColorPrimario() {
+		return colorPrimario;
+	}
+
+	public String getParte() {
+		return parte;
+	}
+
+	public strategyTemperatura getStrategy() {
     	return this.strategyTemp;
     }
     

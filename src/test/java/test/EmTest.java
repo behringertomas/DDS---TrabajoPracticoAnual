@@ -50,6 +50,21 @@ public class EmTest{
 //		  Assert.assertEquals("tomas123", u.getUsername());
 //	  }
 	  
+	  
+	  
+// TEST PARA GENERAR UN USUARIO CON GUARDARROPA Y UNA PRENDA!
+	  
+	  @Test
+	  public void TestPrenda() throws Exception {
+
+//		  UsuarioDao uDao = new UsuarioDao();
+//		  Usuario usuarioPersisted =uDao.getUserByUsername("tomas");
+		 
+		  
+		  
+//		  assertEquals(usuarioPersisted.getGuardarropa("Guardarropa Primaveral").getAllPrendas().get(0).getTipo(),"Remera");
+	  }
+	  
 //	  @Test
 //	  public void TestGuardarropa() {
 //		  Usuario agustin = new Usuario("agustin","agustin@gmail.com","1234","Agustin Zeppa",24);
@@ -128,10 +143,12 @@ public class EmTest{
 //	        assertEquals(usuarioPersisted.getEvento("Fiesta de Gala").getDescripcion(),"fiesta de gala");
 //	        assertEquals(usuarioPersisted.getEvento("Fiesta de Disfraces").getDescripcion(),"fiesta de disfraces");
 //	  }
-//	  
+	  
+	  // TEST PARA GENERAR UN USUARIO CON GUARDARROPA Y UNA PRENDA!
+	  
 //	  @Test
 //	  public void TestPrenda() throws Exception {
-//		  Usuario tomas = new Usuario("Tomas",21,"behringertomas@gmail.com");
+//		  Usuario tomas = new Usuario("tomas","tomas@gmail.com","1234","Tomas Behringer",21);
 //		  tomas.construirPrenda("Parte Superior","Remera", "Tela", "Rojo", "Negro");
 //		  tomas.CrearGuardarropa("Guardarropa Primaveral",10);
 //		  tomas.asignarPrenda(tomas.getGuardarropa("Guardarropa Primaveral"), tomas.getGuardarropa("DEFAULT").getAllPrendas().get(0));
@@ -142,6 +159,7 @@ public class EmTest{
 //	      transaction.commit();
 //	        
 //	      assertNotNull(tomas.getId());
+	  
 //	      Usuario usuarioPersisted = entityManager.find(Usuario.class, tomas.getId());
 //	        
 //        assertEquals(usuarioPersisted.getGuardarropa("Guardarropa Primaveral").getAllPrendas().get(0).getTipo(),"Remera");
