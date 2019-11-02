@@ -3,7 +3,7 @@ package web.models.views;
 public class listadoGuardarropaTable {
 
 	private String guardarropa;
-	private int index;
+	private int index; //index = cantPrendas
 	
     public listadoGuardarropaTable(String guardarropa, int index) {
         this.guardarropa = guardarropa;
@@ -13,7 +13,7 @@ public class listadoGuardarropaTable {
     public listadoGuardarropaTable() {
     }
     
-    public String gerGuardarropa() {
+    public String getGuardarropa() {
         return guardarropa;
     }
     
@@ -21,7 +21,7 @@ public class listadoGuardarropaTable {
         return index;
     }
     
-    public void setGuardarropa(String guardarropa) {
+    public void setGuardarropa(String guardarropa) { 
         this.guardarropa = guardarropa;
     }
 

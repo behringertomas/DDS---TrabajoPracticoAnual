@@ -8,8 +8,9 @@ import web.models.views.listadoGuardarropaTable;
 public class listadoGuardarropaModel {
 	
 	 private List<listadoGuardarropaTable> table;
-	 private String identificador;
-	 private int limitePrendas;
+	 
+//	 private String identificador;
+//	 private int limitePrendas;
 	
 	public listadoGuardarropaModel() {
         table = new ArrayList<>();
@@ -19,8 +20,8 @@ public class listadoGuardarropaModel {
         this.table = tableN;
     }
     
-    public void setlistadoGuardarropaTable(List<listadoGuardarropaTable> tableSimplex) {
-        this.table = tableSimplex;
+    public void setlistadoGuardarropaTable(List<listadoGuardarropaTable> tableListadoGuardarropas) {
+        this.table = tableListadoGuardarropas;
     }
     
     public List<listadoGuardarropaTable> getTable() {
@@ -28,23 +29,23 @@ public class listadoGuardarropaModel {
     }
     
     
-//  ****** GETTERS AND SETTERS NUESTROS ******
+//  ****** GETTERS AND SETTERS ******
     
-    public String getIdentificador() {
-		return identificador;
-	}
-
-	public void setIdentificador(String identificador) {
-		this.identificador = identificador;
-	}
-
-	public int getLimitePrendas() {
-		return limitePrendas;
-	}
-
-	public void setLimitePrendas(int limitePrendas) {
-		this.limitePrendas = limitePrendas;
-	}
+//    public String getIdentificador() {
+//		return identificador;
+//	}
+//
+//	public void setIdentificador(String identificador) {
+//		this.identificador = identificador;
+//	}
+//
+//	public int getLimitePrendas() {
+//		return limitePrendas;
+//	}
+//
+//	public void setLimitePrendas(int limitePrendas) {
+//		this.limitePrendas = limitePrendas;
+//	}
     
 
 }

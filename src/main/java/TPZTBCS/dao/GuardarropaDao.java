@@ -15,7 +15,7 @@ public class GuardarropaDao extends BaseDao {
 	
 	public List<Guardarropa> list() {return list(Guardarropa.class);}
 	
-	public Guardarropa getDispositivo(int id) {
+	public Guardarropa getGuardarropa(int id) {
 	     return getById(Guardarropa.class,id);
 	}
 

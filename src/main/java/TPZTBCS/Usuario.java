@@ -46,9 +46,11 @@ public class Usuario
 	@ManyToMany(cascade = {CascadeType.ALL})
 	Collection <Guardarropa> listaGuardarropas = new ArrayList<Guardarropa>(); //Lista de Guardarropas que contiene el usuario
 	
+	@Column (name = "ID_EVENTO")
 	@OneToMany(mappedBy = "usuario",cascade = CascadeType.ALL)
 	Collection <Evento> listaEvento = new ArrayList<Evento>();
 	
+	@Column (name = "ID_HISTORIAL")
 	@ManyToMany(cascade = {CascadeType.ALL})
 	List <Atuendo> historialAtuendos = new ArrayList<Atuendo>();
 	

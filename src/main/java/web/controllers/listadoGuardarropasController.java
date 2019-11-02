@@ -38,6 +38,8 @@ public class listadoGuardarropasController extends MainController {
     private static UsuarioDao uDao = new UsuarioDao();
     private static GuardarropaDao gDao = new GuardarropaDao();
     
+//    private static String descripcionGuardarropa;
+//    private static int cantPrendas;
 	
 	 
     public static void init() {
@@ -61,7 +63,7 @@ public class listadoGuardarropasController extends MainController {
             {
                 alert.setHideAlert();
                 fillListadoGuardarropasTable();
-                
+//                fillModel(currentUser); no precisamos llenar el modelo porque no tenemos ningun atributo alli.
                 return new spark.ModelAndView(model,HOME);
             }
         catch(Exception e)
@@ -77,27 +79,30 @@ public class listadoGuardarropasController extends MainController {
         model = new listadoGuardarropaModel();
     }
 
+
    private static void fillListadoGuardarropasTable() {
 
-        List<listadoGuardarropaTable> table = new ArrayList<listadoGuardarropaTable>();
+        List<listadoGuardarropaTable> table = new ArrayList<listadoGuardarropaTable>();  
         List<Guardarropa> guardarropas = gDao.getAllGuardarropas(currentUser);
 
-        double indice = 0;
+//        double indice = 0;
         
        try{
-	       for(int i = 0; i < 2;i++)
+	       for(int i = 0; i < 2;i++) //pide hasta 2 guardarropas.
 	       {
-	           indice = (solucion.getPoint()[i]);
+//	           indice = (solucion.getPoint()[i]);
 	          
-	           listadoGuardarropaTable row = new listadoGuardarropaTable();
+	           listadoGuardarropaTable row = new listadoGuardarropaTable(); //creo una fila
 	           row.setGuardarropa(guardarropas.get(i).getIdentificador());
-	           row.setIndex((int) indice);
+	           row.setIndex(guardarropas.get(i).getLimiteDePrendas());
+//	           row.setIndex((int) indice);
 	           table.add(row);
 	       }
        }
        catch(Exception e){}
 
        model.setlistadoGuardarropaTable(table);
+       
     }
    
 
