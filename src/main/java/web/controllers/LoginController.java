@@ -25,20 +25,15 @@ public class LoginController extends MainController{
     private static AlertModel alert = new AlertModel(false,"",false);
 
     public static void init() {
-    	
-//    	como funcionaria el GET y POST de aca?
         HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
-        Spark.get(Router.loginPath(),LoginController::showLogin,engine); //Carga la pagina, Engine son las config del spark
-        Spark.post(Router.loginPath(),LoginController::checkLogin,engine); //ante una accion, submit formulario o ante un evento
-
+        Spark.get(Router.loginPath(),LoginController::showLogin,engine);
+        Spark.post(Router.loginPath(),LoginController::checkLogin,engine);
     }
     
     
-//    ¿¿¿ QUÉ SERIA UN MODEL AND VIEW  ?????
     public static ModelAndView checkLogin(Request request, Response response){
 
         String usuarioIngresado = request.queryParams("email");
-        //request.queryParams("email");
 
         UsuarioDao dao = new UsuarioDao();
         

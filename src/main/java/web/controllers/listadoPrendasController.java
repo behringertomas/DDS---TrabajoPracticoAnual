@@ -31,7 +31,7 @@ import web.models.views.listadoPrendasTable;
 public class listadoPrendasController  extends MainController {
 
 	public static PointValuePair solucion;
-	private static final String ListadoPrendas = "cliente/listadoPrendas.hbs";
+	private static final String LISTADO_PRENDAS = "cliente/listadoPrendas.hbs";
 	private static listadoPrendasModel model;
     private static Usuario currentUser;
     private static AlertModel alert = new AlertModel(false,"",false);
@@ -53,7 +53,7 @@ public class listadoPrendasController  extends MainController {
     	getCurrentClient(request);
         sessionExist(request, response);
         model.setShowAlert(false);
-        return new ModelAndView (model, ListadoPrendas);
+        return new ModelAndView (model, LISTADO_PRENDAS);
     }
     
     private static void getCurrentClient(Request request) {
@@ -75,12 +75,12 @@ public class listadoPrendasController  extends MainController {
             {
                 alert.setHideAlert();
                 fillListadoPrendasTable(request,response);
-                return new spark.ModelAndView(model,ListadoPrendas);
+                return new spark.ModelAndView(model,LISTADO_PRENDAS);
             }
         catch(Exception e)
             {
                 alert.setShowAlertWithMessage("Error");
-                return new ModelAndView(alert, ListadoPrendas);
+                return new ModelAndView(alert, LISTADO_PRENDAS);
             }
 
         }
@@ -102,7 +102,7 @@ public class listadoPrendasController  extends MainController {
             List<Prenda> lstPrendas = currentUser.getGuardarropa(guardarropaABuscar).getAllPrendas();
             
            try{
-    	       for(int i = 0; i < lstPrendas.size(); i++) //pide hasta 2 guardarropas.
+    	       for(int i = 0; i < lstPrendas.size(); i++)
     	       {
     	    	   listadoPrendasTable row = new listadoPrendasTable();
     	    	   

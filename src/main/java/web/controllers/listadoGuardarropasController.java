@@ -32,9 +32,9 @@ public class listadoGuardarropasController extends MainController {
 	public static PointValuePair solucion;
 	private static final String HOME = "cliente/listadoGuardarropas.hbs";
 	private static listadoGuardarropaModel model;
-    private static Usuario currentUser;
     private static AlertModel alert = new AlertModel(false,"",false);
     
+    private static Usuario currentUser;
     private static UsuarioDao uDao = new UsuarioDao();
     private static GuardarropaDao gDao = new GuardarropaDao();
     
@@ -56,14 +56,11 @@ public class listadoGuardarropasController extends MainController {
         Integer userID = Integer.parseInt(userSession.substring(0, userSession.indexOf("-")));
 
         currentUser = uDao.getUsuario(userID);
-        
 
-        
         try
             {
                 alert.setHideAlert();
                 fillListadoGuardarropasTable();
-//                fillModel(currentUser); no precisamos llenar el modelo porque no tenemos ningun atributo alli.
                 return new spark.ModelAndView(model,HOME);
             }
         catch(Exception e)

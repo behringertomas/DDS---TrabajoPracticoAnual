@@ -7,8 +7,11 @@ import spark.Spark;
 import spark.debug.DebugScreen;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import web.controllers.LoginController;
+import web.controllers.altaPrendaController;
+import web.controllers.altaTipoSuperiorController;
 import web.controllers.listadoGuardarropasController;
 import web.controllers.listadoPrendasController;
+import web.models.altaTipoSuperiorModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,8 +27,6 @@ import static spark.Spark.staticFileLocation;
 public class App 
 {
 	private static App instance = null;
-//	List<Categoria> categorias = new ArrayList<Categoria>();
-//	Cliente loggedClient;
 
     public static App getInstance() {
     	if(instance == null) { 
@@ -39,6 +40,10 @@ public class App
     	LoginController.init();
     	listadoGuardarropasController.init();
     	listadoPrendasController.init();
+    	altaPrendaController.init();
+    	altaTipoSuperiorController.init();
+//    	altaTipoInferiorController.init();
+
     }
     
     
@@ -60,18 +65,7 @@ public class App
         
         
     }
-	
 
-//    {{#each table}}
-//    <tr>
-//      <td>{{cliente.nombre}} {{cliente.apellido}}</td>
-//      <td>{{consumoTotal}}</td>
-//    </tr>
-//  {{/each}} 
-//    laS llave son para insertar una varibale nuestra
-//    {{>admin/navBar.hbs}} para insertar un modulo / template
-
-    
     
 }
 
