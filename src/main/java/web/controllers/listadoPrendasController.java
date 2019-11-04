@@ -39,7 +39,6 @@ public class listadoPrendasController  extends MainController {
     private static UsuarioDao uDao = new UsuarioDao();
     private static GuardarropaDao gDao = new GuardarropaDao();
     
-/////////////////////////////////////////////////////////////
     
     public static void init() {
         HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
@@ -47,7 +46,7 @@ public class listadoPrendasController  extends MainController {
         Spark.post(Router.prendasPath(), listadoPrendasController::showListado, engine);
         initModel();
     }   
-/////////////////////////////////////////////////////////////        
+  
     
     private static ModelAndView showPagina(Request request, Response response) {
     	getCurrentClient(request);
@@ -62,15 +61,7 @@ public class listadoPrendasController  extends MainController {
         currentUser = uDao.getUsuario(userID);
     }
     
-    private static ModelAndView showListado(Request request, Response response) {
-        sessionExist(request, response);
-        
-        String userSession = request.session().attribute("user");
-        Integer userID = Integer.parseInt(userSession.substring(0, userSession.indexOf("-")));
-
-        currentUser = uDao.getUsuario(userID);       
-        
-        
+    private static ModelAndView showListado(Request request, Response response) {        
         try
             {
                 alert.setHideAlert();
@@ -94,9 +85,7 @@ public class listadoPrendasController  extends MainController {
 
        private static void fillListadoPrendasTable(Request request, Response response) {
 
-            List<listadoPrendasTable> table = new ArrayList<listadoPrendasTable>(); 
-            List<Guardarropa> guardarropas = (List<Guardarropa>) currentUser.getListaGuardarropas();
-            
+            List<listadoPrendasTable> table = new ArrayList<listadoPrendasTable>();        
             String guardarropaABuscar = request.queryParams("buscar");
 
             List<Prenda> lstPrendas = currentUser.getGuardarropa(guardarropaABuscar).getAllPrendas();

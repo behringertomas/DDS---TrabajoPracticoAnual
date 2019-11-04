@@ -3,7 +3,6 @@ package web.models;
 public class altaPrendasModel {
 
     private boolean showAlert;
-    private String pathTipoPrenda;
 
     public altaPrendasModel() {
     }
@@ -21,13 +20,6 @@ public class altaPrendasModel {
         setShowAlert(false);
     }
 
-	public String getPathTipoPrenda() {
-		return pathTipoPrenda;
-	}
-
-	public void setPathTipoPrenda(String pathTipoPrenda) {
-		this.pathTipoPrenda = pathTipoPrenda;
-	}
     
 
 

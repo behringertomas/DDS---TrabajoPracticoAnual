@@ -49,27 +49,22 @@ public class altaPrendaController extends MainController {
     	switch(tipoPrenda)
     	{
     		case "ParteSuperior":
-    			model.setPathTipoPrenda("altaTipoSuperior");
     			response.redirect(Router.getAltaSuperior());
     			return new ModelAndView(model, ALTA_SUPERIOR);
     			
     		case "ParteInferior":
-    			model.setPathTipoPrenda("altaTipoInferior");
     			response.redirect(Router.getAltaInferior());
     			return new ModelAndView(model, ALTA_INFERIOR);
     			
     		case "Accesorio":
-    			model.setPathTipoPrenda("altaAccesorio");
     			response.redirect(Router.getAltaAccesorio());
     			return new ModelAndView(model, ALTA_ACCESORIO);
     			
     		case "Calzado":
-    			model.setPathTipoPrenda("altaCalzado");
     			response.redirect(Router.getAltaCalzado());
     			return new ModelAndView(model, ALTA_CALZADO);
     			
     		case "Abrigo":
-    			model.setPathTipoPrenda("altaAbrigo");
     			response.redirect(Router.getAltaAbrigo());
     			return new ModelAndView(model, ALTA_ABRIGO);
     		default:

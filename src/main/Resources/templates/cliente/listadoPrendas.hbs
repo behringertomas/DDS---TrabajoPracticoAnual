@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Listado de Prendas</title>
+    <title>Guardarropas</title>
 
     <!-- Bootstrap core CSS-->
     <link href="./styles/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -37,24 +37,15 @@
             <div class="card mb-3">
                 <div class="card-header">
                     <i class="fas fa-table"></i>
-                    Listado de Prendas</div>
+                    Listado de Guardarropas</div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <!--
-                        <div>
-                        <span style="font-family:arial;font-size:14">
-                            En esta pantalla usted podra obtener los indices SIMPLEX para sus dispositivos.
-                            <br>El objetivo del presente análisis, es hallar una combinación óptima de las horas de uso de los electrodomésticos en su hogar, que favorezca la mitigación parcial de los cortes de suministro eléctrico durante el verano en la Ciudad.
-                        El calculo esta basado en un total de 612kW mensuales, cuyo consumo fue comprobado como optimo por varios estudios estadísticos.
-                            <br>Sea eficiente, sea <b>SIMPLEX</b>.
-
-                            </span>
-                         -->
-                    <form action="/listadoPrendas" method="POST">
-                            <input class="form-control" type="text" id="buscar" name="buscar" placeholder="Ingrese guardarropa a buscar" required autofocus/>
-                            <button class="btn btn-lg btn-primary btn-block" type="submit">Buscar</button>
-                    </form>
+                    </div>
                     <br>
+                    <form action="/listadoPrendas" method="POST">
+                        <input class="form-control" type="text" id="buscar" name="buscar" placeholder="Ingrese guardarropa a buscar" required autofocus/>
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Buscar</button>
+                    </form>
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
@@ -63,10 +54,10 @@
                             <th>Material</th>
                             <th>Color Primario</th>
                             <th>Color Secundario</th>
-
                         </tr>
                         </thead>
                         <tbody>
+                        <form action="/listadoPrendas" method="POST">
                         {{#each table}}
                             <tr>
                                 <td>{{parte}}</td>
@@ -74,9 +65,9 @@
                                 <td>{{material}}</td>
                                 <td>{{color_primario}}</td>
                                 <td>{{color_secundario}}</td>
-
                             </tr>
                         {{/each}}
+                        </form>
                         </tbody>
                     </table>
 
