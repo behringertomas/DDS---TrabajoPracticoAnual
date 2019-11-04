@@ -7,11 +7,15 @@ import spark.Spark;
 import spark.debug.DebugScreen;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import web.controllers.LoginController;
+import web.controllers.altaAbrigoController;
+import web.controllers.altaAccesorioController;
+import web.controllers.altaCalzadoController;
 import web.controllers.altaPrendaController;
+import web.controllers.altaTipoInferiorController;
 import web.controllers.altaTipoSuperiorController;
 import web.controllers.listadoGuardarropasController;
 import web.controllers.listadoPrendasController;
-import web.models.altaTipoSuperiorModel;
+import web.models.altaTiposModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -37,13 +41,18 @@ public class App
     
     public static void iniciarControladores() {
     	
-    	LoginController.init();
-    	listadoGuardarropasController.init();
-    	listadoPrendasController.init();
-    	altaPrendaController.init();
-    	altaTipoSuperiorController.init();
-//    	altaTipoInferiorController.init();
-
+    	LoginController.init(); // -> Requerimiento 1
+    	
+    	listadoGuardarropasController.init(); // -> Requerimiento 2
+    	listadoPrendasController.init(); // -> Requerimiento 3
+    	
+    	altaPrendaController.init(); // -> Requerimiento 4
+    	
+    	altaTipoSuperiorController.init(); // -> Requerimiento 4
+    	altaTipoInferiorController.init(); // -> Requerimiento 4
+    	altaCalzadoController.init(); // -> Requerimiento 4
+    	altaAccesorioController.init(); // -> Requerimiento 4
+    	altaAbrigoController.init(); // -> Requerimiento 4
     }
     
     

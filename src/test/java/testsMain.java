@@ -1,3 +1,6 @@
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import java.awt.List;
 import java.time.LocalDate;
 import java.util.stream.Collector;
@@ -60,6 +63,14 @@ public class testsMain {
 
 //	public static void main(String[] args) throws Exception, UnauthorizedException, ApiException {
 //		
+//		Usuario tomas = new Usuario("tomas","tomas@gmail.com","1234","Tomas Behringer",21);
+//		  Prenda prenda1 = tomas.construirPrenda("Parte Superior","Remera", "Tela", "Rojo", "Negro");
+//		  tomas.CrearGuardarropa("Guardarropa De Invierno",10);
+//		  tomas.asignarPrenda(tomas.getGuardarropa("Guardarropa De Invierno"), prenda1 );
+//		
+//		  System.out.println(prenda1.getDescripcion());
+//	        
+//	} 
 //		UsuarioDao usr = new UsuarioDao();
 //		Usuario tomasSQL = usr.getUserByUsername("tomas");
 //		

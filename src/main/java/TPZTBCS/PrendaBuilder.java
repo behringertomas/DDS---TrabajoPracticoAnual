@@ -31,7 +31,7 @@ public abstract class PrendaBuilder
     {
     	if ((jsonReader.getColores()).contains(colorSecundario))
     	{
-    		prenda.setColorPrimario(colorSecundario);
+    		prenda.setColorSecundario(colorSecundario);
     	}
     	else
     	{

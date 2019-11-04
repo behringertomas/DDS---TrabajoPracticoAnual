@@ -56,9 +56,9 @@ public class EmTest{
 //	  @Test
 //	  public void TestPrenda() throws Exception {
 //		  Usuario tomas = new Usuario("tomas","tomas@gmail.com","1234","Tomas Behringer",21);
-//		  tomas.construirPrenda("Parte Superior","Remera", "Tela", "Rojo", "Negro");
+//		  Prenda prenda1 = tomas.construirPrenda("Parte Superior","Remera", "Tela", "Rojo", "Negro");
 //		  tomas.CrearGuardarropa("Guardarropa De Invierno",10);
-//		  tomas.asignarPrenda(tomas.getGuardarropa("Guardarropa De Invierno"), tomas.getGuardarropa("DEFAULT").getAllPrendas().get(0));
+//		  tomas.asignarPrenda(tomas.getGuardarropa("Guardarropa De Invierno"), prenda1);
 //		  
 //		  EntityTransaction transaction = entityManager.getTransaction();
 //	      transaction.begin();

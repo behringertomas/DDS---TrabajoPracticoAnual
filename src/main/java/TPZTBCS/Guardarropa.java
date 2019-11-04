@@ -556,7 +556,7 @@ public class Guardarropa
 				throw new Exception("NO EXISTE PARTE");
 		}
 	}
-	public void construirPrenda(String parte,String tipo, String material, String colorPrimario, String colorSecundario) throws Exception
+	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario, String colorSecundario) throws Exception
 	{
 		PrendaBuilder prendaBuilder;
 		prendaBuilder = this.setPrendaBuilder(parte); 
@@ -569,9 +569,10 @@ public class Guardarropa
 		prendaBuilder.buildColorPrimario(colorPrimario);
 		prendaBuilder.buildColorSecundario(colorSecundario);
 		this.agregarAGuardarropas(prendaBuilder.getPrenda());
+		return prendaBuilder.getPrenda();
 	}
 	
-	public void construirPrenda(String parte,String tipo, String material, String colorPrimario) throws Exception
+	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario) throws Exception
 	{
 		PrendaBuilder prendaBuilder;
 		prendaBuilder = this.setPrendaBuilder(parte); 
@@ -582,6 +583,7 @@ public class Guardarropa
 		prendaBuilder.buildMaterial(material);
 		prendaBuilder.buildColorPrimario(colorPrimario);
 		this.agregarAGuardarropas(prendaBuilder.getPrenda());
+		return prendaBuilder.getPrenda();
 	}
 	
 	public Prenda getPrendaEspecifica(String nombrePrendaCompleto) {

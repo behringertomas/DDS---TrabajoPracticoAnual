@@ -16,20 +16,20 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 import web.Router;
 import web.models.altaTiposModel;
 
-public class altaTipoSuperiorController extends MainController {
+public class altaCalzadoController extends MainController {
 
 	private static Usuario currentUser;
     private static UsuarioDao uDao = new UsuarioDao();
 	private static altaTiposModel model;
-	private static final String ALTA_SUPERIOR = "/cliente/altaTipoSuperior.hbs";
+	private static final String ALTA_CALZADO = "/cliente/altaCalzado.hbs";
 	private static final String ALTA_PRENDA = "/cliente/altaPrenda.hbs";
-	private static final String PARTE = "Parte Superior";
+	private static final String PARTE = "Calzado";
 	private static EntityManager entityManager;
 	
     public static void init() {
         HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
-        Spark.get(Router.getAltaSuperior(),altaTipoSuperiorController::load,engine);
-        Spark.post(Router.getAltaSuperior(), altaTipoSuperiorController::crearPrenda, engine);
+        Spark.get(Router.getAltaCalzado(),altaCalzadoController::load,engine);
+        Spark.post(Router.getAltaCalzado(), altaCalzadoController::crearPrenda, engine);
         initModel();
     }   
     
@@ -44,13 +44,13 @@ public class altaTipoSuperiorController extends MainController {
         currentUser = uDao.getUsuario(userID);
         model.setShowAlert(false);
 
-        return new ModelAndView(model, ALTA_SUPERIOR);
+        return new ModelAndView(model, ALTA_CALZADO);
     }
     
     private static ModelAndView crearPrenda(Request request, Response response) {
 //		usuario.construirPrenda("Parte Superior","Remera", "Tela", "Rojo", "Negro");
     	try {
-    		String tipoPrenda = request.queryParams("superior");
+    		String tipoPrenda = request.queryParams("calzado");
     		String material = request.queryParams("material");
     		String colorPrimario = request.queryParams("colorPrimario");
     		if(request.queryParams("colorSecundario").equalsIgnoreCase("Ninguno")) {
@@ -83,3 +83,4 @@ public class altaTipoSuperiorController extends MainController {
     }
     
 }
+

@@ -1,10 +1,11 @@
 package web.models;
 
-public class altaTipoSuperiorModel {
+//Este es el model de Tipo Superior, Inferior, Calzado, Accesorio y Abrigo
+//Como son todos lo mismo...
+public class altaTiposModel {
 	 private boolean showAlert;
-	 
-	 
-	 public altaTipoSuperiorModel() {
+
+	 public altaTiposModel() {
 	 }
 	 
 	 public boolean isShowAlert() {
