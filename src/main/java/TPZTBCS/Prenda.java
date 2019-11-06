@@ -5,17 +5,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
+import javax.persistence.*;
+//import javax.persistence.CascadeType;
+//import javax.persistence.Column;
+//import javax.persistence.Entity;
+//import javax.persistence.FetchType;
+//import javax.persistence.GeneratedValue;
+//import javax.persistence.GenerationType;
+//import javax.persistence.Id;
+//import javax.persistence.JoinColumn;
+//import javax.persistence.ManyToOne;
+//import javax.persistence.Table;
+//import javax.persistence.Transient;
 
 import interfacesZTBCS.strategyTemperatura;
 
@@ -32,9 +33,10 @@ public class Prenda
 	@ManyToOne
 	@JoinColumn (name = "atuendo_id")
 	private Atuendo atuendo;
+	//Ojo cuando hagamos atuendo, habria que ver si no queda nulo como nos pasaba con guardarropa.
 	
-	@ManyToOne
-	@JoinColumn (name = "guardarropa_prenda_id")
+	@JoinColumn (name = "guardarropa_prenda_id",referencedColumnName = "ID",foreignKey = @ForeignKey(name = "FK_GUARDARROPA"))
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Guardarropa.class)
 	private Guardarropa guardarropa_id;
 
 	@Column(name = "Calendario_De_Uso")
