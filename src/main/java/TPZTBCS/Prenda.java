@@ -40,6 +40,14 @@ public class Prenda
 	@Column(name = "Calendario_De_Uso")
 	ArrayList <Date> calendarioDeUso = new ArrayList<Date>();
 	
+	public Guardarropa getGuardarropa_id() {
+		return guardarropa_id;
+	}
+
+	public void setGuardarropa_id(Guardarropa guardarropa_id) {
+		this.guardarropa_id = guardarropa_id;
+	}
+
 	@Column(name = "EN_GUARDARROPA")
 	private boolean enGuardarropa=false;
 	@Column(name = "PRENDA_PARTE")
@@ -84,6 +92,10 @@ public class Prenda
         }
 		
     }
+	
+	public Prenda() {
+		
+	}
 
 	
 	

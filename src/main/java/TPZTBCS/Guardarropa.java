@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -58,7 +59,7 @@ public class Guardarropa
 	@Column(name = "LIMITE_PRENDAS")
 	int limiteDePrendas;
 	
-	@OneToMany(targetEntity = Prenda.class,mappedBy = "guardarropa_id",cascade = CascadeType.ALL)
+	@OneToMany(targetEntity = Prenda.class,mappedBy = "guardarropa_id",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	List <Prenda> TodasLasPrendas = new ArrayList<Prenda>();
 	
 	public Guardarropa(String identificador,int limiteDePrendas)

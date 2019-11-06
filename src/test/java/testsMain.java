@@ -68,7 +68,7 @@ public class testsMain {
 //		  tomas.CrearGuardarropa("Guardarropa De Invierno",10);
 //		  tomas.asignarPrenda(tomas.getGuardarropa("Guardarropa De Invierno"), prenda1 );
 //		
-//		  System.out.println(prenda1.getDescripcion());
+//		  System.out.println(tomas.getGuardarropa("Guardarropa De Invierno").getAllPrendas().size());
 //	        
 //	} 
 //		UsuarioDao usr = new UsuarioDao();

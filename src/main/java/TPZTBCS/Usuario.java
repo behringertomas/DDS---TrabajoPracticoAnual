@@ -43,7 +43,7 @@ public class Usuario
 	DatosPersonales Datos= new DatosPersonales();
 	
 	@Column (name = "ID_GUARDARROPA")
-	@ManyToMany(cascade = {CascadeType.ALL})
+	@ManyToMany(cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
 	Collection <Guardarropa> listaGuardarropas = new ArrayList<Guardarropa>(); //Lista de Guardarropas que contiene el usuario
 	
 	@Column (name = "ID_EVENTO")

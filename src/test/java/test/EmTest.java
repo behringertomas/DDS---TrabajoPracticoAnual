@@ -53,24 +53,25 @@ public class EmTest{
 //	  ***** DESCOMENTAR ESTE TEST PARA GENERAR UN USUARIO CON GUARDARROPA Y UNA PRENDA ! *****
 //	  HAGANLO SOLO UNA VEZ PARA QUE NO HAYAN DUPLICADOS.
 	  
-//	  @Test
-//	  public void TestPrenda() throws Exception {
-//		  Usuario tomas = new Usuario("tomas","tomas@gmail.com","1234","Tomas Behringer",21);
-//		  Prenda prenda1 = tomas.construirPrenda("Parte Superior","Remera", "Tela", "Rojo", "Negro");
-//		  tomas.CrearGuardarropa("Guardarropa De Invierno",10);
-//		  tomas.asignarPrenda(tomas.getGuardarropa("Guardarropa De Invierno"), prenda1);
-//		  
-//		  EntityTransaction transaction = entityManager.getTransaction();
-//	      transaction.begin();
-//	      entityManager.persist(tomas);
-//	      transaction.commit();
-//	        
-//	      assertNotNull(tomas.getId());
-//	  
-//	      Usuario usuarioPersisted = entityManager.find(Usuario.class, tomas.getId());
-//	        
-//        assertEquals(usuarioPersisted.getGuardarropa("Guardarropa De Invierno").getAllPrendas().get(0).getTipo(),"Remera");
-//	  }
+	  @Test
+	  public void TestPrenda() throws Exception {
+		  Usuario tomas = new Usuario("tomas","tomas@gmail.com","1234","Tomas Behringer",21);
+		  Prenda prenda1 = tomas.construirPrenda("Parte Superior","Remera", "Tela", "Rojo", "Negro");
+		  tomas.CrearGuardarropa("Guardarropa De Invierno",10);
+		  tomas.asignarPrenda(tomas.getGuardarropa("Guardarropa De Invierno"), prenda1);
+		  
+//		  prenda1.setGuardarropa_id(tomas.getGuardarropa("Guardarropa De Invierno").getID());
+		  EntityTransaction transaction = entityManager.getTransaction();
+	      transaction.begin();
+	      entityManager.persist(tomas);
+	      transaction.commit();
+	        
+	      assertNotNull(tomas.getId());
+	  
+	      Usuario usuarioPersisted = entityManager.find(Usuario.class, tomas.getId());
+	        
+        assertEquals(usuarioPersisted.getGuardarropa("Guardarropa De Invierno").getAllPrendas().get(0).getTipo(),"Remera");
+	  }
 	  
 //	  @Test
 //	  public void TestGuardarropa() {
