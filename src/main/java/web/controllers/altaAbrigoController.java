@@ -26,7 +26,7 @@ public class altaAbrigoController extends MainController {
 	private static altaTiposModel model;
 	private static final String ALTA_ABRIGO = "/cliente/altaAbrigo.hbs";
 	private static final String ALTA_PRENDA = "/cliente/altaPrenda.hbs";
-	private static final String PARTE = "Abrigo";
+	private static final String PARTE = "Parte Superior";
 	private static EntityManager entityManager;
 	
     public static void init() {

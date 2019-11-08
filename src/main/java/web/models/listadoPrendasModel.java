@@ -13,6 +13,10 @@ public class listadoPrendasModel {
 	private List<listadoPrendasTable> table;
 	private boolean showAlert;
 	
+	public listadoPrendasModel() {
+		table = new ArrayList<>();
+	}
+	
 	public boolean isShowAlert() {
 		return showAlert;
 	}
@@ -21,9 +25,6 @@ public class listadoPrendasModel {
 		this.showAlert = showAlert;
 	}
 
-	public listadoPrendasModel() {
-		table = new ArrayList<>();
-	}
 	
     public listadoPrendasModel(List<listadoPrendasTable> tableN) {
         this.table = tableN;

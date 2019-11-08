@@ -15,6 +15,7 @@ import web.controllers.altaTipoInferiorController;
 import web.controllers.altaTipoSuperiorController;
 import web.controllers.listadoGuardarropasController;
 import web.controllers.listadoPrendasController;
+import web.controllers.sugerenciasController;
 import web.models.altaTiposModel;
 
 import java.io.IOException;
@@ -48,6 +49,7 @@ public class App
     	
     	altaPrendaController.init(); // -> Requerimiento 4
     	
+    	sugerenciasController.init();
     	altaTipoSuperiorController.init(); // -> Requerimiento 4
     	altaTipoInferiorController.init(); // -> Requerimiento 4
     	altaCalzadoController.init(); // -> Requerimiento 4

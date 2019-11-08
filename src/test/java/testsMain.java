@@ -61,7 +61,7 @@ public class testsMain {
 	
 	
 
-//	public static void main(String[] args) throws Exception, UnauthorizedException, ApiException {
+	public static void main(String[] args) throws Exception, UnauthorizedException, ApiException {
 //		
 //		Usuario tomas = new Usuario("tomas","tomas@gmail.com","1234","Tomas Behringer",21);
 //		  Prenda prenda1 = tomas.construirPrenda("Parte Superior","Remera", "Tela", "Rojo", "Negro");
@@ -70,7 +70,8 @@ public class testsMain {
 //		
 //		  System.out.println(tomas.getGuardarropa("Guardarropa De Invierno").getAllPrendas().size());
 //	        
-//	} 
+		
+	} 
 //		UsuarioDao usr = new UsuarioDao();
 //		Usuario tomasSQL = usr.getUserByUsername("tomas");
 //		
@@ -85,7 +86,7 @@ public class testsMain {
 //		Usuario agustin = new Usuario("agustin","agustin@gmail.com","1234","Agustin Zeppa",24);
 //		agustin.CrearGuardarropa("Guardarropa Primaveral",10);
 
-		UsuarioDao uDao = new UsuarioDao();
+//		UsuarioDao uDao = new UsuarioDao();
 //		
 //		Usuario agustinPersistido = uDao.getUserByUsername("agustin");
 		

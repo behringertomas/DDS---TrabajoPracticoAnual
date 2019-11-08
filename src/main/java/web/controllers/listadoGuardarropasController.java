@@ -82,17 +82,14 @@ public class listadoGuardarropasController extends MainController {
         List<listadoGuardarropaTable> table = new ArrayList<listadoGuardarropaTable>();  
         List<Guardarropa> guardarropas = (List<Guardarropa>) currentUser.getListaGuardarropas();
 
-//        double indice = 0;
-        
        try{
 	       for(int i = 0; i < 2;i++) //pide hasta 2 guardarropas.
 	       {
-//	           indice = (solucion.getPoint()[i]);
-	          
+
 	           listadoGuardarropaTable row = new listadoGuardarropaTable(); //creo una fila
 	           row.setGuardarropa(guardarropas.get(i).getIdentificador());
 	           row.setIndex(guardarropas.get(i).getLimiteDePrendas());
-//	           row.setIndex((int) indice);
+	    
 	           table.add(row);
 	       }
        }

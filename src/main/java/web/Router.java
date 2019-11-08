@@ -9,6 +9,7 @@ public class Router {
 	private static final String altaPrenda = "/altaPrenda";
 //	Le puse home a esta porque es la primera que se muestra luego del login.
     private static final String LOGOUT = "/";
+    private static final String SUGERENCIAS = "/sugerencias";
     
     private static final String ALTA_SUPERIOR = "/altaTipoSuperior";
 	private static final String ALTA_INFERIOR = "/altaTipoInferior";
@@ -20,7 +21,12 @@ public class Router {
         return LOGIN;
 	}
 	 
-    public static String homePath(){
+    public static String getSugerencias() {
+		return SUGERENCIAS;
+	}
+
+
+	public static String homePath(){
         return HOME;
     }
 

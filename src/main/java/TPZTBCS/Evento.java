@@ -168,65 +168,94 @@ public class Evento extends TimerTask implements comando {
 		timer.cancel();		
 	}
 
-	@Override
-	public void run() {
-		try {
+//	@Override
+//	public void run() {
+//		try {
 
-		OpenWeather apiOpenW = new OpenWeather();
-		//obtener descripcion
+//		OpenWeather apiOpenW = new OpenWeather();
 		//String descripcion = this.requestDescripcionClima();
-		String descripcion = "soleado";
-		this.setDescripcionClima(descripcion);
-		//obtener temp
-//		double temp = apiOpenW.obtenerTemperaturATalDia(convertToLocalDateViaInstant(this.FechaSugerencia), this.ciudad);
-		double temp = 15;
-
-		this.setTemp(temp);
+//		String descripcion = "soleado";
+//		this.setDescripcionClima(descripcion);
 		
-		List<Atuendo>listaSugerencias =usuario.queMePongoATodosLosGuardarropas(descripcion,temp);
-		listaSugerencias= listaSugerencias.stream().filter(x->x!=null).collect(Collectors.toList());
+//		double temp = apiOpenW.obtenerTemperaturATalDia(convertToLocalDateViaInstant(this.FechaSugerencia), this.ciudad);
+//		double temp = 15;
+
+//		this.setTemp(temp);
+		
+//		List<Atuendo>listaSugerencias =usuario.queMePongoATodosLosGuardarropas(descripcion,temp);
+//		listaSugerencias= listaSugerencias.stream().filter(x->x!=null).collect(Collectors.toList());
 
 //		int rnd = new Random().nextInt(listaSugerencias.size());
 //		Atuendo atuendoElegido = listaSugerencias.get(rnd);
 		
-		this.Sugerencia = this.getMejorAtuendo(listaSugerencias);
+//		this.Sugerencia = this.getMejorAtuendo(listaSugerencias);
 		
-		if(this.Sugerencia == null) {this.deshacer();}
+//		if(this.Sugerencia == null) {this.deshacer();}
 		
-		this.Sugerencia.imprimirPrendas();
+//		this.Sugerencia.imprimirPrendas();
 		
-		NotificacionEmail sender =new NotificacionEmail();
-    	sender.enviarNotificacion(this.usuario.getEmail());
 		
-		Scanner myObj = new Scanner(System.in);
-		System.out.println("Te parece bien el atuendo?: (SI/NO)");
-		String respuesta = myObj.nextLine();
-		if (respuesta.toUpperCase().equals("SI")) {
+//		NotificacionEmail sender =new NotificacionEmail();
+//    	sender.enviarNotificacion(this.usuario.getEmail());
 		
-			this.ejecutar();
+//		Scanner myObj = new Scanner(System.in);
+//		System.out.println("Te parece bien el atuendo?: (SI/NO)");
+//		String respuesta = myObj.nextLine();
+//		if (respuesta.toUpperCase().equals("SI")) {
+		
+//			this.ejecutar();
 			
-		}
-		 if (respuesta.toUpperCase().equals("NO")) {
-		 System.out.println("DESEA OTRA SUGERENCIA?: (SI/NO)");
-		 String respuesta2 = myObj.nextLine();
-		 if (respuesta2.toUpperCase().equals("SI")) {
-				this.rechazar();
-		 }
-		 if (respuesta2.toUpperCase().equals("NO")) {
-				this.deshacer();		
-		 }
+//		}
+//		 if (respuesta.toUpperCase().equals("NO")) {
+//		 System.out.println("DESEA OTRA SUGERENCIA?: (SI/NO)");
+//		 String respuesta2 = myObj.nextLine();
+//		 if (respuesta2.toUpperCase().equals("SI")) {
+//				this.rechazar();
+//		 }
+//		 if (respuesta2.toUpperCase().equals("NO")) {
+//				this.deshacer();		
+//		 }
 		 
-		 }
-		 
-		 
+//		 }
+//		 
+//		 
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//}		
+	
+	@Override
+	public void run() {
+		String descripcion = "soleado";
+		this.setDescripcionClima(descripcion);
+		double temp = 15;
+		this.setTemp(temp);
+		
+		List<Atuendo> listaSugerencias = null;
+		try {
+			listaSugerencias = usuario.queMePongoATodosLosGuardarropas(descripcion,temp);
+		} catch (UnauthorizedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ApiException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		listaSugerencias= listaSugerencias.stream().filter(x->x!=null).collect(Collectors.toList());
 		
+		int rnd = new Random().nextInt(listaSugerencias.size());
+		Atuendo atuendoElegido = listaSugerencias.get(rnd);
+		
+		this.Sugerencia = this.getMejorAtuendo(listaSugerencias);
+	}
+	
 	
 		
-	}
+	
   public long transformardiasamilisegundis(int dias) {
 	  long milisegundos= dias *24*60*60*1000;
 	  return milisegundos;
@@ -291,7 +320,14 @@ public class Evento extends TimerTask implements comando {
 	  this.horasChequeoCambioBrusco = horasCambio;
   }
   
-  public String requestDescripcionClima() throws UnauthorizedException, ApiException {
+  
+  public Atuendo getAtuendoElegido() {
+	return AtuendoElegido;
+  }
+	public void setAtuendoElegido(Atuendo atuendoElegido) {
+		AtuendoElegido = atuendoElegido;
+	}
+public String requestDescripcionClima() throws UnauthorizedException, ApiException {
 	  
     ApiSession session = new ApiSession.Builder("cdxE2HxzUId3I9ebdqEY1ySFK3pTQCAf").build();
 	LocationApi locationApi = session.getLocationApi();

@@ -113,6 +113,24 @@ public class Atuendo
 		return true;
 	}
 	
+	
+	
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
+	}
+
+	public List<Prenda> getPrendas() {
+		return prendas;
+	}
+
+	public void setPrendas(List<Prenda> prendas) {
+		this.prendas = prendas;
+	}
+
 	public void bloquear (Date fecha)
 	{
 		prendas.forEach(prenda-> prenda.bloquearPrenda(fecha));
