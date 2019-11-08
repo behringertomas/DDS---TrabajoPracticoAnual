@@ -2,8 +2,8 @@
 
 import java.util.List;
 
-import TPZTBCS.DatosPersonales;
 import TPZTBCS.Usuario;
+import TPZTBCS.Guardarropa;
 
 public class UsuarioDao extends BaseDao {
 
@@ -22,6 +22,12 @@ public class UsuarioDao extends BaseDao {
         return getById(Usuario.class,id);
     }
    
-    public List<Usuario> list() { return list(Usuario.class); }
+    public List<Usuario> list() { 
+    	return list(Usuario.class); 
+    }
 
+    public List<Guardarropa> listGuardarropas(int userId){
+    	Usuario usuario = getById(Usuario.class,userId);
+    	return (List<Guardarropa>) usuario.getListaGuardarropas();
+    }
 }

@@ -39,6 +39,7 @@ public class listadoPrendasController  extends MainController {
     private static Usuario currentUser;
     private static AlertModel alert = new AlertModel(false,"",false);
     
+    
     private static UsuarioDao uDao = new UsuarioDao();
     private static GuardarropaDao gDao = new GuardarropaDao();
     
@@ -85,6 +86,7 @@ public class listadoPrendasController  extends MainController {
     
         private static void initModel() {
             model = new listadoPrendasModel();
+            
         }
 /////////////////////////////////////////////////////////////
 

@@ -95,7 +95,14 @@
                                 <option value="Gris">Gris</option>
                             </select>
                         </div>
-
+                        <div class="form-group col-md-8 ">
+                            Guardarropas
+                            <select class="form-control" title="guardarropa" name="guardarropa" id="sm">
+                                {{#each guardarropa}}
+                                    <option  value="{{guardarropa.identificador}}">{{guardarropa.identificador}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
                         <div class="form-group" align="right">
                             <p>
                                 <button class="btn btn-lg btn-primary" type="submit">Crear Prenda Parte Superior</button>

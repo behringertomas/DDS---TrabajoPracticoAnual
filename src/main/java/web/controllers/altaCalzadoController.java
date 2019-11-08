@@ -1,10 +1,13 @@
 package web.controllers;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import TPZTBCS.Guardarropa;
 import TPZTBCS.Prenda;
 import TPZTBCS.Usuario;
 import TPZTBCS.dao.UsuarioDao;
@@ -34,15 +37,24 @@ public class altaCalzadoController extends MainController {
     }   
     
     private static void initModel() {
-        model = new altaTiposModel();
+        model = new altaTiposModel();        
     }
     
     private static ModelAndView load(Request request, Response response) {
         sessionExist(request, response);
         String userSession = request.session().attribute("user");
         Integer userID = Integer.parseInt(userSession.substring(0, userSession.indexOf("-")));
-        currentUser = uDao.getUsuario(userID);
+        currentUser = getUsuarioViaEntity(userID);
         model.setShowAlert(false);
+        
+        
+        model.getGuardarropa().clear();
+        
+        List<Guardarropa> guardarropas = (List<Guardarropa>) currentUser.getListaGuardarropas();
+        
+        for(Guardarropa g : guardarropas) {
+        	model.getGuardarropa().add(g);
+        }
 
         return new ModelAndView(model, ALTA_CALZADO);
     }
@@ -53,13 +65,14 @@ public class altaCalzadoController extends MainController {
     		String tipoPrenda = request.queryParams("calzado");
     		String material = request.queryParams("material");
     		String colorPrimario = request.queryParams("colorPrimario");
+    		String guardarropa = request.queryParams("guardarropa");
     		if(request.queryParams("colorSecundario").equalsIgnoreCase("Ninguno")) {
-    			Prenda prendaAPersistir = currentUser.construirPrenda(PARTE, tipoPrenda, material, colorPrimario);
+    			Prenda prendaAPersistir = currentUser.construirPrenda(PARTE, tipoPrenda, material, colorPrimario,currentUser.getGuardarropa(guardarropa));
     			persist(prendaAPersistir);
 //    			bDao.persist(PrendaAPersistir); no se por que con esta linea no funciona
     		} else {
     			String colorSecundario = request.queryParams("colorSecundario");
-    			Prenda prendaAPersistir = currentUser.construirPrenda(PARTE, tipoPrenda, material, colorPrimario,colorSecundario);
+    			Prenda prendaAPersistir = currentUser.construirPrenda(PARTE, tipoPrenda, material, colorPrimario,colorSecundario,currentUser.getGuardarropa(guardarropa));
     			persist(prendaAPersistir);
 //    			bDao.persist(PrendaAPersistir);
     		}
@@ -80,6 +93,13 @@ public class altaCalzadoController extends MainController {
 	    transaction.begin();
 	    entityManager.persist(prenda);
 	    transaction.commit();
+    }
+    
+    public static Usuario getUsuarioViaEntity(int id) {
+ 	   EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
+ 	   entityManager = factory.createEntityManager();
+
+ 	   return entityManager.find(Usuario.class, id);
     }
     
 }

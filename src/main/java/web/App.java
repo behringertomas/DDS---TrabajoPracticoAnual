@@ -48,11 +48,11 @@ public class App
     	
     	altaPrendaController.init(); // -> Requerimiento 4
     	
-    	altaTipoSuperiorController.init(); // -> Requerimiento 4
-    	altaTipoInferiorController.init(); // -> Requerimiento 4
+//    	altaTipoSuperiorController.init(); // -> Requerimiento 4
+//    	altaTipoInferiorController.init(); // -> Requerimiento 4
     	altaCalzadoController.init(); // -> Requerimiento 4
-    	altaAccesorioController.init(); // -> Requerimiento 4
-    	altaAbrigoController.init(); // -> Requerimiento 4
+//    	altaAccesorioController.init(); // -> Requerimiento 4
+//    	altaAbrigoController.init(); // -> Requerimiento 4
     }
     
     

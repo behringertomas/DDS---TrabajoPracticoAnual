@@ -230,28 +230,30 @@ public class Usuario
 		}
 	}
 	
-	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario, String colorSecundario) throws Exception
+	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario, String colorSecundario,Guardarropa guardarropa) throws Exception
 	{
-		return this.getGuardarropa("DEFAULT").construirPrenda(parte, tipo, material, colorPrimario,colorSecundario);
-
+		String nombreGuardarropa = guardarropa.getIdentificador();
+		return this.getGuardarropa(nombreGuardarropa).construirPrenda(parte, tipo, material, colorPrimario,colorSecundario,guardarropa);	
 	}
 	
-	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario) throws Exception
+	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario,Guardarropa guardarropa) throws Exception
 	{
-		return this.getGuardarropa("DEFAULT").construirPrenda(parte, tipo, material, colorPrimario);
+		String nombreGuardarropa = guardarropa.getIdentificador();
+		return this.getGuardarropa(nombreGuardarropa).construirPrenda(parte, tipo, material, colorPrimario,guardarropa);
+		
 	}
 	
-	public void asignarPrenda(Guardarropa guardarropaAsignar, Prenda prendaDefault) throws Exception  {
-		Guardarropa Default = this.getGuardarropa("DEFAULT");
-		if(Default.getAllPrendas().contains(prendaDefault) && this.listaGuardarropas.contains(guardarropaAsignar)) {
-			
-			guardarropaAsignar.agregarAGuardarropas(prendaDefault);
-			this.getGuardarropa("DEFAULT").TodasLasPrendas.remove(prendaDefault);
-			
-		}else throw new Exception("ERROR AL ASIGNAR PRENDA");
-		
-		
-	}
+//	public void asignarPrenda(Guardarropa guardarropaAsignar, Prenda prendaDefault) throws Exception  {
+//		Guardarropa Default = this.getGuardarropa("DEFAULT");
+//		if(Default.getAllPrendas().contains(prendaDefault) && this.listaGuardarropas.contains(guardarropaAsignar)) {
+//			
+//			guardarropaAsignar.agregarAGuardarropas(prendaDefault);
+//			this.getGuardarropa("DEFAULT").TodasLasPrendas.remove(prendaDefault);
+//			
+//		}else throw new Exception("ERROR AL ASIGNAR PRENDA");
+//		
+//		
+//	}
 	
 	
 	public void agregarGuardarropas(Guardarropa guardarropa) 

@@ -1,5 +1,8 @@
 package web.controllers;
 
+import java.util.List;
+
+import TPZTBCS.Guardarropa;
 import TPZTBCS.Usuario;
 import TPZTBCS.dao.UsuarioDao;
 import spark.ModelAndView;
@@ -21,7 +24,8 @@ public class altaPrendaController extends MainController {
 	private static final String ALTA_ACCESORIO = "/cliente/altaAccesorio.hbs";
 	private static final String ALTA_ABRIGO = "/cliente/altaAbrigo.hbs";
 	private static final String ALTA_CALZADO = "/cliente/altaCalzado.hbs";
-
+	
+	
     public static void init() {
         HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
         Spark.get(Router.altaPrendaPath(), altaPrendaController::load, engine);
@@ -30,7 +34,8 @@ public class altaPrendaController extends MainController {
     }
     
     private static void initModel() {
-        model = new altaPrendasModel();
+    	model = new altaPrendasModel();
+         
     }
     
     private static ModelAndView load(Request request, Response response) {

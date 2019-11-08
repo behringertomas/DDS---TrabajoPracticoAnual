@@ -557,7 +557,7 @@ public class Guardarropa
 				throw new Exception("NO EXISTE PARTE");
 		}
 	}
-	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario, String colorSecundario) throws Exception
+	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario, String colorSecundario,Guardarropa guardarropa) throws Exception
 	{
 		PrendaBuilder prendaBuilder;
 		prendaBuilder = this.setPrendaBuilder(parte); 
@@ -569,11 +569,13 @@ public class Guardarropa
 		prendaBuilder.buildMaterial(material);
 		prendaBuilder.buildColorPrimario(colorPrimario);
 		prendaBuilder.buildColorSecundario(colorSecundario);
+		
+		prendaBuilder.getPrenda().setGuardarropa_id(guardarropa);
 		this.agregarAGuardarropas(prendaBuilder.getPrenda());
 		return prendaBuilder.getPrenda();
 	}
 	
-	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario) throws Exception
+	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario,Guardarropa guardarropa) throws Exception
 	{
 		PrendaBuilder prendaBuilder;
 		prendaBuilder = this.setPrendaBuilder(parte); 
@@ -583,6 +585,8 @@ public class Guardarropa
 		prendaBuilder.buildTipo(tipo);
 		prendaBuilder.buildMaterial(material);
 		prendaBuilder.buildColorPrimario(colorPrimario);
+		
+		prendaBuilder.getPrenda().setGuardarropa_id(guardarropa);
 		this.agregarAGuardarropas(prendaBuilder.getPrenda());
 		return prendaBuilder.getPrenda();
 	}

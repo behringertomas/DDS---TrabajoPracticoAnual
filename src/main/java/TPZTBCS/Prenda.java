@@ -35,7 +35,7 @@ public class Prenda
 	private Atuendo atuendo;
 	//Ojo cuando hagamos atuendo, habria que ver si no queda nulo como nos pasaba con guardarropa.
 	
-	@JoinColumn (name = "guardarropa_prenda_id",referencedColumnName = "ID",foreignKey = @ForeignKey(name = "FK_GUARDARROPA"))
+	@JoinColumn (name = "guardarropa_prenda_id",referencedColumnName = "ID_GUARDARROPA",foreignKey = @ForeignKey(name = "FK_GUARDARROPA"))
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Guardarropa.class)
 	private Guardarropa guardarropa_id;
 
@@ -209,6 +209,16 @@ public class Prenda
     {
     	return this.calendarioDeUso.contains(fecha);
     }
+
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
+	}
+    
+    
     
 //    public void modificarPuntaje(Usuario usuario){
 //  

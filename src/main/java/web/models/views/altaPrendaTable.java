@@ -1,18 +1,23 @@
 package web.models.views;
+import java.util.ArrayList;
+import java.util.List;
+
+import TPZTBCS.Guardarropa;
 
 public class altaPrendaTable {
 
-	private String tipoPrenda;
+	private String guardarropa;
 	
-	public altaPrendaTable() {
+	public altaPrendaTable() {	
 	}
 
-	public String getTipoPrenda() {
-		return tipoPrenda;
+	public String getGuardarropa() {
+		return guardarropa;
 	}
 
-	public void setTipoPrenda(String tipoPrenda) {
-		this.tipoPrenda = tipoPrenda;
+	public void setGuardarropa(String guardarropa) {
+		this.guardarropa = guardarropa;
 	}
+
 
 }
