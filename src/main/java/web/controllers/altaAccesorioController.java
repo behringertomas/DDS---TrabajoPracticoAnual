@@ -49,9 +49,9 @@ public class altaAccesorioController extends MainController {
         
         model.getGuardarropa().clear();
         
-        List<Guardarropa> guardarropas = (List<Guardarropa>) currentUser.getListaGuardarropas();
+        List<Guardarropa> guardarropa = (List<Guardarropa>) currentUser.getListaGuardarropas();
         
-        for(Guardarropa g : guardarropas) {
+        for(Guardarropa g : guardarropa) {
         	model.getGuardarropa().add(g);
         }
         return new ModelAndView(model, ALTA_ACCESORIO);

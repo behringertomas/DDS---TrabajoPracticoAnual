@@ -54,16 +54,14 @@
                                 <option value="Trainers">Trainers</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-8 ">
                         Seleccione Material Deseado
-                            <select class="form-control form-control-lg" title="material" name="material" id="material">
-                                <option value="Gamuza">Gamuza</option>
-                                <option value="Algodon">Algodón</option>
-                                <option value="Pana">Pana</option>
-                                <option value="Cuero">Cuero</option>
-                                <option value="Jean">Jean</option>
-                             </select>
-                        </div>
+                        <select class="form-control form-control-lg" title="material" name="material" id="material">
+                            <option value="Gamuza">Gamuza</option>
+                            <option value="Algodon">Algodón</option>
+                            <option value="Pana">Pana</option>
+                            <option value="Cuero">Cuero</option>
+                            <option value="Jean">Jean</option>
+                        </select>
                         <div class="form-group col-md-8 ">
                             Color Primario
                             <select class="form-control form-control-lg" title="Color Primario" name="colorPrimario" id="colorPrimario">
@@ -103,11 +101,10 @@
                             Guardarropas
                             <select class="form-control" title="guardarropa" name="guardarropa" id="sm">
                                 {{#each guardarropa}}
-                                    <option  value="{{guardarropa.identificador}}">{{guardarropa.identificador}}</option>
+                                    <option  value="{{identificador}}">{{identificador}}</option>
                                 {{/each}}
                             </select>
                         </div>
-
                         <div class="form-group" align="right">
                             <p>
                                 <button class="btn btn-lg btn-primary" type="submit">Crear Calzado</button>
@@ -133,4 +130,3 @@
 </body>
 
 </html>
-
