@@ -10,7 +10,10 @@ public class Calzado extends PrendaBuilder
     {
     	if ((jsonReader.getTipoCalzado()).contains(tipo))
     	{
+    		prenda.setStrategy(new noAbriga());
+    		int tempQueAbriga = prenda.getStrategy().getTemperatura(prenda);
         	prenda.setTipo(tipo);
+        	prenda.setAbrigoTemp(tempQueAbriga);
     	}
     	else
     	{

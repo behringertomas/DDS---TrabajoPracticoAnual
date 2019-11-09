@@ -65,6 +65,7 @@ public class JsonReader
 		return 0;
 	}
 	
+	
 	public static String getParteEspecifica(String Prenda) throws Exception
 	{
 		JSONObject jsonObject = (JSONObject) readJsonSimpleDemo(DIRECTORIOJSON);

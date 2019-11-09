@@ -9,7 +9,11 @@ public class ParteInferior extends PrendaBuilder
     {
     	if ((jsonReader.getTipoParteInferior()).contains(tipo))
     	{
+    		prenda.setStrategy(new noAbriga());
+    		int tempQueAbriga = prenda.getStrategy().getTemperatura(prenda);
         	prenda.setTipo(tipo);
+        	prenda.setAbrigoTemp(tempQueAbriga);
+        	
     	}
     	else
     	{

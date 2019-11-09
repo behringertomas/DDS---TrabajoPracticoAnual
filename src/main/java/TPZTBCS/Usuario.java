@@ -116,6 +116,20 @@ public class Usuario
 		this.agregarGuardarropas(new Guardarropa("DEFAULT"));
 	}
 	
+//	************ PRENDA BUILDER ************
+	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario, String colorSecundario,Guardarropa guardarropa) throws Exception
+	{
+		String nombreGuardarropa = guardarropa.getIdentificador();
+		return this.getGuardarropa(nombreGuardarropa).construirPrenda(parte, tipo, material, colorPrimario,colorSecundario,guardarropa);	
+	}
+	
+	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario,Guardarropa guardarropa) throws Exception
+	{
+		String nombreGuardarropa = guardarropa.getIdentificador();
+		return this.getGuardarropa(nombreGuardarropa).construirPrenda(parte, tipo, material, colorPrimario,guardarropa);	
+	}
+//	****************************************
+	
 	public String getUsername() {
 		return user;
 	}
@@ -230,18 +244,7 @@ public class Usuario
 		}
 	}
 	
-	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario, String colorSecundario,Guardarropa guardarropa) throws Exception
-	{
-		String nombreGuardarropa = guardarropa.getIdentificador();
-		return this.getGuardarropa(nombreGuardarropa).construirPrenda(parte, tipo, material, colorPrimario,colorSecundario,guardarropa);	
-	}
-	
-	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario,Guardarropa guardarropa) throws Exception
-	{
-		String nombreGuardarropa = guardarropa.getIdentificador();
-		return this.getGuardarropa(nombreGuardarropa).construirPrenda(parte, tipo, material, colorPrimario,guardarropa);
-		
-	}
+
 	
 //	public void asignarPrenda(Guardarropa guardarropaAsignar, Prenda prendaDefault) throws Exception  {
 //		Guardarropa Default = this.getGuardarropa("DEFAULT");

@@ -50,8 +50,6 @@ public class Prenda
 		this.guardarropa_id = guardarropa_id;
 	}
 
-	@Column(name = "ABRIGO")
-	private int abrigo;
 	@Column(name = "EN_GUARDARROPA")
 	private boolean enGuardarropa=false;
 	@Column(name = "PRENDA_PARTE")
@@ -68,9 +66,12 @@ public class Prenda
     private String direccionImagen = "";
 	@Column(name = "PRENDA_PARTE_ESPECIFICA")
 	private String parteEspecifica="";
+	@Column(name = "CUANTO_ABRIGA")
+	private int abrigoTemp;
+	
 
-//	@Transient
-//	private strategyTemperatura strategyTemp;
+	@Transient
+	private strategyTemperatura strategyTemp;
 	
 	@Column(name = "PRENDA_PREFERENCIAS")
 	HashMap<Usuario,Integer> ListaPuntaje = new HashMap<Usuario,Integer>();
@@ -111,7 +112,7 @@ public class Prenda
 		return this.parteEspecifica;
 	}
     
-//    public void setStrategy(strategyTemperatura str) { this.strategyTemp = str;}
+    public void setStrategy(strategyTemperatura str) { this.strategyTemp = str;}
     
     public void setParte(String parte){this.parte = parte;}
     
@@ -125,9 +126,16 @@ public class Prenda
     
     public Prenda getPrenda() { return this; }
     
-//    public int getTemperatura() throws Exception {
-//    	return this.strategyTemp.getTemperatura(this);
-//    }
+    public int getTemperatura() throws Exception {
+    	return this.strategyTemp.getTemperatura(this);
+    }
+	public int getAbrigoTemp() {
+		return abrigoTemp;
+	}
+
+	public void setAbrigoTemp(int abrigoTemp) {
+		this.abrigoTemp = abrigoTemp;
+	}
     
     public String getMaterial() {
 		return material;
@@ -141,9 +149,9 @@ public class Prenda
 		return parte;
 	}
 
-//	public strategyTemperatura getStrategy() {
-//    	return this.strategyTemp;
-//    }
+	public strategyTemperatura getStrategy() {
+    	return this.strategyTemp;
+    }
     
     public String getParteCuerpo() {return this.parte;}
     

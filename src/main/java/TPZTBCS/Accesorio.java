@@ -13,15 +13,17 @@ public class Accesorio extends PrendaBuilder
     	if ((jsonReader.getTipoAccesorio()).contains(tipo))
     	{
     		prenda.setStrategy(new noAbriga());
+    		int tempQueAbriga = prenda.getStrategy().getTemperatura(prenda);
         	prenda.setTipo(tipo);
+        	prenda.setAbrigoTemp(tempQueAbriga);
     	}
-    	else if (jsonReader.getTipoAbrigoSecundario().contains(tipo)) 
-    	{
-    		prenda.setStrategy(new abrigo());
-    		prenda.setTipo(tipo);
-    		String parteEspecifica=JsonReader.getParteEspecifica(tipo);
-    		prenda.setParteEspecifica(parteEspecifica);
-    	}
+//    	else if (jsonReader.getTipoAbrigoSecundario().contains(tipo)) 
+//    	{
+//    		prenda.setStrategy(new abrigo());
+//    		prenda.setTipo(tipo);
+//    		String parteEspecifica=JsonReader.getParteEspecifica(tipo);
+//    		prenda.setParteEspecifica(parteEspecifica);
+//    	}
     	else throw new Exception("ERROR TIPO"); 
      
     }

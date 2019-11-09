@@ -10,27 +10,42 @@ public class ParteSuperior extends PrendaBuilder
     {
     	if (JsonReader.getTipoParteSuperior().contains(tipo))
     	{
+    		prenda.setTipo(tipo);
     		prenda.setStrategy(new noAbriga());
-        	prenda.setTipo(tipo);
+    		int tempQueAbriga = prenda.getStrategy().getTemperatura(prenda);
+        	prenda.setAbrigoTemp(tempQueAbriga);
     	}
     	else if (JsonReader.getTipoAbrigos().contains(tipo)) 
     	{
-    		prenda.setStrategy(new abrigo());
     		prenda.setTipo(tipo);
+    		prenda.setStrategy(new abrigo());
+    		int tempQueAbriga = prenda.getStrategy().getTemperatura(prenda);
+    		prenda.setAbrigoTemp(tempQueAbriga);
     		 
-    	}else throw new Exception("ERROR TIPO");  
+    	}else if (jsonReader.getTipoAbrigoSecundario().contains(tipo)) 
+    	{
+    		prenda.setTipo(tipo);
+    		prenda.setStrategy(new abrigo());
+    		String parteEspecifica=JsonReader.getParteEspecifica(tipo);
+    		prenda.setParteEspecifica(parteEspecifica);
+    		
+    		int tempQueAbriga = prenda.getStrategy().getTemperatura(prenda);
+    		prenda.setAbrigoTemp(tempQueAbriga);
+    	}
+    	
+    	else throw new Exception("ERROR TIPO");  
     	
     }
     
     public void buildMaterial(String material) throws Exception
     {
-    	if (JsonReader.getMaterialParteSuperior().contains(material))
-    	{
+//    	if (JsonReader.getMaterialParteSuperior().contains(material))
+//    	{
         	prenda.setMaterial(material);
-    	}
-    	else
-    	{
-    		throw new Exception("ERROR MATERIAL"); 
-    	} 
+//    	}
+//    	else
+//    	{
+//    		throw new Exception("ERROR MATERIAL"); 
+//    	} 
     }
 }
