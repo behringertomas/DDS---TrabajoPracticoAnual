@@ -59,7 +59,7 @@ public class Guardarropa
 	@Column(name = "LIMITE_PRENDAS")
 	int limiteDePrendas;
 	
-	@OneToMany(targetEntity = Prenda.class,mappedBy = "guardarropa_id",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@OneToMany(targetEntity = Prenda.class,mappedBy = "guardarropa_id",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	List <Prenda> TodasLasPrendas = new ArrayList<Prenda>();
 	
 	public Guardarropa(String identificador,int limiteDePrendas)
@@ -217,7 +217,7 @@ public class Guardarropa
 	public void verNoAbriga() {
 		ArrayList <Prenda> noAbriga =(ArrayList <Prenda>) parteSuperior.stream().filter(x->{
 			try {
-				return x.getTemperatura()==0;
+				return x.getAbrigoTemp()==0;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -230,7 +230,7 @@ public class Guardarropa
 	public void verAbrigo() {
 		ArrayList <Prenda> abrigo =(ArrayList <Prenda>) parteSuperior.stream().filter(x->{
 			try {
-				return x.getTemperatura()>0;
+				return x.getAbrigoTemp()>0;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -246,7 +246,7 @@ public class Guardarropa
 		
 		ArrayList <Prenda> noAbriga =(ArrayList <Prenda>) parteSuperior.stream().filter(x->{
 			try {
-				return x.getTemperatura()==0;
+				return x.getAbrigoTemp()==0;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -255,7 +255,7 @@ public class Guardarropa
 		
 		ArrayList <Prenda> abrigo = (ArrayList <Prenda>) parteSuperior.stream().filter(x->{
 			try {
-				return x.getTemperatura()>0;
+				return x.getAbrigoTemp()>0;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -264,7 +264,7 @@ public class Guardarropa
 		
 		ArrayList <Prenda> accesoriosNoAbrigo =(ArrayList <Prenda>) accesorios.stream().filter(x->{
 			try {
-				return x.getTemperatura()==0;
+				return x.getAbrigoTemp()==0;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -273,7 +273,7 @@ public class Guardarropa
 		
 		ArrayList <Prenda> accesoriosAbrigo = (ArrayList <Prenda>) accesorios.stream().filter(x->{
 			try {
-				return x.getTemperatura()>0;
+				return x.getAbrigoTemp()>0;
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -299,7 +299,7 @@ public class Guardarropa
 			}else {
 				List <Prenda> posiblesAbrigoCabezaValidos =  posiblesAbrigoCabeza.stream().filter(x->{
 					try {
-						return x.getTemperatura()>Datos.getFrioCabeza()-temp;
+						return x.getAbrigoTemp()>Datos.getFrioCabeza()-temp;
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -312,7 +312,7 @@ public class Guardarropa
 //				Prenda prendaFlexible=posiblesAbrigoCabeza.sort();
 				Collections.sort(posiblesAbrigoCabeza.stream().map(x->{
 					try {
-						return x.getTemperatura();
+						return x.getAbrigoTemp();
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -347,7 +347,7 @@ public class Guardarropa
 			}else {
 				List <Prenda> posiblesAbrigoCuelloValidos =  posiblesAbrigoCuello.stream().filter(x->{
 					try {
-						return x.getTemperatura()>Datos.getFrioCuello()-temp;
+						return x.getAbrigoTemp()>Datos.getFrioCuello()-temp;
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -360,7 +360,7 @@ public class Guardarropa
 //				Prenda prendaFlexible=posiblesAbrigoCabeza.sort();
 				Collections.sort(posiblesAbrigoCuello.stream().map(x->{
 					try {
-						return x.getTemperatura();
+						return x.getAbrigoTemp();
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -394,7 +394,7 @@ public class Guardarropa
 					}else {
 						List <Prenda> posiblesAbrigoManosValidos =  posiblesAbrigoManos.stream().filter(x->{
 							try {
-								return x.getTemperatura()>Datos.getFrioCuello()-temp;
+								return x.getAbrigoTemp()>Datos.getFrioCuello()-temp;
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -407,7 +407,7 @@ public class Guardarropa
 //						Prenda prendaFlexible=posiblesAbrigoCabeza.sort();
 						Collections.sort(posiblesAbrigoManos.stream().map(x->{
 							try {
-								return x.getTemperatura();
+								return x.getAbrigoTemp();
 							} catch (Exception e) {
 								// TODO Auto-generated catch block
 								e.printStackTrace();
@@ -440,7 +440,7 @@ public class Guardarropa
 			List <List<Prenda>> combinacionesValidas = combinacionesAbrigo.simple().stream().filter(x->x.stream().mapToInt(
 					a->{
 						try {
-							return a.getTemperatura();
+							return a.getAbrigoTemp();
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();

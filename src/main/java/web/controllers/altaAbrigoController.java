@@ -48,7 +48,7 @@ public class altaAbrigoController extends MainController {
          model.setShowAlert(false);
          
          
-         model.getGuardarropa().clear();
+         model.limpiarGuardarropas();
          
          List<Guardarropa> guardarropas = (List<Guardarropa>) currentUser.getListaGuardarropas();
          

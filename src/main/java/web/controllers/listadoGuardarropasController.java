@@ -79,7 +79,7 @@ public class listadoGuardarropasController extends MainController {
 
    private static void fillListadoGuardarropasTable() {
 
-        List<listadoGuardarropaTable> table = new ArrayList<listadoGuardarropaTable>();  
+        List<listadoGuardarropaTable> table = new ArrayList<listadoGuardarropaTable>();
         List<Guardarropa> guardarropas = (List<Guardarropa>) currentUser.getListaGuardarropas();
 
        try{

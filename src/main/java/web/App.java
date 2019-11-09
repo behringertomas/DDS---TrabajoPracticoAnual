@@ -62,13 +62,13 @@ public class App
     
     public static void main( String[] args )
     {
-
+//    	Spark.stop();
     	BasicConfigurator.configure(); //sin eso no se configura el logger. No sacar.
         Spark.port(9000);
         staticFileLocation("/webResources");
         DebugScreen.enableDebugScreen();
         Spark.init();
-        
+       
 //		ACA TENEMOS QUE INICIAR LOS HILOS
         
     	

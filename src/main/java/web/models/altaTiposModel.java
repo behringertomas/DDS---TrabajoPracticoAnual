@@ -22,6 +22,10 @@ public class altaTiposModel {
 	public List<Guardarropa> getGuardarropa() {
 		return guardarropa;
 	}
+	
+	public void limpiarGuardarropas() {
+		guardarropa.clear();
+	}
 
 	public void setGuardarropa(List<Guardarropa> guardarropa) {
 		this.guardarropa = guardarropa;

@@ -47,7 +47,7 @@ public class altaAccesorioController extends MainController {
         currentUser = getUsuarioViaEntity(userID);
         model.setShowAlert(false);
         
-        model.getGuardarropa().clear();
+        model.limpiarGuardarropas();
         
         List<Guardarropa> guardarropa = (List<Guardarropa>) currentUser.getListaGuardarropas();
         
