@@ -132,6 +132,30 @@ public class Guardarropa
 	}
 		else throw new Exception("PRENDA YA SE ENCUENTRA EN UN GUARDARROPA");
 }
+	
+	public void reacomodarEnGuardarropas(Prenda prenda) {
+
+		switch(prenda.getParteCuerpo()) 
+		{
+		case "Parte Superior":
+			this.parteSuperior.add(prenda);
+			break;
+		case "Parte Inferior": 
+			this.parteInferior.add(prenda);
+			break;
+		case "Accesorio":
+			this.accesorios.add(prenda);
+			break;
+		case "Calzado": 
+			this.calzados.add(prenda);
+			break;
+		default:
+			System.out.println("ESTE ELEMENTO NO PERTENECE A NINGUNA LISTA");
+			break;
+		
+		}
+	}
+	
 //-------------------MOSTRAR LOS ARRAYS DEL GUARDARROPA-------------------- 
 	
 	public List<Prenda> getAllPrendas(){

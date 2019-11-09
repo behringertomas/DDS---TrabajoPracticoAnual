@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -54,8 +56,9 @@ public class Evento extends TimerTask implements comando {
 	@Column(name = "HS_CHEQUEO_CAMBIOBRUSCO")
 	public int horasChequeoCambioBrusco = 6;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	public Usuario usuario; 
+	@JoinColumn(name = "usuario_id", referencedColumnName = "ID_USUARIO", foreignKey = @ForeignKey(name = "FK_USUARIO") )
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Usuario.class,cascade = CascadeType.ALL)
+	public Usuario usuario;
 	
 	@Transient
 	public CambioBruscoClimatico cambioAlerta = null;	
@@ -167,6 +170,7 @@ public class Evento extends TimerTask implements comando {
 		System.out.println("Evento cancelado por falta de atuendo");
 		timer.cancel();		
 	}
+	
 
 //	@Override
 //	public void run() {
@@ -224,6 +228,9 @@ public class Evento extends TimerTask implements comando {
 //			e.printStackTrace();
 //		}
 //}		
+	
+	public Evento() {
+	}
 	
 	@Override
 	public void run() {
@@ -295,11 +302,11 @@ public class Evento extends TimerTask implements comando {
 	  this.temp = temp;
   }
   
-  @Override
-	public String toString() {
-		return "Evento [ID=" + ID + ", usuario=" + usuario + ", FechaDelEvento=" + FechaDelEvento + ", ciudad=" + ciudad
-				+ ", Descripcion=" + Descripcion + "]";
-	}
+//  @Override
+//	public String toString() {
+//		return "Evento [ID=" + ID + ", usuario=" + usuario + ", FechaDelEvento=" + FechaDelEvento + ", ciudad=" + ciudad
+//				+ ", Descripcion=" + Descripcion + "]";
+//	}
   
   public double getTemp() {
 	  return this.temp;

@@ -71,7 +71,7 @@ public class sugerenciasController extends MainController{
             }
         catch(Exception e)
             {
-                alert.setShowAlertWithMessage("Errorr!!!");
+                alert.setShowAlertWithMessage("No se pudo obtener la lista de prendas.");
                 return new ModelAndView(alert, SUGERENCIAS);
             }
 

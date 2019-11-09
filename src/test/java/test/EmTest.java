@@ -48,10 +48,10 @@ public class EmTest{
 //	  @Test
 //	  public void TestPrenda() throws Exception {
 //		  Usuario tomas = new Usuario("pepe","pepe@gmail.com","1234","Pepe Behringer",21);
-////		  Prenda prenda1 = tomas.construirPrenda("Parte Superior","Remera", "Tela", "Rojo", "Negro");
 //		  
 //		  tomas.CrearGuardarropa(nombreGuardarropaPersistir,10);
 //		  tomas.construirPrenda("Parte Superior","Remera", "Tela", "Azul", "Negro",tomas.getGuardarropa(nombreGuardarropaPersistir));
+//		  tomas.crearEvento("Fiesta de Gala", "Paris", 2020, 10, 7, 15, 26);
 //		  
 //		  EntityTransaction transaction = entityManager.getTransaction();
 //	      transaction.begin();

@@ -267,10 +267,21 @@ public class Usuario
 	}
 //	
 	
+	
 	public List<Atuendo> queMePongoATodosLosGuardarropas(String descripcion, double temp) throws Exception,UnauthorizedException,ApiException
 	{
 		List<Atuendo> atuendos = listaGuardarropas.stream().map(guardarropa -> {
 			try {
+				guardarropa.TodasLasPrendas.forEach(prenda->{
+					//meto las prendas en sus respectivas listas.
+					try {
+						guardarropa.reacomodarEnGuardarropas(prenda);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				});
+				
 				return guardarropa.queMePongo(descripcion,this.Datos,temp);
 			} catch (UnauthorizedException e) {
 				// TODO Auto-generated catch block
@@ -301,24 +312,43 @@ public class Usuario
         	throw new Exception("ERROR SIN ATUENDOS");
         }
 	}
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
+	}
+
+	public Collection<Evento> getListaEvento() {
+		return listaEvento;
+	}
+
+	public void setListaEvento(Collection<Evento> listaEvento) {
+		this.listaEvento = listaEvento;
+	}
+
 	//este lo hace solo una vez
-	public void crearEvento(String descripcion,String ciudad,int anio,int mes,int dia,int hora,int minutos) {
+	public Evento crearEvento(String descripcion,String ciudad,int anio,int mes,int dia,int hora,int minutos) {
 		 
 		Calendar myCalendar = new GregorianCalendar(anio, mes-1, dia);
 		myCalendar.set(Calendar.HOUR_OF_DAY, hora);
 		myCalendar.set(Calendar.MINUTE, minutos);
-		 Date fechaDeEvento = myCalendar.getTime();
-		 myCalendar.add(Calendar.MINUTE, -1);
-		 Date fechaDeSugerencia = myCalendar.getTime();
-		 String fecha = fechaDeSugerencia.toString();
-		 Evento EventoNuevo= new Evento(fechaDeEvento,fechaDeSugerencia,this,ciudad,descripcion);
+		Date fechaDeEvento = myCalendar.getTime();
+		myCalendar.add(Calendar.MINUTE, -1);
+		Date fechaDeSugerencia = myCalendar.getTime();
+		String fecha = fechaDeSugerencia.toString();
+		 
+		Evento EventoNuevo= new Evento(fechaDeEvento,fechaDeSugerencia,this,ciudad,descripcion);
 		
 		this.listaEvento.add(EventoNuevo);
+		return EventoNuevo;
+		
 		//System.out.print(fecha);
 		
 		 
 	}
-	public void crearEvento(String descripcion,String ciudad,int anio,int mes,int dia,int hora,int minutos,int CadacuantosDias) {
+	public Evento crearEvento(String descripcion,String ciudad,int anio,int mes,int dia,int hora,int minutos,int CadacuantosDias) {
 		 
 		Calendar myCalendar = new GregorianCalendar(anio, mes-1, dia);
 		myCalendar.set(Calendar.HOUR_OF_DAY, hora);
@@ -330,7 +360,8 @@ public class Usuario
 		 Evento EventoNuevo= new Evento(fechaDeEvento,fechaDeSugerencia,this,ciudad,descripcion,CadacuantosDias);
 		
 		this.listaEvento.add(EventoNuevo);
-		//System.out.print(fecha);		 
+		return EventoNuevo;
+		
 	}
 	
 	public Evento getEvento(String eventoAObtener) {

@@ -10,6 +10,7 @@ import web.controllers.LoginController;
 import web.controllers.altaAbrigoController;
 import web.controllers.altaAccesorioController;
 import web.controllers.altaCalzadoController;
+import web.controllers.altaEventoController;
 import web.controllers.altaPrendaController;
 import web.controllers.altaTipoInferiorController;
 import web.controllers.altaTipoSuperiorController;
@@ -48,6 +49,7 @@ public class App
     	listadoPrendasController.init(); // -> Requerimiento 3
     	
     	altaPrendaController.init(); // -> Requerimiento 4
+    	altaEventoController.init();
     	
     	sugerenciasController.init();
     	altaTipoSuperiorController.init(); // -> Requerimiento 4

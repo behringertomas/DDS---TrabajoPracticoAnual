@@ -62,15 +62,19 @@ public class testsMain {
 	
 
 	public static void main(String[] args) throws Exception, UnauthorizedException, ApiException {
-//		
+		
 //		Usuario tomas = new Usuario("tomas","tomas@gmail.com","1234","Tomas Behringer",21);
 //		  Prenda prenda1 = tomas.construirPrenda("Parte Superior","Remera", "Tela", "Rojo", "Negro");
 //		  tomas.CrearGuardarropa("Guardarropa De Invierno",10);
 //		  tomas.asignarPrenda(tomas.getGuardarropa("Guardarropa De Invierno"), prenda1 );
 //		
 //		  System.out.println(tomas.getGuardarropa("Guardarropa De Invierno").getAllPrendas().size());
-//	        
-		
+//		UsuarioDao udao = new UsuarioDao();
+//		Usuario usuario = udao.getUserByUsername("pepe");
+//		Evento evento = usuario.getEvento("Fiesta de Gala");
+
+//		usuario.crearEvento("Fiesta de Gala", "Paris", 2019, 10, 7, 15, 26);      
+	
 	} 
 //		UsuarioDao usr = new UsuarioDao();
 //		Usuario tomasSQL = usr.getUserByUsername("tomas");
