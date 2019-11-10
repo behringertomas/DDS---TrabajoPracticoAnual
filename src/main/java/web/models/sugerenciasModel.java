@@ -14,21 +14,28 @@ public class sugerenciasModel {
 		public sugerenciasModel() {
 			table = new ArrayList<>();
 		}
-
-		public List<sugerenciaTable> getTable() {
-			return table;
+		public boolean isShowAlert() {
+			return showAlert;
+		}
+		
+		public void setShowAlert(boolean showAlert) {
+			this.showAlert = showAlert;
 		}
 
 		public void setTable(List<sugerenciaTable> table) {
 			this.table = table;
 		}
 
-		public boolean isShowAlert() {
-			return showAlert;
-		}
+	    public sugerenciasModel(List<sugerenciaTable> tableN) {
+	        this.table = tableN;
+	    }
+	    
+	    public void setsugerenciaTable(List<sugerenciaTable> tableListadoPrendas) {
+	        this.table = tableListadoPrendas;
+	    }
 
-		public void setShowAlert(boolean showAlert) {
-			this.showAlert = showAlert;
-		}
+	    public List<sugerenciaTable> getTable() {
+	        return table;
+	    }
 		
 }

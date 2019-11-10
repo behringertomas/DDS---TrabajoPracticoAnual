@@ -79,18 +79,20 @@ public class sugerenciasController extends MainController{
     
     private static void fillSugerenciaTable(Request request, Response response) {
 
+    	List<sugerenciaTable> table = new ArrayList<sugerenciaTable>();  
     	String eventoABuscar = request.queryParams("buscar");
-        List<sugerenciaTable> table = new ArrayList<sugerenciaTable>();  
+        
+    	String userSession =  request.session().attribute("user");
+        Integer userID = Integer.parseInt(userSession.substring(0,userSession.indexOf("-")));
+        currentUser = getUsuarioViaEntity(userID);
         
         Evento eventoSeleccionado = currentUser.getEvento(eventoABuscar);
         eventoSeleccionado.run();
         Atuendo atuendoElegido = eventoSeleccionado.getAtuendoElegido();
-//        atuendoElegido NULL
-//        Esto se debe a que en el .run, no se formo el atuendo bien
         List<Prenda> lstPrendas = atuendoElegido.getPrendas();
         
         try{
- 	       for(int i = 0; i < table.size(); i++)
+ 	       for(int i = 0; i < lstPrendas.size(); i++)
  	       {
  	    	  sugerenciaTable row = new sugerenciaTable();
  	    	   
