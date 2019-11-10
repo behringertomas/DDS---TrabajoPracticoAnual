@@ -118,6 +118,9 @@ public class Evento extends TimerTask implements comando {
 		//System.out.print(fechaSugerencia.toString());
 		timer.schedule(this, fechaSugerencia,this.transformardiasamilisegundis(cadaCuantosDias));
 	}
+	public Evento() {
+	}
+	
 	
 	@Override
 	public void ejecutar() {
@@ -230,9 +233,6 @@ public class Evento extends TimerTask implements comando {
 //		}
 //}		
 	
-	public Evento() {
-	}
-	
 	@Override
 	public void run() {
 		String descripcion = "soleado";
@@ -244,21 +244,20 @@ public class Evento extends TimerTask implements comando {
 		try {
 			listaSugerencias = usuario.queMePongoATodosLosGuardarropas(descripcion,temp);
 		} catch (UnauthorizedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ApiException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		listaSugerencias= listaSugerencias.stream().filter(x->x!=null).collect(Collectors.toList());
+		listaSugerencias= listaSugerencias.stream().filter(x->x != null).collect(Collectors.toList());
 		
 		int rnd = new Random().nextInt(listaSugerencias.size());
 		Atuendo atuendoElegido = listaSugerencias.get(rnd);
 		
 		this.Sugerencia = this.getMejorAtuendo(listaSugerencias);
+		if(this.Sugerencia == null) {this.deshacer();}
+		
 	}
 	
 	
@@ -279,8 +278,8 @@ public class Evento extends TimerTask implements comando {
 	  {
 		  if (listaSugerencias.get(i).isNotBlocked(this.FechaDelEvento))
 		  {
-			  this.Sugerencia = listaSugerencias.get(i);
-			  return listaSugerencias.get(i);	  
+			  setAtuendoElegido(listaSugerencias.get(i));
+			  return listaSugerencias.get(i); 
 		  }
 	  }
 	  return null;

@@ -43,27 +43,30 @@ public class App
     
     public static void iniciarControladores() {
     	
-    	LoginController.init(); // -> Requerimiento 1
+    	LoginController.init();
     	
-    	listadoGuardarropasController.init(); // -> Requerimiento 2
-    	listadoPrendasController.init(); // -> Requerimiento 3
+    	listadoGuardarropasController.init();
+    	listadoPrendasController.init();
     	
-    	altaPrendaController.init(); // -> Requerimiento 4
+    	altaPrendaController.init();
     	altaEventoController.init();
     	
     	sugerenciasController.init();
-    	altaTipoSuperiorController.init(); // -> Requerimiento 4
-    	altaTipoInferiorController.init(); // -> Requerimiento 4
-    	altaCalzadoController.init(); // -> Requerimiento 4
-    	altaAccesorioController.init(); // -> Requerimiento 4
-    	altaAbrigoController.init(); // -> Requerimiento 4
+    	altaTipoSuperiorController.init();
+    	altaTipoInferiorController.init();
+    	altaCalzadoController.init();
+    	altaAccesorioController.init();
+    	altaAbrigoController.init();
     }
     
     
     public static void main( String[] args )
     {
-//    	Spark.stop();
-    	BasicConfigurator.configure(); //sin eso no se configura el logger. No sacar.
+//    	BasicConfigurator.configure(); 
+
+//    	Eso es para el logger del server.
+//    	si no quieren que logee Started y todas las respuestas del sv, saquenlo.
+//    	Sirve para que podamos ver lo que va respondiendo solo eclipse.
         Spark.port(9000);
         staticFileLocation("/webResources");
         DebugScreen.enableDebugScreen();
