@@ -77,7 +77,10 @@ public class sugerenciasController extends MainController{
     	eventoSeleccionado.setAtuendoElegido(atuendoElegido);
         bdao.update(eventoSeleccionado);
         persist(atuendoElegido);
-    	
+        
+        currentUser.addAtuendoHistorial(atuendoElegido);
+    	bdao.update(currentUser);
+        
         return new ModelAndView (model, SUGERENCIAS);
     }
     
