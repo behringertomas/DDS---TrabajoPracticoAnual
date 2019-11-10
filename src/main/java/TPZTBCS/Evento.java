@@ -57,7 +57,7 @@ public class Evento extends TimerTask implements comando {
 	public int horasChequeoCambioBrusco = 6;
 	
 	@JoinColumn(name = "usuario_id", referencedColumnName = "ID_USUARIO", foreignKey = @ForeignKey(name = "FK_USUARIO") )
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Usuario.class,cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Usuario.class)
 	public Usuario usuario;
 	
 	@Transient
@@ -66,7 +66,7 @@ public class Evento extends TimerTask implements comando {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ID_ATUENDO_ELEGIDO")
 	public Atuendo AtuendoElegido=null; 
-	
+//	Lo estoy poniendo null...
 	@Transient
 	public Atuendo Sugerencia=null; 
 	
@@ -91,6 +91,7 @@ public class Evento extends TimerTask implements comando {
 	int tiempoRepeticion=0;
 	@Column(name = "EVENTO_TEMPERATURA")
 	double temp=100;
+//	OJO ACA QUE ESTA EN 100
 	@Column(name = "EVENTO_DESCRIPCION_CLIMA")
 	public String DescripcionClima =null;
 	
@@ -278,7 +279,8 @@ public class Evento extends TimerTask implements comando {
 	  {
 		  if (listaSugerencias.get(i).isNotBlocked(this.FechaDelEvento))
 		  {
-			  return listaSugerencias.get(i);			  
+			  this.Sugerencia = listaSugerencias.get(i);
+			  return listaSugerencias.get(i);	  
 		  }
 	  }
 	  return null;

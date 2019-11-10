@@ -58,10 +58,10 @@ public class altaEventoController extends MainController{
     	
     	if(cadaCuanto == 0) {
     		Evento evento = currentUser.crearEvento(descripcion, ciudad, anio, mes, dia, hora, minutos);
-//    		persist(evento);
+    		persist(evento);
     	} else {
     		Evento evento = currentUser.crearEvento(descripcion, ciudad, anio, mes, dia, hora, minutos,cadaCuanto);
-//    		persist(evento);
+    		persist(evento);
     	}
     	
     	return new ModelAndView (model, ALTA_EVENTO);

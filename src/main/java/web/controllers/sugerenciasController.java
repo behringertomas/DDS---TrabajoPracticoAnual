@@ -85,6 +85,8 @@ public class sugerenciasController extends MainController{
         Evento eventoSeleccionado = currentUser.getEvento(eventoABuscar);
         eventoSeleccionado.run();
         Atuendo atuendoElegido = eventoSeleccionado.getAtuendoElegido();
+//        atuendoElegido NULL
+//        Esto se debe a que en el .run, no se formo el atuendo bien
         List<Prenda> lstPrendas = atuendoElegido.getPrendas();
         
         try{

@@ -331,7 +331,7 @@ public class Usuario
 		this.listaEvento = listaEvento;
 	}
 
-	//este lo hace solo una vez
+//	************ CREACION EVENTO ************
 	public Evento crearEvento(String descripcion,String ciudad,int anio,int mes,int dia,int hora,int minutos) {
 		 
 		Calendar myCalendar = new GregorianCalendar(anio, mes-1, dia);
