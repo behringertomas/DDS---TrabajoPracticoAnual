@@ -43,7 +43,12 @@
                     </div>
                     <br>
                     <form action="/listadoPrendas" method="POST">
-                        <input class="form-control" type="text" id="buscar" name="buscar" placeholder="Ingrese guardarropa a buscar" required autofocus/>
+                        Guardarropas Del Usuario
+                        <select class="form-control" title="guardarropa" name="guardarropa" id="sm">
+                            {{#each guardarropa}}
+                                <option value="{{identificador}}">{{identificador}}</option>
+                            {{/each}}
+                        </select>
                         <button class="btn btn-lg btn-primary btn-block" type="submit">Buscar</button>
                     </form>
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

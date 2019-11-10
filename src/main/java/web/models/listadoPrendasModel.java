@@ -12,11 +12,26 @@ public class listadoPrendasModel {
 
 	private List<listadoPrendasTable> table;
 	private boolean showAlert;
+	private List<Guardarropa> guardarropa;
 	
 	public listadoPrendasModel() {
 		table = new ArrayList<>();
+		guardarropa = new ArrayList<>();
 	}
 	
+	public void limpiarGuardarropas() {
+		this.guardarropa.clear();
+	}
+	
+	
+	public List<Guardarropa> getGuardarropa() {
+		return guardarropa;
+	}
+
+	public void setGuardarropa(List<Guardarropa> guardarropa) {
+		this.guardarropa = guardarropa;
+	}
+
 	public boolean isShowAlert() {
 		return showAlert;
 	}

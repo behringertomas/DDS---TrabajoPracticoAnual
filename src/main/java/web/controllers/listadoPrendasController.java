@@ -56,6 +56,14 @@ public class listadoPrendasController  extends MainController {
     	getCurrentClient(request);
         sessionExist(request, response);
         model.setShowAlert(false);
+        
+        model.limpiarGuardarropas();
+        
+        List<Guardarropa> guardarropa = (List<Guardarropa>) currentUser.getListaGuardarropas();
+        
+        for(Guardarropa g : guardarropa) {
+        	model.getGuardarropa().add(g);
+        }
         return new ModelAndView (model, LISTADO_PRENDAS);
     }
     
@@ -93,7 +101,7 @@ public class listadoPrendasController  extends MainController {
        private static void fillListadoPrendasTable(Request request, Response response) {
 
             List<listadoPrendasTable> table = new ArrayList<listadoPrendasTable>();        
-            String guardarropaABuscar = request.queryParams("buscar");
+            String guardarropaABuscar = request.queryParams("guardarropa");
             
             String userSession =  request.session().attribute("user");
             Integer userID = Integer.parseInt(userSession.substring(0,userSession.indexOf("-")));
