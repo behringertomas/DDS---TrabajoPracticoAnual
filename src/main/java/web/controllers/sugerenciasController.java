@@ -73,6 +73,14 @@ public class sugerenciasController extends MainController{
     private static ModelAndView aceptarSugerencia(Request request, Response response) {
 
 //    	Creo que aca deberia ponerse el puntaje, pero no se como funciona bien.
+        model.limpiarEventos();
+        
+        List<Evento> evento = (List<Evento>) currentUser.getListaEvento();
+        
+        for(Evento e : evento) {
+        	model.getEvento().add(e);
+        }
+        
     	BaseDao bdao = new BaseDao();
     	eventoSeleccionado.setAtuendoElegido(atuendoElegido);
         bdao.update(eventoSeleccionado);
@@ -91,6 +99,13 @@ public class sugerenciasController extends MainController{
         Integer userID = Integer.parseInt(userSession.substring(0, userSession.indexOf("-")));
 
         currentUser = getUsuarioViaEntity(userID);
+        model.limpiarEventos();
+        
+        List<Evento> evento = (List<Evento>) currentUser.getListaEvento();
+        
+        for(Evento e : evento) {
+        	model.getEvento().add(e);
+        }
 
         try
             {
@@ -109,8 +124,8 @@ public class sugerenciasController extends MainController{
     private static void fillSugerenciaTable(Request request, Response response) {
 
     	List<sugerenciaTable> table = new ArrayList<sugerenciaTable>();  
-//    	String eventoABuscar = request.queryParams("evento");
-    	String eventoABuscar = request.queryParams("buscar");
+    	String eventoABuscar = request.queryParams("evento");
+    	
     	
     	String userSession =  request.session().attribute("user");
         Integer userID = Integer.parseInt(userSession.substring(0,userSession.indexOf("-")));

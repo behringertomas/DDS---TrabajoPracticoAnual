@@ -69,17 +69,19 @@
                     <div class="table-responsive">
                     </div>
                     <br>
+                    <form action="/sugerencias" method="POST">
                         <div class="form-group col-md-8 ">
                             Eventos Del Usuario
                             <select class="form-control" title="evento" name="evento" id="sm">
                                 {{#each evento}}
-                                    <option  value="{{Descripcion}}">{{Descripcion}}</option>
+                                    <option value="{{descripcion}}">{{descripcion}}</option>
                                 {{/each}}
                             </select>
                         </div>
-                    <form action="/sugerencias" method="POST">
-                        <input class="form-control" type="text" id="buscar" name="buscar" placeholder="Ingrese evento a buscar" required autofocus/>
-                        <button class="btn btn-lg btn-primary btn-block" onclick="generarSugerencia()">Generar Sugerencia</button>
+
+                        <div class="form-group col-md-8 ">
+                            <button class="btn btn-lg btn-primary btn-block" onclick="generarSugerencia()">Generar Sugerencia</button>
+                        </div>
                     </form>
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
