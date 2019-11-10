@@ -7,6 +7,7 @@ public class sugerenciaTable {
 	private String material;
 	private String color_primario;
 	private String color_secundario;
+	private String Descripcion;
 	
 	public sugerenciaTable() {
 		
@@ -21,6 +22,13 @@ public class sugerenciaTable {
     	
     }
 
+    
+	public String getEvento() {
+		return Descripcion;
+	}
+	public void setEvento(String evento) {
+		this.Descripcion = evento;
+	}
 	public String getParte() {
 		return parte;
 	}

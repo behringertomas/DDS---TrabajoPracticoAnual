@@ -5,14 +5,17 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import TPZTBCS.Atuendo;
 import TPZTBCS.Evento;
 import TPZTBCS.Guardarropa;
 import TPZTBCS.Prenda;
 import TPZTBCS.Usuario;
-
+import TPZTBCS.dao.BaseDao;
+import TPZTBCS.models.QueryModel;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -36,11 +39,14 @@ public class sugerenciasController extends MainController{
 	private static sugerenciasModel model;
 	private static Usuario currentUser;
 	private static AlertModel alert = new AlertModel(false,"",false);
+	private static Atuendo atuendoElegido;
+	private static Evento eventoSeleccionado;
 	
 	public static void init() {
         HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
         Spark.get(Router.getSugerencias(), sugerenciasController::showPagina, engine);
-        Spark.post(Router.getSugerencias(), sugerenciasController::showPrimerSugerencia, engine);
+        Spark.post(Router.getSugerencias(), sugerenciasController::generarSugerencia, engine);
+        Spark.post(Router.getAceptarSugerencia(), sugerenciasController::aceptarSugerencia, engine);
         initModel();
     }
 	
@@ -52,10 +58,30 @@ public class sugerenciasController extends MainController{
     	getCurrentClient(request);
         sessionExist(request, response);
         model.setShowAlert(false);
+        
+        model.limpiarEventos();
+        
+        List<Evento> evento = (List<Evento>) currentUser.getListaEvento();
+        
+        for(Evento e : evento) {
+        	model.getEvento().add(e);
+        }
+        
         return new ModelAndView (model, SUGERENCIAS);
     }
     
-    private static ModelAndView showPrimerSugerencia(Request request, Response response) {
+    private static ModelAndView aceptarSugerencia(Request request, Response response) {
+
+//    	Creo que aca deberia ponerse el puntaje, pero no se como funciona bien.
+    	BaseDao bdao = new BaseDao();
+    	eventoSeleccionado.setAtuendoElegido(atuendoElegido);
+        bdao.update(eventoSeleccionado);
+        persist(atuendoElegido);
+    	
+        return new ModelAndView (model, SUGERENCIAS);
+    }
+    
+    private static ModelAndView generarSugerencia(Request request, Response response) {
         sessionExist(request, response);
 
         String userSession = request.session().attribute("user");
@@ -80,15 +106,16 @@ public class sugerenciasController extends MainController{
     private static void fillSugerenciaTable(Request request, Response response) {
 
     	List<sugerenciaTable> table = new ArrayList<sugerenciaTable>();  
+//    	String eventoABuscar = request.queryParams("evento");
     	String eventoABuscar = request.queryParams("buscar");
-        
+    	
     	String userSession =  request.session().attribute("user");
         Integer userID = Integer.parseInt(userSession.substring(0,userSession.indexOf("-")));
         currentUser = getUsuarioViaEntity(userID);
         
-        Evento eventoSeleccionado = currentUser.getEvento(eventoABuscar);
+        eventoSeleccionado = currentUser.getEvento(eventoABuscar);
         eventoSeleccionado.run();
-        Atuendo atuendoElegido = eventoSeleccionado.getAtuendoElegido();
+        atuendoElegido = eventoSeleccionado.getAtuendoElegido();
         List<Prenda> lstPrendas = atuendoElegido.getPrendas();
         
         try{
@@ -112,6 +139,15 @@ public class sugerenciasController extends MainController{
         model.setTable(table);
         
      }
+    
+    public static void persist(Atuendo atuendo){
+		EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
+	    entityManager = factory.createEntityManager();
+	    EntityTransaction transaction = entityManager.getTransaction();
+	    transaction.begin();
+	    entityManager.persist(atuendo);
+	    transaction.commit();
+    }
        
     
     private static void getCurrentClient(Request request) {
@@ -126,6 +162,10 @@ public class sugerenciasController extends MainController{
  	   entityManager = factory.createEntityManager();
 
  	   return entityManager.find(Usuario.class, id);
+    }
+    
+    private static sugerenciasModel updateModel(){
+        return model;
     }
 
 }

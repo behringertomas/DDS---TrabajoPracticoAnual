@@ -3,17 +3,32 @@ package web.models;
 import java.util.ArrayList;
 import java.util.List;
 
-import web.models.views.listadoPrendasTable;
+import TPZTBCS.Evento;
 import web.models.views.sugerenciaTable;
 
 public class sugerenciasModel {
 		
 		private List<sugerenciaTable> table;
+		private List<Evento> evento;
 		private boolean showAlert;
 		
 		public sugerenciasModel() {
 			table = new ArrayList<>();
+			evento = new ArrayList<>();
 		}
+		
+		public List<Evento> getEvento() {
+			return evento;
+		}
+		
+		public void limpiarEventos() {
+			evento.clear();
+		}
+		
+		public void setEvento(List<Evento> evento) {
+			this.evento = evento;
+		}
+		
 		public boolean isShowAlert() {
 			return showAlert;
 		}

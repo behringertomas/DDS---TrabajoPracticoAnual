@@ -24,11 +24,15 @@ public class Atuendo
 	@Column(name = "ID_ATUENDO_ELEGIDO")
 	int ID;
 	
-	@OneToMany (targetEntity = Prenda.class,mappedBy = "atuendo",cascade = CascadeType.ALL)
+	@OneToMany (targetEntity = Prenda.class,mappedBy = "atuendo")
 	List <Prenda> prendas;
 	
 	@Column (name = "PUNTAJE_ATUENDO")
 	HashMap<Usuario,Integer> ListaPuntajeAtuendo = new HashMap<Usuario,Integer>();
+	
+	public Atuendo() {
+		
+	}
 	
 	public void setPuntaje(Usuario usuario)
 	{

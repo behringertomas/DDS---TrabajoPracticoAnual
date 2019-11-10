@@ -11,6 +11,7 @@ public class Router {
     private static final String LOGOUT = "/";
     private static final String SUGERENCIAS = "/sugerencias";
     private static final String ALTA_EVENTO = "/altaEvento";
+    private static final String ACEPTAR_SUGERENCIA = "/aceptarSugerencia";
     
     private static final String ALTA_SUPERIOR = "/altaTipoSuperior";
 	private static final String ALTA_INFERIOR = "/altaTipoInferior";
@@ -22,8 +23,12 @@ public class Router {
         return LOGIN;
 	}
 	
-	 
-    public static String getAltaEventoPath() {
+    public static String getAceptarSugerencia() {
+		return ACEPTAR_SUGERENCIA;
+	}
+
+
+	public static String getAltaEventoPath() {
 		return ALTA_EVENTO;
 	}
 

@@ -67,6 +67,7 @@ public class App
 //    	Eso es para el logger del server.
 //    	si no quieren que logee Started y todas las respuestas del sv, saquenlo.
 //    	Sirve para que podamos ver lo que va respondiendo solo eclipse.
+//    	Lo unico que si, si lo descomentan va a dar un mensajito rojo, pero no le den bola
         Spark.port(9000);
         staticFileLocation("/webResources");
         DebugScreen.enableDebugScreen();

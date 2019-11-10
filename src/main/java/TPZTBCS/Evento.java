@@ -66,7 +66,6 @@ public class Evento extends TimerTask implements comando {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ID_ATUENDO_ELEGIDO")
 	public Atuendo AtuendoElegido=null; 
-//	Lo estoy poniendo null...
 	@Transient
 	public Atuendo Sugerencia=null; 
 	
@@ -174,6 +173,7 @@ public class Evento extends TimerTask implements comando {
 		System.out.println("Evento cancelado por falta de atuendo");
 		timer.cancel();		
 	}
+	
 	
 
 //	@Override
@@ -363,5 +363,13 @@ public String requestDescripcionClima() throws UnauthorizedException, ApiExcepti
 	  } 
 		  
   }
+public int getID() {
+	return ID;
+}
+public void setID(int iD) {
+	ID = iD;
+}
+  
+  
   
 }
