@@ -16,6 +16,7 @@ import web.controllers.altaTipoInferiorController;
 import web.controllers.altaTipoSuperiorController;
 import web.controllers.listadoGuardarropasController;
 import web.controllers.listadoPrendasController;
+import web.controllers.puntajeController;
 import web.controllers.sugerenciasController;
 import web.models.altaTiposModel;
 
@@ -57,6 +58,8 @@ public class App
     	altaCalzadoController.init();
     	altaAccesorioController.init();
     	altaAbrigoController.init();
+    	
+    	puntajeController.init();
     }
     
     

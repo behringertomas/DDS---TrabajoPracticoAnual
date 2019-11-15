@@ -64,7 +64,7 @@ public class EmTest{
 //	        
 //      assertEquals(usuarioPersisted.getGuardarropa(nombreGuardarropaPersistir).getAllPrendas().get(0).getTipo(),"Remera");
 //	  }
-	  
+//	  
 	  
 	  
 	  

@@ -1,19 +1,20 @@
 package web.models.views;
 
-public class sugerenciaTable {
+import TPZTBCS.Prenda;
+
+public class modificacionPuntajes {
+	
 
 	private String parte;
 	private String tipo;
 	private String material;
 	private String color_primario;
 	private String color_secundario;
-	private String Descripcion;
 	
-	public sugerenciaTable() {
+	public modificacionPuntajes() {
 		
 	}
-	
-    public sugerenciaTable(String parte, String tipo,String material,String color_primario,String color_secundario,String parte_especifica) 
+    public modificacionPuntajes(String parte, String tipo,String material,String color_primario,String color_secundario,String parte_especifica) 
     {
     	this.parte = parte;
     	this.tipo = material;
@@ -22,13 +23,7 @@ public class sugerenciaTable {
     	this.material = material;
     	
     }
-    
-	public String getEvento() {
-		return Descripcion;
-	}
-	public void setEvento(String evento) {
-		this.Descripcion = evento;
-	}
+
 	public String getParte() {
 		return parte;
 	}
@@ -69,4 +64,8 @@ public class sugerenciaTable {
 		this.color_secundario = color_secundario;
 	}
 
+
+
+
 }
+

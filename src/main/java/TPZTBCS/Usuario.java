@@ -245,6 +245,7 @@ public class Usuario
 	}
 	
 
+
 	
 //	public void asignarPrenda(Guardarropa guardarropaAsignar, Prenda prendaDefault) throws Exception  {
 //		Guardarropa Default = this.getGuardarropa("DEFAULT");
@@ -259,6 +260,14 @@ public class Usuario
 //	}
 	
 	
+	public List<Atuendo> getHistorialAtuendos() {
+		return historialAtuendos;
+	}
+
+	public void setHistorialAtuendos(List<Atuendo> historialAtuendos) {
+		this.historialAtuendos = historialAtuendos;
+	}
+
 	public void agregarGuardarropas(Guardarropa guardarropa) 
 	{
 		this.listaGuardarropas.add(guardarropa);
