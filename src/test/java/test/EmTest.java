@@ -47,24 +47,24 @@ public class EmTest{
 	  
 //	  @Test
 //	  public void TestPrenda() throws Exception {
-//		  Usuario tomas = new Usuario("pepe","pepe@gmail.com","1234","Pepe Behringer",21);
+//		  Usuario pepe = new Usuario("pepe","pepe@gmail.com","1234","Pepe Behringer",21);
 //		  
-//		  tomas.CrearGuardarropa(nombreGuardarropaPersistir,10);
-//		  tomas.construirPrenda("Parte Superior","Remera", "Tela", "Azul", "Negro",tomas.getGuardarropa(nombreGuardarropaPersistir));
-//		  tomas.crearEvento("Fiesta de Gala", "Paris", 2020, 10, 7, 15, 26);
+//		  pepe.CrearGuardarropa(nombreGuardarropaPersistir,10);
+//		  pepe.construirPrenda("Parte Superior","Remera", "Tela", "Azul", "Negro",pepe.getGuardarropa(nombreGuardarropaPersistir));
+//		  pepe.crearEvento("Fiesta de Gala", "Paris", 2020, 10, 7, 15, 26);
 //		  
 //		  EntityTransaction transaction = entityManager.getTransaction();
 //	      transaction.begin();
-//	      entityManager.persist(tomas);
+//	      entityManager.persist(pepe);
 //	      transaction.commit();
 //	        
-//	      assertNotNull(tomas.getId());
+//	      assertNotNull(pepe.getId());
 //	  
-//	      Usuario usuarioPersisted = entityManager.find(Usuario.class, tomas.getId());
+//	      Usuario usuarioPersisted = entityManager.find(Usuario.class, pepe.getId());
 //	        
 //      assertEquals(usuarioPersisted.getGuardarropa(nombreGuardarropaPersistir).getAllPrendas().get(0).getTipo(),"Remera");
 //	  }
-//	  
+	  
 	  
 	  
 	  

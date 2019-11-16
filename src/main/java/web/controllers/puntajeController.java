@@ -3,10 +3,12 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 import TPZTBCS.Atuendo;
+import TPZTBCS.Evento;
 import TPZTBCS.Guardarropa;
 import TPZTBCS.Prenda;
 import TPZTBCS.Usuario;
 import TPZTBCS.dao.UsuarioDao;
+import TPZTBCS.dao.atuendoDao;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -30,18 +32,19 @@ public class puntajeController extends MainController {
 
 	
     private static final String HISTORIAL_CALIFICACIONES = "/cliente/listadoPrendasYCalificacion.hbs";
-    private static puntajePrendasModel model;
     private static Usuario currentUser;
+    private static atuendoDao aDao;
     private static UsuarioDao uDao = new UsuarioDao();
 	private static EntityManager entityManager;
-	 private static AlertModel alert = new AlertModel(false,"",false);
+	private static puntajePrendasModel model;
+	private static AlertModel alert = new AlertModel(false,"",false);
 	
 	private static List<Prenda> lista_prendas_totales = new ArrayList<>();
 
     public static void init() {
         HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
         Spark.get(Router.getHistorialCalificacionesPath(), puntajeController::load, engine);
-        Spark.post(Router.getHistorialCalificacionesPath(), puntajeController::modificar, engine);
+        Spark.post(Router.getHistorialCalificacionesPath(), puntajeController::buscarPrendas, engine);
         initModel();
 
     }
@@ -58,21 +61,13 @@ public class puntajeController extends MainController {
         
         model.setShowAlert(false);
         
-        model.limpiar_prendas();
-        
-        try
-        {
-            alert.setHideAlert();
-            fillListadoAtuendosTable(request,response);
-            return new spark.ModelAndView(model,HISTORIAL_CALIFICACIONES);
-        }
-    catch(Exception e)
-        {
-            alert.setShowAlertWithMessage("Error");
-            return new ModelAndView(alert, HISTORIAL_CALIFICACIONES);
-        }
+        cargarAtuendosAlListBox();
+
+        return new spark.ModelAndView(model,HISTORIAL_CALIFICACIONES);
 
     }
+    
+
         
 //        List<Atuendo> lista_atuendo = currentUser.getHistorialAtuendos();
 //        
@@ -84,12 +79,17 @@ public class puntajeController extends MainController {
 
     	lista_prendas_totales.clear();
         List<modificacionPuntajes> table = new ArrayList<modificacionPuntajes>();        
-//        es la vista
-        List<Atuendo> lista_atuendo = new ArrayList<Atuendo>();
         
-        lista_atuendo = currentUser.getHistorialAtuendos();
-
-        lista_atuendo.forEach(atuendo -> lista_prendas_totales.addAll(atuendo.getPrendas()));
+        
+//        String id = request.queryParams("atuendo");
+//        int atuendoIDSeleccionado=Integer.parseInt(id);
+        int atuendoIDSeleccionado = 12;
+        Atuendo atuendoElegido = getAtuendoViaEntity(atuendoIDSeleccionado);
+        
+//        currentUser.getListaGuardarropas()
+        lista_prendas_totales.addAll(atuendoElegido.getPrendas());
+        
+//        lista_atuendo.forEach(atuendo -> lista_prendas_totales.addAll(atuendo.getPrendas()));
         
        
         
@@ -115,10 +115,28 @@ public class puntajeController extends MainController {
        
     }
 
-    private static ModelAndView modificar(Request request, Response response) {
+    private static ModelAndView buscarPrendas(Request request, Response response) {
     
+    	String userSession =  request.session().attribute("user");
+        Integer userID = Integer.parseInt(userSession.substring(0,userSession.indexOf("-")));
+        currentUser = getUsuarioViaEntity(userID);
+        cargarAtuendosAlListBox();
+        
+        model.setShowAlert(false);
+        
+        try
+        {
+            alert.setHideAlert();
+            fillListadoAtuendosTable(request,response);
+            return new spark.ModelAndView(model,HISTORIAL_CALIFICACIONES);
+        }
+    catch(Exception e)
+        {
+            alert.setShowAlertWithMessage("Error");
+            return new ModelAndView(alert, HISTORIAL_CALIFICACIONES);
+        }
     	
-        return new ModelAndView(model, HISTORIAL_CALIFICACIONES);
+        
     }
     
     private static void getCurrentClient(Request request) {
@@ -133,6 +151,22 @@ public class puntajeController extends MainController {
  	   entityManager = factory.createEntityManager();
 
  	   return entityManager.find(Usuario.class, id);
+    }
+    
+    public static Atuendo getAtuendoViaEntity(int id) {
+  	   EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
+  	   entityManager = factory.createEntityManager();
+
+  	   return entityManager.find(Atuendo.class, id);
+     }
+    
+    public static void cargarAtuendosAlListBox() {
+        model.limpiar_atuendos();
+        List<Atuendo> atuendo = currentUser.getHistorialAtuendos();
+        
+        for(Atuendo a : atuendo) {
+        	model.getListaAtuendos().add(a);
+        }
     }
     
 

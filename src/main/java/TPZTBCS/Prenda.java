@@ -3,6 +3,7 @@ package TPZTBCS;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 import javax.persistence.*;
@@ -30,10 +31,9 @@ public class Prenda
 	@Column(name = "ID_PRENDA")
 	int ID;
 	
-	@ManyToOne
-	@JoinColumn (name = "atuendo_id")
-	private Atuendo atuendo;
-	//Ojo cuando hagamos atuendo, habria que ver si no queda nulo como nos pasaba con guardarropa.
+	@Column (name = "ID_ATUENDO")
+	@ManyToMany(mappedBy = "prendas")
+	List <Atuendo> atuendo = new ArrayList<Atuendo>();
 	
 	@JoinColumn (name = "guardarropa_prenda_id",referencedColumnName = "ID_GUARDARROPA",foreignKey = @ForeignKey(name = "FK_GUARDARROPA"))
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Guardarropa.class)
@@ -106,17 +106,27 @@ public class Prenda
 	
 	
 	
-	public Atuendo getAtuendo() {
+//	public Atuendo getAtuendo() {
+//		return atuendo;
+//	}
+//
+//	public void setAtuendo(Atuendo atuendo) {
+//		this.atuendo = atuendo;
+//	}
+	
+	public List<Atuendo> getAtuendo() {
 		return atuendo;
 	}
-
-	public void setAtuendo(Atuendo atuendo) {
+	
+	public void setAtuendo(List<Atuendo> atuendo) {
 		this.atuendo = atuendo;
 	}
+	
 
 	public void setParteEspecifica(String parte) {
 		this.parteEspecifica=parte;
 	}
+
 	public String getParteEspecifica() {
 		return this.parteEspecifica;
 	}

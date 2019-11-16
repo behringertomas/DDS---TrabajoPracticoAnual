@@ -55,6 +55,7 @@ public class listadoPrendasController  extends MainController {
     private static ModelAndView showPagina(Request request, Response response) {
     	getCurrentClient(request);
         sessionExist(request, response);
+        
         model.setShowAlert(false);
         
         model.limpiarGuardarropas();

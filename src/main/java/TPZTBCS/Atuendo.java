@@ -11,6 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -22,10 +25,11 @@ public class Atuendo
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID_ATUENDO_ELEGIDO")
-	int ID;
+	int id;
 	
-	@OneToMany (targetEntity = Prenda.class,mappedBy = "atuendo")
-	List <Prenda> prendas;
+	@ManyToMany(cascade = {CascadeType.REMOVE,CascadeType.REFRESH})
+	@JoinTable(name = "atuendo_prenda",joinColumns = {@JoinColumn(name = "ID_ATUENDO_ELEGIDO")}, inverseJoinColumns = {@JoinColumn(name = "ID_PRENDA")})
+	List <Prenda> prendas = new ArrayList<Prenda>();
 	
 	@Column (name = "PUNTAJE_ATUENDO")
 	HashMap<Usuario,Integer> ListaPuntajeAtuendo = new HashMap<Usuario,Integer>();
@@ -120,11 +124,11 @@ public class Atuendo
 	
 	
 	public int getID() {
-		return ID;
+		return id;
 	}
 
 	public void setID(int iD) {
-		ID = iD;
+		id = iD;
 	}
 
 	public List<Prenda> getPrendas() {

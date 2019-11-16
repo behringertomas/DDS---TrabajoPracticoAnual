@@ -2,26 +2,57 @@ package web.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import TPZTBCS.Atuendo;
 import TPZTBCS.Prenda;
 import web.models.views.listadoPrendasTable;
 import web.models.views.modificacionPuntajes;
+import web.models.views.sugerenciaTable;
 
 public class puntajePrendasModel {
 
 	private List<modificacionPuntajes> table;
-    private List<Prenda> ListaPrendas;
-    private Boolean isSuccess;
-    private String message;
+    private List<Atuendo> atuendo;
     private boolean showAlert;
 
-    
-    public void limpiar_prendas() {
-    	this.ListaPrendas.clear();
+    public puntajePrendasModel() {
+    	table = new ArrayList<>();
+    	atuendo = new ArrayList<>();
     }
     
-    public puntajePrendasModel() {
-		table = new ArrayList<>();
-    	ListaPrendas = new ArrayList<>();
+    public List<Atuendo> getListaAtuendos() {
+    	return atuendo;
+    }
+    
+    public List<Atuendo> getAtuendo() {
+		return atuendo;
+	}
+
+	public void setAtuendo(List<Atuendo> atuendo) {
+		this.atuendo = atuendo;
+	}
+
+	public void limpiar_atuendos() {
+    	atuendo.clear();
+    }
+    
+	public void setListaAtuendos(List<Atuendo> listaAtuendos) {
+		atuendo = listaAtuendos;
+	}
+
+	public List<modificacionPuntajes> getTable() {
+		return table;
+	}
+
+	public void setTable(List<modificacionPuntajes> table) {
+		this.table = table;
+	}
+	
+    public puntajePrendasModel(List<modificacionPuntajes> tableN) {
+        this.table = tableN;
+    }
+
+    public void setHideAlert(){
+        setShowAlert(false);
     }
 
     public boolean isShowAlert() {
@@ -32,61 +63,6 @@ public class puntajePrendasModel {
         this.showAlert = showAlert;
     }
 
-    public List<Prenda> getPrendas() {
-        return ListaPrendas;
-    }
 
-    public void setDispositivos(List<Prenda> Lista) {
-        this.ListaPrendas = Lista;
-    }
-
-    public Boolean getIsSuccess() {
-        return isSuccess;
-    }
-    
-
-    public List<modificacionPuntajes> getTable() {
-		return table;
-	}
-
-	public void setTable(List<modificacionPuntajes> table) {
-		this.table = table;
-	}
-
-	public List<Prenda> getListaPrendas() {
-		return ListaPrendas;
-	}
-
-	public void setListaPrendas(List<Prenda> listaPrendas) {
-		ListaPrendas = listaPrendas;
-	}
-
-	public void setIsSuccess(Boolean type) {
-        this.isSuccess = type;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public void setHideAlert(){
-        setShowAlert(false);
-    }
-
-
-    public void success(String message) {
-        this.setShowAlert(true);
-        this.setIsSuccess(true);
-        this.setMessage(message);
-    }
-
-    public void failed(String message){
-        this.setIsSuccess(false);
-        this.setMessage(message);
-    }
 
 }

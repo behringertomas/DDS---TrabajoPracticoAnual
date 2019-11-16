@@ -72,7 +72,7 @@ public class sugerenciasController extends MainController{
     
     private static ModelAndView aceptarSugerencia(Request request, Response response) {
 
-//    	Creo que aca deberia ponerse el puntaje, pero no se como funciona bien.
+    	
         model.limpiarEventos();
         
         List<Evento> evento = (List<Evento>) currentUser.getListaEvento();
@@ -89,7 +89,7 @@ public class sugerenciasController extends MainController{
         currentUser.addAtuendoHistorial(atuendoElegido);
     	bdao.update(currentUser);
         
-    	atuendoElegido.getPrendas().forEach(prenda->prenda.setAtuendo(atuendoElegido));
+    	atuendoElegido.getPrendas().forEach(prenda->prenda.getAtuendo().add(atuendoElegido));
     	atuendoElegido.getPrendas().forEach(prenda-> bdao.update(prenda));
         return new ModelAndView (model, SUGERENCIAS);
     }
@@ -108,7 +108,7 @@ public class sugerenciasController extends MainController{
         for(Evento e : evento) {
         	model.getEvento().add(e);
         }
-
+        
         try
             {
                 alert.setHideAlert();
