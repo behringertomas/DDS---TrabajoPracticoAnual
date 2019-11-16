@@ -71,14 +71,6 @@
                     </div>
                     <br>
 
-
-
-
-
-
-
-
-
                     <form action="/listadoPrendasYCalificacion" method="POST">
                         Atuendos Del Usuario
                         <select class="form-control" title="atuendo" name="atuendo" id="sm">
@@ -88,15 +80,6 @@
                         </select>
                         <button class="btn btn-lg btn-primary btn-block" onclick="mostrarPrendasAtuendo()" >Mostrar Prendas del Atuendo</button>
                     </form>
-
-
-
-
-
-
-
-
-
 
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
@@ -111,7 +94,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <form action="/modificarPuntajes" method="POST">
+
                             {{#each table}}
                                 <tr>
                                     <td>{{iD}}</td>
@@ -120,7 +103,8 @@
                                     <td>{{material}}</td>
                                     <td>{{color_primario}}</td>
                                     <td>{{color_secundario}}</td>
-                                        <td> <select class="form-control" title="puntajeParticular" name="{{iD}}" id="{{iD}}" required="required">
+                                    <form action="/modificarPuntajes" method="POST">
+                                        <td> <select class="form-control" title="{{iD}}" name="{{iD}}" id="{{iD}}" required="required">
                                             <option value=1>1</option>
                                             <option value=2>2</option>
                                             <option value=3>3</option>
@@ -135,7 +119,9 @@
                                 </tr>
                             {{/each}}
                             <button class="btn btn-lg btn-primary btn-block" onclick="modificarPuntaje()">Aplicar Puntajes</button>
-                        </form>
+
+
+                            </form>
 
 
                         </tbody>

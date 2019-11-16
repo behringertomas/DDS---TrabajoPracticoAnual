@@ -71,11 +71,8 @@ public class puntajeController extends MainController {
  	       {
  	    	   
  	    	  String idAObtenerPuntaje = Integer.toString(lista_prendas_totales.get(i).getID());
- 	    	   String asd = request.queryParams(idAObtenerPuntaje);
- 	    	   int puntajeParticular = Integer.parseInt(request.params(":id"));
-// 	    	   String idAObtenerPuntaje = Integer.toString(lista_prendas_totales.get(i).getID());
-// 	    	   int puntajeParticular = Integer.parseInt(request.queryParams(idAObtenerPuntaje));
-// 	    	   sumatoriaPuntaje +=puntajeParticular;
+ 	    	  int puntajeParticular = Integer.parseInt(request.queryParams(idAObtenerPuntaje));
+ 	    	  sumatoriaPuntaje +=puntajeParticular;
  	       }
  	       int puntajeFinal = sumatoriaPuntaje / lista_prendas_totales.size();
  	       atuendoElegido.setPuntaje(currentUser,puntajeFinal);
