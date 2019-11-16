@@ -105,6 +105,15 @@ public class Prenda
 
 	
 	
+	
+	public Atuendo getAtuendo() {
+		return atuendo;
+	}
+
+	public void setAtuendo(Atuendo atuendo) {
+		this.atuendo = atuendo;
+	}
+
 	public void setParteEspecifica(String parte) {
 		this.parteEspecifica=parte;
 	}

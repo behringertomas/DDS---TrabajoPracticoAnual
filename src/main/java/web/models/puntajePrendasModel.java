@@ -43,8 +43,25 @@ public class puntajePrendasModel {
     public Boolean getIsSuccess() {
         return isSuccess;
     }
+    
 
-    public void setIsSuccess(Boolean type) {
+    public List<modificacionPuntajes> getTable() {
+		return table;
+	}
+
+	public void setTable(List<modificacionPuntajes> table) {
+		this.table = table;
+	}
+
+	public List<Prenda> getListaPrendas() {
+		return ListaPrendas;
+	}
+
+	public void setListaPrendas(List<Prenda> listaPrendas) {
+		ListaPrendas = listaPrendas;
+	}
+
+	public void setIsSuccess(Boolean type) {
         this.isSuccess = type;
     }
 

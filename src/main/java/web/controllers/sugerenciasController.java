@@ -89,6 +89,8 @@ public class sugerenciasController extends MainController{
         currentUser.addAtuendoHistorial(atuendoElegido);
     	bdao.update(currentUser);
         
+    	atuendoElegido.getPrendas().forEach(prenda->prenda.setAtuendo(atuendoElegido));
+    	atuendoElegido.getPrendas().forEach(prenda-> bdao.update(prenda));
         return new ModelAndView (model, SUGERENCIAS);
     }
     
