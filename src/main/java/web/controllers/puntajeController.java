@@ -81,9 +81,9 @@ public class puntajeController extends MainController {
         List<modificacionPuntajes> table = new ArrayList<modificacionPuntajes>();        
         
         
-//        String id = request.queryParams("atuendo");
-//        int atuendoIDSeleccionado=Integer.parseInt(id);
-        int atuendoIDSeleccionado = 12;
+        String id = request.queryParams("atuendo");
+        int atuendoIDSeleccionado=Integer.parseInt(id);
+//        int atuendoIDSeleccionado = 12;
         Atuendo atuendoElegido = getAtuendoViaEntity(atuendoIDSeleccionado);
         
 //        currentUser.getListaGuardarropas()
