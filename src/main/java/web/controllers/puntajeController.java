@@ -7,6 +7,7 @@ import TPZTBCS.Evento;
 import TPZTBCS.Guardarropa;
 import TPZTBCS.Prenda;
 import TPZTBCS.Usuario;
+import TPZTBCS.dao.BaseDao;
 import TPZTBCS.dao.UsuarioDao;
 import TPZTBCS.dao.atuendoDao;
 import spark.ModelAndView;
@@ -36,8 +37,10 @@ public class puntajeController extends MainController {
     private static atuendoDao aDao;
     private static UsuarioDao uDao = new UsuarioDao();
 	private static EntityManager entityManager;
+	private static List<modificacionPuntajes> lstModificacionPuntajes;
 	private static puntajePrendasModel model;
 	private static AlertModel alert = new AlertModel(false,"",false);
+	private static int atuendoSeleccionado;
 	
 	private static List<Prenda> lista_prendas_totales = new ArrayList<>();
 
@@ -45,12 +48,50 @@ public class puntajeController extends MainController {
         HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
         Spark.get(Router.getHistorialCalificacionesPath(), puntajeController::load, engine);
         Spark.post(Router.getHistorialCalificacionesPath(), puntajeController::buscarPrendas, engine);
+        Spark.post(Router.getModificarPuntajes(), puntajeController::modificarPuntajes, engine);
         initModel();
 
     }
     
     private static void initModel() {
         model = new puntajePrendasModel();
+    }
+    
+    private static ModelAndView modificarPuntajes(Request request, Response response) {
+    	
+    	
+    	Atuendo atuendoElegido = getAtuendoViaEntity(getAtuendoSeleccionado());
+    	
+//    	puntuaciones de prendas en particular
+//    	haremos un promedio. Si se quiere puntuar el atuendo total, abajo habia comenzado a hacer el codigo.
+//    	lo dejo comentado aca abajo y en el hbs.
+    	int sumatoriaPuntaje = 0;
+    	try{
+ 	       for(int i = 0; i < lista_prendas_totales.size(); i++)
+ 	       {
+ 	    	   
+ 	    	  String idAObtenerPuntaje = Integer.toString(lista_prendas_totales.get(i).getID());
+ 	    	   String asd = request.queryParams(idAObtenerPuntaje);
+ 	    	   int puntajeParticular = Integer.parseInt(request.params(":id"));
+// 	    	   String idAObtenerPuntaje = Integer.toString(lista_prendas_totales.get(i).getID());
+// 	    	   int puntajeParticular = Integer.parseInt(request.queryParams(idAObtenerPuntaje));
+ 	    	   sumatoriaPuntaje +=puntajeParticular;
+ 	       }
+ 	       int puntajeFinal = sumatoriaPuntaje / lista_prendas_totales.size();
+ 	       atuendoElegido.setPuntaje(currentUser,puntajeFinal);
+ 	       
+ 	       BaseDao bdao = new BaseDao();
+ 	       bdao.update(atuendoElegido);
+ 	       
+// 	       POR SI SE NECESITA HACER UN PUNTAJE TOTAL, VIENE POR ACA
+// 	      int puntajeTotalAtuendo = Integer.parseInt(request.queryParams("puntajeTotal"));
+// 	      if (puntajeTotalAtuendo != 0) {
+// 	    	 
+// 	      }
+        }
+        catch(Exception e){}
+    	
+    	return new spark.ModelAndView(model,HISTORIAL_CALIFICACIONES);
     }
     
     private static ModelAndView load(Request request, Response response) {
@@ -66,38 +107,24 @@ public class puntajeController extends MainController {
         return new spark.ModelAndView(model,HISTORIAL_CALIFICACIONES);
 
     }
-    
-
-        
-//        List<Atuendo> lista_atuendo = currentUser.getHistorialAtuendos();
-//        
-//        lista_atuendo.forEach(atuendo -> atuendo.getPrendas().addAll(lista_prendas_totales));
-//        
-//        lista_prendas_totales.forEach(d -> model.getPrendas().add(d));
 
     private static void fillListadoAtuendosTable(Request request, Response response) {
-
+//    	lstModificacionPuntajes.clear();
     	lista_prendas_totales.clear();
         List<modificacionPuntajes> table = new ArrayList<modificacionPuntajes>();        
         
-        
-        String id = request.queryParams("atuendo");
-        int atuendoIDSeleccionado=Integer.parseInt(id);
-//        int atuendoIDSeleccionado = 12;
-        Atuendo atuendoElegido = getAtuendoViaEntity(atuendoIDSeleccionado);
-        
-//        currentUser.getListaGuardarropas()
-        lista_prendas_totales.addAll(atuendoElegido.getPrendas());
-        
-//        lista_atuendo.forEach(atuendo -> lista_prendas_totales.addAll(atuendo.getPrendas()));
-        
+        setAtuendoSeleccionado(Integer.parseInt(request.queryParams("atuendo")));
        
-        
+        Atuendo atuendoElegido = getAtuendoViaEntity(getAtuendoSeleccionado());
+
+        lista_prendas_totales.addAll(atuendoElegido.getPrendas());
+     
        try{
 	       for(int i = 0; i < lista_prendas_totales.size(); i++)
 	       {
 	    	   modificacionPuntajes row = new modificacionPuntajes();
 	    	   
+	    	   row.setID(lista_prendas_totales.get(i).getID());
 	    	   row.setColor_primario(lista_prendas_totales.get(i).getColorPrimario());
 	    	   if(!lista_prendas_totales.get(i).getColorSecundario().isEmpty()) {
 	    		   row.setColor_secundario(lista_prendas_totales.get(i).getColorSecundario());
@@ -107,12 +134,12 @@ public class puntajeController extends MainController {
 	    	   row.setTipo(lista_prendas_totales.get(i).getTipo());
 
 	           table.add(row);
+//	           lstModificacionPuntajes.add(row);
 	       }
        }
        catch(Exception e){}
 
        model.setTable(table);
-       
     }
 
     private static ModelAndView buscarPrendas(Request request, Response response) {
@@ -138,6 +165,8 @@ public class puntajeController extends MainController {
     	
         
     }
+    
+    
     
     private static void getCurrentClient(Request request) {
         String userSession =  request.session().attribute("user");
@@ -168,6 +197,16 @@ public class puntajeController extends MainController {
         	model.getListaAtuendos().add(a);
         }
     }
+
+	public static int getAtuendoSeleccionado() {
+		return atuendoSeleccionado;
+	}
+
+	public static void setAtuendoSeleccionado(int atuendoSeleccionado) {
+		puntajeController.atuendoSeleccionado = atuendoSeleccionado;
+	}
+    
+    
     
 
 

@@ -25,6 +25,34 @@
 
 </head>
 
+<script>
+    function modificarPuntaje() {
+        $.ajax({
+            url: "/sugerencias",
+            type: "post",
+            success: function () {
+                location.reload();
+            }
+        });
+    }
+
+    function mostrarPrendasAtuendo() {
+        $.ajax({
+            url: "/sugerencias",
+            type: "post",
+            success: function () {
+                location.reload();
+            }
+        });
+    }
+
+
+
+    function getElement(name) {
+        return document.getElementById(name);
+    }
+</script>
+
 <div id="wrapper">
 
     {{>cliente/navBar.hbs}}
@@ -49,11 +77,12 @@
                                 <option value="{{iD}}">{{iD}}</option>
                             {{/each}}
                         </select>
-                        <button class="btn btn-lg btn-primary btn-block" type="submit" >Mostrar Prendas del Atuendo</button>
+                        <button class="btn btn-lg btn-primary btn-block" onclick="mostrarPrendasAtuendo()" >Mostrar Prendas del Atuendo</button>
                     </form>
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Parte</th>
                             <th>Tipo</th>
                             <th>Material</th>
@@ -66,13 +95,37 @@
                         <form action="/listadoPrendasYCalificacion" method="POST">
                             {{#each table}}
                                 <tr>
+                                    <td>{{iD}}</td>
                                     <td>{{parte}}</td>
                                     <td>{{tipo}}</td>
                                     <td>{{material}}</td>
                                     <td>{{color_primario}}</td>
                                     <td>{{color_secundario}}</td>
-                                    <td> <select class="form-control" title="puntaje" name="puntaje" required="required">
-                                        <option value=0>0</option>
+                                        <td> <select class="form-control" title="puntajeParticular" name="puntajeParticular" id="{{iD}}" required="required">
+                                            <option value=1>1</option>
+                                            <option value=2>2</option>
+                                            <option value=3>3</option>
+                                            <option value=4>4</option>
+                                            <option value=5>5</option>
+                                            <option value=6>6</option>
+                                            <option value=7>7</option>
+                                            <option value=8>8</option>
+                                            <option value=9>9</option>
+                                            <option value=10>10</option>
+                                        </select> </td>
+                                </tr>
+                            {{/each}}
+                        </form>
+
+                        <form action="/modificarPuntajes" method="POST">
+                         <button class="btn btn-lg btn-primary btn-block" onclick="modificarPuntaje()">Aplicar Puntajes</button>
+                        </form>
+
+
+                        </tbody>
+                    </table>
+                    <!-- SI SE QUIERE PUNTUAR A TODO EL ATUENDO -->
+                                        <!--                  <select class="custom-select custom-select-lg mb-3" title="puntajeTotal" name="puntajeTotal" required="required">
                                         <option value=1>1</option>
                                         <option value=2>2</option>
                                         <option value=3>3</option>
@@ -83,13 +136,7 @@
                                         <option value=8>8</option>
                                         <option value=9>9</option>
                                         <option value=10>10</option>
-                                    </select> </td>
-                                </tr>
-                            {{/each}}
-                        </form>
-
-                        </tbody>
-                    </table>
+                                    </select>-->
 
                 </div>
             </div></br>

@@ -131,8 +131,8 @@ public class Evento extends TimerTask implements comando {
 		this.AtuendoElegido=this.Sugerencia;
 		System.out.println("Atuendo Asignado");
 		
-		this.AtuendoElegido.repuntuarPrendas(this.usuario);
-		this.AtuendoElegido.setPuntaje(this.usuario);
+//		this.AtuendoElegido.repuntuarPrendas(this.usuario);
+//		this.AtuendoElegido.setPuntaje(this.usuario);
 		
 		//SUMARLE CALIFICACION.
 		this.cambioAlerta= new CambioBruscoClimatico(this);
@@ -145,8 +145,8 @@ public class Evento extends TimerTask implements comando {
 	public void deshacer() {
 	//	this.verificarAlerta();
 		
-		this.Sugerencia.repuntuarPrendas(this.usuario);
-		this.Sugerencia.setPuntaje(this.usuario);
+//		this.Sugerencia.repuntuarPrendas(this.usuario);
+//		this.Sugerencia.setPuntaje(this.usuario);
 		
 		usuario.listaEvento.remove(this);
 		
@@ -157,8 +157,8 @@ public class Evento extends TimerTask implements comando {
 	@Override
 	public void rechazar() {
 		
-		this.Sugerencia.repuntuarPrendas(this.usuario);
-		this.Sugerencia.setPuntaje(this.usuario);
+//		this.Sugerencia.repuntuarPrendas(this.usuario);
+//		this.Sugerencia.setPuntaje(this.usuario);
 		
 		System.out.println("Atuendo rechazado");
 		this.run();

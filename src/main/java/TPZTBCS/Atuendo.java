@@ -38,13 +38,18 @@ public class Atuendo
 		
 	}
 	
-	public void setPuntaje(Usuario usuario)
+//	public void setPuntaje(Usuario usuario)
+//	{
+//		System.out.println("Puntaje anterior: " + this.getPuntaje(usuario));
+//		System.out.println("Ingrese puntaje del atuendo completo:");
+//		Scanner obj = new Scanner(System.in);
+//		
+//		int puntaje = obj.nextInt();
+//		ListaPuntajeAtuendo.put(usuario,puntaje);			
+//	}
+	
+	public void setPuntaje(Usuario usuario,int puntaje)
 	{
-		System.out.println("Puntaje anterior: " + this.getPuntaje(usuario));
-		System.out.println("Ingrese puntaje del atuendo completo:");
-		Scanner obj = new Scanner(System.in);
-		
-		int puntaje = obj.nextInt();
 		ListaPuntajeAtuendo.put(usuario,puntaje);			
 	}
 	
@@ -79,9 +84,9 @@ public class Atuendo
 		
 	}
 	
-	public void repuntuarPrendas(Usuario usuario) 
+	public void repuntuarPrendas(Usuario usuario,int puntaje) 
 	{
-		this.prendas.forEach(prenda-> prenda.setPuntaje(usuario));
+		this.prendas.forEach(prenda-> prenda.setPuntaje(usuario,puntaje));
 	}
 	
 	public int cuantoAbriga() {

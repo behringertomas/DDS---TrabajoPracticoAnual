@@ -383,9 +383,9 @@ public class Usuario
 	public Guardarropa getGuardarropa(String guardarropaAObtener) {
 		return (Guardarropa) this.listaGuardarropas.stream().filter(x->x.getIdentificador().equalsIgnoreCase(guardarropaAObtener)).collect(Collectors.toList()).get(0);
 	}
-	public void puntuarPrenda(Prenda prenda)
+	public void puntuarPrenda(Prenda prenda,int puntaje)
 	{
-		prenda.setPuntaje(this);
+		prenda.setPuntaje(this,puntaje);
 	}
 	
 	public void addAtuendoHistorial(Atuendo atuendo)

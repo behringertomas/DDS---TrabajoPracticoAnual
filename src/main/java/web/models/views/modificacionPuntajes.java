@@ -4,12 +4,13 @@ import TPZTBCS.Prenda;
 
 public class modificacionPuntajes {
 	
-
+	private int iD;
 	private String parte;
 	private String tipo;
 	private String material;
 	private String color_primario;
 	private String color_secundario;
+	
 	
 	public modificacionPuntajes() {
 		
@@ -23,7 +24,14 @@ public class modificacionPuntajes {
     	this.material = material;
     	
     }
+    
+	public int getID() {
+		return iD;
+	}
 
+	public void setID(int iD) {
+		this.iD = iD;
+	}
 	public String getParte() {
 		return parte;
 	}

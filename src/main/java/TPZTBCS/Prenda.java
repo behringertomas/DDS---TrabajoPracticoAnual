@@ -29,7 +29,7 @@ public class Prenda
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID_PRENDA")
-	int ID;
+	int id;
 	
 	@Column (name = "ID_ATUENDO")
 	@ManyToMany(mappedBy = "prendas")
@@ -76,15 +76,19 @@ public class Prenda
 	@Column(name = "PRENDA_PREFERENCIAS")
 	HashMap<Usuario,Integer> ListaPuntaje = new HashMap<Usuario,Integer>();
 	
-	public void setPuntaje(Usuario usuario)
+//	public void setPuntaje(Usuario usuario)
+//	{
+//		System.out.println("Prenda: " + this.parteEspecifica + this.tipo);
+//		System.out.println("Puntaje anterior: " + this.getPuntaje(usuario));
+//		System.out.println("Ingrese puntaje de la prenda:");
+//		
+//		Scanner obj = new Scanner(System.in);
+//		int puntaje = obj.nextInt();
+//		
+//		ListaPuntaje.put(usuario,puntaje);			
+//	}
+	public void setPuntaje(Usuario usuario, int puntaje)
 	{
-		System.out.println("Prenda: " + this.parteEspecifica + this.tipo);
-		System.out.println("Puntaje anterior: " + this.getPuntaje(usuario));
-		System.out.println("Ingrese puntaje de la prenda:");
-		
-		Scanner obj = new Scanner(System.in);
-		int puntaje = obj.nextInt();
-		
 		ListaPuntaje.put(usuario,puntaje);			
 	}
 	
@@ -241,13 +245,12 @@ public class Prenda
     }
 
 	public int getID() {
-		return ID;
+		return id;
 	}
 
 	public void setID(int iD) {
-		ID = iD;
+		id = iD;
 	}
-    
     
     
 //    public void modificarPuntaje(Usuario usuario){
