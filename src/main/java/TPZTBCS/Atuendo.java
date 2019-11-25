@@ -27,7 +27,7 @@ public class Atuendo
 	@Column(name = "ID_ATUENDO_ELEGIDO")
 	int id;
 	
-	@ManyToMany(cascade = {CascadeType.REMOVE,CascadeType.REFRESH})
+	@ManyToMany(cascade = {CascadeType.REMOVE,CascadeType.REFRESH,CascadeType.MERGE})
 	@JoinTable(name = "atuendo_prenda",joinColumns = {@JoinColumn(name = "ID_ATUENDO_ELEGIDO")}, inverseJoinColumns = {@JoinColumn(name = "ID_PRENDA")})
 	List <Prenda> prendas = new ArrayList<Prenda>();
 	

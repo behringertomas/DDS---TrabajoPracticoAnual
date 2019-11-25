@@ -11,7 +11,7 @@ import web.models.calendarioModel;
 
 public class calendarioController extends MainController{
 	
-	private static final String CALENDARIO = "cliente/index.hbs";
+	private static final String CALENDARIO = "/cliente/calendar.hbs";
 	private static calendarioModel model;
 	
     public static void init() {
@@ -22,8 +22,6 @@ public class calendarioController extends MainController{
     private static ModelAndView showPagina(Request request, Response response) {
         return new ModelAndView (model, CALENDARIO);
     }
-    
-
     
     private static void initModel() {
         model = new calendarioModel();

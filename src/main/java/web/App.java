@@ -14,6 +14,7 @@ import web.controllers.altaEventoController;
 import web.controllers.altaPrendaController;
 import web.controllers.altaTipoInferiorController;
 import web.controllers.altaTipoSuperiorController;
+import web.controllers.calendarioController;
 import web.controllers.listadoGuardarropasController;
 import web.controllers.listadoPrendasController;
 import web.controllers.puntajeController;
@@ -59,6 +60,7 @@ public class App
     	altaAccesorioController.init();
     	altaAbrigoController.init();
     	
+    	calendarioController.init();
     	puntajeController.init();
     }
     
