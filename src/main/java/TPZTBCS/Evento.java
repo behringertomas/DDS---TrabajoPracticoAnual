@@ -71,7 +71,7 @@ public class Evento extends TimerTask implements comando {
 	
 	
 	@Column(name = "FECHA_EVENTO")
-	public Date FechaDelEvento;
+	public Date fecha;
 	@Column(name = "FECHA_SUGERENCIA")
 	public Date FechaSugerencia;
 	@Column(name = "EVENTO_CIUDAD")
@@ -95,7 +95,7 @@ public class Evento extends TimerTask implements comando {
 	public String DescripcionClima =null;
 	
 	public Evento(Date fechaEvento,Date fechaSugerencia,Usuario ID, String ciudad,String Descripcion) {
-		this.FechaDelEvento=fechaEvento;
+		this.fecha=fechaEvento;
 		this.FechaSugerencia=fechaSugerencia;
 		this.usuario = ID;
 		this.ciudad = ciudad;
@@ -106,7 +106,7 @@ public class Evento extends TimerTask implements comando {
 		timer.schedule(this, fechaSugerencia);
 	}
 	public Evento(Date fechaEvento,Date fechaSugerencia,Usuario ID, String ciudad,String Descripcion,int cadaCuantosDias) {
-		this.FechaDelEvento=fechaEvento;
+		this.fecha=fechaEvento;
 		this.FechaSugerencia=fechaSugerencia;
 		this.usuario = ID;
 		this.ciudad = ciudad;
@@ -120,12 +120,21 @@ public class Evento extends TimerTask implements comando {
 	public Evento() {
 	}
 	
+	//Este sirve para la interfaz grafica nomas.
+	public Evento(Date fechaEvento, String ciudad,String Descripcion) {
+		this.fecha= fechaEvento;
+		this.ciudad = ciudad;
+		this.Descripcion = Descripcion.toLowerCase();
+		timer = new Timer();
+		timer.schedule(this, fechaEvento);
+	}
+	
 	
 	@Override
 	public void ejecutar() {
 
 //		this.verificarAlerta();
-		this.Sugerencia.bloquear(this.FechaDelEvento); //bloquear las prendas del atuendo para que otro usuario no las pueda usar al mismo tiempo
+		this.Sugerencia.bloquear(this.fecha); //bloquear las prendas del atuendo para que otro usuario no las pueda usar al mismo tiempo
 		this.usuario.addAtuendoHistorial(this.Sugerencia);
 		
 		this.AtuendoElegido=this.Sugerencia;
@@ -233,6 +242,9 @@ public class Evento extends TimerTask implements comando {
 //		}
 //}		
 	
+	public void setFechaDelEvento(Date fechaDelEvento) {
+		fecha = fechaDelEvento;
+	}
 	@Override
 	public void run() {
 		String descripcion = "soleado";
@@ -276,7 +288,7 @@ public class Evento extends TimerTask implements comando {
 	  
 	  for(int i = 0; i < cantAtuendos; i++)
 	  {
-		  if (listaSugerencias.get(i).isNotBlocked(this.FechaDelEvento))
+		  if (listaSugerencias.get(i).isNotBlocked(this.fecha))
 		  {
 			  setAtuendoElegido(listaSugerencias.get(i));
 			  return listaSugerencias.get(i); 
@@ -319,7 +331,7 @@ public class Evento extends TimerTask implements comando {
 	  return this.ciudad;
   }
   public Date getFechaDelEvento() {
-	  return this.FechaDelEvento;
+	  return this.fecha;
   }
   public int getHorasCambioBrusco() {
 	  return this.horasChequeoCambioBrusco;
