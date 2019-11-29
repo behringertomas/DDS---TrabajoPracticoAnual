@@ -242,9 +242,6 @@ public class Evento extends TimerTask implements comando {
 //		}
 //}		
 	
-	public void setFechaDelEvento(Date fechaDelEvento) {
-		fecha = fechaDelEvento;
-	}
 	@Override
 	public void run() {
 		String descripcion = "soleado";
@@ -324,15 +321,20 @@ public class Evento extends TimerTask implements comando {
   public double getTemp() {
 	  return this.temp;
   }
-  public String getDescripcion() {
+  
+  public Date getFecha() {
+	return fecha;
+	}
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+	public String getDescripcion() {
 	  return this.Descripcion;
   }
   public String getCiudad() {
 	  return this.ciudad;
   }
-  public Date getFechaDelEvento() {
-	  return this.fecha;
-  }
+
   public int getHorasCambioBrusco() {
 	  return this.horasChequeoCambioBrusco;
   }

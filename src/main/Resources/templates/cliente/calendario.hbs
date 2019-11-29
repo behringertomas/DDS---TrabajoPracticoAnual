@@ -96,7 +96,7 @@
 <div class="container container-eventos">
     <h2>Mis eventos</h2>
     {{#each eventos}}
-        
+
             <div class="evento">
                 <div class="evento-titulo">
                     <h5>{{descripcion}}</h5>
@@ -202,7 +202,6 @@
             var a = 0
             {{#each eventos}}
                 var foo = "{{fecha}}"
-                alert(foo);
                 var titulo = "{{descripcion}}"
                 var hora = foo.slice(11,16);
                 var anio = foo.slice(0,4);
