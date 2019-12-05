@@ -1,30 +1,291 @@
 <project>
 
   <modelVersion>4.0.0</modelVersion>
-  <groupId>nombre-proyecto</groupId>
-  <artifactId>nombre-proyecto</artifactId>
-  <version>1</version>
-    <dependencies>
-	<!-- https://mvnrepository.com/artifact/taglibs/string -->
+  <groupId>ZTBCS</groupId>
+  <artifactId>ZTBCS</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+    </properties>
+ 
+<dependencies>
+
 	<dependency>
 	    <groupId>taglibs</groupId>
 	    <artifactId>string</artifactId>
 	    <version>1.1.0</version>
 	</dependency>
-	
+
+	<!-- J-UNIT, TESTS -->
     <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>4.12</version>
     </dependency>
-	
-	<!-- https://mvnrepository.com/artifact/com.google.common/google-collect -->
+    
+	<!-- MYSQL -->
 	<dependency>
-		<groupId>com.google.common</groupId>
-		<artifactId>google-collect</artifactId>
-		<version>0.5</version>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.12</version>
+	</dependency>
+	
+	<dependency>
+            <groupId> org.uqbar-project </groupId>
+            <artifactId> jpa-java8-extras </artifactId>
+            <version> 1.0-alpha-1 </version>
+     </dependency>
+	
+	<dependency>
+		    <groupId>com.sun.jersey</groupId>
+		    <artifactId>jersey-client</artifactId>
+		    <version>1.9.1</version>
+	</dependency>
+	
+    <dependency>
+        <groupId>javax.activation</groupId>
+        <artifactId>activation</artifactId>
+        <version>1.1.1</version>
+    </dependency>
+	
+	<!-- https://mvnrepository.com/artifact/com.github.jknack/handlebars -->
+
+	
+	<!-- H2 (PREVIO A MYSQL) -->
+	<!-- 	<dependency> -->
+	<!-- 		<groupId>com.h2database</groupId> -->
+	<!-- 		<artifactId>h2</artifactId> -->
+	<!-- 		<version>1.4.199</version> -->
+	<!-- 		<scope>test</scope> -->
+	<!-- 	</dependency> -->
+
+	<!-- HIBERNATE -->
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-core</artifactId>
+		<version>5.3.5.Final</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-entitymanager</artifactId>
+	    <version>5.3.12.Final</version>
+	</dependency>
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-validator</artifactId>
+		<version>4.3.0.Final</version>
+	</dependency>
+	<dependency>
+		<groupId>org.hibernate.javax.persistence</groupId>
+		<artifactId>hibernate-jpa-2.2-api</artifactId>
+		<version>1.0.0.Beta2</version>
+		<type>pom</type>
+	</dependency>
+	 <dependency>
+		<groupId> org.hsqldb </groupId> 
+		 <artifactId> hsqldb </artifactId> 
+		 <version> 2.2.8 </version> 
+	 </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-search-orm</artifactId>
+            <version>5.7.1.Final</version>
+        </dependency>
+
+	<!-- PERSISTENCIA -->
+	<dependency>
+		<groupId>javax.persistence</groupId>
+		<artifactId>javax.persistence-api</artifactId>
+		<version>2.2</version>
+	</dependency>
+	
+	<!-- Combinaciones De Prenda-->
+	<dependency>
+		<groupId>org.apache.commons</groupId>
+		<artifactId>commons-math3</artifactId>
+		<version>3.6.1</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>com.google.guava</groupId>
+		<artifactId>guava</artifactId>
+		<version>27.0.1-jre</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>com.github.dpaukov</groupId>
+		<artifactId>combinatoricslib3</artifactId>
+		<version>3.3.0</version>
+	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+	<dependency>
+		<groupId>com.googlecode.json-simple</groupId>
+		<artifactId>json-simple</artifactId>
+		<version>1.1</version>
 	</dependency>
 
+	<!-- https://mvnrepository.com/artifact/org.hamcrest/hamcrest-junit -->
+	<dependency>
+		<groupId>org.hamcrest</groupId>
+		<artifactId>hamcrest-junit</artifactId>
+		<version>2.0.0.0</version>
+		<scope>test</scope>
+	</dependency>	
+	
+	<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
+	<dependency>
+		<groupId>org.apache.commons</groupId>
+		<artifactId>commons-lang3</artifactId>
+		<version>3.9</version>
+	</dependency>
+	
+	
+	<dependency>
+    	<groupId>org.javatuples</groupId>
+    	<artifactId>javatuples</artifactId>
+    	<version>1.2</version>
+	</dependency>
+	
+	
+	<!-- PARA ACCUWEATHER API REST -->
+	<dependency>
+		<groupId>org.glassfish.jersey.core</groupId>
+		<artifactId>jersey-client</artifactId>
+		<version>2.25.1</version>
+	</dependency>
+	<dependency>
+		<groupId>org.glassfish.jersey.media</groupId>
+		<artifactId>jersey-media-json-jackson</artifactId>
+		<version>2.25.1</version>
+	</dependency>	
+     <dependency> 
+		 <groupId>org.slf4j</groupId> 
+		 <artifactId>slf4j-api</artifactId> 
+		 <version>1.7.25</version> 
+     </dependency> 
+	
+
+	<!-- Retrofit -->
+	<dependency>
+		<groupId>com.squareup.retrofit2</groupId>
+		<artifactId>converter-jackson</artifactId>
+		<version>2.6.0</version>
+	</dependency>
+	<dependency>
+		<groupId>com.squareup.retrofit</groupId>
+		<artifactId>retrofit</artifactId>
+		<version>2.0.0-beta2</version>
+	</dependency>
+	<dependency>
+		<groupId>com.squareup.retrofit2</groupId>
+		<artifactId>retrofit</artifactId>
+		<version>2.6.0</version>
+	</dependency>
+	<dependency>
+	  <groupId>com.squareup.retrofit2</groupId>
+	  <artifactId>converter-gson</artifactId>
+	  <version>2.5.0</version>
+	</dependency>
+	
+	<!-- Para el envio de MAILS -->
+	<dependency>
+		<groupId>javax.mail</groupId>
+		<artifactId>mail</artifactId>
+		<version>1.4.5</version>
+	</dependency>
+	<dependency>
+		<groupId>javax.mail</groupId>
+		<artifactId>javax.mail-api</artifactId>
+		<version>1.6.0</version>
+	</dependency>
+		
+	<!-- JACKSON -->
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-core</artifactId>
+		<version>[2.9.9,)</version>
+	</dependency>
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-databind</artifactId>
+		<version>[2.9.9,)</version>
+	</dependency>
+	<dependency>
+		<groupId>com.fasterxml.jackson.core</groupId>
+		<artifactId>jackson-annotations</artifactId>
+		<version>[2.9.9,)</version>
+	</dependency>
+	<dependency>
+		<groupId>com.fasterxml.jackson.datatype</groupId>
+		<artifactId>jackson-datatype-jdk8</artifactId>
+		<version>[2.9.9,)</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>com.fasterxml.jackson.datatype</groupId>
+		<artifactId>jackson-datatype-jsr310</artifactId>
+		<version>[2.9.9,)</version>
+	</dependency>
+	
+	<!-- Para el DAO -->
+	<dependency>
+		<groupId>org.apache.lucene</groupId>
+		<artifactId>lucene-core</artifactId>
+		<version>8.2.0</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.lucene</groupId>
+		<artifactId>lucene-queryparser</artifactId>
+		<version>8.2.0</version>
+	</dependency>
+
+	
+
+	<!-- Para SPARK y HANDLEBARS -->
+	<dependency>
+		<groupId>com.github.jknack</groupId>
+		<artifactId>handlebars</artifactId>
+		<version>4.1.2</version>
+	</dependency>
+	<dependency>
+		<groupId>com.github.jknack</groupId>
+		<artifactId>handlebars-helpers</artifactId>
+		<version>4.0.6</version>
+	</dependency>
+	<dependency>
+		<groupId>com.github.jknack</groupId>
+		<artifactId>handlebars-humanize</artifactId>
+		<version>4.0.6</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>com.sparkjava</groupId>
+		<artifactId>spark-core</artifactId>
+		<version>2.5</version>
+	</dependency>
+	<dependency>
+		<groupId>com.sparkjava</groupId>
+		<artifactId>spark-template-handlebars</artifactId>
+		<version>2.5.5</version>
+	</dependency>
+	<dependency>
+		<groupId>com.sparkjava</groupId>
+		<artifactId>spark-debug-tools</artifactId>
+		<version>0.5</version>
+	</dependency>
+	
+	<!-- SPARK - SQL -->
+	<dependency>
+		<groupId>org.apache.spark</groupId>
+		<artifactId>spark-sql_2.12</artifactId>
+		<version>2.4.4</version>
+	</dependency>
+		
+
+		
    </dependencies>
 </project>
 
