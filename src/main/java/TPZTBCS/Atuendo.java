@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,8 +32,13 @@ public class Atuendo
 	@JoinTable(name = "atuendo_prenda",joinColumns = {@JoinColumn(name = "ID_ATUENDO_ELEGIDO")}, inverseJoinColumns = {@JoinColumn(name = "ID_PRENDA")})
 	List <Prenda> prendas = new ArrayList<Prenda>();
 	
-	@Column (name = "PUNTAJE_ATUENDO")
+	@Transient
 	HashMap<Usuario,Integer> ListaPuntajeAtuendo = new HashMap<Usuario,Integer>();
+	
+	@ElementCollection
+	@Column(name = "PUNTAJE")
+	private List<Integer> listaPuntajes;
+	
 	
 	public Atuendo() {
 		
@@ -101,6 +107,16 @@ public class Atuendo
 	}).sum();
 	}
 	
+	
+	
+	public void agregarPuntajeALaLista(int puntaje){
+		this.listaPuntajes.add(puntaje);
+	}
+
+	public void setListaPuntajeAtuendo(HashMap<Usuario, Integer> listaPuntajeAtuendo) {
+		ListaPuntajeAtuendo = listaPuntajeAtuendo;
+	}
+
 	public int puntajeTotalDePrendas(Usuario usuario)
 	{
 		return prendas.stream().mapToInt(x->{return x.getPuntaje(usuario); }).sum();

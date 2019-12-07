@@ -75,8 +75,8 @@ public class puntajeController extends MainController {
  	    	  sumatoriaPuntaje +=puntajeParticular;
  	       }
  	       int puntajeFinal = sumatoriaPuntaje / lista_prendas_totales.size();
- 	       atuendoElegido.setPuntaje(currentUser,puntajeFinal);
  	       
+ 	       atuendoElegido.agregarPuntajeALaLista(puntajeFinal);
  	       BaseDao bdao = new BaseDao();
  	       bdao.update(atuendoElegido);
  	       

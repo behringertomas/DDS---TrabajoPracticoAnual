@@ -35,7 +35,6 @@
             }
         });
     }
-
     function mostrarPrendasAtuendo() {
         $.ajax({
             url: "/sugerencias",
@@ -45,15 +44,10 @@
             }
         });
     }
-
-
-
     function getElement(name) {
         return document.getElementById(name);
     }
 </script>
-
-{{>cliente/header.hbs}}
 
 <div id="wrapper">
 
@@ -67,7 +61,7 @@
             <div class="card mb-3">
                 <div class="card-header">
                     <i class="fas fa-table"></i>
-                   Puntuacion de Atuendos</div>
+                    Puntuacion de Atuendos</div>
                 <div class="card-body">
                     <div class="table-responsive">
                     </div>
@@ -97,39 +91,16 @@
                         </thead>
                         <tbody>
 
-                            {{#each table}}
-                                <tr>
-                                    <td>{{iD}}</td>
-                                    <td>{{parte}}</td>
-                                    <td>{{tipo}}</td>
-                                    <td>{{material}}</td>
-                                    <td>{{color_primario}}</td>
-                                    <td>{{color_secundario}}</td>
-                                    <form action="/modificarPuntajes" method="POST">
-                                        <td> <select class="form-control" title="{{iD}}" name="{{iD}}" id="{{iD}}" required="required">
-                                            <option value=1>1</option>
-                                            <option value=2>2</option>
-                                            <option value=3>3</option>
-                                            <option value=4>4</option>
-                                            <option value=5>5</option>
-                                            <option value=6>6</option>
-                                            <option value=7>7</option>
-                                            <option value=8>8</option>
-                                            <option value=9>9</option>
-                                            <option value=10>10</option>
-                                        </select> </td>
-                                </tr>
-                            {{/each}}
-                            <button class="btn btn-lg btn-primary btn-block" onclick="modificarPuntaje()">Aplicar Puntajes</button>
-
-
-                            </form>
-
-
-                        </tbody>
-                    </table>
-                    <!-- SI SE QUIERE PUNTUAR A TODO EL ATUENDO -->
-                                        <!--                  <select class="custom-select custom-select-lg mb-3" title="puntajeTotal" name="puntajeTotal" required="required">
+                        {{#each table}}
+                            <tr>
+                                <td>{{iD}}</td>
+                                <td>{{parte}}</td>
+                                <td>{{tipo}}</td>
+                                <td>{{material}}</td>
+                                <td>{{color_primario}}</td>
+                                <td>{{color_secundario}}</td>
+                                <form action="/modificarPuntajes" method="POST">
+                                    <td> <select class="form-control" title="{{iD}}" name="{{iD}}" id="{{iD}}" required="required">
                                         <option value=1>1</option>
                                         <option value=2>2</option>
                                         <option value=3>3</option>
@@ -140,7 +111,30 @@
                                         <option value=8>8</option>
                                         <option value=9>9</option>
                                         <option value=10>10</option>
-                                    </select>-->
+                                    </select> </td>
+                            </tr>
+                        {{/each}}
+                        <button class="btn btn-lg btn-primary btn-block" onclick="modificarPuntaje()">Aplicar Puntajes</button>
+
+
+                        </form>
+
+
+                        </tbody>
+                    </table>
+                    <!-- SI SE QUIERE PUNTUAR A TODO EL ATUENDO -->
+                    <!--                  <select class="custom-select custom-select-lg mb-3" title="puntajeTotal" name="puntajeTotal" required="required">
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5</option>
+                    <option value=6>6</option>
+                    <option value=7>7</option>
+                    <option value=8>8</option>
+                    <option value=9>9</option>
+                    <option value=10>10</option>
+                </select>-->
 
                 </div>
             </div></br>
@@ -173,10 +167,6 @@
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
-
-<!-- Logout Modal-->
-{{>cliente/logoutModel.hbs}}
-{{>cliente/scripts.hbs}}
 
 </body>
 

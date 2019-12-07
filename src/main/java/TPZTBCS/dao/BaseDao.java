@@ -237,6 +237,7 @@ public class BaseDao implements Dao {
             merge(o);
             commit();
         } catch (Exception ex) {
+        	ex.printStackTrace();
             rollback();
         }
         finally {
