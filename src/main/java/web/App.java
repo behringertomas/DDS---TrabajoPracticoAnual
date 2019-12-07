@@ -7,6 +7,7 @@ import spark.Spark;
 import spark.debug.DebugScreen;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import web.controllers.LoginController;
+import web.controllers.LogoutController;
 import web.controllers.altaAbrigoController;
 import web.controllers.altaAccesorioAbrigoController;
 import web.controllers.altaAccesorioController;
@@ -61,7 +62,7 @@ public class App
     	altaAccesorioController.init();
     	altaAbrigoController.init();
     	altaAccesorioAbrigoController.init();
-    	
+    	LogoutController.init();
     	calendarioController.init();
     	puntajeController.init();
     }

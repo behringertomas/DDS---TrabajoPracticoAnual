@@ -8,7 +8,7 @@ public class Router {
 	private static final String ListadoPrendas = "/listadoPrendas";
 	private static final String altaPrenda = "/altaPrenda";
 //	Le puse home a esta porque es la primera que se muestra luego del login.
-    private static final String LOGOUT = "/";
+    private static final String LOGOUT = "/logout";
     private static final String SUGERENCIAS = "/sugerencias";
     private static final String ALTA_EVENTO = "/altaEvento";
     private static final String ACEPTAR_SUGERENCIA = "/aceptarSugerencia";
