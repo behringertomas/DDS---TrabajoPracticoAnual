@@ -22,7 +22,7 @@ public class CambioBruscoClimatico extends TimerTask{
     	
         try {
 
-        	double temp = apiOpenW.obtenerTemperaturATalDia(this.evento.convertToLocalDateViaInstant(this.evento.getFechaDelEvento()), this.evento.getCiudad());
+        	double temp = apiOpenW.obtenerTemperaturATalDia(this.evento.convertToLocalDateViaInstant(this.evento.getFecha()), this.evento.getCiudad());
         	String descripcion = evento.requestDescripcionClima();
             if(  Math.abs(this.evento.getTemp() - temp) > parametroCambioBrusco) {
             	NotificacionEmail sender =new NotificacionEmail();

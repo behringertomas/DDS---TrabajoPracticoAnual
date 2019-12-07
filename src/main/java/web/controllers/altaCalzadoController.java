@@ -34,7 +34,7 @@ public class altaCalzadoController extends MainController {
         Spark.get(Router.getAltaCalzado(),altaCalzadoController::load,engine);
         Spark.post(Router.getAltaCalzado(), altaCalzadoController::crearPrenda, engine);
         initModel();
-    }   
+    }
     
     private static void initModel() {
         model = new altaTiposModel();        

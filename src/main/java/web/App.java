@@ -8,6 +8,7 @@ import spark.debug.DebugScreen;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 import web.controllers.LoginController;
 import web.controllers.altaAbrigoController;
+import web.controllers.altaAccesorioAbrigoController;
 import web.controllers.altaAccesorioController;
 import web.controllers.altaCalzadoController;
 import web.controllers.altaEventoController;
@@ -59,6 +60,7 @@ public class App
     	altaCalzadoController.init();
     	altaAccesorioController.init();
     	altaAbrigoController.init();
+    	altaAccesorioAbrigoController.init();
     	
     	calendarioController.init();
     	puntajeController.init();

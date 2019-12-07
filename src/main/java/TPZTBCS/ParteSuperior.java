@@ -22,7 +22,7 @@ public class ParteSuperior extends PrendaBuilder
     		int tempQueAbriga = prenda.getStrategy().getTemperatura(prenda);
     		prenda.setAbrigoTemp(tempQueAbriga);
     		 
-    	}else if (jsonReader.getTipoAbrigoSecundario().contains(tipo)) 
+    	}else if (JsonReader.getTipoAbrigoSecundario().contains(tipo)) 
     	{
     		prenda.setTipo(tipo);
     		prenda.setStrategy(new abrigo());

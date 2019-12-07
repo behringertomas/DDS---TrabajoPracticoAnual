@@ -207,9 +207,17 @@
                 var anio = foo.slice(0,4);
                 var mes = foo.slice(5,7);
                 var dia = foo.slice(8,10);
+                var diacorto = dia.slice(1,2);
                 var cell = ($(this).html())
-                if(cell == dia){
-                    eventos += titulo + " a las " + hora + "\n"
+
+                if(cell.length == 1){
+                    if(cell == diacorto){
+                        eventos += titulo + " a las " + hora + "\n"
+                    }
+                }else{
+                    if(cell == dia){
+                        eventos += titulo + " a las " + hora + "\n"
+                    }
                 }
             {{/each}}
             if(eventos != '' ){

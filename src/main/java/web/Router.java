@@ -19,6 +19,7 @@ public class Router {
 	private static final String ALTA_ACCESORIO = "/altaAccesorio";
 	private static final String ALTA_ABRIGO = "/altaAbrigo";
 	private static final String ALTA_CALZADO = "/altaCalzado";
+	private static final String ALTA_ACCESORIOABRIGO = "/altaAccesorioAbrigo";
 	private static final String CALENDARIO = "/calendario";
 	
 	
@@ -27,7 +28,11 @@ public class Router {
 	public static String getHistorialCalificacionesPath() {
 		return HISTORIAL_CALIFICACIONES;
 	}
-	
+		
+	public static String getAltaAccesorioabrigo() {
+		return ALTA_ACCESORIOABRIGO;
+	}
+
 	public static String loginPath(){
         return LOGIN;
 	}
