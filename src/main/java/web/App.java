@@ -20,6 +20,7 @@ import web.controllers.calendarioController;
 import web.controllers.listadoGuardarropasController;
 import web.controllers.listadoPrendasController;
 import web.controllers.puntajeController;
+import web.controllers.sugerenciasAceptadasController;
 import web.controllers.sugerenciasController;
 import web.models.altaTiposModel;
 
@@ -65,6 +66,8 @@ public class App
     	LogoutController.init();
     	calendarioController.init();
     	puntajeController.init();
+    	
+    	sugerenciasAceptadasController.init();
     }
     
     

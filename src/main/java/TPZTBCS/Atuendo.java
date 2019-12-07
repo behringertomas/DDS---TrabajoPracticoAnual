@@ -90,6 +90,15 @@ public class Atuendo
 		
 	}
 	
+	
+	public List<Integer> getListaPuntajes() {
+		return listaPuntajes;
+	}
+
+	public void setListaPuntajes(List<Integer> listaPuntajes) {
+		this.listaPuntajes = listaPuntajes;
+	}
+
 	public void repuntuarPrendas(Usuario usuario,int puntaje) 
 	{
 		this.prendas.forEach(prenda-> prenda.setPuntaje(usuario,puntaje));

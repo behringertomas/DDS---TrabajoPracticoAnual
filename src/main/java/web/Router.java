@@ -13,6 +13,8 @@ public class Router {
     private static final String ALTA_EVENTO = "/altaEvento";
     private static final String ACEPTAR_SUGERENCIA = "/aceptarSugerencia";
     private static final String MODIFICAR_PUNTAJES = "/modificarPuntajes";
+    private static final String SUGERENCIAS_ACEPTADAS = "/sugerenciasAceptadas";
+    
     
     private static final String ALTA_SUPERIOR = "/altaTipoSuperior";
 	private static final String ALTA_INFERIOR = "/altaTipoInferior";
@@ -25,6 +27,12 @@ public class Router {
 	
 	private static final String HISTORIAL_CALIFICACIONES = "/listadoPrendasYCalificacion";
 	
+	
+	
+	public static String getSugerenciasAceptadas() {
+		return SUGERENCIAS_ACEPTADAS;
+	}
+
 	public static String getHistorialCalificacionesPath() {
 		return HISTORIAL_CALIFICACIONES;
 	}
