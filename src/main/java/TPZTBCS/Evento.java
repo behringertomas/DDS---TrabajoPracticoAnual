@@ -90,7 +90,6 @@ public class Evento extends TimerTask implements comando {
 	int tiempoRepeticion=0;
 	@Column(name = "EVENTO_TEMPERATURA")
 	double temp=100;
-//	OJO ACA QUE ESTA EN 100
 	@Column(name = "EVENTO_DESCRIPCION_CLIMA")
 	public String DescripcionClima =null;
 	
@@ -184,70 +183,16 @@ public class Evento extends TimerTask implements comando {
 	}
 	
 	
-
-//	@Override
-//	public void run() {
-//		try {
-
-//		OpenWeather apiOpenW = new OpenWeather();
-		//String descripcion = this.requestDescripcionClima();
-//		String descripcion = "soleado";
-//		this.setDescripcionClima(descripcion);
-		
-//		double temp = apiOpenW.obtenerTemperaturATalDia(convertToLocalDateViaInstant(this.FechaSugerencia), this.ciudad);
-//		double temp = 15;
-
-//		this.setTemp(temp);
-		
-//		List<Atuendo>listaSugerencias =usuario.queMePongoATodosLosGuardarropas(descripcion,temp);
-//		listaSugerencias= listaSugerencias.stream().filter(x->x!=null).collect(Collectors.toList());
-
-//		int rnd = new Random().nextInt(listaSugerencias.size());
-//		Atuendo atuendoElegido = listaSugerencias.get(rnd);
-		
-//		this.Sugerencia = this.getMejorAtuendo(listaSugerencias);
-		
-//		if(this.Sugerencia == null) {this.deshacer();}
-		
-//		this.Sugerencia.imprimirPrendas();
-		
-		
-//		NotificacionEmail sender =new NotificacionEmail();
-//    	sender.enviarNotificacion(this.usuario.getEmail());
-		
-//		Scanner myObj = new Scanner(System.in);
-//		System.out.println("Te parece bien el atuendo?: (SI/NO)");
-//		String respuesta = myObj.nextLine();
-//		if (respuesta.toUpperCase().equals("SI")) {
-		
-//			this.ejecutar();
-			
-//		}
-//		 if (respuesta.toUpperCase().equals("NO")) {
-//		 System.out.println("DESEA OTRA SUGERENCIA?: (SI/NO)");
-//		 String respuesta2 = myObj.nextLine();
-//		 if (respuesta2.toUpperCase().equals("SI")) {
-//				this.rechazar();
-//		 }
-//		 if (respuesta2.toUpperCase().equals("NO")) {
-//				this.deshacer();		
-//		 }
-		 
-//		 }
-//		 
-//		 
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//}		
-	
 	@Override
 	public void run() {
-		String descripcion = "soleado";
-		this.setDescripcionClima(descripcion);
-		double temp = 15;
-		this.setTemp(temp);
+		
+		OpenWeather proveedor = new OpenWeather();
+		
+			String descripcion = proveedor.get_descripcion_tal_dia(ciudad, fecha);
+			this.setDescripcionClima(descripcion);
+			LocalDate new_date = proveedor.convertToLocalDateViaMilisecond(fecha);
+			double temp = proveedor.obtenerTemperaturATalDia(new_date, ciudad);
+			this.setTemp(temp);
 		
 		List<Atuendo> listaSugerencias = null;
 		try {
@@ -265,6 +210,10 @@ public class Evento extends TimerTask implements comando {
 		Atuendo atuendoElegido = listaSugerencias.get(rnd);
 		
 		this.Sugerencia = this.getMejorAtuendo(listaSugerencias);
+		
+		NotificacionEmail sender = new NotificacionEmail();
+    	sender.enviarNotificacion(this.usuario.getEmail());
+    	
 		if(this.Sugerencia == null) {this.deshacer();}
 		
 	}
@@ -355,6 +304,21 @@ public String requestDescripcionClima() throws UnauthorizedException, ApiExcepti
 	LocationApi locationApi = session.getLocationApi();
 	CurrentConditionsApi current = session.getCurrentConditionsApi("cdxE2HxzUId3I9ebdqEY1ySFK3pTQCAf");
 	Optional <GeoPositionSearchResult> geoLocation = locationApi.geoPosition(target.getLat(this.ciudad),target.getLong(this.ciudad));
+	ForecastApi forecastapi= session.getForecastApi(geoLocation.get().getKey());
+	
+	String descripcion = forecastapi.getDailyXdays(DayPeriod.DAYS_5).get().getHeadline().getCategory();
+	forecastapi.getDailyXdays(DayPeriod.DAYS_5).map(x->x.getHeadline().getCategory());
+	return descripcion;
+	//ES UN SOLO HEADLINE, POR ESO NO FUNCA CON EL MAP-.
+  }
+
+// 	Funcion de prueba, eliminar despues
+public String requestDescripcionClima_Prueba(String ciudad) throws UnauthorizedException, ApiException {
+	  
+    ApiSession session = new ApiSession.Builder("cdxE2HxzUId3I9ebdqEY1ySFK3pTQCAf").build();
+	LocationApi locationApi = session.getLocationApi();
+	CurrentConditionsApi current = session.getCurrentConditionsApi("cdxE2HxzUId3I9ebdqEY1ySFK3pTQCAf");
+	Optional <GeoPositionSearchResult> geoLocation = locationApi.geoPosition(target.getLat(ciudad),target.getLong(ciudad));
 	ForecastApi forecastapi= session.getForecastApi(geoLocation.get().getKey());
 	
 	String descripcion = forecastapi.getDailyXdays(DayPeriod.DAYS_5).get().getHeadline().getCategory();

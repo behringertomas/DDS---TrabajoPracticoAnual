@@ -60,10 +60,17 @@ public class listadoPrendasController  extends MainController {
         
         model.limpiarGuardarropas();
         
-        List<Guardarropa> guardarropa = (List<Guardarropa>) currentUser.getListaGuardarropas();
+        List<Guardarropa> guardarropas = (List<Guardarropa>) currentUser.getListaGuardarropas();
+        int bit_premium = currentUser.getBit_premium();
         
-        for(Guardarropa g : guardarropa) {
-        	model.getGuardarropa().add(g);
+        for(Guardarropa g : guardarropas) {
+       	
+       	if( (bit_premium == 0) && (g.getIdentificador().equals("DEFAULT"))) {} //si soy standar no agrego el default
+       	else 
+       	{
+       		model.getGuardarropa().add(g);
+       	}
+     	
         }
         return new ModelAndView (model, LISTADO_PRENDAS);
     }

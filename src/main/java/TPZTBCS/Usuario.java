@@ -54,6 +54,9 @@ public class Usuario
 	@ManyToMany(cascade = {CascadeType.ALL})
 	List <Atuendo> historialAtuendos = new ArrayList<Atuendo>();
 	
+	//----- Bit de Premium ----- Si es 1 es premium, 0 standar
+	@Column(name = "Bit_Premium")
+	private int bit_premium;
 	
 	//----- USERNAME para el DAO -----
 	@Column(name = "Username")
@@ -84,11 +87,13 @@ public class Usuario
 	}
 	
 //	CONSTRUCTORES
-	public Usuario(String username,String email,String pass, String nombre,int edad,int fMin,int fMax,int fCuello,int fCabeza, int fManos) {
+	public Usuario(String username,String email,String pass, String nombre,int edad, int bit, int fMin,int fMax,int fCuello,int fCabeza, int fManos) {
 		
 		this.user = username;
 		this.email = email;
 		this.pass = pass;
+		this.bit_premium = bit;
+		
 		
 		this.getDatos().setNombre(nombre);
 		this.getDatos().setEdad(edad);
@@ -101,10 +106,11 @@ public class Usuario
 		
 	}
 	
-	public Usuario(String username,String email,String pass, String nombre,int edad) {
+	public Usuario(String username,String email,String pass, String nombre,int edad, int bit) {
 		this.user = username;
 		this.email = email;
 		this.pass = pass;
+		this.bit_premium = bit;
 		
 		this.getDatos().setNombre(nombre);
 		this.getDatos().setEdad(edad);
@@ -189,8 +195,14 @@ public class Usuario
 		this.listaGuardarropas = listaGuardarropas;
 	}
 	
-	
-	
+	public int getBit_premium() {
+		return bit_premium;
+	}
+
+	public void setBit_premium(int bit_premium) {
+		this.bit_premium = bit_premium;
+	}
+
 	public Collection<Guardarropa> getListaGuardarropas() {
 		return listaGuardarropas;
 	}
@@ -339,6 +351,8 @@ public class Usuario
 	public void setListaEvento(Collection<Evento> listaEvento) {
 		this.listaEvento = listaEvento;
 	}
+	
+	
 
 //	************ CREACION EVENTO ************
 	public Evento crearEvento(String descripcion,String ciudad,int anio,int mes,int dia,int hora,int minutos) {

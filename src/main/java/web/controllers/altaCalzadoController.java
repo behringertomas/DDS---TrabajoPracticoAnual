@@ -51,9 +51,16 @@ public class altaCalzadoController extends MainController {
         model.limpiarGuardarropas();
         
         List<Guardarropa> guardarropas = (List<Guardarropa>) currentUser.getListaGuardarropas();
+        int bit_premium = currentUser.getBit_premium();
         
         for(Guardarropa g : guardarropas) {
-        	model.getGuardarropa().add(g);
+       	
+       	if( (bit_premium == 0) && (g.getIdentificador().equals("DEFAULT"))) {} //si soy standar no agrego el default
+       	else 
+       	{
+       		model.getGuardarropa().add(g);
+       	}
+     	
         }
 
         return new ModelAndView(model, ALTA_CALZADO);

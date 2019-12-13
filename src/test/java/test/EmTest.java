@@ -45,27 +45,32 @@ public class EmTest{
 //	  ***** DESCOMENTAR ESTE TEST PARA GENERAR UN USUARIO CON GUARDARROPA Y UNA PRENDA ! *****
 //	  HAGANLO SOLO UNA VEZ PARA QUE NO HAYAN DUPLICADOS.
 	  
+	  
 //	  @Test
 //	  public void TestPrenda() throws Exception {
-//		  Usuario pepe = new Usuario("pepe","pepe@gmail.com","1234","Pepe Behringer",21);
+//		  Usuario aroco = new Usuario("aroco","aroco@gmail.com","123456","Alejandro Roco",21,0); //STANDARD
+//		  Usuario jazul = new Usuario("jazul","jazul@gmail.com","123456","Julieta Azul",21,1); //PREMIUM
 //		  
-//		  pepe.CrearGuardarropa(nombreGuardarropaPersistir,10);
-//		  pepe.construirPrenda("Parte Superior","Remera", "Tela", "Azul", "Negro",pepe.getGuardarropa(nombreGuardarropaPersistir));
-//		  pepe.crearEvento("Fiesta de Gala", "Paris", 2020, 10, 7, 15, 26);
+//		  aroco.CrearGuardarropa(nombreGuardarropaPersistir,10);
+//		  aroco.construirPrenda("Parte Superior","Remera", "Tela", "Azul", "Negro",aroco.getGuardarropa(nombreGuardarropaPersistir));
+//		  aroco.crearEvento("Fiesta de Gala", "Paris", 2020, 10, 7, 15, 26);
 //		  
+//		  jazul.CrearGuardarropa(nombreGuardarropaPersistir);//ES PREMIUM, NO TIENE LIMITE, ENTONCES NO LE PASO LA CANT
+//		  jazul.construirPrenda("Parte Superior","Remera", "Tela", "Azul", "Negro",jazul.getGuardarropa(nombreGuardarropaPersistir));
+//		  jazul.crearEvento("Fiesta Sorpresa", "London", 2019, 12, 7, 00, 44);
+//		 	  
 //		  EntityTransaction transaction = entityManager.getTransaction();
 //	      transaction.begin();
-//	      entityManager.persist(pepe);
+//	      entityManager.persist(aroco);
+//	      entityManager.persist(jazul);
 //	      transaction.commit();
 //	        
-//	      assertNotNull(pepe.getId());
+//	      assertNotNull(aroco.getId());
 //	  
-//	      Usuario usuarioPersisted = entityManager.find(Usuario.class, pepe.getId());
+//	      Usuario usuarioPersisted = entityManager.find(Usuario.class, aroco.getId());
 //	        
-//      assertEquals(usuarioPersisted.getGuardarropa(nombreGuardarropaPersistir).getAllPrendas().get(0).getTipo(),"Remera");
+//	      assertEquals(usuarioPersisted.getGuardarropa(nombreGuardarropaPersistir).getAllPrendas().get(0).getTipo(),"Remera");
 //	  }
-	  
-	  
 	  
 	  
 //	  @Test

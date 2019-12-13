@@ -52,11 +52,18 @@ public class altaAccesorioAbrigoController extends MainController {
 		        
 		        model.limpiarGuardarropas();
 		        
-		        List<Guardarropa> guardarropas = (List<Guardarropa>) currentUser.getListaGuardarropas();
-		        
-		        for(Guardarropa g : guardarropas) {
-		        	model.getGuardarropa().add(g);
-		        }
+		         List<Guardarropa> guardarropas = (List<Guardarropa>) currentUser.getListaGuardarropas();
+		         int bit_premium = currentUser.getBit_premium();
+		         
+		         for(Guardarropa g : guardarropas) {
+		        	
+		        	if( (bit_premium == 0) && (g.getIdentificador().equals("DEFAULT"))) {} //si soy standar no agrego el default
+		        	else 
+		        	{
+		        		model.getGuardarropa().add(g);
+		        	}
+		      	
+		         }
 
 		        return new ModelAndView(model, ALTA_ACCESORIOABRIGO);
 		    }

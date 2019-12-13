@@ -11,6 +11,11 @@ import java.util.List;
 
 import org.json.simple.parser.ParseException;
 
+import JsonPersistido.abrigoJson;
+import JsonPersistido.abrigoSecundarioJson;
+import TPZTBCS.dao.abrigoJsonDao;
+import TPZTBCS.dao.abrigoSecundarioJsonDao;
+
 
 public class JsonReader 
 {
@@ -35,7 +40,7 @@ public class JsonReader
 	public static List<String> getTipoParteSuperior() throws Exception
 	{
 		JSONObject jsonObject = (JSONObject) readJsonSimpleDemo(DIRECTORIOJSON);
-		return (List<String>) jsonObject.get("TipoParteSuperior");		
+		return (List<String>) jsonObject.get("TipoParteSuperior");	
 	}
 
 	public static List<String> getTipoAbrigos() throws Exception
@@ -46,20 +51,30 @@ public class JsonReader
 	
 	public int getTipoTemperatura(Prenda Prenda) throws Exception
 	{
-		JSONObject jsonObject = (JSONObject) readJsonSimpleDemo(DIRECTORIOJSON);
+		
+		
+//		JSONObject jsonObject = (JSONObject) readJsonSimpleDemo(DIRECTORIOJSON);
 		if (Prenda.getParteCuerpo()=="Parte Superior") {
 		
-		int ubicacionTemperatura= this.getTipoAbrigos().indexOf(Prenda.getTipo());
-		List<String> ListaDeTemperaturas = (List<String>) jsonObject.get("TemperaturasAbrigo");	
-		int temperatura = Integer.parseInt(ListaDeTemperaturas.get(ubicacionTemperatura));
-		return temperatura;
+			abrigoJsonDao abrigojsondao = new abrigoJsonDao();
+			abrigoJson abrigo_persistido = abrigojsondao.getByAbrigo(Prenda.getDescripcion());
+			
+			int temperatura = abrigo_persistido.getTemp();
+//			int ubicacionTemperatura= this.getTipoAbrigos().indexOf(Prenda.getTipo());
+//			
+//			List<String> ListaDeTemperaturas = (List<String>) jsonObject.get("TemperaturasAbrigo");	
+//			int temperatura = Integer.parseInt(ListaDeTemperaturas.get(ubicacionTemperatura));
+			return temperatura;
 		}
 		if(Prenda.getParteCuerpo()=="Accesorio") {
 		
-		int ubicacionTemperatura= this.getTipoAbrigoSecundario().indexOf(Prenda.getTipo());
-		List<String> ListaDeTemperaturas = (List<String>) jsonObject.get("TemperaturasAbrigoAccesorio");	
-		int temperatura = Integer.parseInt(ListaDeTemperaturas.get(ubicacionTemperatura));
-		return temperatura;
+			abrigoSecundarioJsonDao abrigoSecundariojsondao = new abrigoSecundarioJsonDao();
+			abrigoSecundarioJson abrigo_secundario_persistido = abrigoSecundariojsondao.getByAbrigoSecundario(Prenda.getDescripcion());
+			int temperatura = abrigo_secundario_persistido.getTemp();
+//			int ubicacionTemperatura= this.getTipoAbrigoSecundario().indexOf(Prenda.getTipo());
+//			List<String> ListaDeTemperaturas = (List<String>) jsonObject.get("TemperaturasAbrigoAccesorio");	
+//			int temperatura = Integer.parseInt(ListaDeTemperaturas.get(ubicacionTemperatura));
+			return temperatura;
 			
 		}
 		return 0;
@@ -68,11 +83,15 @@ public class JsonReader
 	
 	public static String getParteEspecifica(String Prenda) throws Exception
 	{
-		JSONObject jsonObject = (JSONObject) readJsonSimpleDemo(DIRECTORIOJSON);
-		int ubicacionTemperatura= JsonReader.getTipoAbrigoSecundario().indexOf(Prenda);
-		List<String> ListaDeTemperaturas = (List<String>) jsonObject.get("TipoAbrigoSecundarioParte");	
-		String temperatura = ListaDeTemperaturas.get(ubicacionTemperatura);
-		return temperatura;
+		abrigoSecundarioJsonDao abrigosecundariodao = new abrigoSecundarioJsonDao();
+		abrigoSecundarioJson abrigoSecundario = abrigosecundariodao.getByAbrigoSecundario(Prenda);
+		
+		return abrigoSecundario.getParte_cuerpo();
+//		JSONObject jsonObject = (JSONObject) readJsonSimpleDemo(DIRECTORIOJSON);
+//		int ubicacionTemperatura= JsonReader.getTipoAbrigoSecundario().indexOf(Prenda);
+//		List<String> ListaDeTemperaturas = (List<String>) jsonObject.get("TipoAbrigoSecundarioParte");	
+//		String temperatura = ListaDeTemperaturas.get(ubicacionTemperatura);
+//		return temperatura;
 	}
 	
 	public static List<String> getTipoParteInferior() throws Exception

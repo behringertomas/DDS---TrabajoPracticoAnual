@@ -199,7 +199,7 @@
     $(document).ready(function(){
         $('#calendar').on('click', 'td', function(){
             var eventos= ''
-            var a = 0
+
             {{#each eventos}}
                 var foo = "{{fecha}}"
                 var titulo = "{{descripcion}}"
@@ -220,10 +220,11 @@
                     }
                 }
             {{/each}}
+
             if(eventos != '' ){
                 window.confirm(eventos);
             }else{
-                var prueba = window.confirm("No tenes ningún evento planificado para esta fecha.");
+                window.confirm("No tenes ningún evento planificado para esta fecha.");
             }
 
         });

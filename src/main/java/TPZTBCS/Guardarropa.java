@@ -465,10 +465,12 @@ public class Guardarropa
 			List <Prenda> combinacionAbrigoElegida = combinacionesValidas.get(rndAbrigos);
 			
 			combinacionesNoAbrigos.addAll(combinacionAbrigoElegida);
+			
+			
 			//se concatenaron ambas listas en combinacionesNoAbrigos
 		}
 		
-		
+		agregar_accesorio_si_es_necesario(combinacionesNoAbrigos,descripcion);
 		return	combinacionesNoAbrigos;		
 	}
 	
@@ -625,6 +627,57 @@ public class Guardarropa
 	
 	public void imprimirGuardarropa() {
 		System.out.println( "Guardarropa [identificador=" + identificador + ", limiteDePrendas=" + limiteDePrendas + "]");
+	}
+	
+	public int procesar_descripcion(String descripcion) {
+		descripcion.toLowerCase();
+		if(descripcion.contains("sun")) {
+			return 1;
+		}
+		if(descripcion.contains("rain")) {
+			return 2;
+		}
+		
+		return 0;
+				
+	}
+	
+	public void agregar_accesorio_si_es_necesario(List<Prenda> combinatoria, String descripcion){
+		int codigo_respuesta = this.procesar_descripcion(descripcion);
+		
+		if(codigo_respuesta == 1) {
+			List<Prenda> lista_prendas =  this.getAllPrendas();
+			lista_prendas.stream().filter(x-> x.getDescripcion().contains("Sol")).collect(Collectors.toList());
+//			Filtro de las prendas que se tiene, las que sean para el Sol.
+			if(!lista_prendas.isEmpty()) { // Si ya tiene alguna que es del sol, hay que ver si no está en la combinatoria
+				for (Prenda accesorio_sol : lista_prendas) {
+					if(!combinatoria.contains(accesorio_sol)) {
+						combinatoria.add(accesorio_sol);
+						return;
+					}
+				}
+				
+			}
+		}
+		if(codigo_respuesta == 2) {
+			List<Prenda> lista_prendas =  this.getAllPrendas();
+			
+			List<Prenda> accesorios_lluvia = lista_prendas.stream().filter(x-> x.getDescripcion().contains("Impermeable") || x.getDescripcion().contains("Paraguas")).collect(Collectors.toList());
+			
+			if(!accesorios_lluvia.isEmpty()) { //Si hay algun accesorio, hay que fijarse que no este en la combinatoria
+				for (Prenda accesorio : accesorios_lluvia) {
+					if(!combinatoria.contains(accesorio)) {
+						combinatoria.add(accesorio);
+						return;
+					}
+				}
+			}
+			
+		}
+		
+		if(codigo_respuesta == 0) {
+			return;
+		}
 	}
 	
 	
