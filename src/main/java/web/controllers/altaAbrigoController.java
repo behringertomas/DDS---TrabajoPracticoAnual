@@ -70,6 +70,7 @@ public class altaAbrigoController extends MainController {
     private static ModelAndView crearPrenda(Request request, Response response) {
 //		usuario.construirPrenda("Parte Superior","Remera", "Tela", "Rojo", "Negro");
     	try {
+    		String imagen = request.queryParams("inputImagenPrenda");
     		String tipoPrenda = request.queryParams("abrigo");
     		String material = request.queryParams("material");
     		String colorPrimario = request.queryParams("colorPrimario");
