@@ -117,7 +117,7 @@ public class sugerenciasController extends MainController{
             }
         catch(Exception e)
             {
-                alert.setShowAlertWithMessage("No se pudo obtener la lista de prendas.");
+                alert.setShowAlertWithMessage("La API del Clima no puede responder la solicitud.");
                 return new ModelAndView(alert, SUGERENCIAS);
             }
 
