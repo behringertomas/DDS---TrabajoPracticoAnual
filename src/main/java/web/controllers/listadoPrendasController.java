@@ -129,7 +129,7 @@ public class listadoPrendasController  extends MainController {
     	    	   row.setMaterial(lstPrendas.get(i).getMaterial());
     	    	   row.setParte(lstPrendas.get(i).getParte());
     	    	   row.setTipo(lstPrendas.get(i).getTipo());
-
+    	    	   row.setUrl_img(lstPrendas.get(i).getDireccionImagen());
     	           table.add(row);
     	       }
            }

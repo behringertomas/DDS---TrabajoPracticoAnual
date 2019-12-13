@@ -69,17 +69,19 @@ public class altaCalzadoController extends MainController {
     private static ModelAndView crearPrenda(Request request, Response response) {
 //		usuario.construirPrenda("Parte Superior","Remera", "Tela", "Rojo", "Negro");
     	try {
+    		String url_imagen = request.queryParams("inputImagenPrenda");
+    		if (url_imagen == "") url_imagen = "Sin Imagen";
     		String tipoPrenda = request.queryParams("calzado");
     		String material = request.queryParams("material");
     		String colorPrimario = request.queryParams("colorPrimario");
     		String guardarropa = request.queryParams("guardarropa");
     		if(request.queryParams("colorSecundario").equalsIgnoreCase("Ninguno")) {
-    			Prenda prendaAPersistir = currentUser.construirPrenda(PARTE, tipoPrenda, material, colorPrimario,currentUser.getGuardarropa(guardarropa));
+    			Prenda prendaAPersistir = currentUser.construirPrenda(PARTE, tipoPrenda, material, colorPrimario,currentUser.getGuardarropa(guardarropa),url_imagen);
     			persist(prendaAPersistir);
 //    			bDao.persist(PrendaAPersistir); no se por que con esta linea no funciona
     		} else {
     			String colorSecundario = request.queryParams("colorSecundario");
-    			Prenda prendaAPersistir = currentUser.construirPrenda(PARTE, tipoPrenda, material, colorPrimario,colorSecundario,currentUser.getGuardarropa(guardarropa));
+    			Prenda prendaAPersistir = currentUser.construirPrenda(PARTE, tipoPrenda, material, colorPrimario,colorSecundario,currentUser.getGuardarropa(guardarropa),url_imagen);
     			persist(prendaAPersistir);
 //    			bDao.persist(PrendaAPersistir);
     		}

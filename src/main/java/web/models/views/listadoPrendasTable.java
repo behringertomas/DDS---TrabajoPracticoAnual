@@ -9,17 +9,19 @@ public class listadoPrendasTable {
 	private String material;
 	private String color_primario;
 	private String color_secundario;
+	private String url_img;
 	
 	public listadoPrendasTable() {
 		
 	}
-    public listadoPrendasTable(String parte, String tipo,String material,String color_primario,String color_secundario,String parte_especifica) 
+    public listadoPrendasTable(String parte, String tipo,String material,String color_primario,String color_secundario,String parte_especifica, String url_img) 
     {
     	this.parte = parte;
     	this.tipo = material;
     	this.color_primario = color_primario;
     	this.color_secundario  = color_secundario;
     	this.material = material;
+    	this.url_img = url_img;
     	
     }
 
@@ -62,7 +64,14 @@ public class listadoPrendasTable {
 	public void setColor_secundario(String color_secundario) {
 		this.color_secundario = color_secundario;
 	}
+	public String getUrl_img() {
+		return url_img;
+	}
+	public void setUrl_img(String url_img) {
+		this.url_img = url_img;
+	}
 
+	
     
     
     

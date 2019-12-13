@@ -49,7 +49,7 @@ public class Prenda
 	public void setGuardarropa_id(Guardarropa guardarropa_id) {
 		this.guardarropa_id = guardarropa_id;
 	}
-
+	
 	@Column(name = "EN_GUARDARROPA")
 	private boolean enGuardarropa=false;
 	@Column(name = "PRENDA_PARTE")
@@ -63,7 +63,7 @@ public class Prenda
 	@Column(name = "PRENDA_COLOR_SECUNDARIO")
     private String colorSecundario = "";
 	@Column(name = "PRENDA_DIRECCION_IMG")
-    private String direccionImagen = "";
+    private String url_img = "";
 	@Column(name = "PRENDA_PARTE_ESPECIFICA")
 	private String parteEspecifica="";
 	@Column(name = "CUANTO_ABRIGA")
@@ -147,6 +147,8 @@ public class Prenda
     
     public void setColorSecundario(String colorSecundario)	{ this.colorSecundario = colorSecundario; }	
     
+    
+    
     public Prenda getPrenda() { return this; }
     
     public int getTemperatura() throws Exception {
@@ -180,7 +182,7 @@ public class Prenda
     
     public String getTipo() {return this.tipo;}
     
-    public void setDireccionImagen(String direccionImagen)	{ this.direccionImagen = direccionImagen; }	
+    public void setDireccionImagen(String url_img)	{ this.url_img = url_img; }	
     
     public void meterEnGuardarropa()
     {
@@ -208,7 +210,7 @@ public class Prenda
     
     public String getDireccionImagen()
     {
-    	return this.direccionImagen;
+    	return this.url_img;
     }
     
     public void imprimirDescripcion()

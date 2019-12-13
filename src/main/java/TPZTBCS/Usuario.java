@@ -123,16 +123,16 @@ public class Usuario
 	}
 	
 //	************ PRENDA BUILDER ************
-	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario, String colorSecundario,Guardarropa guardarropa) throws Exception
+	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario, String colorSecundario,Guardarropa guardarropa, String img_url) throws Exception
 	{
 		String nombreGuardarropa = guardarropa.getIdentificador();
-		return this.getGuardarropa(nombreGuardarropa).construirPrenda(parte, tipo, material, colorPrimario,colorSecundario,guardarropa);	
+		return this.getGuardarropa(nombreGuardarropa).construirPrenda(parte, tipo, material, colorPrimario,colorSecundario,guardarropa, img_url);	
 	}
 	
-	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario,Guardarropa guardarropa) throws Exception
+	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario,Guardarropa guardarropa, String img_url) throws Exception
 	{
 		String nombreGuardarropa = guardarropa.getIdentificador();
-		return this.getGuardarropa(nombreGuardarropa).construirPrenda(parte, tipo, material, colorPrimario,guardarropa);	
+		return this.getGuardarropa(nombreGuardarropa).construirPrenda(parte, tipo, material, colorPrimario,guardarropa, img_url);	
 	}
 //	****************************************
 	

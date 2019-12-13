@@ -57,7 +57,7 @@ public class JsonReader
 		if (Prenda.getParteCuerpo()=="Parte Superior") {
 		
 			abrigoJsonDao abrigojsondao = new abrigoJsonDao();
-			abrigoJson abrigo_persistido = abrigojsondao.getByAbrigo(Prenda.getDescripcion());
+			abrigoJson abrigo_persistido = abrigojsondao.getByAbrigo(Prenda.getTipo());
 			
 			int temperatura = abrigo_persistido.getTemp();
 //			int ubicacionTemperatura= this.getTipoAbrigos().indexOf(Prenda.getTipo());
@@ -69,7 +69,7 @@ public class JsonReader
 		if(Prenda.getParteCuerpo()=="Accesorio") {
 		
 			abrigoSecundarioJsonDao abrigoSecundariojsondao = new abrigoSecundarioJsonDao();
-			abrigoSecundarioJson abrigo_secundario_persistido = abrigoSecundariojsondao.getByAbrigoSecundario(Prenda.getDescripcion());
+			abrigoSecundarioJson abrigo_secundario_persistido = abrigoSecundariojsondao.getByAbrigoSecundario(Prenda.getTipo());
 			int temperatura = abrigo_secundario_persistido.getTemp();
 //			int ubicacionTemperatura= this.getTipoAbrigoSecundario().indexOf(Prenda.getTipo());
 //			List<String> ListaDeTemperaturas = (List<String>) jsonObject.get("TemperaturasAbrigoAccesorio");	
