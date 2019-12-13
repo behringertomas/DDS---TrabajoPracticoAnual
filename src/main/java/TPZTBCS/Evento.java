@@ -103,6 +103,10 @@ public class Evento extends TimerTask implements comando {
 		timer = new Timer();
 		//System.out.print(fechaSugerencia.toString());
 		timer.schedule(this, fechaSugerencia);
+		
+		enviar_mail_si_falta_poco(fechaEvento);
+		
+		
 	}
 	public Evento(Date fechaEvento,Date fechaSugerencia,Usuario ID, String ciudad,String Descripcion,int cadaCuantosDias) {
 		this.fecha=fechaEvento;
@@ -115,6 +119,9 @@ public class Evento extends TimerTask implements comando {
 		this.tiempoRepeticion = cadaCuantosDias;
 		//System.out.print(fechaSugerencia.toString());
 		timer.schedule(this, fechaSugerencia,this.transformardiasamilisegundis(cadaCuantosDias));
+		
+		enviar_mail_si_falta_poco(fechaEvento);
+		
 	}
 	public Evento() {
 	}
@@ -126,6 +133,8 @@ public class Evento extends TimerTask implements comando {
 		this.Descripcion = Descripcion.toLowerCase();
 		timer = new Timer();
 		timer.schedule(this, fechaEvento);
+		
+		enviar_mail_si_falta_poco(fechaEvento);
 	}
 	
 	
@@ -211,8 +220,7 @@ public class Evento extends TimerTask implements comando {
 		
 		this.Sugerencia = this.getMejorAtuendo(listaSugerencias);
 		
-		NotificacionEmail sender = new NotificacionEmail();
-    	sender.enviarNotificacion(this.usuario.getEmail());
+		
     	
 		if(this.Sugerencia == null) {this.deshacer();}
 		
@@ -341,12 +349,25 @@ public String requestDescripcionClima_Prueba(String ciudad) throws UnauthorizedE
 	  } 
 		  
   }
-public int getID() {
-	return ID;
-}
-public void setID(int iD) {
-	ID = iD;
-}
+	public int getID() {
+		return ID;
+	}
+	public void setID(int iD) {
+		ID = iD;
+	}
+
+	public void enviar_mail_si_falta_poco(Date fechaEvento){
+		OpenWeather proveedor = new OpenWeather();
+		
+		int dias_restantes = proveedor.dias_restantes(fechaEvento);
+		
+		if(dias_restantes <= 4) {
+			NotificacionEmail sender = new NotificacionEmail();
+	    	sender.enviarNotificacion(this.usuario.getEmail());
+		}
+		
+	}
+
   
   
   

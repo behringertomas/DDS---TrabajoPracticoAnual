@@ -255,6 +255,14 @@ public class OpenWeather implements IProveedores {
 	      .toLocalDate();
 	}
 	
+	public int dias_restantes(Date fechaEvento) {
+		Date date = new java.util.Date(); 
+		
+		int dias_restantes = (int) Math.ceil(((fechaEvento.getTime()-date.getTime())/86400000));
+		if (dias_restantes == 0) dias_restantes++;
+		
+		return dias_restantes;
+	}
 	
 	
 }
