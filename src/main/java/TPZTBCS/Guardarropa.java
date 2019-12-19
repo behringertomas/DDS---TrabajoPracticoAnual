@@ -596,6 +596,7 @@ public class Guardarropa
 		prendaBuilder.buildColorPrimario(colorPrimario);
 		prendaBuilder.buildColorSecundario(colorSecundario);
 		prendaBuilder.buildUrl(img_url);
+		prendaBuilder.buildImagen();
 		
 		prendaBuilder.getPrenda().setGuardarropa_id(guardarropa);
 		this.agregarAGuardarropas(prendaBuilder.getPrenda());
@@ -613,6 +614,7 @@ public class Guardarropa
 		prendaBuilder.buildMaterial(material);
 		prendaBuilder.buildColorPrimario(colorPrimario);
 		prendaBuilder.buildUrl(img_url);
+		prendaBuilder.buildImagen();
 		
 		prendaBuilder.getPrenda().setGuardarropa_id(guardarropa);
 		this.agregarAGuardarropas(prendaBuilder.getPrenda());

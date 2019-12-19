@@ -91,6 +91,7 @@
                         </thead>
                         <tbody>
 
+                        <form action="/modificarPuntajes" method="POST">
                         {{#each table}}
                             <tr>
                                 <td>{{iD}}</td>
@@ -99,7 +100,7 @@
                                 <td>{{material}}</td>
                                 <td>{{color_primario}}</td>
                                 <td>{{color_secundario}}</td>
-                                <form action="/modificarPuntajes" method="POST">
+
                                     <td> <select class="form-control" title="{{iD}}" name="{{iD}}" id="{{iD}}" required="required">
                                         <option value=1>1</option>
                                         <option value=2>2</option>

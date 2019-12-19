@@ -1,5 +1,8 @@
 package web.controllers;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
@@ -12,9 +15,11 @@ import spark.Request;
 import spark.Response;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
+import web.EntityManagerSingleton;
 import web.Router;
 import web.models.AlertModel;
 import web.models.altaEventoModel;
+import java.util.Date;
 
 public class altaEventoController extends MainController{
 
@@ -23,6 +28,7 @@ public class altaEventoController extends MainController{
 	private static altaEventoModel model;
     private static Usuario currentUser;
     private static AlertModel alert = new AlertModel(false,"",false);
+    private static SimpleDateFormat date_format = new SimpleDateFormat("yyyy-MM-dd");
     
     public static void init() {
         HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
@@ -46,21 +52,21 @@ public class altaEventoController extends MainController{
         
     }
     
-    private static ModelAndView crearEvento(Request request, Response response) {
+    private static ModelAndView crearEvento(Request request, Response response) throws ParseException {
     	String descripcion = request.queryParams("descripcion");
     	String ciudad = request.queryParams("ciudad");
-    	int anio = Integer.parseInt(request.queryParams("anio"));
-    	int mes = Integer.parseInt(request.queryParams("mes"));
-    	int dia = Integer.parseInt(request.queryParams("dia"));
+    	String fecha = request.queryParams("fechaEvento");
+    	Date fecha_evento = date_format.parse(fecha);
+    	
     	int hora = Integer.parseInt(request.queryParams("hora"));
     	int minutos = Integer.parseInt(request.queryParams("minutos"));
     	int cadaCuanto = Integer.parseInt(request.queryParams("cadaCuanto"));
     	
     	if(cadaCuanto == 0) {
-    		Evento evento = currentUser.crearEvento(descripcion, ciudad, anio, mes, dia, hora, minutos);
+    		Evento evento = currentUser.crearEvento(descripcion, ciudad, fecha_evento, hora, minutos);
     		persist(evento);
     	} else {
-    		Evento evento = currentUser.crearEvento(descripcion, ciudad, anio, mes, dia, hora, minutos,cadaCuanto);
+    		Evento evento = currentUser.crearEvento(descripcion, ciudad, fecha_evento, hora, minutos,cadaCuanto);
     		persist(evento);
     	}
     	
@@ -68,12 +74,13 @@ public class altaEventoController extends MainController{
     }
     
     public static void persist(Evento evento){
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
-	    entityManager = factory.createEntityManager();
+    	EntityManager entityManager = EntityManagerSingleton.getEntityManager();
+
 	    EntityTransaction transaction = entityManager.getTransaction();
 	    transaction.begin();
 	    entityManager.persist(evento);
 	    transaction.commit();
+
     }
     
     private static void initModel() {
@@ -81,9 +88,7 @@ public class altaEventoController extends MainController{
     }
     
     public static Usuario getUsuarioViaEntity(int id) {
- 	   EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
- 	   entityManager = factory.createEntityManager();
 
- 	   return entityManager.find(Usuario.class, id);
+ 	   return EntityManagerSingleton.getEntityManager().find(Usuario.class, id);
     }
 }

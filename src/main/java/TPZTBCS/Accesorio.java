@@ -1,5 +1,14 @@
 package TPZTBCS;
 
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.awt.image.WritableRaster;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.util.Base64;
+
+import javax.imageio.ImageIO;
+
 import TPZTBCS.dao.abrigoJsonDao;
 import TPZTBCS.dao.abrigoSecundarioJsonDao;
 
@@ -15,7 +24,7 @@ public class Accesorio extends PrendaBuilder
     public void buildTipo(String tipo) throws Exception
     {
     	abrigoSecundarioJsonDao dao = new abrigoSecundarioJsonDao();
-//    	FUNCIONA ASI ESTO ???
+    	
     	if (dao.getByAbrigoSecundario(tipo) != null) {
     		prenda.setStrategy(new abrigo());
     		prenda.setTipo(tipo);
@@ -54,4 +63,22 @@ public class Accesorio extends PrendaBuilder
     {
     	prenda.setDireccionImagen(url_img);
     }
+
+	@Override
+	public void buildImagen() throws Exception {
+		
+		if(prenda.getDireccionImagen() != "") {
+			  File file = new File(prenda.getDireccionImagen());
+		      BufferedImage bImage = ImageIO.read(file);
+		      ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		      ImageIO.write(bImage, "png", bos );
+		      byte[] data = bos.toByteArray();
+		      prenda.instanciar_array_bytes(file);
+		      prenda.setImagen(data);
+//		      String s = Base64.getEncoder().encodeToString(data);
+//		      prenda.setImagen(s);
+		}
+		
+		
+	}
 }

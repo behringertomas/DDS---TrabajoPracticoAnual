@@ -17,6 +17,7 @@ import spark.Request;
 import spark.Response;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
+import web.EntityManagerSingleton;
 import web.Router;
 import web.models.AlertModel;
 import web.models.listadoGuardarropaModel;
@@ -58,17 +59,24 @@ public class sugerenciasAceptadasController extends MainController {
         List<Atuendo> atuendo = currentUser.getHistorialAtuendos();
 
        
-       for(Atuendo a : atuendo) //pide hasta 2 guardarropas.
+       for(Atuendo a : atuendo)
        {
+    	   
     	   List<Integer> lstPuntajesAtuendo = a.getListaPuntajes();
-    	   for(Integer puntaje : lstPuntajesAtuendo) 
-    	   {
-    		   sugerenciasAceptadasTable row = new sugerenciasAceptadasTable();
-    		   row.setIndex(a.getID());
-    		   row.setPuntaje(puntaje);
-    		   table.add(row);
+    	   
+    	   if (lstPuntajesAtuendo != null) {
     		   
-    		   model.setSugerenciasAceptadasTable(table);
+	    	   if(!lstPuntajesAtuendo.isEmpty()) {  
+		    	   for(Integer puntaje : lstPuntajesAtuendo) 
+		    	   {
+		    		   sugerenciasAceptadasTable row = new sugerenciasAceptadasTable();
+		    		   row.setIndex(a.getID());
+		    		   row.setPuntaje(puntaje);
+		    		   table.add(row);
+		    		   
+		    		   model.setSugerenciasAceptadasTable(table);
+		    	   }
+	    	   }
     	   }
     
        }
@@ -85,10 +93,8 @@ public class sugerenciasAceptadasController extends MainController {
     }
     
     public static Usuario getUsuarioViaEntity(int id) {
- 	   EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
- 	   entityManager = factory.createEntityManager();
 
- 	   return entityManager.find(Usuario.class, id);
+ 	   return EntityManagerSingleton.getEntityManager().find(Usuario.class, id);
     }
     
 }

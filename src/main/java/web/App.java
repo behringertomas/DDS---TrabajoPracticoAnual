@@ -28,7 +28,7 @@ import web.controllers.puntajeController;
 import web.controllers.sugerenciasAceptadasController;
 import web.controllers.sugerenciasController;
 import web.models.altaTiposModel;
-
+import web.loadInitialData;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -46,6 +46,7 @@ import javax.persistence.Persistence;
 
 import org.apache.log4j.BasicConfigurator;
 
+import web.EntityManagerSingleton;
 import com.github.prominence.openweathermap.api.DailyForecastRequester;
 import com.github.prominence.openweathermap.api.HourlyForecastRequester;
 import com.github.prominence.openweathermap.api.OpenWeatherMapManager;
@@ -60,8 +61,6 @@ import com.krds.accuweatherapi.exceptions.UnauthorizedException;
 import com.proveedores.openweather.ExtendedOpenWeatherDTO;
 import com.proveedores.openweather.OpenWeather;
 import com.proveedores.openweather.WeatherDTO;
-import com.sun.crypto.provider.DESCipher;
-
 import TPZTBCS.Evento;
 import TPZTBCS.Usuario;
 import TPZTBCS.dao.abrigoJsonDao;
@@ -109,131 +108,48 @@ public class App
     	sugerenciasAceptadasController.init();
     }
     
-    public static void loadJsonAbrigos() {
-    	
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
-	    EntityManager entityManager = factory.createEntityManager();
-	    EntityTransaction transaction = entityManager.getTransaction();
-
-	   
-    	abrigoJson abrigo1 = new abrigoJson("Campera", 20); 
-    	abrigoJson abrigo2 = new abrigoJson("Sweater", 15);
-    	abrigoJson abrigo3 = new abrigoJson("Buzo", 10);
-    	abrigoJson abrigo4 = new abrigoJson("Campera Impermeable", 10);
-	    transaction.begin();
-	    entityManager.persist(abrigo1);
-	    transaction.commit();
-	    transaction.begin();
-	    entityManager.persist(abrigo2);
-	    transaction.commit();
-	    transaction.begin();
-	    entityManager.persist(abrigo3);
-	    transaction.commit();
-	    transaction.begin();
-	    entityManager.persist(abrigo4);
-	    transaction.commit();
-    	
-    	abrigoSecundarioJson abrigoSecundario1 = new abrigoSecundarioJson("Bufanda","Cuello", 10);
-    	abrigoSecundarioJson abrigoSecundario2 = new abrigoSecundarioJson("Gorro","Cabeza", 10);
-    	abrigoSecundarioJson abrigoSecundario3 = new abrigoSecundarioJson("Guantes","Manos", 10);
-    	abrigoSecundarioJson abrigoSecundario4 = new abrigoSecundarioJson("Cuello Polar","Cuello", 10);
-    	abrigoSecundarioJson abrigoSecundario5 = new abrigoSecundarioJson("Gorra Sol","Cabeza", 0);
-	    transaction.begin();
-	    entityManager.persist(abrigoSecundario1);
-	    transaction.commit();
-	    transaction.begin();
-	    entityManager.persist(abrigoSecundario2);
-	    transaction.commit();
-	    transaction.begin();
-	    entityManager.persist(abrigoSecundario3);
-	    transaction.commit();
-	    transaction.begin();
-	    entityManager.persist(abrigoSecundario4);
-	    transaction.commit();
-	    transaction.begin();
-	    entityManager.persist(abrigoSecundario5);
-	    transaction.commit();
-    	
-    	factoresClimaticosJson factoresClimaticos1 = new factoresClimaticosJson("Gorra de Sol","Sol");
-    	factoresClimaticosJson factoresClimaticos2 = new factoresClimaticosJson("Lentes de Sol","Sol");
-    	factoresClimaticosJson factoresClimaticos3 = new factoresClimaticosJson("Campera Impermeable","Lluvia");
-    	factoresClimaticosJson factoresClimaticos4 = new factoresClimaticosJson("Paraguas","Lluvia");
-	    transaction.begin();
-	    entityManager.persist(factoresClimaticos1);
-	    transaction.commit();
-	    transaction.begin();
-	    entityManager.persist(factoresClimaticos2);
-	    transaction.commit();
-	    transaction.begin();
-	    entityManager.persist(factoresClimaticos3);
-	    transaction.commit();
-	    transaction.begin();
-	    entityManager.persist(factoresClimaticos4);
-	    transaction.commit();
-    	
-    	
-    }
     
-    @SuppressWarnings("deprecation")
 	public static void main( String[] args )
     {
-//    	loadJsonAbrigos();
-//    	BasicConfigurator.configure(); 
-
-//    	Eso es para el logger del server.
-//    	si no quieren que logee Started y todas las respuestas del sv, saquenlo.
-//    	Sirve para que podamos ver lo que va respondiendo solo eclipse.
-//    	Lo unico que si, si lo descomentan va a dar un mensajito rojo, pero no le den bola
+//		Logger del spark
     	
-        Spark.port(9000);
+    	BasicConfigurator.configure(); 
+    	
+    
+    	
+//    	cargar_datos_a_bd();
+    	
+    	
+    	
+    	web.EntityManagerSingleton.getEntityManager();
+    	
+    	Spark.port(getHerokuAssignedPort());
+    	
         staticFileLocation("/webResources");
         DebugScreen.enableDebugScreen();
         Spark.init();
        
-//		ACA TENEMOS QUE INICIAR LOS HILOS
-        
-    	
         iniciarControladores();
-    	    	
-    	//***	FORMAS PARA LLAMAR A LA API:
+    	    	    	
     	
-    	
-    	
-//    	Date date = new java.util.Date();
-//    	date.setDate(date.getDate() + 2);
-//    	LocalDate new_date = proveedor.convertToLocalDateViaMilisecond(date);
-//   
-//    	Double temp = proveedor.obtenerTemperaturATalDia(new_date, ciudad);
-//    	System.out.println(temp);
-    	//************
-    	
-//    	abrigoJsonDao abrigoDao = new abrigoJsonDao();
-//    	
-//    	abrigoJson abrigo = abrigoDao.getByAbrigo("Campera");
-//    	
-//    	System.out.println(abrigo.getAbrigo());
-//    	System.out.println(abrigo.getTemp());
-//    	double temp = proveedor.get_temperatura_de_hoy(ciudad);
-    	
-//    	OpenWeather proveedor = new OpenWeather();
-//    	String ciudad = "Paris";
-//    	String descripcion = proveedor.get_descripcion_de_hoy(ciudad);
-    	
-    	
-//    	String descripcion = "Weather: few clouds";
-//    	System.out.println(temp);
-//    	System.out.println(descripcion);
-//    	Esto es porque siempre pone wheater:
-//    	descripcion = (String) descripcion.subSequence(9, descripcion.length());
-//    	System.out.println(descripcion);
-    	
-    	
-//    	
-//    	String desc = proveedor.get_descripcion_tal_dia(ciudad, date);
-//    	System.out.println(desc);
-    	
-    	
-    	
+    }
+	
+    static int getHerokuAssignedPort() {
+        ProcessBuilder processBuilder = new ProcessBuilder();
+        if (processBuilder.environment().get("PORT") != null) {
+            return Integer.parseInt(processBuilder.environment().get("PORT"));
+        }
+        return 4567; //return default port if heroku-port isn't set (i.e. on localhost)
+    }
+    
+    public static void cargar_datos_a_bd() {
+    	loadInitialData.loadJsonAbrigos();
+    	try {
+			loadInitialData.loadUsuarios();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     

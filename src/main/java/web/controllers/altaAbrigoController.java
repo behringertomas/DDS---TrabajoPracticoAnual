@@ -1,13 +1,20 @@
 package web.controllers;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.List;
 
+import javax.imageio.ImageIO;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import TPZTBCS.Guardarropa;
+import TPZTBCS.Imagen;
 import TPZTBCS.Prenda;
 import TPZTBCS.Usuario;
 import TPZTBCS.dao.UsuarioDao;
@@ -16,18 +23,17 @@ import spark.Request;
 import spark.Response;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
+import web.EntityManagerSingleton;
 import web.Router;
 import web.models.altaTiposModel;
 
 public class altaAbrigoController extends MainController {
 
 	private static Usuario currentUser;
-    private static UsuarioDao uDao = new UsuarioDao();
 	private static altaTiposModel model;
 	private static final String ALTA_ABRIGO = "/cliente/altaAbrigo.hbs";
 	private static final String ALTA_PRENDA = "/cliente/altaPrenda.hbs";
 	private static final String PARTE = "Parte Superior";
-	private static EntityManager entityManager;
 	
     public static void init() {
         HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
@@ -71,7 +77,7 @@ public class altaAbrigoController extends MainController {
 //		usuario.construirPrenda("Parte Superior","Remera", "Tela", "Rojo", "Negro");
     	try {
     		String url_imagen = request.queryParams("inputImagenPrenda");
-    		if (url_imagen == "") url_imagen = "Sin Imagen";
+    		
     		String tipoPrenda = request.queryParams("abrigo");
     		String material = request.queryParams("material");
     		String colorPrimario = request.queryParams("colorPrimario");
@@ -79,12 +85,12 @@ public class altaAbrigoController extends MainController {
     		if(request.queryParams("colorSecundario").equalsIgnoreCase("Ninguno")) {
     			Prenda prendaAPersistir = currentUser.construirPrenda(PARTE, tipoPrenda, material, colorPrimario,currentUser.getGuardarropa(guardarropa),url_imagen);
     			persist(prendaAPersistir);
-//    			bDao.persist(PrendaAPersistir); no se por que con esta linea no funciona
+    		
     		} else {
     			String colorSecundario = request.queryParams("colorSecundario");
     			Prenda prendaAPersistir = currentUser.construirPrenda(PARTE, tipoPrenda, material, colorPrimario,colorSecundario,currentUser.getGuardarropa(guardarropa),url_imagen);
     			persist(prendaAPersistir);
-//    			bDao.persist(PrendaAPersistir);
+    		
     		}
     		
     	}
@@ -97,19 +103,18 @@ public class altaAbrigoController extends MainController {
     }
     
     public static void persist(Prenda prenda){
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
-	    entityManager = factory.createEntityManager();
-	    EntityTransaction transaction = entityManager.getTransaction();
+    	EntityManager entityManager = EntityManagerSingleton.getEntityManager();
+	    EntityTransaction transaction = EntityManagerSingleton.getEntityManager().getTransaction();
 	    transaction.begin();
 	    entityManager.persist(prenda);
 	    transaction.commit();
+
     }
     
+    
     public static Usuario getUsuarioViaEntity(int id) {
-  	   EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
-  	   entityManager = factory.createEntityManager();
 
-  	   return entityManager.find(Usuario.class, id);
+  	   return EntityManagerSingleton.getEntityManager().find(Usuario.class, id);
      }
     
 }

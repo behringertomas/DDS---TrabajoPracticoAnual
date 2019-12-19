@@ -1,6 +1,9 @@
 package TPZTBCS;
 
 import java.util.Date;
+import java.io.File;
+import java.io.FileInputStream;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -42,6 +45,18 @@ public class Prenda
 	@Column(name = "Calendario_De_Uso")
 	ArrayList <Date> calendarioDeUso = new ArrayList<Date>();
 	
+//	@OneToOne(cascade = {CascadeType.ALL})
+//	@JoinColumn (name = "ID_IMAGEN")
+//	private Imagen imagen;
+	
+	@Lob
+	@Column(name = "Imagen")
+	byte[] imagen = null;
+	
+//	@Column(name = "Imagen")
+//	String imagen;
+	
+	
 	public Guardarropa getGuardarropa_id() {
 		return guardarropa_id;
 	}
@@ -76,17 +91,7 @@ public class Prenda
 	@Column(name = "PRENDA_PREFERENCIAS")
 	HashMap<Usuario,Integer> ListaPuntaje = new HashMap<Usuario,Integer>();
 	
-//	public void setPuntaje(Usuario usuario)
-//	{
-//		System.out.println("Prenda: " + this.parteEspecifica + this.tipo);
-//		System.out.println("Puntaje anterior: " + this.getPuntaje(usuario));
-//		System.out.println("Ingrese puntaje de la prenda:");
-//		
-//		Scanner obj = new Scanner(System.in);
-//		int puntaje = obj.nextInt();
-//		
-//		ListaPuntaje.put(usuario,puntaje);			
-//	}
+
 	public void setPuntaje(Usuario usuario, int puntaje)
 	{
 		ListaPuntaje.put(usuario,puntaje);			
@@ -103,25 +108,46 @@ public class Prenda
 		
     }
 	
+	public void instanciar_array_bytes(File file) {
+		this.imagen = new byte [(int) file.length()];
+	}
+	
+	public static byte[] hexStringToByteArray(String s) {
+	    int len = s.length();
+	    byte[] data = new byte[len / 2];
+	    for (int i = 0; i < len; i += 2) {
+	        data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
+	                             + Character.digit(s.charAt(i+1), 16));
+	    }
+	    return data;
+	}
+	
 	public Prenda() {
 		
 	}
 
+	public byte[] getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
+	}
 	
 	
-	
-//	public Atuendo getAtuendo() {
-//		return atuendo;
-//	}
-//
-//	public void setAtuendo(Atuendo atuendo) {
-//		this.atuendo = atuendo;
-//	}
-	
+
 	public List<Atuendo> getAtuendo() {
 		return atuendo;
 	}
 	
+//	public String getImagen() {
+//		return imagen;
+//	}
+//
+//	public void setImagen(String imagen) {
+//		this.imagen = imagen;
+//	}
+
 	public void setAtuendo(List<Atuendo> atuendo) {
 		this.atuendo = atuendo;
 	}

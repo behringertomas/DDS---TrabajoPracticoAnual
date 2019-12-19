@@ -21,7 +21,7 @@ import spark.Request;
 import spark.Response;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
-
+import web.EntityManagerSingleton;
 import web.Router;
 import web.models.AlertModel;
 import web.models.listadoGuardarropaModel;
@@ -161,12 +161,13 @@ public class sugerenciasController extends MainController{
      }
     
     public static void persist(Atuendo atuendo){
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
-	    entityManager = factory.createEntityManager();
+    	EntityManager entityManager = EntityManagerSingleton.getEntityManager();
+
 	    EntityTransaction transaction = entityManager.getTransaction();
 	    transaction.begin();
 	    entityManager.persist(atuendo);
 	    transaction.commit();
+
     }
        
     
@@ -178,10 +179,8 @@ public class sugerenciasController extends MainController{
     }
     
     public static Usuario getUsuarioViaEntity(int id) {
- 	   EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
- 	   entityManager = factory.createEntityManager();
 
- 	   return entityManager.find(Usuario.class, id);
+ 	   return EntityManagerSingleton.getEntityManager().find(Usuario.class, id);
     }
     
     private static sugerenciasModel updateModel(){

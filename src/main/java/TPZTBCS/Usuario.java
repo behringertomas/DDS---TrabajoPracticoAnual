@@ -355,35 +355,26 @@ public class Usuario
 	
 
 //	************ CREACION EVENTO ************
-	public Evento crearEvento(String descripcion,String ciudad,int anio,int mes,int dia,int hora,int minutos) {
+	@SuppressWarnings("deprecation")
+	public Evento crearEvento(String descripcion,String ciudad,Date fechaDeEvento,int hora,int minutos) {
 		 
-		Calendar myCalendar = new GregorianCalendar(anio, mes-1, dia);
-		myCalendar.set(Calendar.HOUR_OF_DAY, hora);
-		myCalendar.set(Calendar.MINUTE, minutos);
-		Date fechaDeEvento = myCalendar.getTime();
-		myCalendar.add(Calendar.MINUTE, -1);
-		Date fechaDeSugerencia = myCalendar.getTime();
-		String fecha = fechaDeSugerencia.toString();
+		Date fechaDeSugerencia = new java.util.Date();
+		fechaDeSugerencia.setDate(fechaDeSugerencia.getDate() + 3);
 		 
 		Evento EventoNuevo= new Evento(fechaDeEvento,fechaDeSugerencia,this,ciudad,descripcion);
 		
 		this.listaEvento.add(EventoNuevo);
 		return EventoNuevo;
-		
-		//System.out.print(fecha);
-		
 		 
 	}
-	public Evento crearEvento(String descripcion,String ciudad,int anio,int mes,int dia,int hora,int minutos,int CadacuantosDias) {
+	
+	@SuppressWarnings("deprecation")
+	public Evento crearEvento(String descripcion,String ciudad,Date fechaDeEvento,int hora,int minutos,int CadacuantosDias) {
 		 
-		Calendar myCalendar = new GregorianCalendar(anio, mes-1, dia);
-		myCalendar.set(Calendar.HOUR_OF_DAY, hora);
-		myCalendar.set(Calendar.MINUTE, minutos);
-		 Date fechaDeEvento = myCalendar.getTime();
-		 myCalendar.add(Calendar.DATE, -1);
-		 Date fechaDeSugerencia = myCalendar.getTime();
-		 String fecha = fechaDeSugerencia.toString();
-		 Evento EventoNuevo= new Evento(fechaDeEvento,fechaDeSugerencia,this,ciudad,descripcion,CadacuantosDias);
+		Date fechaDeSugerencia = new java.util.Date();
+		fechaDeSugerencia.setDate(fechaDeSugerencia.getDate() + 3);
+		
+		Evento EventoNuevo= new Evento(fechaDeEvento,fechaDeSugerencia,this,ciudad,descripcion,CadacuantosDias);
 		
 		this.listaEvento.add(EventoNuevo);
 		return EventoNuevo;

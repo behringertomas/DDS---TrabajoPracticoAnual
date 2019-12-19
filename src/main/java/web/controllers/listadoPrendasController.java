@@ -16,12 +16,12 @@ import TPZTBCS.Prenda;
 import TPZTBCS.Usuario;
 import TPZTBCS.dao.GuardarropaDao;
 import TPZTBCS.dao.UsuarioDao;
-import javafx.scene.control.ComboBox;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
+import web.EntityManagerSingleton;
 import web.Router;
 import web.helper.SessionHelper;
 import web.models.AlertModel;
@@ -140,10 +140,8 @@ public class listadoPrendasController  extends MainController {
         }
        
        public static Usuario getUsuarioViaEntity(int id) {
-    	   EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
-    	   entityManager = factory.createEntityManager();
   
-    	   return entityManager.find(Usuario.class, id);
+    	   return EntityManagerSingleton.getEntityManager().find(Usuario.class, id);
        }
        
         

@@ -1,5 +1,12 @@
 package TPZTBCS;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.util.Base64;
+
+import javax.imageio.ImageIO;
+
 import TPZTBCS.dao.abrigoJsonDao;
 import TPZTBCS.dao.abrigoSecundarioJsonDao;
 
@@ -57,6 +64,22 @@ public class ParteSuperior extends PrendaBuilder
 	@Override
 	public void buildUrl(String img_url) throws Exception {
 		prenda.setDireccionImagen(img_url);
+		
+	}
+
+	@Override
+	public void buildImagen() throws Exception {
+		if(prenda.getDireccionImagen() != "") {
+			
+			  File file = new File(prenda.getDireccionImagen());
+		      BufferedImage bImage = ImageIO.read(file);
+		      ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		      ImageIO.write(bImage, "png", bos );
+		      byte[] data = bos.toByteArray();
+		      prenda.instanciar_array_bytes(file);
+		      prenda.setImagen(data);
+		}
+		 
 		
 	}
 }

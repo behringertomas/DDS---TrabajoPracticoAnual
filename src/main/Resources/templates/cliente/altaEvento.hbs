@@ -27,7 +27,7 @@
 
 <script>
     function hoy() {
-    return new Date()
+        return new Date()
     }
 </script>
 
@@ -56,10 +56,8 @@
                         <input class="form-control" type="text" id="descripcion" name="descripcion" placeholder="Ingrese nombre de evento" required autofocus/>
                         Ciudad
                         <input class="form-control" type="text" id="ciudad" name="ciudad" placeholder="Ingrese ciudad del evento" required autofocus/>
-                        <div class="form-group col-md-8 ">
-                            <input type="date" class="form-control" id="fechaEvento" required="required"
-                                   placeholder="fecha de evento (dd/mm/aaaa)"  name="fechaEvento" min={{dateFormat hoy "dd/MM/YYYY"}}/>
-                        </div>
+                        Fecha del Evento
+                        <input type="date" class="form-control" id="fechaEvento" required="required" placeholder="fecha de evento (dd/mm/aaaa)"  name="fechaEvento" min={{hoy}}/>
                         Hora
                         <input class="form-control" type="text" id="hora" name="hora" placeholder="A que hora" required autofocus/>
                         Minutos

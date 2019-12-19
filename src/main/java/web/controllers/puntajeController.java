@@ -15,6 +15,7 @@ import spark.Request;
 import spark.Response;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
+import web.EntityManagerSingleton;
 import web.Router;
 import web.models.AlertModel;
 import web.models.puntajePrendasModel;
@@ -173,17 +174,17 @@ public class puntajeController extends MainController {
     }
 
     public static Usuario getUsuarioViaEntity(int id) {
- 	   EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
- 	   entityManager = factory.createEntityManager();
+// 	   EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
+// 	   entityManager = factory.createEntityManager();
 
- 	   return entityManager.find(Usuario.class, id);
+ 	   return EntityManagerSingleton.getEntityManager().find(Usuario.class, id);
     }
     
     public static Atuendo getAtuendoViaEntity(int id) {
-  	   EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
-  	   entityManager = factory.createEntityManager();
+//  	   EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
+//  	   entityManager = factory.createEntityManager();
 
-  	   return entityManager.find(Atuendo.class, id);
+  	   return EntityManagerSingleton.getEntityManager().find(Atuendo.class, id);
      }
     
     public static void cargarAtuendosAlListBox() {

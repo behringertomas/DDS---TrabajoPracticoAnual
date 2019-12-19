@@ -12,6 +12,8 @@ public abstract class PrendaBuilder
     
     public abstract void buildUrl (String img_url) throws Exception;
     
+    public abstract void buildImagen () throws Exception;
+    
     public void verificarColoresDistintos(String colorPrimario, String colorSecundario) throws Exception 
     {
     	if(colorPrimario.equals(colorSecundario)) throw new Exception("COLOR PRIMARIO Y SECUNDARIO IGUALES");

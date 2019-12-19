@@ -106,8 +106,8 @@ public class Evento extends TimerTask implements comando {
 		
 		enviar_mail_si_falta_poco(fechaEvento);
 		
-		
 	}
+	
 	public Evento(Date fechaEvento,Date fechaSugerencia,Usuario ID, String ciudad,String Descripcion,int cadaCuantosDias) {
 		this.fecha=fechaEvento;
 		this.FechaSugerencia=fechaSugerencia;
