@@ -23,12 +23,17 @@ public class DatosPersonales {
 	int edad;
 	
 	@Column(name = "FRIO_MAX")
+<<<<<<< HEAD
 	int FrioMaximo=15;//dejo 15 como default == si hace menos de 15 grados se abriga con algunas prendas
+=======
+	int FrioMaximo=10;//dejo 15 como default == si hace menos de 15 grados se abriga con algunas prendas
+>>>>>>> Entrega5
 	
 	@Column(name = "FRIO_MIN")
 	int FrioMinimo=0; // si hace menos de 0 grados se abriga con todo lo que pueda
 	
 	@Column(name = "FRIO_MANOS")
+<<<<<<< HEAD
 	int FrioManos=15;
 	
 	@Column(name = "FRIO_CUELLO")
@@ -36,6 +41,15 @@ public class DatosPersonales {
 	
 	@Column(name = "FRIO_CABEZA")
 	int FrioCabeza=15;
+=======
+	int FrioManos=10;
+	
+	@Column(name = "FRIO_CUELLO")
+	int FrioCuello=10;
+	
+	@Column(name = "FRIO_CABEZA")
+	int FrioCabeza=10;
+>>>>>>> Entrega5
 
 	public DatosPersonales() {}
 

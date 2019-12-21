@@ -1,6 +1,12 @@
 package TPZTBCS;
 
 import java.util.Date;
+<<<<<<< HEAD
+=======
+import java.io.File;
+import java.io.FileInputStream;
+import java.sql.Blob;
+>>>>>>> Entrega5
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -42,6 +48,21 @@ public class Prenda
 	@Column(name = "Calendario_De_Uso")
 	ArrayList <Date> calendarioDeUso = new ArrayList<Date>();
 	
+<<<<<<< HEAD
+=======
+//	@OneToOne(cascade = {CascadeType.ALL})
+//	@JoinColumn (name = "ID_IMAGEN")
+//	private Imagen imagen;
+	
+	@Lob
+	@Column(name = "Imagen")
+	byte[] imagen = null;
+	
+//	@Column(name = "Imagen")
+//	String imagen;
+	
+	
+>>>>>>> Entrega5
 	public Guardarropa getGuardarropa_id() {
 		return guardarropa_id;
 	}
@@ -49,7 +70,11 @@ public class Prenda
 	public void setGuardarropa_id(Guardarropa guardarropa_id) {
 		this.guardarropa_id = guardarropa_id;
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> Entrega5
 	@Column(name = "EN_GUARDARROPA")
 	private boolean enGuardarropa=false;
 	@Column(name = "PRENDA_PARTE")
@@ -63,7 +88,11 @@ public class Prenda
 	@Column(name = "PRENDA_COLOR_SECUNDARIO")
     private String colorSecundario = "";
 	@Column(name = "PRENDA_DIRECCION_IMG")
+<<<<<<< HEAD
     private String direccionImagen = "";
+=======
+    private String url_img = "";
+>>>>>>> Entrega5
 	@Column(name = "PRENDA_PARTE_ESPECIFICA")
 	private String parteEspecifica="";
 	@Column(name = "CUANTO_ABRIGA")
@@ -76,6 +105,7 @@ public class Prenda
 	@Column(name = "PRENDA_PREFERENCIAS")
 	HashMap<Usuario,Integer> ListaPuntaje = new HashMap<Usuario,Integer>();
 	
+<<<<<<< HEAD
 //	public void setPuntaje(Usuario usuario)
 //	{
 //		System.out.println("Prenda: " + this.parteEspecifica + this.tipo);
@@ -87,6 +117,9 @@ public class Prenda
 //		
 //		ListaPuntaje.put(usuario,puntaje);			
 //	}
+=======
+
+>>>>>>> Entrega5
 	public void setPuntaje(Usuario usuario, int puntaje)
 	{
 		ListaPuntaje.put(usuario,puntaje);			
@@ -103,10 +136,28 @@ public class Prenda
 		
     }
 	
+<<<<<<< HEAD
+=======
+	public void instanciar_array_bytes(File file) {
+		this.imagen = new byte [(int) file.length()];
+	}
+	
+	public static byte[] hexStringToByteArray(String s) {
+	    int len = s.length();
+	    byte[] data = new byte[len / 2];
+	    for (int i = 0; i < len; i += 2) {
+	        data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
+	                             + Character.digit(s.charAt(i+1), 16));
+	    }
+	    return data;
+	}
+	
+>>>>>>> Entrega5
 	public Prenda() {
 		
 	}
 
+<<<<<<< HEAD
 	
 	
 	
@@ -118,10 +169,33 @@ public class Prenda
 //		this.atuendo = atuendo;
 //	}
 	
+=======
+	public byte[] getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(byte[] imagen) {
+		this.imagen = imagen;
+	}
+	
+	
+
+>>>>>>> Entrega5
 	public List<Atuendo> getAtuendo() {
 		return atuendo;
 	}
 	
+<<<<<<< HEAD
+=======
+//	public String getImagen() {
+//		return imagen;
+//	}
+//
+//	public void setImagen(String imagen) {
+//		this.imagen = imagen;
+//	}
+
+>>>>>>> Entrega5
 	public void setAtuendo(List<Atuendo> atuendo) {
 		this.atuendo = atuendo;
 	}
@@ -147,6 +221,11 @@ public class Prenda
     
     public void setColorSecundario(String colorSecundario)	{ this.colorSecundario = colorSecundario; }	
     
+<<<<<<< HEAD
+=======
+    
+    
+>>>>>>> Entrega5
     public Prenda getPrenda() { return this; }
     
     public int getTemperatura() throws Exception {
@@ -180,7 +259,11 @@ public class Prenda
     
     public String getTipo() {return this.tipo;}
     
+<<<<<<< HEAD
     public void setDireccionImagen(String direccionImagen)	{ this.direccionImagen = direccionImagen; }	
+=======
+    public void setDireccionImagen(String url_img)	{ this.url_img = url_img; }	
+>>>>>>> Entrega5
     
     public void meterEnGuardarropa()
     {
@@ -208,7 +291,11 @@ public class Prenda
     
     public String getDireccionImagen()
     {
+<<<<<<< HEAD
     	return this.direccionImagen;
+=======
+    	return this.url_img;
+>>>>>>> Entrega5
     }
     
     public void imprimirDescripcion()

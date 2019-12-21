@@ -38,6 +38,15 @@ public class NotificacionEmail implements IBridgeNotificaciones {
 	}
 	
 	@Override
+<<<<<<< HEAD
+=======
+	public void enviarNotificacionRecordatorio(String email) {
+	this.email = email;
+	sendEmailRecordatorio();
+	}
+	
+	@Override
+>>>>>>> Entrega5
 	public void enviarNotificacionCambioBrusco(String email) {
 		this.email = email;
 		sendEmailAlerta();
@@ -61,7 +70,12 @@ public class NotificacionEmail implements IBridgeNotificaciones {
 		try{
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("guardarropasztbcs@gmail.com"));//EMISOR
+<<<<<<< HEAD
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(this.email));//RECEPTOR
+=======
+//			message.addRecipient(Message.RecipientType.TO, new InternetAddress(this.email));//RECEPTOR
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress("behringertomas@gmail.com"));//RECEPTOR
+>>>>>>> Entrega5
 			message.setSubject("Que me Pongo APP recordatorio");
 			message.setText("Sugerencias listas, pase por el guardarropas");
 			Transport t = session.getTransport("smtp");
@@ -81,7 +95,12 @@ public class NotificacionEmail implements IBridgeNotificaciones {
 		try{
 			MimeMessage message = new MimeMessage(session);
 			message.setFrom(new InternetAddress("guardarropasztbcs@gmail.com"));//EMISOR
+<<<<<<< HEAD
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(this.email));//RECEPTOR
+=======
+//			message.addRecipient(Message.RecipientType.TO, new InternetAddress(this.email));//RECEPTOR
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress("behringertomas@gmail.com"));//RECEPTOR
+>>>>>>> Entrega5
 			message.setSubject("Cambio Brusco de Temperatura");
 			message.setText("Nueva sugerencia emitida.");
 			Transport t = session.getTransport("smtp");
@@ -94,6 +113,28 @@ public class NotificacionEmail implements IBridgeNotificaciones {
 		}
 		
 	}
+<<<<<<< HEAD
+=======
+	
+	public void sendEmailRecordatorio(){
+		init();
+		try{
+			MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("guardarropasztbcs@gmail.com"));//EMISOR
+//			message.addRecipient(Message.RecipientType.TO, new InternetAddress(this.email));//RECEPTOR
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress("behringertomas@gmail.com"));//RECEPTOR
+			message.setSubject("Que me Pongo APP recordatorio");
+			message.setText("Faltan 4 dias para la ocurrencia de tu evento.");
+			Transport t = session.getTransport("smtp");
+			t.connect("guardarropasztbcs", "ztbcsztbcs");
+			t.sendMessage(message, message.getAllRecipients());
+			t.close();
+		}catch (MessagingException me){
+			me.printStackTrace();
+			return;
+		}
+	}
+>>>>>>> Entrega5
 
 	
 }

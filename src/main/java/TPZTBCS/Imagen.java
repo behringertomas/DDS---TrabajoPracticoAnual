@@ -29,4 +29,8 @@ public class Imagen
    ventana.setVisible(true);
    ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> Entrega5

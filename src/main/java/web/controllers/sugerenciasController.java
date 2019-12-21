@@ -21,7 +21,11 @@ import spark.Request;
 import spark.Response;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
+<<<<<<< HEAD
 
+=======
+import web.EntityManagerSingleton;
+>>>>>>> Entrega5
 import web.Router;
 import web.models.AlertModel;
 import web.models.listadoGuardarropaModel;
@@ -117,7 +121,11 @@ public class sugerenciasController extends MainController{
             }
         catch(Exception e)
             {
+<<<<<<< HEAD
                 alert.setShowAlertWithMessage("No se pudo obtener la lista de prendas.");
+=======
+                alert.setShowAlertWithMessage("La API del Clima no puede responder la solicitud.");
+>>>>>>> Entrega5
                 return new ModelAndView(alert, SUGERENCIAS);
             }
 
@@ -161,12 +169,21 @@ public class sugerenciasController extends MainController{
      }
     
     public static void persist(Atuendo atuendo){
+<<<<<<< HEAD
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
 	    entityManager = factory.createEntityManager();
+=======
+    	EntityManager entityManager = EntityManagerSingleton.getEntityManager();
+
+>>>>>>> Entrega5
 	    EntityTransaction transaction = entityManager.getTransaction();
 	    transaction.begin();
 	    entityManager.persist(atuendo);
 	    transaction.commit();
+<<<<<<< HEAD
+=======
+
+>>>>>>> Entrega5
     }
        
     
@@ -178,10 +195,15 @@ public class sugerenciasController extends MainController{
     }
     
     public static Usuario getUsuarioViaEntity(int id) {
+<<<<<<< HEAD
  	   EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
  	   entityManager = factory.createEntityManager();
 
  	   return entityManager.find(Usuario.class, id);
+=======
+
+ 	   return EntityManagerSingleton.getEntityManager().find(Usuario.class, id);
+>>>>>>> Entrega5
     }
     
     private static sugerenciasModel updateModel(){

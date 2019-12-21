@@ -54,6 +54,12 @@ public class Usuario
 	@ManyToMany(cascade = {CascadeType.ALL})
 	List <Atuendo> historialAtuendos = new ArrayList<Atuendo>();
 	
+<<<<<<< HEAD
+=======
+	//----- Bit de Premium ----- Si es 1 es premium, 0 standar
+	@Column(name = "Bit_Premium")
+	private int bit_premium;
+>>>>>>> Entrega5
 	
 	//----- USERNAME para el DAO -----
 	@Column(name = "Username")
@@ -84,11 +90,20 @@ public class Usuario
 	}
 	
 //	CONSTRUCTORES
+<<<<<<< HEAD
 	public Usuario(String username,String email,String pass, String nombre,int edad,int fMin,int fMax,int fCuello,int fCabeza, int fManos) {
+=======
+	public Usuario(String username,String email,String pass, String nombre,int edad, int bit, int fMin,int fMax,int fCuello,int fCabeza, int fManos) {
+>>>>>>> Entrega5
 		
 		this.user = username;
 		this.email = email;
 		this.pass = pass;
+<<<<<<< HEAD
+=======
+		this.bit_premium = bit;
+		
+>>>>>>> Entrega5
 		
 		this.getDatos().setNombre(nombre);
 		this.getDatos().setEdad(edad);
@@ -101,10 +116,18 @@ public class Usuario
 		
 	}
 	
+<<<<<<< HEAD
 	public Usuario(String username,String email,String pass, String nombre,int edad) {
 		this.user = username;
 		this.email = email;
 		this.pass = pass;
+=======
+	public Usuario(String username,String email,String pass, String nombre,int edad, int bit) {
+		this.user = username;
+		this.email = email;
+		this.pass = pass;
+		this.bit_premium = bit;
+>>>>>>> Entrega5
 		
 		this.getDatos().setNombre(nombre);
 		this.getDatos().setEdad(edad);
@@ -117,6 +140,7 @@ public class Usuario
 	}
 	
 //	************ PRENDA BUILDER ************
+<<<<<<< HEAD
 	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario, String colorSecundario,Guardarropa guardarropa) throws Exception
 	{
 		String nombreGuardarropa = guardarropa.getIdentificador();
@@ -127,6 +151,18 @@ public class Usuario
 	{
 		String nombreGuardarropa = guardarropa.getIdentificador();
 		return this.getGuardarropa(nombreGuardarropa).construirPrenda(parte, tipo, material, colorPrimario,guardarropa);	
+=======
+	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario, String colorSecundario,Guardarropa guardarropa, String img_url) throws Exception
+	{
+		String nombreGuardarropa = guardarropa.getIdentificador();
+		return this.getGuardarropa(nombreGuardarropa).construirPrenda(parte, tipo, material, colorPrimario,colorSecundario,guardarropa, img_url);	
+	}
+	
+	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario,Guardarropa guardarropa, String img_url) throws Exception
+	{
+		String nombreGuardarropa = guardarropa.getIdentificador();
+		return this.getGuardarropa(nombreGuardarropa).construirPrenda(parte, tipo, material, colorPrimario,guardarropa, img_url);	
+>>>>>>> Entrega5
 	}
 //	****************************************
 	
@@ -189,8 +225,19 @@ public class Usuario
 		this.listaGuardarropas = listaGuardarropas;
 	}
 	
+<<<<<<< HEAD
 	
 	
+=======
+	public int getBit_premium() {
+		return bit_premium;
+	}
+
+	public void setBit_premium(int bit_premium) {
+		this.bit_premium = bit_premium;
+	}
+
+>>>>>>> Entrega5
 	public Collection<Guardarropa> getListaGuardarropas() {
 		return listaGuardarropas;
 	}
@@ -339,6 +386,7 @@ public class Usuario
 	public void setListaEvento(Collection<Evento> listaEvento) {
 		this.listaEvento = listaEvento;
 	}
+<<<<<<< HEAD
 
 //	************ CREACION EVENTO ************
 	public Evento crearEvento(String descripcion,String ciudad,int anio,int mes,int dia,int hora,int minutos) {
@@ -350,11 +398,23 @@ public class Usuario
 		myCalendar.add(Calendar.MINUTE, -1);
 		Date fechaDeSugerencia = myCalendar.getTime();
 		String fecha = fechaDeSugerencia.toString();
+=======
+	
+	
+
+//	************ CREACION EVENTO ************
+	@SuppressWarnings("deprecation")
+	public Evento crearEvento(String descripcion,String ciudad,Date fechaDeEvento,int hora,int minutos) {
+		 
+		Date fechaDeSugerencia = new java.util.Date();
+		fechaDeSugerencia.setDate(fechaDeSugerencia.getDate() + 3);
+>>>>>>> Entrega5
 		 
 		Evento EventoNuevo= new Evento(fechaDeEvento,fechaDeSugerencia,this,ciudad,descripcion);
 		
 		this.listaEvento.add(EventoNuevo);
 		return EventoNuevo;
+<<<<<<< HEAD
 		
 		//System.out.print(fecha);
 		
@@ -370,6 +430,18 @@ public class Usuario
 		 Date fechaDeSugerencia = myCalendar.getTime();
 		 String fecha = fechaDeSugerencia.toString();
 		 Evento EventoNuevo= new Evento(fechaDeEvento,fechaDeSugerencia,this,ciudad,descripcion,CadacuantosDias);
+=======
+		 
+	}
+	
+	@SuppressWarnings("deprecation")
+	public Evento crearEvento(String descripcion,String ciudad,Date fechaDeEvento,int hora,int minutos,int CadacuantosDias) {
+		 
+		Date fechaDeSugerencia = new java.util.Date();
+		fechaDeSugerencia.setDate(fechaDeSugerencia.getDate() + 3);
+		
+		Evento EventoNuevo= new Evento(fechaDeEvento,fechaDeSugerencia,this,ciudad,descripcion,CadacuantosDias);
+>>>>>>> Entrega5
 		
 		this.listaEvento.add(EventoNuevo);
 		return EventoNuevo;

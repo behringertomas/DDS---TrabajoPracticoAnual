@@ -15,6 +15,10 @@ import spark.Request;
 import spark.Response;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
+<<<<<<< HEAD
+=======
+import web.EntityManagerSingleton;
+>>>>>>> Entrega5
 import web.Router;
 import web.models.AlertModel;
 import web.models.puntajePrendasModel;
@@ -62,9 +66,13 @@ public class puntajeController extends MainController {
     	
     	Atuendo atuendoElegido = getAtuendoViaEntity(getAtuendoSeleccionado());
     	
+<<<<<<< HEAD
 //    	puntuaciones de prendas en particular
 //    	haremos un promedio. Si se quiere puntuar el atuendo total, abajo habia comenzado a hacer el codigo.
 //    	lo dejo comentado aca abajo y en el hbs.
+=======
+
+>>>>>>> Entrega5
     	int sumatoriaPuntaje = 0;
     	try{
  	       for(int i = 0; i < lista_prendas_totales.size(); i++)
@@ -75,8 +83,13 @@ public class puntajeController extends MainController {
  	    	  sumatoriaPuntaje +=puntajeParticular;
  	       }
  	       int puntajeFinal = sumatoriaPuntaje / lista_prendas_totales.size();
+<<<<<<< HEAD
  	       atuendoElegido.setPuntaje(currentUser,puntajeFinal);
  	       
+=======
+ 	       
+ 	       atuendoElegido.agregarPuntajeALaLista(puntajeFinal);
+>>>>>>> Entrega5
  	       BaseDao bdao = new BaseDao();
  	       bdao.update(atuendoElegido);
  	       
@@ -173,6 +186,7 @@ public class puntajeController extends MainController {
     }
 
     public static Usuario getUsuarioViaEntity(int id) {
+<<<<<<< HEAD
  	   EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
  	   entityManager = factory.createEntityManager();
 
@@ -184,6 +198,19 @@ public class puntajeController extends MainController {
   	   entityManager = factory.createEntityManager();
 
   	   return entityManager.find(Atuendo.class, id);
+=======
+// 	   EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
+// 	   entityManager = factory.createEntityManager();
+
+ 	   return EntityManagerSingleton.getEntityManager().find(Usuario.class, id);
+    }
+    
+    public static Atuendo getAtuendoViaEntity(int id) {
+//  	   EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
+//  	   entityManager = factory.createEntityManager();
+
+  	   return EntityManagerSingleton.getEntityManager().find(Atuendo.class, id);
+>>>>>>> Entrega5
      }
     
     public static void cargarAtuendosAlListBox() {

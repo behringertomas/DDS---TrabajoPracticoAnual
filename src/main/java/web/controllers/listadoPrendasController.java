@@ -16,12 +16,19 @@ import TPZTBCS.Prenda;
 import TPZTBCS.Usuario;
 import TPZTBCS.dao.GuardarropaDao;
 import TPZTBCS.dao.UsuarioDao;
+<<<<<<< HEAD
 import javafx.scene.control.ComboBox;
+=======
+>>>>>>> Entrega5
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
+<<<<<<< HEAD
+=======
+import web.EntityManagerSingleton;
+>>>>>>> Entrega5
 import web.Router;
 import web.helper.SessionHelper;
 import web.models.AlertModel;
@@ -60,10 +67,24 @@ public class listadoPrendasController  extends MainController {
         
         model.limpiarGuardarropas();
         
+<<<<<<< HEAD
         List<Guardarropa> guardarropa = (List<Guardarropa>) currentUser.getListaGuardarropas();
         
         for(Guardarropa g : guardarropa) {
         	model.getGuardarropa().add(g);
+=======
+        List<Guardarropa> guardarropas = (List<Guardarropa>) currentUser.getListaGuardarropas();
+        int bit_premium = currentUser.getBit_premium();
+        
+        for(Guardarropa g : guardarropas) {
+       	
+       	if( (bit_premium == 0) && (g.getIdentificador().equals("DEFAULT"))) {} //si soy standar no agrego el default
+       	else 
+       	{
+       		model.getGuardarropa().add(g);
+       	}
+     	
+>>>>>>> Entrega5
         }
         return new ModelAndView (model, LISTADO_PRENDAS);
     }
@@ -122,7 +143,11 @@ public class listadoPrendasController  extends MainController {
     	    	   row.setMaterial(lstPrendas.get(i).getMaterial());
     	    	   row.setParte(lstPrendas.get(i).getParte());
     	    	   row.setTipo(lstPrendas.get(i).getTipo());
+<<<<<<< HEAD
 
+=======
+    	    	   row.setUrl_img(lstPrendas.get(i).getDireccionImagen());
+>>>>>>> Entrega5
     	           table.add(row);
     	       }
            }
@@ -133,10 +158,15 @@ public class listadoPrendasController  extends MainController {
         }
        
        public static Usuario getUsuarioViaEntity(int id) {
+<<<<<<< HEAD
     	   EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
     	   entityManager = factory.createEntityManager();
   
     	   return entityManager.find(Usuario.class, id);
+=======
+  
+    	   return EntityManagerSingleton.getEntityManager().find(Usuario.class, id);
+>>>>>>> Entrega5
        }
        
         
