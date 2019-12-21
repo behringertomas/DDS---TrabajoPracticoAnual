@@ -82,6 +82,8 @@ public class Evento extends TimerTask implements comando {
 	Timer timer;
 	@Transient
 	Timer timerAlerta;
+	@Transient
+	public RecordatorioEvento recordatorioEvento = null;
 	
 	@Transient
 	ITargetAPI target = new AdapterAPI( new WeatherApixu() ); //apixu
@@ -292,6 +294,8 @@ public class Evento extends TimerTask implements comando {
 	  return this.ciudad;
   }
 
+  
+  
   public int getHorasCambioBrusco() {
 	  return this.horasChequeoCambioBrusco;
   }
@@ -355,7 +359,12 @@ public String requestDescripcionClima_Prueba(String ciudad) throws UnauthorizedE
 	public void setID(int iD) {
 		ID = iD;
 	}
+	
+	public Usuario getUsuario() {
+		return this.usuario;
+	}
 
+	
 	public void enviar_mail_si_falta_poco(Date fechaEvento){
 		OpenWeather proveedor = new OpenWeather();
 		
@@ -365,6 +374,7 @@ public String requestDescripcionClima_Prueba(String ciudad) throws UnauthorizedE
 			NotificacionEmail sender = new NotificacionEmail();
 	    	sender.enviarNotificacion(this.usuario.getEmail());
 		}
+		else {recordatorioEvento = new RecordatorioEvento(this);}
 		
 	}
 

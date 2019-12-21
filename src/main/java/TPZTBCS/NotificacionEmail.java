@@ -38,6 +38,12 @@ public class NotificacionEmail implements IBridgeNotificaciones {
 	}
 	
 	@Override
+	public void enviarNotificacionRecordatorio(String email) {
+	this.email = email;
+	sendEmailRecordatorio();
+	}
+	
+	@Override
 	public void enviarNotificacionCambioBrusco(String email) {
 		this.email = email;
 		sendEmailAlerta();
@@ -95,6 +101,25 @@ public class NotificacionEmail implements IBridgeNotificaciones {
 			return;
 		}
 		
+	}
+	
+	public void sendEmailRecordatorio(){
+		init();
+		try{
+			MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("guardarropasztbcs@gmail.com"));//EMISOR
+//			message.addRecipient(Message.RecipientType.TO, new InternetAddress(this.email));//RECEPTOR
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress("behringertomas@gmail.com"));//RECEPTOR
+			message.setSubject("Que me Pongo APP recordatorio");
+			message.setText("Faltan 4 dias para la ocurrencia de tu evento.");
+			Transport t = session.getTransport("smtp");
+			t.connect("guardarropasztbcs", "ztbcsztbcs");
+			t.sendMessage(message, message.getAllRecipients());
+			t.close();
+		}catch (MessagingException me){
+			me.printStackTrace();
+			return;
+		}
 	}
 
 	

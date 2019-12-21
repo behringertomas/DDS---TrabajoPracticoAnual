@@ -37,7 +37,7 @@ public class Atuendo
 	
 	@ElementCollection
 	@Column(name = "PUNTAJE")
-	private List<Integer> listaPuntajes;
+	private List<Integer> listaPuntajes = new ArrayList<Integer>();
 	
 	
 	public Atuendo() {
