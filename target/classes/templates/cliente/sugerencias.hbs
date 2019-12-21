@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Sugerencias</title>
+
+    <!-- Bootstrap core CSS-->
+    <link href="./styles/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template-->
+    <link href="./styles/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Page level plugin CSS-->
+    <link href="./styles/vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="./styles/css/sb-admin.css" rel="stylesheet">
+
+</head>
+
+<script>
+    function aceptarSugerencia() {
+        $.ajax({
+            url: "/sugerencias",
+            type: "post",
+            success: function () {
+                location.reload();
+            }
+        });
+    }
+
+    function generarSugerencia() {
+        $.ajax({
+            url: "/sugerencias",
+            type: "post",
+            success: function () {
+                location.reload();
+            }
+        });
+    }
+
+
+
+    function getElement(name) {
+        return document.getElementById(name);
+    }
+</script>
+<div id="wrapper">
+
+    {{>cliente/navBar.hbs}}
+
+    <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- DataTables Example -->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    Sugerencias de Atuendos</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                    </div>
+                    <br>
+                    <form action="/sugerencias" method="POST">
+                        <div class="form-group col-md-8 ">
+                            Eventos Del Usuario
+                            <select class="form-control" title="evento" name="evento" id="sm">
+                                {{#each evento}}
+                                    <option value="{{descripcion}}">{{descripcion}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+
+                        <div class="form-group col-md-8 ">
+                            <button class="btn btn-lg btn-primary btn-block" onclick="generarSugerencia()">Generar Sugerencia</button>
+                        </div>
+                    </form>
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th>Parte</th>
+                            <th>Tipo</th>
+                            <th>Material</th>
+                            <th>Color Primario</th>
+                            <th>Color Secundario</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <form action="/sugerencias" method="POST">
+                            {{#each table}}
+                                <tr>
+                                    <td>{{parte}}</td>
+                                    <td>{{tipo}}</td>
+                                    <td>{{material}}</td>
+                                    <td>{{color_primario}}</td>
+                                    <td>{{color_secundario}}</td>
+                                </tr>
+                            {{/each}}
+                        </form>
+                        <form action="/aceptarSugerencia" method="POST">
+                            <button class="btn btn-lg btn-primary btn-block" onclick="aceptarSugerencia()">Aceptar Sugerencia</button>
+                        </form>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div></br>
+        </div>
+        {{#if showAlert}}
+            <div class="alert alert-danger mx-auto mt-5 card-login" style="-webkit-animation: bounce 800ms ease-out;
+                                                                       -moz-animation: bounce 800ms ease-out;
+                                                                       -o-animation: bounce 800ms ease-out;
+                                                                       animation: bounce 800ms ease-out;">
+                <strong>Error</strong> {{message}}.
+            </div>
+        {{/if}}
+        <!--<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>-->
+    </div>
+
+    <!--<p class="small text-center text-muted my-5">-->
+    <!--<em>More table examples coming soon...</em>-->
+    <!--</p>-->
+
+</div>
+<!-- /.container-fluid -->
+
+</div>
+<!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+</body>
+
+</html>
