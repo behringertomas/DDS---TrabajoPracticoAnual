@@ -63,9 +63,7 @@ public class puntajeController extends MainController {
     	
     	Atuendo atuendoElegido = getAtuendoViaEntity(getAtuendoSeleccionado());
     	
-//    	puntuaciones de prendas en particular
-//    	haremos un promedio. Si se quiere puntuar el atuendo total, abajo habia comenzado a hacer el codigo.
-//    	lo dejo comentado aca abajo y en el hbs.
+
     	int sumatoriaPuntaje = 0;
     	try{
  	       for(int i = 0; i < lista_prendas_totales.size(); i++)

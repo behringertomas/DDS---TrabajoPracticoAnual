@@ -56,18 +56,23 @@ public class altaEventoController extends MainController{
     	String descripcion = request.queryParams("descripcion");
     	String ciudad = request.queryParams("ciudad");
     	String fecha = request.queryParams("fechaEvento");
-    	Date fecha_evento = date_format.parse(fecha);
-    	
+    	// SimpleDateFormat formatter5=new SimpleDateFormat("E, MMM dd yyyy HH:mm:ss")
+
     	int hora = Integer.parseInt(request.queryParams("hora"));
     	int minutos = Integer.parseInt(request.queryParams("minutos"));
     	int cadaCuanto = Integer.parseInt(request.queryParams("cadaCuanto"));
     	
+    	String fecha_concatenada = fecha + " " + hora + ":" + minutos + ":00";
+    	SimpleDateFormat formatterDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    	
+    	Date fecha_evento = formatterDate.parse(fecha_concatenada);
+
     	if(cadaCuanto == 0) {
-    		Evento evento = currentUser.crearEvento(descripcion, ciudad, fecha_evento, hora, minutos);
-    		persist(evento);
+	    	Evento evento = currentUser.crearEvento(descripcion, ciudad, fecha_evento, hora, minutos);
+	    	persist(evento);
     	} else {
-    		Evento evento = currentUser.crearEvento(descripcion, ciudad, fecha_evento, hora, minutos,cadaCuanto);
-    		persist(evento);
+	    	Evento evento = currentUser.crearEvento(descripcion, ciudad, fecha_evento, hora, minutos,cadaCuanto);
+	    	persist(evento);
     	}
     	
     	return new ModelAndView (model, ALTA_EVENTO);

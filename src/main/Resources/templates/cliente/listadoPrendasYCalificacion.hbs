@@ -28,7 +28,7 @@
 <script>
     function modificarPuntaje() {
         $.ajax({
-            url: "/sugerencias",
+            url: "/modificarPuntajes",
             type: "post",
             success: function () {
                 location.reload();
@@ -67,8 +67,9 @@
                     </div>
                     <br>
 
-                    <form action="/listadoPrendasYCalificacion" method="POST">
+
                         Atuendos Del Usuario
+                    <form action="/listadoPrendasYCalificacion" method="POST">
                         <select class="form-control" title="atuendo" name="atuendo" id="sm">
                             {{#each atuendo}}
                                 <option value="{{iD}}">{{iD}}</option>
@@ -89,40 +90,41 @@
                             <th>Puntaje</th>
                         </tr>
                         </thead>
+
                         <tbody>
 
-                        <form action="/modificarPuntajes" method="POST">
-                        {{#each table}}
-                            <tr>
-                                <td>{{iD}}</td>
-                                <td>{{parte}}</td>
-                                <td>{{tipo}}</td>
-                                <td>{{material}}</td>
-                                <td>{{color_primario}}</td>
-                                <td>{{color_secundario}}</td>
+                            <form action="/modificarPuntajes" method="POST">
+                                {{#each table}}
+                                    <tr>
+                                        <td>{{iD}}</td>
+                                        <td>{{parte}}</td>
+                                        <td>{{tipo}}</td>
+                                        <td>{{material}}</td>
+                                        <td>{{color_primario}}</td>
+                                        <td>{{color_secundario}}</td>
 
-                                    <td> <select class="form-control" title="{{iD}}" name="{{iD}}" id="{{iD}}" required="required">
-                                        <option value=1>1</option>
-                                        <option value=2>2</option>
-                                        <option value=3>3</option>
-                                        <option value=4>4</option>
-                                        <option value=5>5</option>
-                                        <option value=6>6</option>
-                                        <option value=7>7</option>
-                                        <option value=8>8</option>
-                                        <option value=9>9</option>
-                                        <option value=10>10</option>
-                                    </select> </td>
-                            </tr>
-                        {{/each}}
-                        <button class="btn btn-lg btn-primary btn-block" onclick="modificarPuntaje()">Aplicar Puntajes</button>
+                                            <td> <select class="form-control" title="{{iD}}" name="{{iD}}" id="{{iD}}" required="required">
+                                                <option value=1>1</option>
+                                                <option value=2>2</option>
+                                                <option value=3>3</option>
+                                                <option value=4>4</option>
+                                                <option value=5>5</option>
+                                                <option value=6>6</option>
+                                                <option value=7>7</option>
+                                                <option value=8>8</option>
+                                                <option value=9>9</option>
+                                                <option value=10>10</option>
+                                            </select> </td>
+                                    </tr>
+                                {{/each}}
 
-
-                        </form>
+                                <button class="btn btn-lg btn-primary btn-block" onclick="modificarPuntaje()">Aplicar Puntajes</button>
+                            </form>
 
 
                         </tbody>
                     </table>
+
                     <!-- SI SE QUIERE PUNTUAR A TODO EL ATUENDO -->
                     <!--                  <select class="custom-select custom-select-lg mb-3" title="puntajeTotal" name="puntajeTotal" required="required">
                     <option value=1>1</option>
