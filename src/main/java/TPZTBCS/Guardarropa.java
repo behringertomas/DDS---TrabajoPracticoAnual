@@ -471,6 +471,8 @@ public class Guardarropa
 		}
 		
 		agregar_accesorio_si_es_necesario(combinacionesNoAbrigos,descripcion);
+		
+		
 		return	combinacionesNoAbrigos;		
 	}
 	
