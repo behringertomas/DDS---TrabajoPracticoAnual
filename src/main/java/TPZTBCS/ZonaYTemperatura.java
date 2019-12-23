@@ -12,11 +12,9 @@ public class ZonaYTemperatura {
 		}
 		
 		public String toString() {
-<<<<<<< HEAD
-			System.out.println("Ciudad: " + this.name + " Temperatura: " + this.temp + "°C");
-=======
+
 			System.out.println("Ciudad: " + this.name + " Temperatura: " + this.temp);
->>>>>>> Entrega5
+
 			return this.name + this.temp;
 	
 		}

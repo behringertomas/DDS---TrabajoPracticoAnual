@@ -1,6 +1,5 @@
 package TPZTBCS;
-<<<<<<< HEAD
-=======
+
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
@@ -12,7 +11,7 @@ import javax.imageio.ImageIO;
 import TPZTBCS.dao.abrigoJsonDao;
 import TPZTBCS.dao.abrigoSecundarioJsonDao;
 
->>>>>>> Entrega5
+
 public class ParteSuperior extends PrendaBuilder
 {
 	
@@ -22,33 +21,19 @@ public class ParteSuperior extends PrendaBuilder
     
     public void buildTipo(String tipo) throws Exception
     {
-<<<<<<< HEAD
-    	if (JsonReader.getTipoParteSuperior().contains(tipo))
-    	{
-    		prenda.setTipo(tipo);
-    		prenda.setStrategy(new noAbriga());
-    		int tempQueAbriga = prenda.getStrategy().getTemperatura(prenda);
-        	prenda.setAbrigoTemp(tempQueAbriga);
-    	}
-    	else if (JsonReader.getTipoAbrigos().contains(tipo)) 
-    	{
-=======
+
     	abrigoJsonDao abrigoDao = new abrigoJsonDao();
     	abrigoSecundarioJsonDao abrigoSecundarioDao = new abrigoSecundarioJsonDao();
     	
     	if(abrigoDao.getByAbrigo(tipo) != null) {
->>>>>>> Entrega5
+
     		prenda.setTipo(tipo);
     		prenda.setStrategy(new abrigo());
     		int tempQueAbriga = prenda.getStrategy().getTemperatura(prenda);
     		prenda.setAbrigoTemp(tempQueAbriga);
-<<<<<<< HEAD
-    		 
-    	}else if (jsonReader.getTipoAbrigoSecundario().contains(tipo)) 
-    	{
-=======
+
     	} else if (abrigoSecundarioDao.getByAbrigoSecundario(tipo) != null) {
->>>>>>> Entrega5
+
     		prenda.setTipo(tipo);
     		prenda.setStrategy(new abrigo());
     		String parteEspecifica=JsonReader.getParteEspecifica(tipo);
@@ -56,11 +41,7 @@ public class ParteSuperior extends PrendaBuilder
     		
     		int tempQueAbriga = prenda.getStrategy().getTemperatura(prenda);
     		prenda.setAbrigoTemp(tempQueAbriga);
-<<<<<<< HEAD
-    	}
-    	
-    	else throw new Exception("ERROR TIPO");  
-=======
+
     	} else {
     		
     		prenda.setTipo(tipo);
@@ -72,8 +53,7 @@ public class ParteSuperior extends PrendaBuilder
     	
 
 
->>>>>>> Entrega5
-    	
+
     }
     
     public void buildMaterial(String material) throws Exception
@@ -87,8 +67,7 @@ public class ParteSuperior extends PrendaBuilder
 //    		throw new Exception("ERROR MATERIAL"); 
 //    	} 
     }
-<<<<<<< HEAD
-=======
+
 
 	@Override
 	public void buildUrl(String img_url) throws Exception {
@@ -111,5 +90,5 @@ public class ParteSuperior extends PrendaBuilder
 		 
 		
 	}
->>>>>>> Entrega5
+
 }

@@ -4,32 +4,17 @@ package com.proveedores.openweather;
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
-
-<<<<<<< HEAD
-=======
 import java.time.Instant;
->>>>>>> Entrega5
-
 //----------
-
 import java.time.LocalDate;
-<<<<<<< HEAD
-import java.time.format.DateTimeFormatter;
-=======
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
->>>>>>> Entrega5
 import java.util.List;
 import java.util.stream.Collectors;
-
 import javax.ws.rs.core.MediaType;
-
-
 import com.fasterxml.jackson.core.type.TypeReference;
-<<<<<<< HEAD
 import com.utils.JsonParser;
-=======
 import com.github.prominence.openweathermap.api.DailyForecastRequester;
 import com.github.prominence.openweathermap.api.HourlyForecastRequester;
 import com.github.prominence.openweathermap.api.OpenWeatherMapManager;
@@ -41,18 +26,14 @@ import com.github.prominence.openweathermap.api.model.response.HourlyForecast;
 import com.utils.JsonParser;
 import com.utils.Utils;
 import com.proveedores.openweather.WeatherDTO;
->>>>>>> Entrega5
-
 import TPZTBCS.JsonReader;
 
 
 public class OpenWeather implements IProveedores {
 	private Client client;
-<<<<<<< HEAD
-	private static final String key = "b401579bf8682516861b9ec403bd2234";
-=======
+
 	private static final String key = "691b222f7f69f1389e3414cd964b74bc";
->>>>>>> Entrega5
+
 	private JsonParser jsonParser = new JsonParser();
 
 	public static final String pronosticoActualUrl = "http://api.openweathermap.org/data/2.5/weather";
@@ -81,10 +62,7 @@ public class OpenWeather implements IProveedores {
 		return jsonParser.read(output, new TypeReference<OpenWeatherDTO>() {
 		});
 	}
-<<<<<<< HEAD
 
-	
-=======
 	
 //	public WeatherDTO obtenerDescripcionActual() {
 //		client = Client.create();
@@ -128,7 +106,7 @@ public class OpenWeather implements IProveedores {
 //	}
 	
 //	-----------------------------------------------------------------------------------------------
->>>>>>> Entrega5
+
 	
 	@Override
 	public ExtendedOpenWeatherDTO obtenerPronosticoExtendido() {
@@ -156,17 +134,7 @@ public class OpenWeather implements IProveedores {
 	}
 	
 	
-<<<<<<< HEAD
-	@Override
-	public Double obtenerTemperaturATalDia(LocalDate fecha) { // EL FORMATO DE LA FECHA PASADO DEBE SER dd/mm/aaaa
-		ExtendedOpenWeatherDTO pronosticoExtendido = obtenerPronosticoExtendido();
-		List<ExtendedMain> pronosticoDelDiaCadaTresHoras = pronosticoExtendido.getList().stream()
-				.filter(clima -> esElClimaDeLaFecha(clima, fecha)).collect(Collectors.toList());
-		ExtendedMain pronosticoDelDia = pronosticoDelDiaCadaTresHoras.get(0);
-		return pronosticoDelDia.getTemp();
-	}
-=======
-	
+
 //	@Override
 //	public float obtenerTemperaturATalDia(LocalDate fecha) { // EL FORMATO DE LA FECHA PASADO DEBE SER dd/mm/aaaa
 //		ExtendedOpenWeatherDTO pronosticoExtendido = obtenerPronosticoExtendido();
@@ -175,7 +143,7 @@ public class OpenWeather implements IProveedores {
 //		ExtendedMain pronosticoDelDia = pronosticoDelDiaCadaTresHoras.get(0);
 //		return pronosticoDelDia.getTemp();
 //	}
->>>>>>> Entrega5
+
 
 	public Double obtenerTemperaturATalDia(LocalDate fecha, String ciudad) { // EL FORMATO DE LA FECHA PASADO DEBE SER dd/mm/aaaa
 		ExtendedOpenWeatherDTO pronosticoExtendido = obtenerPronosticoExtendido(ciudad);
@@ -186,8 +154,7 @@ public class OpenWeather implements IProveedores {
 	}
 	
 	
-<<<<<<< HEAD
-=======
+
 //	public String obtenerDescripcionATalDia(LocalDate fecha) { // EL FORMATO DE LA FECHA PASADO DEBE SER dd/mm/aaaa
 //		ExtendedWeatherDTO pronosticoExtendido = obtenerPronosticoDescripcionExtendido();
 //		List<ExtendedWeather> pronosticoDelDiaCadaTresHoras = pronosticoExtendido.getList().stream()
@@ -205,7 +172,7 @@ public class OpenWeather implements IProveedores {
 //	}
 	
 	
->>>>>>> Entrega5
+
 	@Override
 	public Boolean esElClimaDeLaFecha(ExtendedMain clima, LocalDate fecha) {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -214,22 +181,12 @@ public class OpenWeather implements IProveedores {
 		return fecha.equals(fechaDelClima);
 	}
 
-<<<<<<< HEAD
-=======
-	public Boolean esElClimaDeLaFecha_Descripcion(ExtendedWeather clima, LocalDate fecha) {
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-		LocalDate fechaDelClima = LocalDate.parse(clima.getDt_txt(), formatter);
 
-		return fecha.equals(fechaDelClima);
-	}
-	
->>>>>>> Entrega5
 	@Override
 	public Boolean estaActivo() {
 		return true;
 	}
-<<<<<<< HEAD
-=======
+
 	
 // METODOS NUEVOS 
 	
@@ -304,5 +261,5 @@ public class OpenWeather implements IProveedores {
 	}
 	
 	
->>>>>>> Entrega5
+
 }

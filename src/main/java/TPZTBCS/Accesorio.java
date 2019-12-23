@@ -1,6 +1,4 @@
 package TPZTBCS;
-<<<<<<< HEAD
-=======
 
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
@@ -14,7 +12,7 @@ import javax.imageio.ImageIO;
 import TPZTBCS.dao.abrigoJsonDao;
 import TPZTBCS.dao.abrigoSecundarioJsonDao;
 
->>>>>>> Entrega5
+
 public class Accesorio extends PrendaBuilder
 {
 	
@@ -26,9 +24,7 @@ public class Accesorio extends PrendaBuilder
     
     public void buildTipo(String tipo) throws Exception
     {
-<<<<<<< HEAD
-    	if ((jsonReader.getTipoAccesorio()).contains(tipo))
-=======
+
     	abrigoSecundarioJsonDao dao = new abrigoSecundarioJsonDao();
     	
     	if (dao.getByAbrigoSecundario(tipo) != null) {
@@ -38,40 +34,14 @@ public class Accesorio extends PrendaBuilder
     		prenda.setParteEspecifica(parteEspecifica);
     	}
     	else
->>>>>>> Entrega5
+
     	{
     		prenda.setStrategy(new noAbriga());
     		int tempQueAbriga = prenda.getStrategy().getTemperatura(prenda);
         	prenda.setTipo(tipo);
         	prenda.setAbrigoTemp(tempQueAbriga);
     	}
-<<<<<<< HEAD
-//    	else if (jsonReader.getTipoAbrigoSecundario().contains(tipo)) 
-//    	{
-//    		prenda.setStrategy(new abrigo());
-//    		prenda.setTipo(tipo);
-//    		String parteEspecifica=JsonReader.getParteEspecifica(tipo);
-//    		prenda.setParteEspecifica(parteEspecifica);
-//    	}
-    	else throw new Exception("ERROR TIPO"); 
-     
-    }
-    
-    public void buildMaterial(String material) throws Exception
-    {
-    	if ((jsonReader.getMaterialAccesorio()).contains(material))
-    	{
-        	prenda.setMaterial(material);
-    	}
-    	
-    	else if ((jsonReader.getTipoAbrigoSecundarioMaterial()).contains(material)){
-    		prenda.setMaterial(material);
-    	}
-    	
-    	else throw new Exception("ERROR MATERIAL"); 
-    	 
-    }
-=======
+
 
 
      
@@ -115,5 +85,5 @@ public class Accesorio extends PrendaBuilder
 		
 		
 	}
->>>>>>> Entrega5
+
 }

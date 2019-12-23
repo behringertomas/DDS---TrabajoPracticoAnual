@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import TPZTBCS.Guardarropa;
-<<<<<<< HEAD
-import javafx.scene.control.ComboBox;
-import web.models.views.listadoGuardarropaTable;
-=======
->>>>>>> Entrega5
+
+
 import web.models.views.listadoPrendasTable;
 
 public class listadoPrendasModel {

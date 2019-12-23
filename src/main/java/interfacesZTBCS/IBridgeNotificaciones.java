@@ -9,9 +9,8 @@ public interface IBridgeNotificaciones {
 	public void enviarNotificacion(String email);
 	public void enviarNotificacionCambioBrusco(Usuario usuario);
 	public void enviarNotificacionCambioBrusco(String email);
-<<<<<<< HEAD
-=======
+
 	void enviarNotificacionRecordatorio(String email);
->>>>>>> Entrega5
+
 
 }

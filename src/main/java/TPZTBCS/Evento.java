@@ -82,11 +82,10 @@ public class Evento extends TimerTask implements comando {
 	Timer timer;
 	@Transient
 	Timer timerAlerta;
-<<<<<<< HEAD
-=======
+
 	@Transient
 	public RecordatorioEvento recordatorioEvento = null;
->>>>>>> Entrega5
+
 	
 	@Transient
 	ITargetAPI target = new AdapterAPI( new WeatherApixu() ); //apixu
@@ -95,10 +94,8 @@ public class Evento extends TimerTask implements comando {
 	int tiempoRepeticion=0;
 	@Column(name = "EVENTO_TEMPERATURA")
 	double temp=100;
-<<<<<<< HEAD
-//	OJO ACA QUE ESTA EN 100
-=======
->>>>>>> Entrega5
+
+
 	@Column(name = "EVENTO_DESCRIPCION_CLIMA")
 	public String DescripcionClima =null;
 	
@@ -112,15 +109,13 @@ public class Evento extends TimerTask implements comando {
 		timer = new Timer();
 		//System.out.print(fechaSugerencia.toString());
 		timer.schedule(this, fechaSugerencia);
-<<<<<<< HEAD
-	}
-=======
+
 		
 		enviar_mail_si_falta_poco(fechaEvento);
 		
 	}
 	
->>>>>>> Entrega5
+
 	public Evento(Date fechaEvento,Date fechaSugerencia,Usuario ID, String ciudad,String Descripcion,int cadaCuantosDias) {
 		this.fecha=fechaEvento;
 		this.FechaSugerencia=fechaSugerencia;
@@ -132,12 +127,11 @@ public class Evento extends TimerTask implements comando {
 		this.tiempoRepeticion = cadaCuantosDias;
 		//System.out.print(fechaSugerencia.toString());
 		timer.schedule(this, fechaSugerencia,this.transformardiasamilisegundis(cadaCuantosDias));
-<<<<<<< HEAD
-=======
+
 		
 		enviar_mail_si_falta_poco(fechaEvento);
 		
->>>>>>> Entrega5
+
 	}
 	public Evento() {
 	}
@@ -149,11 +143,10 @@ public class Evento extends TimerTask implements comando {
 		this.Descripcion = Descripcion.toLowerCase();
 		timer = new Timer();
 		timer.schedule(this, fechaEvento);
-<<<<<<< HEAD
-=======
+
 		
 		enviar_mail_si_falta_poco(fechaEvento);
->>>>>>> Entrega5
+
 	}
 	
 	
@@ -211,72 +204,7 @@ public class Evento extends TimerTask implements comando {
 	}
 	
 	
-<<<<<<< HEAD
 
-//	@Override
-//	public void run() {
-//		try {
-
-//		OpenWeather apiOpenW = new OpenWeather();
-		//String descripcion = this.requestDescripcionClima();
-//		String descripcion = "soleado";
-//		this.setDescripcionClima(descripcion);
-		
-//		double temp = apiOpenW.obtenerTemperaturATalDia(convertToLocalDateViaInstant(this.FechaSugerencia), this.ciudad);
-//		double temp = 15;
-
-//		this.setTemp(temp);
-		
-//		List<Atuendo>listaSugerencias =usuario.queMePongoATodosLosGuardarropas(descripcion,temp);
-//		listaSugerencias= listaSugerencias.stream().filter(x->x!=null).collect(Collectors.toList());
-
-//		int rnd = new Random().nextInt(listaSugerencias.size());
-//		Atuendo atuendoElegido = listaSugerencias.get(rnd);
-		
-//		this.Sugerencia = this.getMejorAtuendo(listaSugerencias);
-		
-//		if(this.Sugerencia == null) {this.deshacer();}
-		
-//		this.Sugerencia.imprimirPrendas();
-		
-		
-//		NotificacionEmail sender =new NotificacionEmail();
-//    	sender.enviarNotificacion(this.usuario.getEmail());
-		
-//		Scanner myObj = new Scanner(System.in);
-//		System.out.println("Te parece bien el atuendo?: (SI/NO)");
-//		String respuesta = myObj.nextLine();
-//		if (respuesta.toUpperCase().equals("SI")) {
-		
-//			this.ejecutar();
-			
-//		}
-//		 if (respuesta.toUpperCase().equals("NO")) {
-//		 System.out.println("DESEA OTRA SUGERENCIA?: (SI/NO)");
-//		 String respuesta2 = myObj.nextLine();
-//		 if (respuesta2.toUpperCase().equals("SI")) {
-//				this.rechazar();
-//		 }
-//		 if (respuesta2.toUpperCase().equals("NO")) {
-//				this.deshacer();		
-//		 }
-		 
-//		 }
-//		 
-//		 
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//}		
-	
-	@Override
-	public void run() {
-		String descripcion = "soleado";
-		this.setDescripcionClima(descripcion);
-		double temp = 15;
-		this.setTemp(temp);
-=======
 	@Override
 	public void run() {
 		
@@ -287,7 +215,7 @@ public class Evento extends TimerTask implements comando {
 			LocalDate new_date = proveedor.convertToLocalDateViaMilisecond(fecha);
 			double temp = proveedor.obtenerTemperaturATalDia(new_date, ciudad);
 			this.setTemp(temp);
->>>>>>> Entrega5
+
 		
 		List<Atuendo> listaSugerencias = null;
 		try {
@@ -305,12 +233,7 @@ public class Evento extends TimerTask implements comando {
 		Atuendo atuendoElegido = listaSugerencias.get(rnd);
 		
 		this.Sugerencia = this.getMejorAtuendo(listaSugerencias);
-<<<<<<< HEAD
-=======
-		
-		
-    	
->>>>>>> Entrega5
+
 		if(this.Sugerencia == null) {this.deshacer();}
 		
 	}
@@ -381,11 +304,7 @@ public class Evento extends TimerTask implements comando {
 	  return this.ciudad;
   }
 
-<<<<<<< HEAD
-=======
-  
-  
->>>>>>> Entrega5
+
   public int getHorasCambioBrusco() {
 	  return this.horasChequeoCambioBrusco;
   }
@@ -413,8 +332,7 @@ public String requestDescripcionClima() throws UnauthorizedException, ApiExcepti
 	return descripcion;
 	//ES UN SOLO HEADLINE, POR ESO NO FUNCA CON EL MAP-.
   }
-<<<<<<< HEAD
-=======
+
 
 // 	Funcion de prueba, eliminar despues
 public String requestDescripcionClima_Prueba(String ciudad) throws UnauthorizedException, ApiException {
@@ -430,8 +348,7 @@ public String requestDescripcionClima_Prueba(String ciudad) throws UnauthorizedE
 	return descripcion;
 	//ES UN SOLO HEADLINE, POR ESO NO FUNCA CON EL MAP-.
   }
->>>>>>> Entrega5
-  
+
   public LocalDate obtenerLocalDateHoyCambioBrusco() {
 	   LocalDate localDate = LocalDate.now(); 
 	   return localDate;
@@ -446,14 +363,7 @@ public String requestDescripcionClima_Prueba(String ciudad) throws UnauthorizedE
 	  } 
 		  
   }
-<<<<<<< HEAD
-public int getID() {
-	return ID;
-}
-public void setID(int iD) {
-	ID = iD;
-}
-=======
+
 	public int getID() {
 		return ID;
 	}
@@ -479,7 +389,7 @@ public void setID(int iD) {
 		
 	}
 
->>>>>>> Entrega5
+
   
   
   

@@ -24,10 +24,9 @@ public class altaPrendaController extends MainController {
 	private static final String ALTA_ACCESORIO = "/cliente/altaAccesorio.hbs";
 	private static final String ALTA_ABRIGO = "/cliente/altaAbrigo.hbs";
 	private static final String ALTA_CALZADO = "/cliente/altaCalzado.hbs";
-<<<<<<< HEAD
-=======
+
 	private static final String ALTA_ACCESORIOABRIGO = "/cliente/altaAccesorioAbrigo.hbs";
->>>>>>> Entrega5
+
 	
 	
     public static void init() {
@@ -76,14 +75,13 @@ public class altaPrendaController extends MainController {
     		case "Abrigo":
     			response.redirect(Router.getAltaAbrigo());
     			return new ModelAndView(model, ALTA_ABRIGO);
-<<<<<<< HEAD
-=======
+
     			
     		case "AccesorioAbrigo":
     			response.redirect(Router.getAltaAccesorioabrigo());
     			return new ModelAndView(model, ALTA_ACCESORIOABRIGO);
     			
->>>>>>> Entrega5
+
     		default:
     			return new ModelAndView(model, ALTA_PRENDA);
     			

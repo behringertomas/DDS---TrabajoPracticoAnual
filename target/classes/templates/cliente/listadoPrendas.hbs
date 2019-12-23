@@ -25,6 +25,8 @@
 
 </head>
 
+{{>cliente/header.hbs}}
+
 <div id="wrapper">
 
     {{>cliente/navBar.hbs}}
@@ -59,6 +61,7 @@
                             <th>Material</th>
                             <th>Color Primario</th>
                             <th>Color Secundario</th>
+                            <th>Imagen</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -70,6 +73,7 @@
                                 <td>{{material}}</td>
                                 <td>{{color_primario}}</td>
                                 <td>{{color_secundario}}</td>
+                                <td>{{url_img}}</td>
                             </tr>
                         {{/each}}
                         </form>
@@ -107,6 +111,10 @@
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
+
+<!-- Logout Modal-->
+{{>cliente/logoutModel.hbs}}
+{{>cliente/scripts.hbs}}
 
 </body>
 

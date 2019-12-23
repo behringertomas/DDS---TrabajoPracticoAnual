@@ -103,10 +103,7 @@
                 </div>
                 <div class="evento-detalle">
                     <div>
-                        <p class="cantidad">{{ciudad}}</p>
-                    </div>
-                    <div>
-                        <p class="cantidad">{{descripcionclima}}</p>
+                        <p class="cantidad">{{ciudad}}  {{descripcionclima}}  {{fecha}}</p>
                     </div>
                 </div>
             </div>
@@ -199,7 +196,7 @@
     $(document).ready(function(){
         $('#calendar').on('click', 'td', function(){
             var eventos= ''
-            var a = 0
+
             {{#each eventos}}
                 var foo = "{{fecha}}"
                 var titulo = "{{descripcion}}"
@@ -207,15 +204,24 @@
                 var anio = foo.slice(0,4);
                 var mes = foo.slice(5,7);
                 var dia = foo.slice(8,10);
+                var diacorto = dia.slice(1,2);
                 var cell = ($(this).html())
-                if(cell == dia){
-                    eventos += titulo + " a las " + hora + "\n"
+
+                if(cell.length == 1){
+                    if(cell == diacorto){
+                        eventos += titulo + " a las " + hora + "\n"
+                    }
+                }else{
+                    if(cell == dia){
+                        eventos += titulo + " a las " + hora + "\n"
+                    }
                 }
             {{/each}}
+
             if(eventos != '' ){
                 window.confirm(eventos);
             }else{
-                var prueba = window.confirm("No tenes ningún evento planificado para esta fecha.");
+                window.confirm("No tenes ningún evento planificado para esta fecha.");
             }
 
         });

@@ -25,6 +25,8 @@
 
 </head>
 
+{{>cliente/header.hbs}}
+
 <body id="page-top">
 
 <div id="wrapper">
@@ -54,6 +56,7 @@
                                 <option value="Trainers">Trainers</option>
                             </select>
                         </div>
+                        <div class="form-group col-md-8 ">
                         Seleccione Material Deseado
                         <select class="form-control form-control-lg" title="material" name="material" id="material">
                             <option value="Gamuza">Gamuza</option>
@@ -62,6 +65,7 @@
                             <option value="Cuero">Cuero</option>
                             <option value="Jean">Jean</option>
                         </select>
+                        </div>
                         <div class="form-group col-md-8 ">
                             Color Primario
                             <select class="form-control form-control-lg" title="Color Primario" name="colorPrimario" id="colorPrimario">
@@ -105,11 +109,21 @@
                                 {{/each}}
                             </select>
                         </div>
-                        <div class="form-group" align="right">
+                        <div class="form-group" align="center">
+                            <div class="card-header">Cargar Imagen</div>
+                            <div class="card-body">
+                                <div class="card-header">Cargar Imagen Calzado</div>
+                                <div class="form-group">
+                                    <input class="file" id="inputImagenPrenda" name="inputImagenPrenda" aria-describedby="fileHelp" placeholder="Archivo a cargar" type="file" accept=".png" />
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+                        </div>
                             <p>
                                 <button class="btn btn-lg btn-primary" type="submit">Crear Calzado</button>
                             </p>
-                        </div>
+
                     </form>
                 </div>
             </div>
@@ -126,6 +140,10 @@
 <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
 </a>
+
+<!-- Logout Modal-->
+{{>cliente/logoutModel.hbs}}
+{{>cliente/scripts.hbs}}
 
 </body>
 

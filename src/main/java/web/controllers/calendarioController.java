@@ -19,10 +19,9 @@ import spark.Request;
 import spark.Response;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
-<<<<<<< HEAD
-=======
+
 import web.EntityManagerSingleton;
->>>>>>> Entrega5
+
 import web.Router;
 import web.models.altaEventoModel;
 import web.models.calendarioModel;
@@ -124,15 +123,9 @@ public class calendarioController extends MainController{
 //    }
 //    
     public static Usuario getUsuarioViaEntity(int id) {
-<<<<<<< HEAD
-  	   EntityManagerFactory factory = Persistence.createEntityManagerFactory("db");
-  	   entityManager = factory.createEntityManager();
-
-  	   return entityManager.find(Usuario.class, id);
-=======
 
   	   return EntityManagerSingleton.getEntityManager().find(Usuario.class, id);
->>>>>>> Entrega5
+
      }
 	
 	

@@ -29,13 +29,9 @@ public class Utils {
 		return new Scanner(resourceStream, "UTF-8").useDelimiter("\\A").next();
 	}
 
-<<<<<<< HEAD
-	public static Double kelvinToCelsius(Double kelvin) {
-		return kelvin - 273.00;
-=======
+
 	public static Double kelvinToCelsius(Double temp) {
 		return (temp - 273.00);
->>>>>>> Entrega5
 	}
 	
 	

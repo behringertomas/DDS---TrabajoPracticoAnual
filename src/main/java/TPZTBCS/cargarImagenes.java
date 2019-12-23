@@ -22,9 +22,6 @@ public class cargarImagenes {
 		Imagen imagen = new Imagen(descripcionImagen, direccionImagen);
 		
 		imagen.mostrarImagen();
-<<<<<<< HEAD
-=======
-		
->>>>>>> Entrega5
+
 	}
 }

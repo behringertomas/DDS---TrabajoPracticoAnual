@@ -465,11 +465,7 @@ public class Guardarropa
 			List <Prenda> combinacionAbrigoElegida = combinacionesValidas.get(rndAbrigos);
 			
 			combinacionesNoAbrigos.addAll(combinacionAbrigoElegida);
-<<<<<<< HEAD
-			//se concatenaron ambas listas en combinacionesNoAbrigos
-		}
-		
-=======
+
 			
 			
 			//se concatenaron ambas listas en combinacionesNoAbrigos
@@ -477,8 +473,7 @@ public class Guardarropa
 		
 		agregar_accesorio_si_es_necesario(combinacionesNoAbrigos,descripcion);
 		
->>>>>>> Entrega5
-		
+
 		return	combinacionesNoAbrigos;		
 	}
 	
@@ -591,11 +586,9 @@ public class Guardarropa
 				throw new Exception("NO EXISTE PARTE");
 		}
 	}
-<<<<<<< HEAD
-	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario, String colorSecundario,Guardarropa guardarropa) throws Exception
-=======
+
 	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario, String colorSecundario,Guardarropa guardarropa, String img_url) throws Exception
->>>>>>> Entrega5
+
 	{
 		PrendaBuilder prendaBuilder;
 		prendaBuilder = this.setPrendaBuilder(parte); 
@@ -607,22 +600,19 @@ public class Guardarropa
 		prendaBuilder.buildMaterial(material);
 		prendaBuilder.buildColorPrimario(colorPrimario);
 		prendaBuilder.buildColorSecundario(colorSecundario);
-<<<<<<< HEAD
-=======
+
 		prendaBuilder.buildUrl(img_url);
 		prendaBuilder.buildImagen();
->>>>>>> Entrega5
+
 		
 		prendaBuilder.getPrenda().setGuardarropa_id(guardarropa);
 		this.agregarAGuardarropas(prendaBuilder.getPrenda());
 		return prendaBuilder.getPrenda();
 	}
 	
-<<<<<<< HEAD
-	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario,Guardarropa guardarropa) throws Exception
-=======
+
 	public Prenda construirPrenda(String parte,String tipo, String material, String colorPrimario,Guardarropa guardarropa, String img_url) throws Exception
->>>>>>> Entrega5
+
 	{
 		PrendaBuilder prendaBuilder;
 		prendaBuilder = this.setPrendaBuilder(parte); 
@@ -632,11 +622,10 @@ public class Guardarropa
 		prendaBuilder.buildTipo(tipo);
 		prendaBuilder.buildMaterial(material);
 		prendaBuilder.buildColorPrimario(colorPrimario);
-<<<<<<< HEAD
-=======
+
 		prendaBuilder.buildUrl(img_url);
 		prendaBuilder.buildImagen();
->>>>>>> Entrega5
+
 		
 		prendaBuilder.getPrenda().setGuardarropa_id(guardarropa);
 		this.agregarAGuardarropas(prendaBuilder.getPrenda());
@@ -655,8 +644,7 @@ public class Guardarropa
 		System.out.println( "Guardarropa [identificador=" + identificador + ", limiteDePrendas=" + limiteDePrendas + "]");
 	}
 	
-<<<<<<< HEAD
-=======
+
 	public int procesar_descripcion(String descripcion) {
 		descripcion.toLowerCase();
 		if(descripcion.contains("sun")) {
@@ -708,6 +696,6 @@ public class Guardarropa
 		}
 	}
 	
->>>>>>> Entrega5
+
 	
 }

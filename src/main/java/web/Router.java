@@ -8,41 +8,24 @@ public class Router {
 	private static final String ListadoPrendas = "/listadoPrendas";
 	private static final String altaPrenda = "/altaPrenda";
 //	Le puse home a esta porque es la primera que se muestra luego del login.
-<<<<<<< HEAD
-    private static final String LOGOUT = "/";
-=======
     private static final String LOGOUT = "/logout";
->>>>>>> Entrega5
     private static final String SUGERENCIAS = "/sugerencias";
     private static final String ALTA_EVENTO = "/altaEvento";
     private static final String ACEPTAR_SUGERENCIA = "/aceptarSugerencia";
     private static final String MODIFICAR_PUNTAJES = "/modificarPuntajes";
-<<<<<<< HEAD
-=======
     private static final String SUGERENCIAS_ACEPTADAS = "/sugerenciasAceptadas";
-    
->>>>>>> Entrega5
-    
     private static final String ALTA_SUPERIOR = "/altaTipoSuperior";
 	private static final String ALTA_INFERIOR = "/altaTipoInferior";
 	private static final String ALTA_ACCESORIO = "/altaAccesorio";
 	private static final String ALTA_ABRIGO = "/altaAbrigo";
 	private static final String ALTA_CALZADO = "/altaCalzado";
-<<<<<<< HEAD
-=======
 	private static final String ALTA_ACCESORIOABRIGO = "/altaAccesorioAbrigo";
->>>>>>> Entrega5
 	private static final String CALENDARIO = "/calendario";
 	
 	
 	private static final String HISTORIAL_CALIFICACIONES = "/listadoPrendasYCalificacion";
 	
-<<<<<<< HEAD
-	public static String getHistorialCalificacionesPath() {
-		return HISTORIAL_CALIFICACIONES;
-	}
-	
-=======
+
 	
 	
 	public static String getSugerenciasAceptadas() {
@@ -57,7 +40,7 @@ public class Router {
 		return ALTA_ACCESORIOABRIGO;
 	}
 
->>>>>>> Entrega5
+
 	public static String loginPath(){
         return LOGIN;
 	}
